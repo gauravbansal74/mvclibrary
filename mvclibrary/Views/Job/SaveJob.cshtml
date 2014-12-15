@@ -1,0 +1,92 @@
+﻿@model mvclibrary.ViewModels.JobViewModel
+@{
+    ViewBag.Title = "SaveJob";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+             $(document).ready(function () {
+                 var options = {
+                     width: 400,
+                     height: 200,
+                     controls: "bold italic underline strikethrough subscript superscript | font size " + "style | color highlight removeformat | bullets numbering | outdent " + "indent | alignleft center alignright justify | undo redo | " + "rule link image unlink | cut copy paste pastetext | print source"
+                 };
+
+                 var editor = $("#jobDescription").cleditor(options)[0];
+             });
+        </script>
+
+<h2>SaveJob</h2>
+@using (Ajax.BeginForm("SaveJob", "Job", new AjaxOptions {
+        HttpMethod = "POST",
+        UpdateTargetId = "ajaxerror" 
+            
+}))
+{
+    
+     @Html.ValidationSummary(true)
+    <div  id="ajaxerror"></div>
+    <fieldset>
+        <legend>Employee</legend> 
+        
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobTitle)
+            @Html.TextBoxFor(model => model.jobTitle)
+            @Html.ValidationMessageFor(model => model.jobTitle)
+        </div> 
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobMinExp)
+            @Html.TextBoxFor(model => model.jobMinExp)
+            @Html.ValidationMessageFor(model => model.jobMinExp)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobMaxExp)
+            @Html.TextBoxFor(model => model.jobMaxExp)
+            @Html.ValidationMessageFor(model => model.jobMaxExp)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobMinSalary)
+            @Html.TextBoxFor(model => model.jobMinSalary)
+            @Html.ValidationMessageFor(model => model.jobMinSalary)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobMaxSalary)
+            @Html.TextBoxFor(model => model.jobMaxSalary)
+            @Html.ValidationMessageFor(model => model.jobMaxSalary)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobCompanyInfo)
+            @Html.TextAreaFor(model => model.jobCompanyInfo)
+            @Html.ValidationMessageFor(model => model.jobCompanyInfo)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobDescription)
+            @Html.TextAreaFor(model => model.jobDescription)
+            @Html.ValidationMessageFor(model => model.jobDescription)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobKeyword)
+            @Html.TextBoxFor(model => model.jobKeyword)
+            @Html.ValidationMessageFor(model => model.jobKeyword)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobOtherDetail)
+            @Html.TextAreaFor(model => model.jobOtherDetail)
+            @Html.ValidationMessageFor(model => model.jobOtherDetail)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobOtherDetailPresent)
+            @Html.CheckBoxFor(model => model.jobOtherDetailPresent)
+            @Html.ValidationMessageFor(model => model.jobOtherDetailPresent)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.jobDisclosed)
+            @Html.CheckBoxFor(model => model.jobDisclosed)
+            @Html.ValidationMessageFor(model => model.jobDisclosed)
+        </div>
+         
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}

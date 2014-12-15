@@ -1,45 +1,35 @@
-﻿@{
+﻿@*@{
     ViewBag.Title = "Home Page";
-}
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-}
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
-
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
-
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+}*@
+<script>
+    function signinCallback(authResult) {
+        console.log(authResult);
+        if (authResult['status']['signed_in']) {
+            // Update the app to reflect a signed in user
+            // Hide the sign-in button now that the user is authorized, for example:
+            document.getElementById('signinButton').setAttribute('style', 'display: none');
+        } else {
+            // Update the app to reflect a signed out user
+            // Possible error values:
+            //   "user_signed_out" - User is signed-out
+            //   "access_denied" - User denied access to your app
+            //   "immediate_failed" - Could not automatically log in the user
+            console.log('Sign-in state: ' + authResult['error']);
+        }
+        var myurl = "https://www.googleapis.com/plus/v1/people/840734848153-860k0cefn18rh565lolbbbno2vg34qua.apps.googleusercontent.com?key={YOUR_API_KEY}";
+        $.get("demo_test.asp", function (data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    }
+</script>
+<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+<span id="signinButton">
+  <span
+    class="g-signin"
+    data-callback="signinCallback"
+    data-clientid="840734848153-860k0cefn18rh565lolbbbno2vg34qua.apps.googleusercontent.com"
+    data-cookiepolicy="single_host_origin"
+    data-requestvisibleactions="http://schema.org/AddAction"
+    data-scope="https://www.googleapis.com/auth/plus.login">
+  </span>
+</span>

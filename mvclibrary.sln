@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvclibrary", "mvclibrary\mvclibrary.csproj", "{4E766659-9CF0-4B8D-8CD7-1B7719DACC6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLL", "DLL\DLL.csproj", "{408488BF-6695-4322-9B93-447B410EE57D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{4E766659-9CF0-4B8D-8CD7-1B7719DACC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E766659-9CF0-4B8D-8CD7-1B7719DACC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E766659-9CF0-4B8D-8CD7-1B7719DACC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{408488BF-6695-4322-9B93-447B410EE57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{408488BF-6695-4322-9B93-447B410EE57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{408488BF-6695-4322-9B93-447B410EE57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{408488BF-6695-4322-9B93-447B410EE57D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

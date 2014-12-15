@@ -1,0 +1,35 @@
+CREATE TABLE job(
+jobId BIGINT IDENTITY(1,1) PRIMARY KEY,
+jobTitle VARCHAR(150) NOT NULL,
+jobMinExp INT NOT NULL,
+jobMaxExp INT NOT NULL,
+jobDisclosed BIT DEFAULT 1 NOT NULL,
+jobKeyword TEXT NOT NULL,
+jobMinSalary BIGINT NOT NULL,
+jobMaxSalary BIGINT NOT NULL,
+jobDescription TEXT NOT NULL,
+jobOtherDetailPresent BIT DEFAULT 1 NOT NULL,
+jobOtherDetail TEXT NOT NULL,
+jobCompanyInfo TEXT NOT NULL,
+createdBy	BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+jobStatus INT NOT NULL,
+jobDeteled BIT NOT NULL
+)
+
+Create table account(
+accountId BIGINT IDENTITY(1,1) PRIMARY KEY, 
+firstName VARCHAR(50) NOT NULL,
+lastName VARCHAR(50) NOT NULL,
+email VARCHAR(100) NOT NULL,
+mobile BIGINT NOT NULL,
+dob DATE NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+accountStatus INT NOT NULL,
+isDeleted BIT NOT NULL
+)
+

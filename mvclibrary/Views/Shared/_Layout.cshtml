@@ -5,8 +5,10 @@
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
+        <link href="~/Content/jquery.cleditor.css" type="text/css" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
     </head>
     <body>
         <header>
@@ -21,7 +23,7 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Job", "SaveJob", "Job")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>
                     </nav>
@@ -42,7 +44,8 @@
             </div>
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
+        
         @RenderSection("scripts", required: false)
+        <script src="~/Scripts/jquery.cleditor.min.js" ></script>
     </body>
 </html>

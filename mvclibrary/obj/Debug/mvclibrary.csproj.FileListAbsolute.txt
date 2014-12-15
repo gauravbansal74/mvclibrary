@@ -1,6 +1,7 @@
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\mvclibrary.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\mvclibrary.pdb
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\Antlr3.Runtime.dll
+C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\DLL.exe
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\DotNetOpenAuth.AspNet.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\DotNetOpenAuth.Core.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\DotNetOpenAuth.OAuth.Consumer.dll
@@ -26,6 +27,7 @@ C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\System.Web.WebPages.R
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\WebGrease.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\WebMatrix.Data.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\WebMatrix.WebData.dll
+C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\DLL.pdb
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\EntityFramework.xml
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\Newtonsoft.Json.xml
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\System.Web.Helpers.xml
@@ -74,6 +76,6 @@ C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\ko\System.Spatial.res
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\ru\System.Spatial.resources.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\obj\Debug\mvclibrary.csprojResolveAssemblyReference.cache
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\obj\Debug\mvclibrary.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\obj\Debug\mvclibrary.pdb
+C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\obj\Debug\mvclibrary.csprojResolveAssemblyReference.cache
