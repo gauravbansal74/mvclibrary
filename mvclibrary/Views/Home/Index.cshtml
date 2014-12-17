@@ -1,35 +1,19 @@
-﻿@*@{
-    ViewBag.Title = "Home Page";
-}*@
-<script>
-    function signinCallback(authResult) {
-        console.log(authResult);
-        if (authResult['status']['signed_in']) {
-            // Update the app to reflect a signed in user
-            // Hide the sign-in button now that the user is authorized, for example:
-            document.getElementById('signinButton').setAttribute('style', 'display: none');
-        } else {
-            // Update the app to reflect a signed out user
-            // Possible error values:
-            //   "user_signed_out" - User is signed-out
-            //   "access_denied" - User denied access to your app
-            //   "immediate_failed" - Could not automatically log in the user
-            console.log('Sign-in state: ' + authResult['error']);
-        }
-        var myurl = "https://www.googleapis.com/plus/v1/people/840734848153-860k0cefn18rh565lolbbbno2vg34qua.apps.googleusercontent.com?key={YOUR_API_KEY}";
-        $.get("demo_test.asp", function (data, status) {
-            alert("Data: " + data + "\nStatus: " + status);
-        });
-    }
-</script>
-<script src="https://apis.google.com/js/client:platform.js" async defer></script>
-<span id="signinButton">
-  <span
-    class="g-signin"
-    data-callback="signinCallback"
-    data-clientid="840734848153-860k0cefn18rh565lolbbbno2vg34qua.apps.googleusercontent.com"
-    data-cookiepolicy="single_host_origin"
-    data-requestvisibleactions="http://schema.org/AddAction"
-    data-scope="https://www.googleapis.com/auth/plus.login">
-  </span>
-</span>
+﻿@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+ <!-- Page content of course! -->
+    <main class="bs-docs-masthead" id="content" role="main">
+  <div class="container">
+    <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">B</span>
+    <p class="lead">Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.</p>
+    <p class="lead">
+      <a href="getting-started#download" class="btn btn-outline-inverse btn-lg" onclick="ga('send', 'event', 'Jumbotron actions', 'Download', 'Download 3.3.1');">Download Bootstrap</a>
+    </p>
+    <p class="version">Currently v3.3.1</p>
+    <div id="carbonads-container"><div class="carbonad"><div id="azcarbon"></div><script>var z = document.createElement("script"); z.async = true; z.src = "http://engine.carbonads.com/z/32341/azcarbon_2_1_0_HORIZ"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script></div></div>
+
+  </div>
+</main>

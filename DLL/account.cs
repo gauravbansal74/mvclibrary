@@ -15,11 +15,8 @@ namespace DLL
     public partial class account
     {
         public long accountId { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
         public string email { get; set; }
-        public long mobile { get; set; }
-        public System.DateTime dob { get; set; }
+        public string password { get; set; }
         public System.DateTime createdOn { get; set; }
         public System.DateTime modifiedOn { get; set; }
         public long modifiedBy { get; set; }

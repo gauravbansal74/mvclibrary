@@ -1,25 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="offcampus4uModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="offcampus4uEntities" p1:LazyLoadingEnabled="true">
-    <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
     <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
+    <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
   </EntityContainer>
-  <EntityType Name="account">
-    <Key>
-      <PropertyRef Name="accountId" />
-    </Key>
-    <Property Name="accountId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="email" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="mobile" Type="Int64" Nullable="false" />
-    <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="modifiedOn" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
-    <Property Name="accountStatus" Type="Int32" Nullable="false" />
-    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
-  </EntityType>
   <EntityType Name="job">
     <Key>
       <PropertyRef Name="jobId" />
@@ -42,5 +26,18 @@
     <Property Type="Int64" Name="modifiedBy" Nullable="false" />
     <Property Type="Int32" Name="jobStatus" Nullable="false" />
     <Property Type="Boolean" Name="jobDeteled" Nullable="false" />
+  </EntityType>
+  <EntityType Name="account">
+    <Key>
+      <PropertyRef Name="accountId" />
+    </Key>
+    <Property Type="Int64" Name="accountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="password" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <Property Type="Int32" Name="accountStatus" Nullable="false" />
+    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </EntityType>
 </Schema>

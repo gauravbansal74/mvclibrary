@@ -9,11 +9,8 @@
       <PropertyRef Name="accountId" />
     </Key>
     <Property Name="accountId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="firstName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="lastName" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="email" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="mobile" Type="bigint" Nullable="false" />
-    <Property Name="dob" Type="date" Nullable="false" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="createdOn" Type="datetime" Nullable="false" />
     <Property Name="modifiedOn" Type="datetime" Nullable="false" />
     <Property Name="modifiedBy" Type="bigint" Nullable="false" />

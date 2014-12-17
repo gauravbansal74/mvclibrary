@@ -9,7 +9,8 @@
     <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 
-    <title>Offcampus4u : The Technical Network
+    <title>
+        Offcampus4u: The Online Technical Network
     </title>
     <link rel="stylesheet" type="text/css" href="~/Content/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/dist/css/site.css" />
@@ -35,28 +36,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Test", "index", "home", null, new { @class = "navbar-brand" })
-
+                @Html.ActionLink("Test", "index", "home", null, new {@class = "navbar-brand"})
+               
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav">
                     <li>
-                        @Html.ActionLink("Courses", "Index", "Course")
+                         @Html.ActionLink("Courses","Index","Course")
                     </li>
                     <li>
-                        @Html.ActionLink("Jobs", "Index", "Job")
-
+                        @Html.ActionLink("Jobs","Index","Job")
+                       
                     </li>
-
+                   
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Register/Login", "Index", "Account")</li>
+                    <li>@Html.ActionLink("Register/Sign-in","Index","Account")</li>
                 </ul>
             </nav>
         </div>
     </header>
     <div id="body">
-
+   
         <section class="content-wrapper main-content clear-fix">
             @RenderBody()
         </section>
@@ -70,62 +71,10 @@
     </footer>
 
 
-
+  
     @*    <script src="~/Scripts/jquery.cleditor.min.js"></script>*@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="~/Content/dist/js/bootstrap.min.js"></script>
-    <script src="~/Content/dist/js/cstm.js"></script>
-    <script>
-        $(document).ready(function () {
-            var isLogin = false;
-            $(document).on('change', 'input:radio[id^="option"]', function (event) {
-                if (event.target.id === "option1") {
-                    $("#confirmpasswordinput").show();
-                    $("#submit_button").html('Register');
-                    $("#signuptext").html("Register for Offcampus4u");
-                    isLogin = false;
-                } else if (event.target.id === "option2") {
-                    $("#confirmpasswordinput").hide();
-                    $("#submit_button").html('Login');
-                    $("#signuptext").html("Login");
-                    isLogin = true;
-                }
-            });
-
-            $("#submit_button").on('click', function () {
-                
-                if (!isLogin) {
-                    $.ajax({
-                        type: "POST",
-                        url: "@(Url.Action("createAccount", "Account"))",
-                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val(), cfrmpassword: $("#inputPassword2").val() }
-                    })
-                    .done(function (data) {
-                        console.log("done", data);
-                        showalert(data.isSuccess, data.message);
-                    })
-                    .fail(function (data) {
-                        console.log("fail", data);
-                        showalert(data.isSuccess, data.message);
-                    });
-                } else {
-                    $.ajax({
-                        type: "POST",
-                        url: "@(Url.Action("checkLogin", "Account"))",
-                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val() }
-                    })
-                    .done(function (data) {
-                        console.log("done", data);
-                        showalert(data.isSuccess, data.message);
-                    })
-                    .fail(function (data) {
-                        console.log("fail", data);
-                        showalert(data.isSuccess, data.message);
-                    });
-                }
-                
-           });
-     });
-    </script>
+   
 </body>
 </html>

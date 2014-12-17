@@ -21,15 +21,12 @@ jobDeteled BIT NOT NULL
 
 Create table account(
 accountId BIGINT IDENTITY(1,1) PRIMARY KEY, 
-firstName VARCHAR(50) NOT NULL,
-lastName VARCHAR(50) NOT NULL,
 email VARCHAR(100) NOT NULL,
-mobile BIGINT NOT NULL,
-dob DATE NOT NULL,
+password VARCHAR(100) NOT NULL,
 createdOn DATETIME NOT NULL,
 modifiedOn DATETIME NOT NULL,
 modifiedBy	BIGINT NOT NULL,
-accountStatus INT NOT NULL,
+accountStatus INT DEFAULT 0 NOT NULL,
 isDeleted BIT NOT NULL
 )
 
