@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="offcampus4uModelStoreContainer" CdmEntityContainer="offcampus4uEntities">
+    <EntitySetMapping Name="accounts">
+      <EntityTypeMapping TypeName="offcampus4uModel.account">
+        <MappingFragment StoreEntitySet="account">
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="jobs">
       <EntityTypeMapping TypeName="offcampus4uModel.job">
         <MappingFragment StoreEntitySet="job">
@@ -10,6 +24,9 @@
           <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
           <ScalarProperty Name="createdOn" ColumnName="createdOn" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="jobExpireDate" ColumnName="jobExpireDate" />
+          <ScalarProperty Name="jobApplyMode" ColumnName="jobApplyMode" />
+          <ScalarProperty Name="jobApplyModeIsEmail" ColumnName="jobApplyModeIsEmail" />
           <ScalarProperty Name="jobCompanyInfo" ColumnName="jobCompanyInfo" />
           <ScalarProperty Name="jobOtherDetail" ColumnName="jobOtherDetail" />
           <ScalarProperty Name="jobOtherDetailPresent" ColumnName="jobOtherDetailPresent" />
@@ -22,20 +39,6 @@
           <ScalarProperty Name="jobMinExp" ColumnName="jobMinExp" />
           <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
           <ScalarProperty Name="jobId" ColumnName="jobId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="accounts">
-      <EntityTypeMapping TypeName="offcampus4uModel.account">
-        <MappingFragment StoreEntitySet="account">
-          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
-          <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
-          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="accountId" ColumnName="accountId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

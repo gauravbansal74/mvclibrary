@@ -15,17 +15,23 @@ namespace mvclibrary.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
-            //else
-            //{
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
                 return View();
-            //}
+            }
         }
 
-        [HttpPost]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index","Home");
+        }
+
+       
         [AllowAnonymous]
         public ActionResult checkLogin(string email, string password)
         {
@@ -70,9 +76,16 @@ namespace mvclibrary.Controllers
                     }
                     FormsAuthentication.SetAuthCookie(objError.message, false);
                     Response.Cookies.Add(wunCookie);
-                    return RedirectToAction("Index", "Course");
+                    objError.isSuccess = true;
+                    objError.message = "Succesafully Logged in.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
                 }
-                return RedirectToAction("Index", "Account");
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "User is not registred with us.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
             }
         }
 

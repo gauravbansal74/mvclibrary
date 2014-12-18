@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DLL;
 using mvclibrary.ViewModels;
+using mvclibrary.customlib;
 
 
 namespace mvclibrary.Controllers
@@ -27,37 +28,117 @@ namespace mvclibrary.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveJob(JobViewModel job1)
+        public JsonResult SaveJob(JobViewModel jobdata)
         {
-            if (ModelState.IsValid)
+            Error objError = new Error();
+            if (string.IsNullOrEmpty(jobdata.jobTitle))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter the Title.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+
+            if (jobdata.jobMinExp > jobdata.jobMaxExp)
+            {
+                objError.isSuccess = false;
+                objError.message = "Min. Exp. cann't be greater than Max. Exp.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+
+            if (jobdata.jobDisclosed)
+            {
+                if (jobdata.jobMinSalary > jobdata.jobMaxSalary)
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Min. Sal. cann't be greater than Max. Sal.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            if (string.IsNullOrEmpty(jobdata.jobDescription))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter the Description.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+
+            if (string.IsNullOrEmpty(jobdata.jobKeyword))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter the Keywords.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+
+            if (jobdata.jobOtherDetailPresent)
+            {
+                if (string.IsNullOrEmpty(jobdata.jobOtherDetail))
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Enter the Other Detail.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            if (string.IsNullOrEmpty(jobdata.jobCompanyInfo))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter the Company Information.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+
+            if (string.IsNullOrEmpty(jobdata.jobApplyMode))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter the Source Email or Website Linkn.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+
+
+            if (jobdata.jobApplyModeIsEmail)
+            {
+                RegexUtilities util = new RegexUtilities();
+                if (!util.IsValidEmail(jobdata.jobApplyMode))
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Enter valid email address.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            if (jobdata.jobExpireDate != null)
             {
                 objJob = new Jobs();
                 job job = new job();
-                job.jobCompanyInfo = job1.jobCompanyInfo;
-                job.jobDescription = job1.jobDescription;
-                job.jobDisclosed = job.jobDisclosed;
-                job.jobKeyword = job1.jobKeyword;
-                job.jobMaxExp = job1.jobMaxExp;
-                job.jobMaxSalary = job1.jobMaxSalary;
-                job.jobMinExp = job1.jobMinExp;
-                job.jobMinSalary = job1.jobMinSalary;
-                job.jobOtherDetail = job1.jobOtherDetail;
-                job.jobOtherDetailPresent = job1.jobOtherDetailPresent;
-                job.jobTitle = job1.jobTitle;
-                job.createdBy = 1;
+                job.jobCompanyInfo = jobdata.jobCompanyInfo;
+                job.jobDescription = jobdata.jobDescription;
+                job.jobDisclosed = jobdata.jobDisclosed;
+                job.jobKeyword = jobdata.jobKeyword;
+                job.jobMaxExp = jobdata.jobMaxExp;
+                job.jobMaxSalary = jobdata.jobMaxSalary;
+                job.jobMinExp = jobdata.jobMinExp;
+                job.jobMinSalary = jobdata.jobMinSalary;
+                job.jobOtherDetail = jobdata.jobOtherDetail;
+                job.jobOtherDetailPresent = jobdata.jobOtherDetailPresent;
+                job.jobApplyMode = jobdata.jobApplyMode;
+                job.jobApplyModeIsEmail = jobdata.jobApplyModeIsEmail;
+                job.jobExpireDate = jobdata.jobExpireDate;
+                job.jobTitle = jobdata.jobTitle;
+                job.createdBy = Convert.ToInt64(User.Identity.Name);
                 job.createdOn = DateTime.Now;
-                job.modifiedBy = 1;
+                job.modifiedBy = Convert.ToInt64(User.Identity.Name);
                 job.modifiedOn = DateTime.Now;
                 job.jobDeteled = false;
                 job.jobStatus = 0;
-                objJob.saveJob(job);
-                return Content("Error in Form");
+                objError = objJob.saveJob(job);
+                return Json(objError, JsonRequestBehavior.AllowGet);
             }
             else
             {
-
-                return View(job1);
+                objError.isSuccess = false;
+                objError.message = "Enter valid Expiry Date.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
             }
+            
 
         }
 

@@ -26,6 +26,9 @@ namespace DLL
         public bool jobOtherDetailPresent { get; set; }
         public string jobOtherDetail { get; set; }
         public string jobCompanyInfo { get; set; }
+        public bool jobApplyModeIsEmail { get; set; }
+        public string jobApplyMode { get; set; }
+        public System.DateTime jobExpireDate { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdOn { get; set; }
         public System.DateTime modifiedOn { get; set; }

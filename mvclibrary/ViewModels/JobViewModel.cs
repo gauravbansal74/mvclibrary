@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace mvclibrary.ViewModels
 {
+    [Serializable]
     public class JobViewModel
     {
         [Required(ErrorMessage = "Title is Required.")]
@@ -45,9 +46,18 @@ namespace mvclibrary.ViewModels
         [Display(Name = "Other  Detail")]
         public string jobOtherDetail { get; set; }
 
-        [Required(ErrorMessage = "Company info is Required.")]
-        [Display(Name = "Company Info")]
+        [Required(ErrorMessage = "Company infomation is Required.")]
+        [Display(Name = "Company Infomation")]
         public string jobCompanyInfo { get; set; }
+
+        [Display(Name = "How to apply using -")]
+        public bool jobApplyModeIsEmail { get; set; }
+
+        [Display(Name = "Source Email or Website link")]
+        public string jobApplyMode { get; set; }
+
+        [Display(Name = "Expires on")]
+        public DateTime jobExpireDate { get; set; }
   }
 
 

@@ -44,7 +44,56 @@
   </div>
 </div>
 </main>
+<script>
+    var isLogin = false;
+    $(document).on('change', 'input:radio[id^="option"]', function (event) {
+        if (event.target.id === "option1") {
+            $("#confirmpasswordinput").show();
+            $("#submit_button").html('Register');
+            $("#signuptext").html("Register for Offcampus4u");
+            isLogin = false;
+        } else if (event.target.id === "option2") {
+            $("#confirmpasswordinput").hide();
+            $("#submit_button").html('Login');
+            $("#signuptext").html("Login");
+            isLogin = true;
+        }
+    });
 
+    $("#submit_button").on('click', function () {
+
+        if (!isLogin) {
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("createAccount", "Account"))",
+                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val(), cfrmpassword: $("#inputPassword2").val() }
+                    })
+                    .done(function (data) {
+                        console.log("done", data);
+                        showalert(data.isSuccess, data.message);
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+                    });
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "@(Url.Action("checkLogin", "Account"))",
+                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val() }
+                    })
+                    .done(function (data) {
+                        showalert(data.isSuccess, data.message);
+                        location.reload();
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+                    });
+                }
+
+            });
+</script>
     <script type="text/javascript">
         // Enter a client ID for a web application from the Google Developer Console.
         // The provided clientId will only work if the sample is run directly from

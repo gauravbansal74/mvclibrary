@@ -4,10 +4,10 @@
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
     <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">*@
 
     <title>Offcampus4u : The Technical Network
     </title>
@@ -22,9 +22,10 @@
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" href="/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 
-<body class="bs-docs-home">
+<body class="bs-docs-home" id="maindiv" style="z-index:1;text-align:center;">
     <!-- Docs master nav -->
     <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
         <div class="container">
@@ -50,7 +51,26 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Register/Login", "Index", "Account")</li>
+                    @{ if(User.Identity.IsAuthenticated){
+                            <li role="presentation" class="dropdown">
+                                <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                                  My Account
+                                  <span class="caret"></span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+                                  <li role="presentation">@Html.ActionLink("Profile","Index","User")</li>
+                                  <li role="presentation">@Html.ActionLink("Post New Job","SaveJob","Job")</li>
+                                    <li role="presentation">@Html.ActionLink("Job Posting History","Logout","Account")</li>
+                                  <li role="presentation">@Html.ActionLink("Wallet","Logout","Account")</li>
+                                  <li role="presentation" class="divider"></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Separated link</a></li>
+                                </ul>
+                              </li>
+                           <li>@Html.ActionLink("Logout","Logout","Account")</li>
+                        }else{
+                            <li>@Html.ActionLink("Register/Login","Index","Account")</li>
+                        }
+                    }
                 </ul>
             </nav>
         </div>
@@ -62,7 +82,7 @@
         </section>
     </div>
     <footer>
-        <div class="content-wrapper">
+        <div class="bs-docs-masthead" style="padding: 30px 15px;">
             <div class="float-left">
                 <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
             </div>
@@ -72,60 +92,8 @@
 
 
     @*    <script src="~/Scripts/jquery.cleditor.min.js"></script>*@
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  
     <script src="~/Content/dist/js/bootstrap.min.js"></script>
     <script src="~/Content/dist/js/cstm.js"></script>
-    <script>
-        $(document).ready(function () {
-            var isLogin = false;
-            $(document).on('change', 'input:radio[id^="option"]', function (event) {
-                if (event.target.id === "option1") {
-                    $("#confirmpasswordinput").show();
-                    $("#submit_button").html('Register');
-                    $("#signuptext").html("Register for Offcampus4u");
-                    isLogin = false;
-                } else if (event.target.id === "option2") {
-                    $("#confirmpasswordinput").hide();
-                    $("#submit_button").html('Login');
-                    $("#signuptext").html("Login");
-                    isLogin = true;
-                }
-            });
-
-            $("#submit_button").on('click', function () {
-                
-                if (!isLogin) {
-                    $.ajax({
-                        type: "POST",
-                        url: "@(Url.Action("createAccount", "Account"))",
-                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val(), cfrmpassword: $("#inputPassword2").val() }
-                    })
-                    .done(function (data) {
-                        console.log("done", data);
-                        showalert(data.isSuccess, data.message);
-                    })
-                    .fail(function (data) {
-                        console.log("fail", data);
-                        showalert(data.isSuccess, data.message);
-                    });
-                } else {
-                    $.ajax({
-                        type: "POST",
-                        url: "@(Url.Action("checkLogin", "Account"))",
-                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val() }
-                    })
-                    .done(function (data) {
-                        console.log("done", data);
-                        showalert(data.isSuccess, data.message);
-                    })
-                    .fail(function (data) {
-                        console.log("fail", data);
-                        showalert(data.isSuccess, data.message);
-                    });
-                }
-                
-           });
-     });
-    </script>
 </body>
 </html>

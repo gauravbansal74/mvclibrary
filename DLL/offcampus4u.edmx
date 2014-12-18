@@ -38,6 +38,9 @@
           <Property Name="jobOtherDetailPresent" Type="bit" Nullable="false" />
           <Property Name="jobOtherDetail" Type="text" Nullable="false" />
           <Property Name="jobCompanyInfo" Type="text" Nullable="false" />
+          <Property Name="jobApplyModeIsEmail" Type="bit" Nullable="false" />
+          <Property Name="jobApplyMode" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="jobExpireDate" Type="datetime" Nullable="false" />
           <Property Name="createdBy" Type="bigint" Nullable="false" />
           <Property Name="createdOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedOn" Type="datetime" Nullable="false" />
@@ -50,9 +53,22 @@
     <edmx:ConceptualModels>
       <Schema Namespace="offcampus4uModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="offcampus4uEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
           <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
+          <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
         </EntityContainer>
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="accountId" />
+          </Key>
+          <Property Type="Int64" Name="accountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+          <Property Type="Int32" Name="accountStatus" Nullable="false" />
+          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+        </EntityType>
         <EntityType Name="job">
           <Key>
             <PropertyRef Name="jobId" />
@@ -69,6 +85,9 @@
           <Property Type="Boolean" Name="jobOtherDetailPresent" Nullable="false" />
           <Property Type="String" Name="jobOtherDetail" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="jobCompanyInfo" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="jobApplyModeIsEmail" Nullable="false" />
+          <Property Type="String" Name="jobApplyMode" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="jobExpireDate" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="createdBy" Nullable="false" />
           <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
@@ -76,25 +95,26 @@
           <Property Type="Int32" Name="jobStatus" Nullable="false" />
           <Property Type="Boolean" Name="jobDeteled" Nullable="false" />
         </EntityType>
-        <EntityType Name="account">
-          <Key>
-            <PropertyRef Name="accountId" />
-          </Key>
-          <Property Type="Int64" Name="accountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="password" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-          <Property Type="Int32" Name="accountStatus" Nullable="false" />
-          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="offcampus4uModelStoreContainer" CdmEntityContainer="offcampus4uEntities">
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="offcampus4uModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="jobs">
             <EntityTypeMapping TypeName="offcampus4uModel.job">
               <MappingFragment StoreEntitySet="job">
@@ -104,6 +124,9 @@
                 <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
                 <ScalarProperty Name="createdOn" ColumnName="createdOn" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="jobExpireDate" ColumnName="jobExpireDate" />
+                <ScalarProperty Name="jobApplyMode" ColumnName="jobApplyMode" />
+                <ScalarProperty Name="jobApplyModeIsEmail" ColumnName="jobApplyModeIsEmail" />
                 <ScalarProperty Name="jobCompanyInfo" ColumnName="jobCompanyInfo" />
                 <ScalarProperty Name="jobOtherDetail" ColumnName="jobOtherDetail" />
                 <ScalarProperty Name="jobOtherDetailPresent" ColumnName="jobOtherDetailPresent" />
@@ -116,20 +139,6 @@
                 <ScalarProperty Name="jobMinExp" ColumnName="jobMinExp" />
                 <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
                 <ScalarProperty Name="jobId" ColumnName="jobId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="accounts">
-            <EntityTypeMapping TypeName="offcampus4uModel.account">
-              <MappingFragment StoreEntitySet="account">
-                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
-                <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

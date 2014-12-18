@@ -13,12 +13,21 @@ namespace DLL
 
        public Error saveJob(job job){
            Error objError = new Error();
-           db = new offcampus4uEntities();
-           db.jobs.Add(job);
-           db.SaveChanges();
-           objError.isSuccess = true;
-           objError.message = "Successfully updated";
-           return objError;
+           try
+           {
+               db = new offcampus4uEntities();
+               db.jobs.Add(job);
+               db.SaveChanges();
+               objError.isSuccess = true;
+               objError.message = "Successfully updated";
+               return objError;
+           }
+           catch
+           {
+               objError.isSuccess = false;
+               objError.message = "Oops.. Somthing went wrong. please try again after sometime.";
+               return objError;
+           }
        }
     }
 }

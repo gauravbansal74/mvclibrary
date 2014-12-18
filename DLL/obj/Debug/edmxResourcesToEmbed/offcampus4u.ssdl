@@ -33,6 +33,9 @@
     <Property Name="jobOtherDetailPresent" Type="bit" Nullable="false" />
     <Property Name="jobOtherDetail" Type="text" Nullable="false" />
     <Property Name="jobCompanyInfo" Type="text" Nullable="false" />
+    <Property Name="jobApplyModeIsEmail" Type="bit" Nullable="false" />
+    <Property Name="jobApplyMode" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="jobExpireDate" Type="datetime" Nullable="false" />
     <Property Name="createdBy" Type="bigint" Nullable="false" />
     <Property Name="createdOn" Type="datetime" Nullable="false" />
     <Property Name="modifiedOn" Type="datetime" Nullable="false" />
