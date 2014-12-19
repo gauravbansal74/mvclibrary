@@ -3,7 +3,8 @@
     ViewBag.Title = "SaveJob";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+  <link rel="stylesheet" type="text/css" href="~/Content/jquery.cleditor.css" />
+<script type="text/javascript" src="~/Content/jquery.cleditor.min.js"></script>
 <main class="bs-docs-masthead-other" >
      @Html.ValidationSummary(true)
  <div class="panel panel-default"  style="width:60%;margin:0 auto;text-align:left;">
@@ -138,6 +139,7 @@
 </main>
 
 <script>
+    $("#jobDescription").cleditor();
     $('#jobsubmit').on('click', function () {
         var $btn = $(this).button('loading');
         var JobViewModel = {

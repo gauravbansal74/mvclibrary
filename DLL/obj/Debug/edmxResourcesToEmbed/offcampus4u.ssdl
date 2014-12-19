@@ -3,6 +3,11 @@
   <EntityContainer Name="offcampus4uModelStoreContainer">
     <EntitySet Name="account" EntityType="offcampus4uModel.Store.account" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="job" EntityType="offcampus4uModel.Store.job" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="personalInformation" EntityType="offcampus4uModel.Store.personalInformation" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__personalI__accou__276EDEB3" Association="offcampus4uModel.Store.FK__personalI__accou__276EDEB3">
+      <End Role="account" EntitySet="account" />
+      <End Role="personalInformation" EntitySet="personalInformation" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="account">
     <Key>
@@ -43,4 +48,31 @@
     <Property Name="jobStatus" Type="int" Nullable="false" />
     <Property Name="jobDeteled" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="personalInformation">
+    <Key>
+      <PropertyRef Name="personalInfoId" />
+    </Key>
+    <Property Name="personalInfoId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="accountId" Type="bigint" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="100" />
+    <Property Name="lastName" Type="varchar" MaxLength="100" />
+    <Property Name="phoneNumber" Type="varchar" MaxLength="15" />
+    <Property Name="emailAddress" Type="varchar" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__personalI__accou__276EDEB3">
+    <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
+    <End Role="personalInformation" Type="offcampus4uModel.Store.personalInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="personalInformation">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

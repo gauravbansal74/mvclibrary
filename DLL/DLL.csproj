@@ -72,6 +72,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>offcampus4u.edmx</DependentUpon>
     </Compile>
+    <Compile Include="personalInformation.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

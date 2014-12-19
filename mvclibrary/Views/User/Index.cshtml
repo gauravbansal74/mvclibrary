@@ -1,6 +1,160 @@
-﻿@{
+﻿@model mvclibrary.ViewModels.ProfileViewModel
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .personalprofile {
+        background-color: #404040;
+        color: #fbfbfb;
+        border-radius: 3px;
+        padding: 20px;
+        margin-bottom: 9px;
+        border: none;
+        word-wrap: break-word;
+        -webkit-box-shadow: 0px 2px 2px rgba(0,0,1,0.1);
+        -moz-box-shadow: 0px 2px 2px rgba(0,0,1,0.1);
+        box-shadow: 0px 2px 2px rgba(0,0,1,0.1);
+        min-height: 20px;
+        margin: 20px;
+    }
 
-<h2>Index</h2>
+    .mainwidth {
+        width: 50%;
+        margin: 0 auto;
+        text-align: left;
+        padding: 10px;
+    }
+
+    .personalprofile h1 {
+        font-weight: normal;
+        line-height: 1.1;
+        margin-top: 0;
+    }
+
+    .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: normal;
+    }
+
+    .mt-none {
+        margin-top: 0!important;
+    }
+    label {
+        font-weight:bold;
+    }
+</style>
+<main class="bs-docs-masthead-other">
+    <div class="personalprofile mainwidth">
+        <div class="row">
+            <div class="col-xs-8 mt-none ellipsis">
+                <h1>@Model.UserPersonalInformation.firstName @Model.UserPersonalInformation.lastName</h1>
+            </div>
+            <div class="col-xs-4 mt-none" style="text-align:right;">
+                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#personalprofilemodal" style="cursor: pointer;"></i>
+            </div>
+         </div>
+        <div class="row">
+            <div class="col-xs-4 ellipsis">
+               @Model.UserPersonalInformation.emailAddress
+              </div>
+              <div class="col-xs-4 ellipsis">
+                @Model.UserPersonalInformation.phoneNumber
+              </div>
+             
+        </div>
+    </div>
+
+    <div class="well ng-scope" ng-if="showControl()" ng-animate="'fade-in'">
+        <div class="pull-right">
+            <a href="#/current-status/edit" data-automation="prof-link-editjobstatus" class="no-underline color-light hover-primary" ui-sref="current-status-edit">
+                <i class="icon-edit"></i>
+            </a>
+        </div>
+        <h2 class="color-gray-mid">Current status</h2>
+
+        <!-- ngIf: isCurrentLocationSpecified() --><div class="row-fluid text-only mt-one ng-scope" ng-if="isCurrentLocationSpecified()">
+            <div class="span4">
+                <span class="color-light">Home location</span>
+            </div>
+            <div class="span8" data-automation="prof-txt-currentlocation">
+                <span class="ng-binding">Asia Pacific</span><!-- ngIf: model.currentLocation.area -->
+            </div>
+        </div><!-- end ngIf: isCurrentLocationSpecified() -->
+
+        <!-- ngIf: isClassificationSpecified() --><div class="row-fluid text-only mt-one ng-scope" ng-if="isClassificationSpecified()">
+            <div class="span4">
+                <span class="color-light">Classifications</span>
+            </div>
+            <div class="span8" data-automation="prof-txt-classifications">
+                <!-- ngRepeat: item in model.classifications | orderBy: 'classification.id' --><div ng-repeat="item in model.classifications | orderBy: 'classification.id'" class="ng-scope">
+                    <!-- ngIf: item.classification.id == item.subClassification.id -->
+                    <!-- ngIf: item.classification.id != item.subClassification.id --><div ng-if="item.classification.id != item.subClassification.id" class="ng-scope ng-binding">Information &amp; Communication Technology &gt; Developers/Programmers</div><!-- end ngIf: item.classification.id != item.subClassification.id -->
+                </div><!-- end ngRepeat: item in model.classifications | orderBy: 'classification.id' -->
+            </div>
+        </div><!-- end ngIf: isClassificationSpecified() -->
+
+        <!-- ngIf: isSearchStatusSpecified() -->
+
+        <!-- ngIf: isAvailabilitySpecified() -->
+    </div>
+</main>
+
+<!-- Personal Profile Modal Pop-->
+<div class="modal fade" id="personalprofilemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align:left;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Personal Information</h4>
+      </div>
+      <div class="modal-body">
+          <div>
+               <div class="form-group pull-left" style="width:30%;margin-right:5px;">
+                  @Html.LabelFor(model => model.UserPersonalInformation.firstName)
+                  @Html.TextBoxFor(model => model.UserPersonalInformation.firstName, new { @class = "form-control", placeholder = "Gaurav" })
+              </div>
+              <div class="form-group pull-left" style="width:30%;">
+                  @Html.LabelFor(model => model.UserPersonalInformation.lastName)
+                  @Html.TextBoxFor(model => model.UserPersonalInformation.lastName, new { @class = "form-control", placeholder = "Kumar" })
+              </div>
+          </div>
+          <div class="form-group" style="width:50%;">
+                  @Html.LabelFor(model => model.UserPersonalInformation.phoneNumber)
+                  @Html.TextBoxFor(model => model.UserPersonalInformation.phoneNumber, new { @class = "form-control", placeholder = "+91 **** *** ***" })
+           </div>
+             <div class="form-group" style="width:50%;">
+                    @Html.LabelFor(model => model.UserPersonalInformation.emailAddress)
+                    @Html.TextBoxFor(model => model.UserPersonalInformation.emailAddress, new { @class = "form-control", placeholder = "info@offcampus4u.in" })
+               </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+        <button id="personalinformationbutton" type="button" class="btn btn-success">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $("#personalinformationbutton").on('click', function () {
+        var UserProfileViewModel = {
+            firstName: $("#UserPersonalInformation_firstName").val(),
+            lastName: $("#UserPersonalInformation_lastName").val(),
+            phoneNumber: $("#UserPersonalInformation_phoneNumber").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("UpdatePersonalInformation", "User"))",
+            data: UserProfileViewModel
+        })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+        })
+        .fail(function (data) {
+            showalert(data.isSuccess, data.message);
+        });
+    });
+</script>
+

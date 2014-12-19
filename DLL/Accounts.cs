@@ -11,6 +11,13 @@ namespace DLL
     {
         private offcampus4uEntities db;
 
+        public account getAccount(Int64 userId)
+        {
+            db = new offcampus4uEntities();
+            account objAccount = db.accounts.Where(x => x.accountId == userId).FirstOrDefault();
+            return objAccount;
+        }
+
         public Error registerAccount(account account)
         {
             Error objError = new Error();

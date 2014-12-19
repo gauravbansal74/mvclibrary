@@ -1,3 +1,29 @@
+CREATE TABLE personalInformation(
+personalInfoId BIGINT IDENTITY(1,1) PRIMARY KEY,
+accountId BIGINT NOT NULL,
+firstName VARCHAR(100) ,
+lastName VARCHAR(100) ,
+phoneNumber VARCHAR(15),
+emailAddress VARCHAR(100),
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+FOREIGN KEY (accountId) REFERENCES account(accountId)
+)
+
+
+Create table account(
+accountId BIGINT IDENTITY(1,1) PRIMARY KEY, 
+email VARCHAR(100) NOT NULL,
+password VARCHAR(100) NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+accountStatus INT DEFAULT 0 NOT NULL,
+isDeleted BIT NOT NULL
+)
+
 CREATE TABLE job(
 jobId BIGINT IDENTITY(1,1) PRIMARY KEY,
 jobTitle VARCHAR(150) NOT NULL,
@@ -22,14 +48,5 @@ jobStatus INT NOT NULL,
 jobDeteled BIT NOT NULL
 )
 
-Create table account(
-accountId BIGINT IDENTITY(1,1) PRIMARY KEY, 
-email VARCHAR(100) NOT NULL,
-password VARCHAR(100) NOT NULL,
-createdOn DATETIME NOT NULL,
-modifiedOn DATETIME NOT NULL,
-modifiedBy	BIGINT NOT NULL,
-accountStatus INT DEFAULT 0 NOT NULL,
-isDeleted BIT NOT NULL
-)
+
 

@@ -7,6 +7,8 @@
       <Diagram DiagramId="60b08a12679b4b079a77cad99e455724" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="offcampus4uModel.account" Width="1.5" PointX="1" PointY="1.375" />
         <EntityTypeShape EntityType="offcampus4uModel.job" Width="1.5" PointX="10.142225659518608" PointY="21.18930376562723" />
+        <EntityTypeShape EntityType="offcampus4uModel.personalInformation" Width="1.5" PointX="4.75" PointY="1.375" />
+        <AssociationConnector Association="offcampus4uModel.FK__personalI__accou__276EDEB3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

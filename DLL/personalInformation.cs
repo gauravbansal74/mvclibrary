@@ -12,22 +12,19 @@ namespace DLL
     using System;
     using System.Collections.Generic;
     
-    public partial class account
+    public partial class personalInformation
     {
-        public account()
-        {
-            this.personalInformations = new HashSet<personalInformation>();
-        }
-    
+        public long personalInfoId { get; set; }
         public long accountId { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string phoneNumber { get; set; }
+        public string emailAddress { get; set; }
+        public long createdBy { get; set; }
         public System.DateTime createdOn { get; set; }
         public System.DateTime modifiedOn { get; set; }
         public long modifiedBy { get; set; }
-        public int accountStatus { get; set; }
-        public bool isDeleted { get; set; }
     
-        public virtual ICollection<personalInformation> personalInformations { get; set; }
+        public virtual account account { get; set; }
     }
 }

@@ -202,7 +202,7 @@ label {
 .bs-docs-masthead, .bs-docs-header {
     position: relative;
     padding: 30px 15px;
-    color: #cdbfe3;
+    color: #ffffff;
     text-align: center;
     text-shadow: 0 1px 0 rgba(0,0,0,.1);
     background-color: #34495e;
@@ -1684,4 +1684,13 @@ h1[id] {
 
 .css .o, .css .o + .nt, .css .nt + .nt {
     color: #999;
+}
+
+
+.modal-body, .modal-header {
+    background-color:#eee;
+}
+
+.modal-footer {
+    background-color:#404040;
 }
