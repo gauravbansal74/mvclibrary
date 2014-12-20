@@ -1,22 +1,19 @@
-CREATE TABLE personalInformation(
-personalInfoId BIGINT IDENTITY(1,1) PRIMARY KEY,
-accountId BIGINT NOT NULL,
-firstName VARCHAR(100) ,
-lastName VARCHAR(100) ,
-phoneNumber VARCHAR(15),
-emailAddress VARCHAR(100),
-createdBy BIGINT NOT NULL,
-createdOn DATETIME NOT NULL,
-modifiedOn DATETIME NOT NULL,
-modifiedBy	BIGINT NOT NULL,
-FOREIGN KEY (accountId) REFERENCES account(accountId)
-)
 
 
 Create table account(
 accountId BIGINT IDENTITY(1,1) PRIMARY KEY, 
 email VARCHAR(100) NOT NULL,
 password VARCHAR(100) NOT NULL,
+firstName VARCHAR(100),
+lastName VARCHAR(100),
+phoneNumber VARCHAR(15),
+basedIn VARCHAR(100),
+classifiedRole VARCHAR(150),
+jobseekingStatus VARCHAR(100),
+availability VARCHAR(50),
+highestEducation VARCHAR(100),
+workType VARCHAR(100),
+Preferredlocations VARCHAR(100),
 createdOn DATETIME NOT NULL,
 modifiedOn DATETIME NOT NULL,
 modifiedBy	BIGINT NOT NULL,

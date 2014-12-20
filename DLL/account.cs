@@ -14,20 +14,23 @@ namespace DLL
     
     public partial class account
     {
-        public account()
-        {
-            this.personalInformations = new HashSet<personalInformation>();
-        }
-    
         public long accountId { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string phoneNumber { get; set; }
+        public string basedIn { get; set; }
+        public string classifiedRole { get; set; }
+        public string jobseekingStatus { get; set; }
+        public string availability { get; set; }
+        public string highestEducation { get; set; }
+        public string workType { get; set; }
+        public string Preferredlocations { get; set; }
         public System.DateTime createdOn { get; set; }
         public System.DateTime modifiedOn { get; set; }
         public long modifiedBy { get; set; }
         public int accountStatus { get; set; }
         public bool isDeleted { get; set; }
-    
-        public virtual ICollection<personalInformation> personalInformations { get; set; }
     }
 }

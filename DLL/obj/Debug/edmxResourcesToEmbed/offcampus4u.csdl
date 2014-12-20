@@ -1,28 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="offcampus4uModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="offcampus4uEntities" p1:LazyLoadingEnabled="true">
-    <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
     <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
-    <EntitySet Name="personalInformations" EntityType="offcampus4uModel.personalInformation" />
-    <AssociationSet Name="FK__personalI__accou__276EDEB3" Association="offcampus4uModel.FK__personalI__accou__276EDEB3">
-      <End Role="account" EntitySet="accounts" />
-      <End Role="personalInformation" EntitySet="personalInformations" />
-    </AssociationSet>
+    <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
   </EntityContainer>
-  <EntityType Name="account">
-    <Key>
-      <PropertyRef Name="accountId" />
-    </Key>
-    <Property Type="Int64" Name="accountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="password" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-    <Property Type="Int32" Name="accountStatus" Nullable="false" />
-    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-    <NavigationProperty Name="personalInformations" Relationship="offcampus4uModel.FK__personalI__accou__276EDEB3" FromRole="account" ToRole="personalInformation" />
-  </EntityType>
   <EntityType Name="job">
     <Key>
       <PropertyRef Name="jobId" />
@@ -49,32 +30,27 @@
     <Property Type="Int32" Name="jobStatus" Nullable="false" />
     <Property Type="Boolean" Name="jobDeteled" Nullable="false" />
   </EntityType>
-  <EntityType Name="personalInformation">
+  <EntityType Name="account">
     <Key>
-      <PropertyRef Name="personalInfoId" />
+      <PropertyRef Name="accountId" />
     </Key>
-    <Property Type="Int64" Name="personalInfoId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int64" Name="accountId" Nullable="false" />
+    <Property Type="Int64" Name="accountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="password" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="firstName" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="lastName" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="phoneNumber" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="emailAddress" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="Int64" Name="createdBy" Nullable="false" />
+    <Property Type="String" Name="basedIn" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="classifiedRole" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jobseekingStatus" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="availability" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="highestEducation" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="workType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Preferredlocations" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
     <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
     <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__personalI__accou__276EDEB3" FromRole="personalInformation" ToRole="account" />
+    <Property Type="Int32" Name="accountStatus" Nullable="false" />
+    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </EntityType>
-  <Association Name="FK__personalI__accou__276EDEB3">
-    <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
-    <End Type="offcampus4uModel.personalInformation" Role="personalInformation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="account">
-        <PropertyRef Name="accountId" />
-      </Principal>
-      <Dependent Role="personalInformation">
-        <PropertyRef Name="accountId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

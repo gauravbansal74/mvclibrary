@@ -25,8 +25,7 @@ namespace DLL
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<account> accounts { get; set; }
         public DbSet<job> jobs { get; set; }
-        public DbSet<personalInformation> personalInformations { get; set; }
+        public DbSet<account> accounts { get; set; }
     }
 }

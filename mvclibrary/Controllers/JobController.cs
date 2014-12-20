@@ -27,7 +27,8 @@ namespace mvclibrary.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
+
         public JsonResult SaveJob(JobViewModel jobdata)
         {
             Error objError = new Error();

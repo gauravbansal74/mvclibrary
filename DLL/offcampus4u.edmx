@@ -8,11 +8,6 @@
         <EntityContainer Name="offcampus4uModelStoreContainer">
           <EntitySet Name="account" EntityType="offcampus4uModel.Store.account" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="job" EntityType="offcampus4uModel.Store.job" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="personalInformation" EntityType="offcampus4uModel.Store.personalInformation" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__personalI__accou__276EDEB3" Association="offcampus4uModel.Store.FK__personalI__accou__276EDEB3">
-            <End Role="account" EntitySet="account" />
-            <End Role="personalInformation" EntitySet="personalInformation" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="account">
           <Key>
@@ -21,6 +16,16 @@
           <Property Name="accountId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="email" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="password" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="firstName" Type="varchar" MaxLength="100" />
+          <Property Name="lastName" Type="varchar" MaxLength="100" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="15" />
+          <Property Name="basedIn" Type="varchar" MaxLength="100" />
+          <Property Name="classifiedRole" Type="varchar" MaxLength="150" />
+          <Property Name="jobseekingStatus" Type="varchar" MaxLength="100" />
+          <Property Name="availability" Type="varchar" MaxLength="50" />
+          <Property Name="highestEducation" Type="varchar" MaxLength="100" />
+          <Property Name="workType" Type="varchar" MaxLength="100" />
+          <Property Name="Preferredlocations" Type="varchar" MaxLength="100" />
           <Property Name="createdOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
@@ -53,60 +58,14 @@
           <Property Name="jobStatus" Type="int" Nullable="false" />
           <Property Name="jobDeteled" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="personalInformation">
-          <Key>
-            <PropertyRef Name="personalInfoId" />
-          </Key>
-          <Property Name="personalInfoId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="accountId" Type="bigint" Nullable="false" />
-          <Property Name="firstName" Type="varchar" MaxLength="100" />
-          <Property Name="lastName" Type="varchar" MaxLength="100" />
-          <Property Name="phoneNumber" Type="varchar" MaxLength="15" />
-          <Property Name="emailAddress" Type="varchar" MaxLength="100" />
-          <Property Name="createdBy" Type="bigint" Nullable="false" />
-          <Property Name="createdOn" Type="datetime" Nullable="false" />
-          <Property Name="modifiedOn" Type="datetime" Nullable="false" />
-          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
-        </EntityType>
-        <Association Name="FK__personalI__accou__276EDEB3">
-          <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
-          <End Role="personalInformation" Type="offcampus4uModel.Store.personalInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="account">
-              <PropertyRef Name="accountId" />
-            </Principal>
-            <Dependent Role="personalInformation">
-              <PropertyRef Name="accountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="offcampus4uModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="offcampus4uEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
           <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
-          <EntitySet Name="personalInformations" EntityType="offcampus4uModel.personalInformation" />
-          <AssociationSet Name="FK__personalI__accou__276EDEB3" Association="offcampus4uModel.FK__personalI__accou__276EDEB3">
-            <End Role="account" EntitySet="accounts" />
-            <End Role="personalInformation" EntitySet="personalInformations" />
-          </AssociationSet>
+          <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
         </EntityContainer>
-        <EntityType Name="account">
-          <Key>
-            <PropertyRef Name="accountId" />
-          </Key>
-          <Property Type="Int64" Name="accountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="password" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-          <Property Type="Int32" Name="accountStatus" Nullable="false" />
-          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="personalInformations" Relationship="offcampus4uModel.FK__personalI__accou__276EDEB3" FromRole="account" ToRole="personalInformation" />
-        </EntityType>
         <EntityType Name="job">
           <Key>
             <PropertyRef Name="jobId" />
@@ -133,54 +92,35 @@
           <Property Type="Int32" Name="jobStatus" Nullable="false" />
           <Property Type="Boolean" Name="jobDeteled" Nullable="false" />
         </EntityType>
-        <EntityType Name="personalInformation">
+        <EntityType Name="account">
           <Key>
-            <PropertyRef Name="personalInfoId" />
+            <PropertyRef Name="accountId" />
           </Key>
-          <Property Type="Int64" Name="personalInfoId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="accountId" Nullable="false" />
+          <Property Type="Int64" Name="accountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="firstName" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="lastName" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="phoneNumber" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="emailAddress" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="createdBy" Nullable="false" />
+          <Property Type="String" Name="basedIn" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="classifiedRole" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jobseekingStatus" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="availability" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="highestEducation" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="workType" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Preferredlocations" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__personalI__accou__276EDEB3" FromRole="personalInformation" ToRole="account" />
+          <Property Type="Int32" Name="accountStatus" Nullable="false" />
+          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
         </EntityType>
-        <Association Name="FK__personalI__accou__276EDEB3">
-          <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
-          <End Type="offcampus4uModel.personalInformation" Role="personalInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="account">
-              <PropertyRef Name="accountId" />
-            </Principal>
-            <Dependent Role="personalInformation">
-              <PropertyRef Name="accountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="offcampus4uModelStoreContainer" CdmEntityContainer="offcampus4uEntities">
-          <EntitySetMapping Name="accounts">
-            <EntityTypeMapping TypeName="offcampus4uModel.account">
-              <MappingFragment StoreEntitySet="account">
-                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
-                <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="jobs">
             <EntityTypeMapping TypeName="offcampus4uModel.job">
               <MappingFragment StoreEntitySet="job">
@@ -208,19 +148,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="personalInformations">
-            <EntityTypeMapping TypeName="offcampus4uModel.personalInformation">
-              <MappingFragment StoreEntitySet="personalInformation">
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="offcampus4uModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
                 <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
                 <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="Preferredlocations" ColumnName="Preferredlocations" />
+                <ScalarProperty Name="workType" ColumnName="workType" />
+                <ScalarProperty Name="highestEducation" ColumnName="highestEducation" />
+                <ScalarProperty Name="availability" ColumnName="availability" />
+                <ScalarProperty Name="jobseekingStatus" ColumnName="jobseekingStatus" />
+                <ScalarProperty Name="classifiedRole" ColumnName="classifiedRole" />
+                <ScalarProperty Name="basedIn" ColumnName="basedIn" />
                 <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="personalInfoId" ColumnName="personalInfoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
