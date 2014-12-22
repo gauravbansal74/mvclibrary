@@ -4,19 +4,31 @@
 }
 
 <main class="bs-docs-masthead-other" id="content" role="main">
-       <div class="well mainwidth">
+    <div class="panel panel-default"  style="width:90%;margin:0 auto;text-align:left;">
+        <div class="panel-body">
+             <h4 class="signup">
+           <strong id="signuptext">Tutorials</strong> 
+           <br />
+           <small>India's Largest Free Tutorials Website.</small>
+       </h4>
+       <div class="signupform">
            @{
-               foreach(DLL.tutoialCategory category in Model){
-                 <div class="list-group">
-                  <a href="#" class="list-group-item">
-                    <img class="pull-left" src="http://www.datascouting.com/sites/default/files/pictures/logo-java.png" />
-                    <h4 class="list-group-item-heading" style="margin-left:30px;padding:22px;">category.tutorialCategoryName</h4>
-                     <div style="clear:both"></div>
-                  </a>
-                </div>
+               foreach (var category in Model)
+               {
+                    <div class="col-sm-6 col-md-4" style="text-align:center;">
+                        <a href="@Url.Action("Tutorial", "Tutorials", new {id = category.tutorialCategoryId })" class="thumbnail">
+                          <img src="http://www.datascouting.com/sites/default/files/pictures/logo-java.png" alt="...">
+                          <div class="caption">
+                            <h4>@category.tutorialCategoryName</h4>
+                            
+                            </div>
+                        </a>
+                      </div>
+                   
+                 
                }
             }
-
-            
-           </div>
+        </div>
+    </div>
+        </div>
 </main>

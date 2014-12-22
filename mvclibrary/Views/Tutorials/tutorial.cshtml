@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "tutorial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="bs-docs-masthead-other" id="content" role="main">
+    <div class="panel panel-default"  style="width:60%;margin:0 auto;text-align:left;">
+        <div class="panel-body">
+             <h4 class="signup">
+           @*<strong id="signuptext">@Model[0].tutorialCategory.tutorialCategoryName</strong>*@ 
+           <br />
+           <small>India's Largest Free Tutorials Website.</small>
+       </h4>
+       <div class="signupform">
+           @{
+               <ul class="list-group">
+               @foreach (var category in Model)
+               {
+                <li class="list-group-item"><a href="@Url.Action("seeTutorial", "Tutorials", new { id=category.videoId })">@category.videoTitle"</a></li>
+               }
+               </ul>
+
+            }
+        </div>
+    </div>
+        </div>
+</main>
+

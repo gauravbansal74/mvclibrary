@@ -19,6 +19,21 @@ namespace mvclibrary.Controllers
             return View(objCatList);
         }
 
+        public ActionResult seeTutorial(Int64 id)
+        {
+            Tutorials objTutorials = new Tutorials();
+            video objCatList = objTutorials.getVideo(id);
+            return View(objCatList);
+        }
+       
+
+        public ActionResult Tutorial(Int64 id)
+        {
+            Tutorials objTutorials = new Tutorials();
+            List<video> objCatList = objTutorials.getVideoList(id);
+            return View(objCatList);
+        }
+
         public ActionResult Category()
         {
             Tutorials objTutorials = new Tutorials();

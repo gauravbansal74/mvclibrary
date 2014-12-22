@@ -17,6 +17,20 @@ namespace DLL
            return objTutorialsList;
        }
 
+       public List<video> getVideoList(Int64 id)
+       {
+           db = new offcampus4uEntities();
+           List<video> objTutorialsList = db.videos.Where(x => x.categoryId.Equals(id) && x.isDeleted.Equals(false)).ToList<video>();
+           return objTutorialsList;
+       }
+
+       public video getVideo(Int64 id)
+       {
+           db = new offcampus4uEntities();
+           video objTutorialsList = db.videos.Where(x => x.videoId.Equals(id) && x.isDeleted.Equals(false)).FirstOrDefault();
+           return objTutorialsList;
+       }
+
        public Error saveCategory(tutorialCategory category)
        {
            Error objError = new Error();

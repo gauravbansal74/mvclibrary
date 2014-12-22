@@ -76,6 +76,6 @@ C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\ko\System.Spatial.res
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\ru\System.Spatial.resources.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\obj\Debug\mvclibrary.csprojResolveAssemblyReference.cache
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\obj\Debug\mvclibrary.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\obj\Debug\mvclibrary.pdb
-C:\Users\noname\Documents\GitHub\mvclibrary\mvclibrary\obj\Debug\mvclibrary.csprojResolveAssemblyReference.cache
