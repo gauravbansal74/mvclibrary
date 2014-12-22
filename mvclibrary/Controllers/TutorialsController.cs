@@ -11,7 +11,7 @@ namespace mvclibrary.Controllers
     {
         //
         // GET: /Course/
-      
+      [AllowAnonymous]
         public ActionResult Index()
         {
             Tutorials objTutorials = new Tutorials();
@@ -26,7 +26,7 @@ namespace mvclibrary.Controllers
             return View(objCatList);
         }
        
-
+        [AllowAnonymous]
         public ActionResult Tutorial(Int64 id)
         {
             Tutorials objTutorials = new Tutorials();
