@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+<main class="bs-docs-masthead-other" id="maindiv">
+    
+ <div class="panel panel-default"  style="width:60%;margin:0 auto;text-align:left;">
+  <div class="panel-body">
+       <h4 class="signup">
+           <strong id="signuptext">Add New Category</strong> 
+       </h4>
+    <div class="signupform">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Category Name address</label>
+        <input type="email" class="form-control" id="tutorialCategoryName" placeholder="Asp.Net">
+      </div>
+      <button id="submit_category"  class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+
+  <div class="panel panel-default"  style="width:60%;margin:0 auto;text-align:left;">
+  <div class="panel-body">
+       <h4 class="signup">
+           <strong id="signuptext">Add New Video</strong> 
+       </h4>
+    <div class="signupform">
+        <div class="form-group">
+        <label for="exampleInputEmail1">Category</label>
+        @Html.DropDownList("categoryId", new SelectList(Model, "tutorialCategoryId", "tutorialCategoryName"), "Please select a category", new { style = "width:250px", @class = "form-control" })
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Video Title</label>
+        <input type="email" class="form-control" id="videoTitle" placeholder="Video Title">
+      </div>
+
+        <div class="form-group">
+        <label for="exampleInputEmail1">Youtube ID</label>
+        <input type="email" class="form-control" id="videoYoutubeId" placeholder="videoYoutubeId">
+      </div>
+      <button id="submit_video"  class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+</main>
+<script>
+
+    $("#submit_category").on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("saveCategory", "Tutorials"))",
+                data: { tutorialCategoryName: $("#tutorialCategoryName").val() }
+            })
+                    .done(function (data) {
+                        console.log("done", data);
+                        showalert(data.isSuccess, data.message);
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+           });
+    });
+
+    $("#submit_video").on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("saveVideo", "Tutorials"))",
+            data: { categoryId: $("#categoryId").val(), videoTitle: $("#videoTitle").val(), videoYoutubeId: $("#videoYoutubeId").val() }
+        })
+                    .done(function (data) {
+                        console.log("done", data);
+                        showalert(data.isSuccess, data.message);
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+                    });
+     });
+</script>
+
+
+
+
+

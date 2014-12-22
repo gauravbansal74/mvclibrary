@@ -22,9 +22,11 @@ namespace DLL
         public string jobKeyword { get; set; }
         public long jobMinSalary { get; set; }
         public long jobMaxSalary { get; set; }
+        public string jobLocation { get; set; }
         public string jobDescription { get; set; }
         public bool jobOtherDetailPresent { get; set; }
         public string jobOtherDetail { get; set; }
+        public string jobCompnayName { get; set; }
         public string jobCompanyInfo { get; set; }
         public bool jobApplyModeIsEmail { get; set; }
         public string jobApplyMode { get; set; }

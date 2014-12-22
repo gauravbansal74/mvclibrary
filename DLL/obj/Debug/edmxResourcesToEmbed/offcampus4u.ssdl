@@ -3,6 +3,12 @@
   <EntityContainer Name="offcampus4uModelStoreContainer">
     <EntitySet Name="account" EntityType="offcampus4uModel.Store.account" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="job" EntityType="offcampus4uModel.Store.job" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tutorialCategory" EntityType="offcampus4uModel.Store.tutorialCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="video" EntityType="offcampus4uModel.Store.video" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__video__categoryI__4BAC3F29" Association="offcampus4uModel.Store.FK__video__categoryI__4BAC3F29">
+      <End Role="tutorialCategory" EntitySet="tutorialCategory" />
+      <End Role="video" EntitySet="video" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="account">
     <Key>
@@ -39,9 +45,11 @@
     <Property Name="jobKeyword" Type="text" Nullable="false" />
     <Property Name="jobMinSalary" Type="bigint" Nullable="false" />
     <Property Name="jobMaxSalary" Type="bigint" Nullable="false" />
+    <Property Name="jobLocation" Type="varchar" Nullable="false" MaxLength="200" />
     <Property Name="jobDescription" Type="text" Nullable="false" />
     <Property Name="jobOtherDetailPresent" Type="bit" Nullable="false" />
     <Property Name="jobOtherDetail" Type="text" Nullable="false" />
+    <Property Name="jobCompnayName" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="jobCompanyInfo" Type="text" Nullable="false" />
     <Property Name="jobApplyModeIsEmail" Type="bit" Nullable="false" />
     <Property Name="jobApplyMode" Type="varchar" Nullable="false" MaxLength="200" />
@@ -53,4 +61,43 @@
     <Property Name="jobStatus" Type="int" Nullable="false" />
     <Property Name="jobDeteled" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="tutorialCategory">
+    <Key>
+      <PropertyRef Name="tutorialCategoryId" />
+    </Key>
+    <Property Name="tutorialCategoryId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="tutorialCategoryName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="tutorialCategoryStatus" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="video">
+    <Key>
+      <PropertyRef Name="videoId" />
+    </Key>
+    <Property Name="videoId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="categoryId" Type="bigint" Nullable="false" />
+    <Property Name="videoTitle" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="videoYoutubeId" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__video__categoryI__4BAC3F29">
+    <End Role="tutorialCategory" Type="offcampus4uModel.Store.tutorialCategory" Multiplicity="1" />
+    <End Role="video" Type="offcampus4uModel.Store.video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tutorialCategory">
+        <PropertyRef Name="tutorialCategoryId" />
+      </Principal>
+      <Dependent Role="video">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

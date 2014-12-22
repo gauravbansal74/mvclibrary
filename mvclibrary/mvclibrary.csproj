@@ -187,7 +187,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\TutorialsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -214,6 +214,7 @@
     <Content Include="Content\dist\js\jquery.min.js" />
     <Content Include="Content\dist\js\npm.js" />
     <Content Include="Content\images\buttons.gif" />
+    <Content Include="Content\images\ruppes.png" />
     <Content Include="Content\images\toolbar.gif" />
     <Content Include="Content\jquery.cleditor.css" />
     <Content Include="Content\jquery.cleditor.js" />
@@ -284,9 +285,11 @@
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\Job\SaveJob.cshtml" />
     <Content Include="Views\Account\index.cshtml" />
-    <Content Include="Views\Course\index.cshtml" />
+    <Content Include="Views\Tutorials\index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Job\Detail.cshtml" />
+    <Content Include="Views\Tutorials\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

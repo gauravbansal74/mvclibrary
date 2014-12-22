@@ -47,7 +47,7 @@ namespace mvclibrary.ViewModels
         public string jobOtherDetail { get; set; }
 
         [Required(ErrorMessage = "Company infomation is Required.")]
-        [Display(Name = "Company Infomation")]
+        [Display(Name = "About the Company")]
         public string jobCompanyInfo { get; set; }
 
         [Display(Name = "How to apply using -")]
@@ -58,6 +58,14 @@ namespace mvclibrary.ViewModels
 
         [Display(Name = "Expires on")]
         public DateTime jobExpireDate { get; set; }
+
+        [Display(Name = "Location")]
+        public string jobLocation { get; set; }
+
+        [Display(Name = "Name of the Company")]
+        public string jobCompnayName { get; set; }
+
+
   }
 
 

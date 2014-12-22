@@ -1,3 +1,27 @@
+CREATE TABLE video(
+videoId BIGINT IDENTITY(1,1) PRIMARY KEY,
+categoryId BIGINT NOT NULL,
+videoTitle VARCHAR(300) NOT NULL,
+videoYoutubeId VARCHAR(100) NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+isDeleted BIT NOT NULL,
+FOREIGN KEY (categoryId) REFERENCES tutorialCategory(tutorialCategoryId)
+)
+
+CREATE TABLE tutorialCategory(
+tutorialCategoryId BIGINT IDENTITY(1,1) PRIMARY KEY,
+tutorialCategoryName VARCHAR(100) NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+tutorialCategoryStatus INT DEFAULT 0 NOT NULL,
+isDeleted BIT NOT NULL
+)
+
 
 
 Create table account(
@@ -30,9 +54,11 @@ jobDisclosed BIT DEFAULT 1 NOT NULL,
 jobKeyword TEXT NOT NULL,
 jobMinSalary BIGINT NOT NULL,
 jobMaxSalary BIGINT NOT NULL,
+jobLocation VARCHAR(200) NOT NULL,
 jobDescription TEXT NOT NULL,
 jobOtherDetailPresent BIT DEFAULT 1 NOT NULL,
 jobOtherDetail TEXT NOT NULL,
+jobCompnayName VARCHAR(100)NOT NULL,
 jobCompanyInfo TEXT NOT NULL,
 jobApplyModeIsEmail BIT DEFAULT 0 NOT NULL,
 jobApplyMode VARCHAR(200) NOT NULL,

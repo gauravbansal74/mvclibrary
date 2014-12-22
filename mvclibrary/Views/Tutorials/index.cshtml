@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="bs-docs-masthead-other" id="content" role="main">
+       <div class="well mainwidth">
+           @{
+               foreach(DLL.tutoialCategory category in Model){
+                 <div class="list-group">
+                  <a href="#" class="list-group-item">
+                    <img class="pull-left" src="http://www.datascouting.com/sites/default/files/pictures/logo-java.png" />
+                    <h4 class="list-group-item-heading" style="margin-left:30px;padding:22px;">category.tutorialCategoryName</h4>
+                     <div style="clear:both"></div>
+                  </a>
+                </div>
+               }
+            }
+
+            
+           </div>
+</main>

@@ -1,33 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="offcampus4uModelStoreContainer" CdmEntityContainer="offcampus4uEntities">
-    <EntitySetMapping Name="jobs">
-      <EntityTypeMapping TypeName="offcampus4uModel.job">
-        <MappingFragment StoreEntitySet="job">
-          <ScalarProperty Name="jobDeteled" ColumnName="jobDeteled" />
-          <ScalarProperty Name="jobStatus" ColumnName="jobStatus" />
-          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-          <ScalarProperty Name="jobExpireDate" ColumnName="jobExpireDate" />
-          <ScalarProperty Name="jobApplyMode" ColumnName="jobApplyMode" />
-          <ScalarProperty Name="jobApplyModeIsEmail" ColumnName="jobApplyModeIsEmail" />
-          <ScalarProperty Name="jobCompanyInfo" ColumnName="jobCompanyInfo" />
-          <ScalarProperty Name="jobOtherDetail" ColumnName="jobOtherDetail" />
-          <ScalarProperty Name="jobOtherDetailPresent" ColumnName="jobOtherDetailPresent" />
-          <ScalarProperty Name="jobDescription" ColumnName="jobDescription" />
-          <ScalarProperty Name="jobMaxSalary" ColumnName="jobMaxSalary" />
-          <ScalarProperty Name="jobMinSalary" ColumnName="jobMinSalary" />
-          <ScalarProperty Name="jobKeyword" ColumnName="jobKeyword" />
-          <ScalarProperty Name="jobDisclosed" ColumnName="jobDisclosed" />
-          <ScalarProperty Name="jobMaxExp" ColumnName="jobMaxExp" />
-          <ScalarProperty Name="jobMinExp" ColumnName="jobMinExp" />
-          <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
-          <ScalarProperty Name="jobId" ColumnName="jobId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="accounts">
       <EntityTypeMapping TypeName="offcampus4uModel.account">
         <MappingFragment StoreEntitySet="account">
@@ -49,6 +22,64 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="accountId" ColumnName="accountId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobs">
+      <EntityTypeMapping TypeName="offcampus4uModel.job">
+        <MappingFragment StoreEntitySet="job">
+          <ScalarProperty Name="jobDeteled" ColumnName="jobDeteled" />
+          <ScalarProperty Name="jobStatus" ColumnName="jobStatus" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="jobExpireDate" ColumnName="jobExpireDate" />
+          <ScalarProperty Name="jobApplyMode" ColumnName="jobApplyMode" />
+          <ScalarProperty Name="jobApplyModeIsEmail" ColumnName="jobApplyModeIsEmail" />
+          <ScalarProperty Name="jobCompanyInfo" ColumnName="jobCompanyInfo" />
+          <ScalarProperty Name="jobCompnayName" ColumnName="jobCompnayName" />
+          <ScalarProperty Name="jobOtherDetail" ColumnName="jobOtherDetail" />
+          <ScalarProperty Name="jobOtherDetailPresent" ColumnName="jobOtherDetailPresent" />
+          <ScalarProperty Name="jobDescription" ColumnName="jobDescription" />
+          <ScalarProperty Name="jobLocation" ColumnName="jobLocation" />
+          <ScalarProperty Name="jobMaxSalary" ColumnName="jobMaxSalary" />
+          <ScalarProperty Name="jobMinSalary" ColumnName="jobMinSalary" />
+          <ScalarProperty Name="jobKeyword" ColumnName="jobKeyword" />
+          <ScalarProperty Name="jobDisclosed" ColumnName="jobDisclosed" />
+          <ScalarProperty Name="jobMaxExp" ColumnName="jobMaxExp" />
+          <ScalarProperty Name="jobMinExp" ColumnName="jobMinExp" />
+          <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
+          <ScalarProperty Name="jobId" ColumnName="jobId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tutorialCategories">
+      <EntityTypeMapping TypeName="offcampus4uModel.tutorialCategory">
+        <MappingFragment StoreEntitySet="tutorialCategory">
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="tutorialCategoryStatus" ColumnName="tutorialCategoryStatus" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="tutorialCategoryName" ColumnName="tutorialCategoryName" />
+          <ScalarProperty Name="tutorialCategoryId" ColumnName="tutorialCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="videos">
+      <EntityTypeMapping TypeName="offcampus4uModel.video">
+        <MappingFragment StoreEntitySet="video">
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="videoYoutubeId" ColumnName="videoYoutubeId" />
+          <ScalarProperty Name="videoTitle" ColumnName="videoTitle" />
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="videoId" ColumnName="videoId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -60,29 +60,34 @@
             @Html.LabelFor(model => model.jobMinSalary)
             <select id="jobMinSalary" name="jobMinSalary" class="form-control" style="width:90px;">
                 <option value="0">0 LPA</option>
-                <option value="1">1 LPA</option>
-                <option value="2">2 LPA</option>
-                <option value="3">3 LPA</option>
-                <option value="4">4 LPA</option>
-                <option value="5">5 LPA</option>
-                <option value="6">6 LPA</option>
-                <option value="7">7 LPA</option>
-                <option value="8">8 LPA</option>
+                <option value="100000">1 LPA</option>
+                <option value="200000">2 LPA</option>
+                <option value="300000">3 LPA</option>
+                <option value="400000">4 LPA</option>
+                <option value="500000">5 LPA</option>
+                <option value="600000">6 LPA</option>
+                <option value="700000">7 LPA</option>
+                <option value="800000">8 LPA</option>
             </select>
         </div>
         <div class="form-group salaryhideshow">
             @Html.LabelFor(model => model.jobMaxSalary)
             <select id="jobMaxSalary" name="jobMaxSalary" class="form-control" style="width:90px;">
-                <option value="0">0 LPA</option>
-                <option value="1">1 LPA</option>
-                <option value="2">2 LPA</option>
-                <option value="3">3 LPA</option>
-                <option value="4">4 LPA</option>
-                <option value="5">5 LPA</option>
-                <option value="6">6 LPA</option>
-                <option value="7">7 LPA</option>
-                <option value="8">8 LPA</option>
+                 <option value="0">0 LPA</option>
+                <option value="100000">1 LPA</option>
+                <option value="200000">2 LPA</option>
+                <option value="300000">3 LPA</option>
+                <option value="400000">4 LPA</option>
+                <option value="500000">5 LPA</option>
+                <option value="600000">6 LPA</option>
+                <option value="700000">7 LPA</option>
+                <option value="800000">8 LPA</option>
             </select>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobLocation)
+            @Html.TextBoxFor(model => model.jobLocation, new {@class="form-control", placeholder="Bengaluru, Hyderabad, Delhi" })
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.jobDescription)
@@ -129,6 +134,10 @@
             @Html.TextAreaFor(model => model.jobOtherDetail, new {@class="form-control" })
         </div>
         <div class="form-group">
+            @Html.LabelFor(model => model.jobCompnayName)
+            @Html.TextBoxFor(model => model.jobCompnayName, new {@class="form-control"})
+        </div>
+        <div class="form-group">
             @Html.LabelFor(model => model.jobCompanyInfo)
             @Html.TextAreaFor(model => model.jobCompanyInfo, new {@class="form-control"})
         </div>
@@ -156,7 +165,9 @@
             jobCompanyInfo: $("#jobCompanyInfo").val(),
             jobApplyModeIsEmail: $("#jobApplyModeIsEmail").val(),
             jobApplyMode: $("#jobApplyMode").val(),
-            jobExpireDate: $("#jobExpireDate").val()
+            jobExpireDate: $("#jobExpireDate").val(),
+            jobCompnayName: $("#jobCompnayName").val(),
+            jobLocation: $("#jobLocation").val()
         };
         $.ajax({
             type: "POST",
@@ -180,7 +191,6 @@
         } else {
             $(".salaryhideshow").hide();
         }
-
     });
 
     $('#jobOtherDetailPresent').change(function () {

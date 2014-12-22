@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using DLL;
 using mvclibrary.ViewModels;
 using mvclibrary.customlib;
-
+using DLL;
 
 namespace mvclibrary.Controllers
 {
@@ -18,7 +18,9 @@ namespace mvclibrary.Controllers
 
         public ActionResult Index()
         {
-            return View();
+           Jobs objJobs = new DLL.Jobs();
+           List<job> listjob = objJobs.getJobs();
+           return View(listjob);
         }
 
         [HttpGet]
@@ -36,6 +38,20 @@ namespace mvclibrary.Controllers
             {
                 objError.isSuccess = false;
                 objError.message = "Enter the Title.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+
+            if (string.IsNullOrEmpty(jobdata.jobLocation))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter the Location.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+
+            if (string.IsNullOrEmpty(jobdata.jobCompnayName))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter Name of the Company.";
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
 
@@ -123,6 +139,8 @@ namespace mvclibrary.Controllers
                 job.jobApplyMode = jobdata.jobApplyMode;
                 job.jobApplyModeIsEmail = jobdata.jobApplyModeIsEmail;
                 job.jobExpireDate = jobdata.jobExpireDate;
+                job.jobLocation = jobdata.jobLocation;
+                job.jobCompnayName = jobdata.jobCompnayName;
                 job.jobTitle = jobdata.jobTitle;
                 job.createdBy = Convert.ToInt64(User.Identity.Name);
                 job.createdOn = DateTime.Now;
@@ -141,6 +159,14 @@ namespace mvclibrary.Controllers
             }
             
 
+        }
+
+
+        public ActionResult Detail(Int64 id)
+        {
+            Jobs objJobs = new DLL.Jobs();
+            job objjob = objJobs.getJob(id);
+            return View(objjob);
         }
 
 

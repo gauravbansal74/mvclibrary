@@ -11,6 +11,21 @@ namespace DLL
     {
        private offcampus4uEntities db;
 
+       public List<job> getJobs()
+       {
+           List<job> listJob = new List<job>();
+           db = new offcampus4uEntities();
+           listJob = db.jobs.Where(x => x.jobDeteled.Equals(false)).ToList<job>();
+           return listJob;
+       }
+
+       public job getJob(Int64 jobId)
+       {
+           db = new offcampus4uEntities();
+           job objJob = db.jobs.Where(x => x.jobId.Equals(jobId) && x.jobDeteled.Equals(false)).FirstOrDefault();
+           return objJob;
+       }
+
        public Error saveJob(job job){
            Error objError = new Error();
            try
