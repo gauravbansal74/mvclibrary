@@ -63,6 +63,7 @@
           <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
           <ScalarProperty Name="createdOn" ColumnName="createdOn" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="tutorialCategoryFileName" ColumnName="tutorialCategoryFileName" />
           <ScalarProperty Name="tutorialCategoryName" ColumnName="tutorialCategoryName" />
           <ScalarProperty Name="tutorialCategoryId" ColumnName="tutorialCategoryId" />
         </MappingFragment>

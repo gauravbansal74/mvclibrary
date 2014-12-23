@@ -21,6 +21,7 @@ namespace DLL
     
         public long tutorialCategoryId { get; set; }
         public string tutorialCategoryName { get; set; }
+        public string tutorialCategoryFileName { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdOn { get; set; }
         public System.DateTime modifiedOn { get; set; }

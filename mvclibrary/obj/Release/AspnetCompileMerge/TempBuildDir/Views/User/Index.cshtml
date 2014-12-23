@@ -1,0 +1,343 @@
+﻿@model mvclibrary.ViewModels.ProfileViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="bs-docs-masthead-other">
+
+    <!-- Personal Profile Div -->
+    <div class="personalprofile mainwidth">
+        <div class="row">
+            <div class="col-xs-8 mt-none ellipsis">
+                <h1>@Model.UserPersonalInformation.firstName @Model.UserPersonalInformation.lastName</h1>
+            </div>
+            <div class="col-xs-4 mt-none" style="text-align:right;">
+                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#personalprofilemodal" style="cursor: pointer;"></i>
+            </div>
+         </div>
+        <div class="row">
+            <div class="col-xs-4 ellipsis">
+               @Model.UserPersonalInformation.emailAddress
+              </div>
+              <div class="col-xs-4 ellipsis">
+                @Model.UserPersonalInformation.phoneNumber
+              </div>
+             
+        </div>
+    </div>
+    <!-- Current Status Div -->
+    <div class="well mainwidth">
+        <div class="pull-right" style="text-align:right;">
+                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#currentstatusModel" style="cursor: pointer;"></i>
+            </div>
+        <h2 class="color-gray-mid">Current status</h2>
+
+       <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Home location</span>
+            </div>
+            <div class="col-xs-8">
+                <span class="ng-binding">@Model.UserPersonalInformation.basedIn</span>
+            </div>
+        </div>
+
+      <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Classifications</span>
+            </div>
+            <div class="col-xs-8" >
+               <div>
+                   <div>@Model.UserPersonalInformation.classifiedRole</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Jobseeking status</span>
+            </div>
+            <div class="col-xs-8" >
+               <div>
+                   <div>@Model.UserPersonalInformation.jobseekingStatus</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Availability</span>
+            </div>
+            <div class="col-xs-8" >
+               <div>
+                   <div>@Model.UserPersonalInformation.availability</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Skills & Role preferences Div -->
+    <div class="well mainwidth">
+        <div class="pull-right" style="text-align:right;">
+                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#QualificationRolepreferences" style="cursor: pointer;"></i>
+            </div>
+        <h2 class="color-gray-mid">Qualification & Role preferences</h2>
+
+        <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Highest qualification</span>
+            </div>
+            <div class="col-xs-8" >
+               <div>
+                   <div>@Model.UserPersonalInformation.highestEducation</div>
+                </div>
+            </div>
+        </div>
+
+       <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Work types</span>
+            </div>
+            <div class="col-xs-8">
+                <span class="ng-binding">@Model.UserPersonalInformation.workType</span>
+            </div>
+        </div>
+
+      <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Preferred locations</span>
+            </div>
+            <div class="col-xs-8" >
+               <div>
+                   <div>@Model.UserPersonalInformation.Preferredlocations</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- Qualification & Role Prederences Modal Pop-->
+<div class="modal fade" id="QualificationRolepreferences" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Qualification & Role preferences</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="width:60%;">
+                    @Html.LabelFor(model => model.UserPersonalInformation.highestEducation)
+                    <select id="UserPersonalInformation_highestEducation" name="UserPersonalInformation_highestEducation" class="form-control">
+                        <option>Select level of qualification...</option>
+                        <option value="Completed Year 9-11">Completed Year 9-11</option>
+                        <option value="Completed High School (Year 12)">Completed High School (Year 12)</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="TAFE/Trade Certificate">TAFE/Trade Certificate</option>
+                        <option value="Undergraduate">Undergraduate</option>
+                        <option value="Post Graduate Degree">Post Graduate Degree</option>
+                        <option value="Masters">Masters</option>
+                        <option value="PhD">PhD</option>
+                        <option value="Not specified">Not specified</option>
+                    </select>
+
+                </div>
+                <div class="form-group" style="width:60%;">
+                    @Html.LabelFor(model => model.UserPersonalInformation.workType)
+                    <select id="UserPersonalInformation_workType" name="UserPersonalInformation_workType" class="form-control">
+                        <option value="Full time">Full time</option>
+                        <option value="Part time">Part time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Casual">Casual</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserPersonalInformation.Preferredlocations)
+                    @Html.TextBoxFor(model => model.UserPersonalInformation.Preferredlocations, new { @class = "form-control", placeholder = "Bangalore, Hyderabad, Delhi, Gurgoan" })
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="qualificationrolepreferencesbutton" type="button" class="btn btn-success">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Personal Profile Modal Pop-->
+<div class="modal fade" id="personalprofilemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Personal Information</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group pull-left" style="width: 30%; margin-right: 5px;">
+                        @Html.LabelFor(model => model.UserPersonalInformation.firstName)
+                        @Html.TextBoxFor(model => model.UserPersonalInformation.firstName, new { @class = "form-control", placeholder = "Gaurav" })
+                    </div>
+                    <div class="form-group pull-left" style="width: 30%;">
+                        @Html.LabelFor(model => model.UserPersonalInformation.lastName)
+                        @Html.TextBoxFor(model => model.UserPersonalInformation.lastName, new { @class = "form-control", placeholder = "Kumar" })
+                    </div>
+                </div>
+                <div class="form-group" style="width: 50%;">
+                    @Html.LabelFor(model => model.UserPersonalInformation.phoneNumber)
+                    @Html.TextBoxFor(model => model.UserPersonalInformation.phoneNumber, new { @class = "form-control", placeholder = "+91 **** *** ***" })
+                </div>
+                <div class="form-group" style="width: 50%;">
+                    @Html.LabelFor(model => model.UserPersonalInformation.emailAddress)
+                    @Html.TextBoxFor(model => model.UserPersonalInformation.emailAddress, new { @class = "form-control", placeholder = "info@offcampus4u.in" })
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="personalinformationbutton" type="button" class="btn btn-success">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Current Status Modal Pop-->
+<div class="modal fade" id="currentstatusModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Current Status</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group" style="width: 60%;">
+                        @Html.LabelFor(model => model.UserPersonalInformation.basedIn)
+                        @Html.TextBoxFor(model => model.UserPersonalInformation.basedIn, new { @class = "form-control", placeholder = "City, State/Province, Country" })
+                    </div>
+                    <div class="form-group" style="width: 60%;">
+                        @Html.LabelFor(model => model.UserPersonalInformation.classifiedRole)
+                        <select class="form-control" name="UserPersonalInformation_classifiedRole" id="UserPersonalInformation_classifiedRole">
+                            <option>Select classification...</option>
+                            <option value="Accounting">Accounting</option>
+                            <option value="Administration &amp; Office Support">Administration &amp; Office Support</option>
+                            <option value="Advertising, Arts &amp; Media">Advertising, Arts &amp; Media</option>
+                            <option value="Banking &amp; Financial Services">Banking &amp; Financial Services</option>
+                            <option value="Call Centre &amp; Customer Service">Call Centre &amp; Customer Service</option>
+                            <option value="CEO &amp; General Management">CEO &amp; General Management</option>
+                            <option value="Community Services &amp; Development">Community Services &amp; Development</option>
+                            <option value="Construction">Construction</option>
+                            <option value="Consulting &amp; Strategy">Consulting &amp; Strategy</option>
+                            <option value="Design &amp; Architecture">Design &amp; Architecture</option>
+                            <option value="Education &amp; Training">Education &amp; Training</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Farming, Animals &amp; Conservation">Farming, Animals &amp; Conservation</option>
+                            <option value="Government &amp; Defence">Government &amp; Defence</option>
+                            <option value="Healthcare &amp; Medical">Healthcare &amp; Medical</option>
+                            <option value="Hospitality &amp; Tourism">Hospitality &amp; Tourism</option>
+                            <option value="Human Resources &amp; Recruitment">Human Resources &amp; Recruitment</option>
+                            <option value="Information &amp; Communication Technology">Information &amp; Communication Technology</option>
+                            <option value="Insurance &amp; Superannuation">Insurance &amp; Superannuation</option>
+                            <option value="Legal">Legal</option>
+                            <option value="Manufacturing, Transport &amp; Logistics">Manufacturing, Transport &amp; Logistics</option>
+                            <option value="Marketing &amp; Communications">Marketing &amp; Communications</option>
+                            <option value="Mining, Resources &amp; Energy">Mining, Resources &amp; Energy</option>
+                            <option value="Real Estate &amp; Property">Real Estate &amp; Property</option>
+                            <option value="Retail &amp; Consumer Products">Retail &amp; Consumer Products</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Science &amp; Technology">Science &amp; Technology</option>
+                            <option value="Self Employment">Self Employment</option>
+                            <option value="Sport &amp; Recreation">Sport &amp; Recreation</option>
+                            <option value="Trades &amp; Services">Trades &amp; Services</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="width: 60%;">
+                    @Html.LabelFor(model => model.UserPersonalInformation.jobseekingStatus)
+                    <select id="UserPersonalInformation_jobseekingStatus" name="UserPersonalInformation_jobseekingStatus" class="form-control">
+                        <option>Select Jobseeking status...</option>
+                        <option value="Actively looking">Actively looking</option>
+                        <option value="Could be tempted">Could be tempted</option>
+                    </select>
+                </div>
+                <div class="form-group" style="width: 60%;">
+                    @Html.LabelFor(model => model.UserPersonalInformation.availability)
+                    <select id="UserPersonalInformation_availability" name="UserPersonalInformation_availability" class="form-control">
+                        <option>Select availability status...</option>
+                        <option value="Immediately">Immediately</option>
+                        <option value="2 weeks">2 weeks</option>
+                        <option value="4 weeks">4 weeks</option>
+                        <option value="8 weeks">8 weeks</option>
+                        <option value="12+ weeks">12+ weeks</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="currentstatusupdatebutton" type="button" class="btn btn-success">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#qualificationrolepreferencesbutton").on('click', function () {
+        var UserProfileViewModel = {
+            highestEducation: $("#UserPersonalInformation_highestEducation").val(),
+            workType: $("#UserPersonalInformation_workType").val(),
+            Preferredlocations: $("#UserPersonalInformation_Preferredlocations").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("UpdateQualiifcationPreferencesInformation", "User"))",
+            data: UserProfileViewModel
+        })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+        })
+        .fail(function (data) {
+            showalert(data.isSuccess, data.message);
+        });
+    });
+    $("#currentstatusupdatebutton").on('click', function () {
+        var UserProfileViewModel = {
+            basedIn: $("#UserPersonalInformation_basedIn").val(),
+            classifiedRole: $("#UserPersonalInformation_classifiedRole").val(),
+            jobseekingStatus: $("#UserPersonalInformation_jobseekingStatus").val(),
+            availability: $("#UserPersonalInformation_availability").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("UpdateCurrentStatusInformation", "User"))",
+            data: UserProfileViewModel
+        })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+        })
+        .fail(function (data) {
+            showalert(data.isSuccess, data.message);
+        });
+    });
+    $("#personalinformationbutton").on('click', function () {
+        var UserProfileViewModel = {
+            firstName: $("#UserPersonalInformation_firstName").val(),
+            lastName: $("#UserPersonalInformation_lastName").val(),
+            phoneNumber: $("#UserPersonalInformation_phoneNumber").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("UpdatePersonalInformation", "User"))",
+            data: UserProfileViewModel
+        })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+        })
+        .fail(function (data) {
+            showalert(data.isSuccess, data.message);
+        });
+    });
+</script>
+

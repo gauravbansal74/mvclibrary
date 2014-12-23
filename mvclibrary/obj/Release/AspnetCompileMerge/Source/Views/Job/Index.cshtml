@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .salary em {
+        background: url(http://localhost:5829/Content/images/ruppes.png) no-repeat;
+    }
+
+    .salary em {
+        background-position: 0 -49px;
+        vertical-align: middle;
+    }
+
+    .salary em {
+        width: 14px;
+        height: 15px;
+        vertical-align: top;
+        margin-right: 7px;
+    }
+</style>
+<main class="bs-docs-masthead-other">
+    @{
+        foreach (var job in Model)
+        {
+           <div class="well mainwidth" style="line-height: 1.42857143;">
+                <a href="@Url.Action("Detail","Job",new {id=@job.jobId})" style="line-height: 1.42857143;">@job.jobTitle</a> <br />
+                 @job.jobCompnayName <br />
+                <div class="color-light pull-left" style="margin-right:10%;line-height: 1.42857143;">
+                    <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;
+                        @if (!job.jobDisclosed){
+                            <span>Not Disclosed</span>
+                        }else{
+                        <span>@job.jobMinExp</span><span> - </span><span>@job.jobMaxExp</span><span> yrs.</span>
+                        }
+                </div>
+                <div class="color-light" style="line-height: 1.42857143;">
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="line-height: 1.42857143;">
+
+                    </span>&nbsp;&nbsp;@job.jobLocation
+                </div>
+                <div class="salary" style="line-height: 2.42857143;">
+                    <em></em>&nbsp;&nbsp;@job.jobMinSalary - @job.jobMaxSalary Per Annum
+                </div>
+            </div>   
+        }
+    }
+</main>

@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="bs-docs-masthead-other">
+    <div class="well mainwidth" style="line-height: 1.42857143;">
+        <a href="@Url.Action("Detail", "Job")" style="line-height: 1.42857143;">
+            <h3>@Model.jobTitle</h3></a>
+            @Model.jobCompnayName <br />
+        <div class="color-light pull-left" style="margin-right:10%;line-height: 1.42857143;">
+            <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;
+                <span>@Model.jobMinExp</span><span> - </span><span>@Model.jobMaxExp</span><span> yrs.</span>
+                        
+        </div>
+        <div class="color-light" style="line-height: 1.42857143;">
+            <span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="line-height: 1.42857143;">
+
+            </span>&nbsp;&nbsp;@Model.jobLocation
+        </div>
+        <div class="salary" style="line-height: 2.42857143;">
+            <em></em>&nbsp;&nbsp;4,00,000 - 5,00,000 PA
+        </div><br />
+        <button class="btn btn-primary">Apply</button>
+    </div>  
+    
+    <div class="well mainwidth" style="line-height: 1.42857143;">
+       <div class="pull-left"><b>Job Description</b></div>
+        <div class="pull-right">Social Media Share </div>
+        <div class="clear"></div>
+        <br />
+        <div>
+            @Html.Raw(Model.jobDescription)
+        </div>
+
+        <div><b>KeySkills</b></div>
+        <div style="font-size:20px;">
+            @{
+                string[] KeySkills = Model.jobKeyword.Split(',');
+                foreach (string KeySkill in KeySkills)
+                {
+                    <span class="label label-default">@KeySkill</span>
+                }
+            }
+           
+        </div>
+
+        <div><b>Company Profile</b></div>
+        <div>@Model.jobCompnayName</div>
+        <div>@Model.jobCompanyInfo</div>
+    </div>    
+ <div class="well mainwidth" style="line-height: 1.42857143;">
+       
+        <button class="btn btn-primary">Apply</button>
+    </div>  
+    
+    
+</main>

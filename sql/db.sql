@@ -14,6 +14,7 @@ FOREIGN KEY (categoryId) REFERENCES tutorialCategory(tutorialCategoryId)
 CREATE TABLE tutorialCategory(
 tutorialCategoryId BIGINT IDENTITY(1,1) PRIMARY KEY,
 tutorialCategoryName VARCHAR(100) NOT NULL,
+tutorialCategoryFileName VARCHAR(100) NOT NULL,
 createdBy BIGINT NOT NULL,
 createdOn DATETIME NOT NULL,
 modifiedOn DATETIME NOT NULL,

@@ -1,31 +1,54 @@
-﻿@*@{
-    ViewBag.Title = "Home Page";
-}*@
-<script>
-    function signinCallback(authResult) {
-        console.log(authResult);
-        if (authResult['status']['signed_in']) {
-            // Update the app to reflect a signed in user
-            // Hide the sign-in button now that the user is authorized, for example:
-            document.getElementById('signinButton').setAttribute('style', 'display: none');
-        } else {
-            // Update the app to reflect a signed out user
-            // Possible error values:
-            //   "user_signed_out" - User is signed-out
-            //   "access_denied" - User denied access to your app
-            //   "immediate_failed" - Could not automatically log in the user
-            console.log('Sign-in state: ' + authResult['error']);
-        }
-    }
-</script>
-<script src="https://apis.google.com/js/client:platform.js" async defer></script>
-<span id="signinButton">
-  <span
-    class="g-signin"
-    data-callback="signinCallback"
-    data-clientid="840734848153-860k0cefn18rh565lolbbbno2vg34qua.apps.googleusercontent.com"
-    data-cookiepolicy="single_host_origin"
-    data-requestvisibleactions="http://schema.org/AddAction"
-    data-scope="https://www.googleapis.com/auth/plus.login">
-  </span>
-</span>
+﻿@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+<!-- Page content of course! -->
+<main class="bs-docs-masthead" id="content" role="main">
+  <div class="row">
+    <div class="col-xs-4">
+        <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">T</span>
+        <p class="lead">Tutorials</p>
+   </div>
+   <div class="col-xs-4">
+        <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">J</span>
+        <p class="lead">Jobs</p>
+   </div>
+   <div class="col-xs-4">
+        <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">W</span>
+        <p class="lead">Wallet</p>
+   </div>
+   </div>
+</main>
+<div class="bs-docs-featurette">
+  <div class="container">
+    <h2 class="bs-docs-featurette-title">Offcampus4u : The Technological Network</h2>
+    <p class="lead">Bootstrap makes front-end web development faster and easier. It's made for folks of all skill levels, devices of all shapes, and projects of all sizes.</p>
+
+    <hr class="half-rule">
+
+    <div class="row">
+      <div class="col-sm-4">
+        <img src="assets/img/sass-less.png" alt="Sass and Less support" class="img-responsive">
+        <h3>Tutorials</h3>
+        <p>Offcampus4u teaches technologies in the comfort of your browser with video lessons.</p>
+      </div>
+      <div class="col-sm-4">
+        <img src="assets/img/devices.png" alt="Responsive across devices" class="img-responsive">
+        <h3>Largest Job Posting Community</h3>
+        <p>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+      </div>
+      <div class="col-sm-4">
+        <img src="assets/img/components.png" alt="Components" class="img-responsive">
+        <h3>Full of features</h3>
+        <p>With Bootstrap, you get extensive and beautiful documentation for common HTML elements, dozens of custom HTML and CSS components, and awesome jQuery plugins.</p>
+      </div>
+    </div>
+
+    <hr class="half-rule">
+
+    <p class="lead">Bootstrap is open source. It's hosted, developed, and maintained on GitHub.</p>
+    <a href="https://github.com/twbs/bootstrap" class="btn btn-outline btn-lg">View the GitHub project</a>
+  </div>
+</div>

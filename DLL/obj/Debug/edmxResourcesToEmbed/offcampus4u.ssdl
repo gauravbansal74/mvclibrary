@@ -5,7 +5,7 @@
     <EntitySet Name="job" EntityType="offcampus4uModel.Store.job" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="tutorialCategory" EntityType="offcampus4uModel.Store.tutorialCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="video" EntityType="offcampus4uModel.Store.video" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK__video__categoryI__4BAC3F29" Association="offcampus4uModel.Store.FK__video__categoryI__4BAC3F29">
+    <AssociationSet Name="FK__video__categoryI__59FA5E80" Association="offcampus4uModel.Store.FK__video__categoryI__59FA5E80">
       <End Role="tutorialCategory" EntitySet="tutorialCategory" />
       <End Role="video" EntitySet="video" />
     </AssociationSet>
@@ -67,6 +67,7 @@
     </Key>
     <Property Name="tutorialCategoryId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="tutorialCategoryName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="tutorialCategoryFileName" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="createdBy" Type="bigint" Nullable="false" />
     <Property Name="createdOn" Type="datetime" Nullable="false" />
     <Property Name="modifiedOn" Type="datetime" Nullable="false" />
@@ -88,7 +89,7 @@
     <Property Name="modifiedBy" Type="bigint" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="FK__video__categoryI__4BAC3F29">
+  <Association Name="FK__video__categoryI__59FA5E80">
     <End Role="tutorialCategory" Type="offcampus4uModel.Store.tutorialCategory" Multiplicity="1" />
     <End Role="video" Type="offcampus4uModel.Store.video" Multiplicity="*" />
     <ReferentialConstraint>

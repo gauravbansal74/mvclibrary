@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+<main class="bs-docs-masthead-other" id="maindiv">
+    
+ <div class="panel panel-default"  style="width:60%;margin:0 auto;text-align:left;">
+  <div class="panel-body">
+      <div id="option" class="btn-group" data-toggle="buttons" style="text-align:center">
+          <label class="btn btn-info active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Register
+          </label>
+          <label class="btn btn-info">
+            <input  type="radio" name="options" id="option2" autocomplete="off"> Login
+          </label> 
+        </div>
+
+       <h4 class="signup">
+           <strong id="signuptext">Register for Offcampus4u</strong> 
+           <br />
+           <small>India's Largest Technical Network.</small>
+       </h4>
+    <div class="signupform pull-left" style="width:50%;">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="info@offcampus4u.in">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" >Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      </div>
+        <div class="form-group" id="confirmpasswordinput">
+        <label for="exampleInputPassword1" >Confirm Password</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm Password">
+      </div>
+      <button id="submit_button"  class="btn btn-primary">Register</button>
+    </div>
+
+      <div class="signupform pull-right">
+         <button id="authorize-button" style="visibility: hidden">Authorize using Google</button> <br />
+          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+      </div>
+  </div>
+</div>
+</main>
+<script>
+    var isLogin = false;
+    $(document).on('change', 'input:radio[id^="option"]', function (event) {
+        if (event.target.id === "option1") {
+            $("#confirmpasswordinput").show();
+            $("#submit_button").html('Register');
+            $("#signuptext").html("Register for Offcampus4u");
+            isLogin = false;
+        } else if (event.target.id === "option2") {
+            $("#confirmpasswordinput").hide();
+            $("#submit_button").html('Login');
+            $("#signuptext").html("Login");
+            isLogin = true;
+        }
+    });
+
+    $("#submit_button").on('click', function () {
+
+        if (!isLogin) {
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("createAccount", "Account"))",
+                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val(), cfrmpassword: $("#inputPassword2").val() }
+                    })
+                    .done(function (data) {
+                        console.log("done", data);
+                        showalert(data.isSuccess, data.message);
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+                    });
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "@(Url.Action("checkLogin", "Account"))",
+                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val() }
+                    })
+                    .done(function (data) {
+                        showalert(data.isSuccess, data.message);
+                        location.reload();
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+                    });
+                }
+
+            });
+</script>
+    <script type="text/javascript">
+        // Enter a client ID for a web application from the Google Developer Console.
+        // The provided clientId will only work if the sample is run directly from
+        // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
+        // In your Developer Console project, add a JavaScript origin that corresponds to the domain
+        // where you will be running the script.
+        var clientId = '840734848153-860k0cefn18rh565lolbbbno2vg34qua.apps.googleusercontent.com';
+
+        // Enter the API key from the Google Develoepr Console - to handle any unauthenticated
+        // requests in the code.
+        // The provided key works for this sample only when run from
+        // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
+        // To use in your own application, replace this API key with your own.
+        var apiKey = 'AIzaSyBsNcw1aVVB25WZh1gpa1CLV07erW5goV8';
+
+        // To enter one or more authentication scopes, refer to the documentation for the API.
+        var scopes = 'https://www.googleapis.com/auth/plus.profile.emails.read';
+
+        // Use a button to handle authentication the first time.
+        function handleClientLoad() {
+            gapi.client.setApiKey(apiKey);
+            window.setTimeout(checkAuth, 1);
+        }
+
+        function checkAuth() {
+            gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: true }, handleAuthResult);
+        }
+
+
+        function handleAuthResult(authResult) {
+            var authorizeButton = document.getElementById('authorize-button');
+            if (authResult && !authResult.error) {
+                authorizeButton.style.visibility = 'hidden';
+                makeApiCall();
+            } else {
+                authorizeButton.style.visibility = '';
+                authorizeButton.onclick = handleAuthClick;
+            }
+        }
+
+        function handleAuthClick(event) {
+            gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: false }, handleAuthResult);
+            return false;
+        }
+
+        // Load the API and make an API call.  Display the results on the screen.
+        function makeApiCall() {
+            gapi.client.load('plus', 'v1', function () {
+                var request = gapi.client.plus.people.get({
+                    'userId': 'me'
+                });
+                request.execute(function (resp) {
+                    console.log(resp.emails[0].value);
+                   
+                });
+            });
+        }
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+<script>
+    // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        
+        if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+            testAPI();
+        } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = 'Please log ' +
+              'into this app.';
+        } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById('status').innerHTML = 'Please log ' +
+              'into Facebook.';
+        }
+    }
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    }
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '327344470667137',
+            cookie: true,  // enable cookies to allow the server to access 
+            // the session
+            xfbml: true,  // parse social plugins on this page
+            version: 'v2.1' // use version 2.1
+        });
+
+        // Now that we've initialized the JavaScript SDK, we call 
+        // FB.getLoginStatus().  This function gets the state of the
+        // person visiting this page and can return one of three states to
+        // the callback you provide.  They can be:
+        //
+        // 1. Logged into your app ('connected')
+        // 2. Logged into Facebook, but not your app ('not_authorized')
+        // 3. Not logged into Facebook and can't tell if they are logged into
+        //    your app or not.
+        //
+        // These three cases are handled in the callback function.
+
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+
+    };
+
+    // Load the SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    // Here we run a very simple test of the Graph API after login is
+    // successful.  See statusChangeCallback() for when this call is made.
+    function testAPI() {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function (response) {
+            console.log(response);
+            console.log('Successful login for: ' + response.name);
+            document.getElementById('status').innerHTML =
+              'Thanks for logging in, ' + response.name + '!';
+        });
+    }
+</script>
+
+    
+

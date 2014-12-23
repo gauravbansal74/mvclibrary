@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DLL;
+using System.IO;
+using mvclibrary.ViewModels;
 
 namespace mvclibrary.Controllers
 {
@@ -29,9 +31,19 @@ namespace mvclibrary.Controllers
         [AllowAnonymous]
         public ActionResult Tutorial(Int64 id)
         {
+            TutorialViewModel objTutorialViewModel = new TutorialViewModel();
             Tutorials objTutorials = new Tutorials();
-            List<video> objCatList = objTutorials.getVideoList(id);
-            return View(objCatList);
+            objTutorialViewModel.videoList = objTutorials.getVideoList(id);
+            objTutorialViewModel.tutorialCategoryList = objTutorials.getCategryList();
+            if (objTutorialViewModel.videoList.Count > 0)
+            {
+                ViewBag.Title = objTutorialViewModel.videoList[0].tutorialCategory.tutorialCategoryName;
+            }
+            else
+            {
+                ViewBag.Title = "Tutorials";
+            }
+            return View(objTutorialViewModel);
         }
 
         public ActionResult Category()
@@ -43,17 +55,59 @@ namespace mvclibrary.Controllers
 
         public JsonResult saveCategory(string tutorialCategoryName)
         {
-            tutorialCategory objTutorialCategory = new tutorialCategory();
-            objTutorialCategory.tutorialCategoryName = tutorialCategoryName;
-            objTutorialCategory.createdBy = Convert.ToInt64(User.Identity.Name);
-            objTutorialCategory.createdOn = DateTime.Now;
-            objTutorialCategory.modifiedBy = Convert.ToInt64(User.Identity.Name);
-            objTutorialCategory.modifiedOn = DateTime.Now;
-            objTutorialCategory.isDeleted = false;
-            objTutorialCategory.tutorialCategoryStatus = 1;
-            Tutorials objTutorials = new Tutorials();
-            Error objError  = objTutorials.saveCategory(objTutorialCategory);
-            return Json(objError, JsonRequestBehavior.AllowGet);
+            if (Request.Files.AllKeys.Any())
+            {
+                // Get the uploaded image from the Files collection
+                var httpPostedFile = Request.Files["UploadedImage"];
+
+                if (httpPostedFile != null)
+                {
+                    // Validate the uploaded image(optional)
+
+                    // Get the complete file path
+                    try
+                    {
+                        var fileSavePath = Path.Combine(Server.MapPath("~/AppImages/TutorialCategory"), httpPostedFile.FileName);
+
+                        // Save the uploaded file to "UploadedFiles" folder
+                        httpPostedFile.SaveAs(fileSavePath);
+                    }
+                    catch
+                    {
+                        Error objError = new Error();
+                        objError.isSuccess = false;
+                        objError.message = "OOps Something went wrong. please try again later.";
+                        return Json(objError, JsonRequestBehavior.AllowGet);
+                    }
+                    tutorialCategory objTutorialCategory = new tutorialCategory();
+                    objTutorialCategory.tutorialCategoryName = tutorialCategoryName;
+                    objTutorialCategory.tutorialCategoryFileName = httpPostedFile.FileName;
+                    objTutorialCategory.createdBy = Convert.ToInt64(User.Identity.Name);
+                    objTutorialCategory.createdOn = DateTime.Now;
+                    objTutorialCategory.modifiedBy = Convert.ToInt64(User.Identity.Name);
+                    objTutorialCategory.modifiedOn = DateTime.Now;
+                    objTutorialCategory.isDeleted = false;
+                    objTutorialCategory.tutorialCategoryStatus = 1;
+                    Tutorials objTutorials = new Tutorials();
+                    Error objError1 = objTutorials.saveCategory(objTutorialCategory);
+                    return Json(objError1, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    Error objError = new Error();
+                    objError.isSuccess = false;
+                    objError.message = "Selected Icon size can't be null";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                Error objError = new Error();
+                objError.isSuccess = false;
+                objError.message = "Please select Icon for the category";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
         public JsonResult saveVideo(Int64 categoryId, string videoTitle, string videoYoutubeId)

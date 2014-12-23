@@ -10,7 +10,7 @@
           <EntitySet Name="job" EntityType="offcampus4uModel.Store.job" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tutorialCategory" EntityType="offcampus4uModel.Store.tutorialCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="video" EntityType="offcampus4uModel.Store.video" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__video__categoryI__4BAC3F29" Association="offcampus4uModel.Store.FK__video__categoryI__4BAC3F29">
+          <AssociationSet Name="FK__video__categoryI__59FA5E80" Association="offcampus4uModel.Store.FK__video__categoryI__59FA5E80">
             <End Role="tutorialCategory" EntitySet="tutorialCategory" />
             <End Role="video" EntitySet="video" />
           </AssociationSet>
@@ -72,6 +72,7 @@
           </Key>
           <Property Name="tutorialCategoryId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="tutorialCategoryName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="tutorialCategoryFileName" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="createdBy" Type="bigint" Nullable="false" />
           <Property Name="createdOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedOn" Type="datetime" Nullable="false" />
@@ -93,7 +94,7 @@
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
           <Property Name="isDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__video__categoryI__4BAC3F29">
+        <Association Name="FK__video__categoryI__59FA5E80">
           <End Role="tutorialCategory" Type="offcampus4uModel.Store.tutorialCategory" Multiplicity="1" />
           <End Role="video" Type="offcampus4uModel.Store.video" Multiplicity="*" />
           <ReferentialConstraint>
@@ -114,7 +115,7 @@
           <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
           <EntitySet Name="tutorialCategories" EntityType="offcampus4uModel.tutorialCategory" />
           <EntitySet Name="videos" EntityType="offcampus4uModel.video" />
-          <AssociationSet Name="FK__video__categoryI__4BAC3F29" Association="offcampus4uModel.FK__video__categoryI__4BAC3F29">
+          <AssociationSet Name="FK__video__categoryI__59FA5E80" Association="offcampus4uModel.FK__video__categoryI__59FA5E80">
             <End Role="tutorialCategory" EntitySet="tutorialCategories" />
             <End Role="video" EntitySet="videos" />
           </AssociationSet>
@@ -176,13 +177,14 @@
           </Key>
           <Property Type="Int64" Name="tutorialCategoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="tutorialCategoryName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tutorialCategoryFileName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="createdBy" Nullable="false" />
           <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Int32" Name="tutorialCategoryStatus" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="videos" Relationship="offcampus4uModel.FK__video__categoryI__4BAC3F29" FromRole="tutorialCategory" ToRole="video" />
+          <NavigationProperty Name="videos" Relationship="offcampus4uModel.FK__video__categoryI__59FA5E80" FromRole="tutorialCategory" ToRole="video" />
         </EntityType>
         <EntityType Name="video">
           <Key>
@@ -197,9 +199,9 @@
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="tutorialCategory" Relationship="offcampus4uModel.FK__video__categoryI__4BAC3F29" FromRole="video" ToRole="tutorialCategory" />
+          <NavigationProperty Name="tutorialCategory" Relationship="offcampus4uModel.FK__video__categoryI__59FA5E80" FromRole="video" ToRole="tutorialCategory" />
         </EntityType>
-        <Association Name="FK__video__categoryI__4BAC3F29">
+        <Association Name="FK__video__categoryI__59FA5E80">
           <End Type="offcampus4uModel.tutorialCategory" Role="tutorialCategory" Multiplicity="1" />
           <End Type="offcampus4uModel.video" Role="video" Multiplicity="*" />
           <ReferentialConstraint>
@@ -279,6 +281,7 @@
                 <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
                 <ScalarProperty Name="createdOn" ColumnName="createdOn" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="tutorialCategoryFileName" ColumnName="tutorialCategoryFileName" />
                 <ScalarProperty Name="tutorialCategoryName" ColumnName="tutorialCategoryName" />
                 <ScalarProperty Name="tutorialCategoryId" ColumnName="tutorialCategoryId" />
               </MappingFragment>
@@ -299,7 +302,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

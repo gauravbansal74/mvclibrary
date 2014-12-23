@@ -1,0 +1,207 @@
+﻿@model mvclibrary.ViewModels.JobViewModel
+@{
+    ViewBag.Title = "SaveJob";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  <link rel="stylesheet" type="text/css" href="~/Content/jquery.cleditor.css" />
+<script type="text/javascript" src="~/Content/jquery.cleditor.min.js"></script>
+<main class="bs-docs-masthead-other" >
+     @Html.ValidationSummary(true)
+ <div class="panel panel-default"  style="width:60%;margin:0 auto;text-align:left;">
+  <div class="panel-body">
+       <h4 class="signup">
+           <strong id="signuptext">Submit New Job Post</strong> 
+           <br />
+           <small>India's Largest Job Posting Community.</small>
+       </h4>
+    <div class="signupform">
+      <div class="form-group">
+          @Html.LabelFor(model => model.jobTitle)
+          @Html.TextBoxFor(model => model.jobTitle, new { @class = "form-control", placeholder = "Offcampus4u is hiring .Net Developer ( 3-4 yrs of Exps)" })
+        
+      </div>
+      <div class="form-group pull-left" style="margin-right:5px;">
+         @Html.LabelFor(model => model.jobMinExp)
+          <select id="jobMinExp" name="jobMinExp" class="form-control" style="width:90px;">
+              <option value="0">0 yr.</option>
+              <option value="1">1 yr.</option>
+              <option value="2">2 yrs.</option>
+              <option value="3">3 yrs.</option>
+              <option value="4">4 yrs.</option>
+              <option value="5">5 yrs.</option>
+              <option value="6">6 yrs.</option>
+              <option value="7">7 yrs.</option>
+              <option value="8">8 yrs.</option>
+          </select>
+      </div>
+        <div class="form-group">
+         @Html.LabelFor(model => model.jobMaxExp)
+          <select id="jobMaxExp" name="jobMaxExp" class="form-control" style="width:90px;">
+              <option value="0">0 yr.</option>
+              <option value="1">1 yr.</option>
+              <option value="2">2 yrs.</option>
+              <option value="3">3 yrs.</option>
+              <option value="4">4 yrs.</option>
+              <option value="5">5 yrs.</option>
+              <option value="6">6 yrs.</option>
+              <option value="7">7 yrs.</option>
+              <option value="8">8 yrs.</option>
+          </select>
+      </div>
+      <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                 @Html.CheckBoxFor(model => model.jobDisclosed) 
+              </span> &nbsp; &nbsp;
+             @Html.LabelFor(model => model.jobDisclosed)
+            </div>
+      </div>
+        <div class="form-group pull-left salaryhideshow" style="margin-right:5px;">
+            @Html.LabelFor(model => model.jobMinSalary)
+            <select id="jobMinSalary" name="jobMinSalary" class="form-control" style="width:90px;">
+                <option value="0">0 LPA</option>
+                <option value="100000">1 LPA</option>
+                <option value="200000">2 LPA</option>
+                <option value="300000">3 LPA</option>
+                <option value="400000">4 LPA</option>
+                <option value="500000">5 LPA</option>
+                <option value="600000">6 LPA</option>
+                <option value="700000">7 LPA</option>
+                <option value="800000">8 LPA</option>
+            </select>
+        </div>
+        <div class="form-group salaryhideshow">
+            @Html.LabelFor(model => model.jobMaxSalary)
+            <select id="jobMaxSalary" name="jobMaxSalary" class="form-control" style="width:90px;">
+                 <option value="0">0 LPA</option>
+                <option value="100000">1 LPA</option>
+                <option value="200000">2 LPA</option>
+                <option value="300000">3 LPA</option>
+                <option value="400000">4 LPA</option>
+                <option value="500000">5 LPA</option>
+                <option value="600000">6 LPA</option>
+                <option value="700000">7 LPA</option>
+                <option value="800000">8 LPA</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobLocation)
+            @Html.TextBoxFor(model => model.jobLocation, new {@class="form-control", placeholder="Bengaluru, Hyderabad, Delhi" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobDescription)
+            @Html.TextAreaFor(model => model.jobDescription, new {@class="form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobKeyword)
+            @Html.TextBoxFor(model => model.jobKeyword, new {@class="form-control", placeholder="Software Engineer, .Net Developer, C#, JAVA, 2 yrs Experience" })
+        </div>
+         <div class="form-group">
+             <label>How to apply for this job post?</label>
+            <div class="input-group">
+                <select id="jobApplyModeIsEmail" name="jobApplyModeIsEmail" class="form-control">
+                    <option value="True">Email</option>
+                    <option value="False">Website</option>
+                </select>
+                <span class="input-group-addon">
+               <label> will be the source to apply for this job post.</label>
+              </span>
+            </div>
+        </div>
+
+         <div class="form-group">
+            @Html.LabelFor(model => model.jobApplyMode)
+            @Html.TextBoxFor(model => model.jobApplyMode, new {@class="form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobExpireDate)
+            @Html.TextBoxFor(model => model.jobExpireDate, new {@class="form-control" })
+        </div>
+
+        <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                 @Html.CheckBoxFor(model => model.jobOtherDetailPresent) 
+              </span> &nbsp; &nbsp;
+             @Html.LabelFor(model => model.jobOtherDetailPresent)
+            </div>
+        </div>
+        <div class="form-group otherdetailhideshow">
+            @Html.LabelFor(model => model.jobOtherDetail)
+            @Html.TextAreaFor(model => model.jobOtherDetail, new {@class="form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobCompnayName)
+            @Html.TextBoxFor(model => model.jobCompnayName, new {@class="form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobCompanyInfo)
+            @Html.TextAreaFor(model => model.jobCompanyInfo, new {@class="form-control"})
+        </div>
+      <button type="button" id="jobsubmit" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">Submit For Approval</button> or @Html.ActionLink("Cancel", "")
+    </div>
+  </div>
+</div>
+</main>
+
+<script>
+    $("#jobDescription").cleditor();
+    $('#jobsubmit').on('click', function () {
+        var $btn = $(this).button('loading');
+        var JobViewModel = {
+            jobTitle: $("#jobTitle").val(),
+            jobMinExp: $("#jobMinExp").val(),
+            jobMaxExp: $("#jobMaxExp").val(),
+            jobDisclosed: $("#jobDisclosed").val(),
+            jobMinSalary: $("#jobMinSalary").val(),
+            jobMaxSalary: $("#jobMaxSalary").val(),
+            jobDescription: $("#jobDescription").val(),
+            jobKeyword: $("#jobKeyword").val(),
+            jobOtherDetailPresent: $("#jobOtherDetailPresent").val(),
+            jobOtherDetail: $("#jobOtherDetail").val(),
+            jobCompanyInfo: $("#jobCompanyInfo").val(),
+            jobApplyModeIsEmail: $("#jobApplyModeIsEmail").val(),
+            jobApplyMode: $("#jobApplyMode").val(),
+            jobExpireDate: $("#jobExpireDate").val(),
+            jobCompnayName: $("#jobCompnayName").val(),
+            jobLocation: $("#jobLocation").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("SaveJob", "Job"))",
+            data: JobViewModel
+        })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+           
+        })
+        .fail(function (data) {
+            console.log("fail", data);
+            showalert(data.isSuccess, data.message);
+        });
+        $btn.button('reset');
+    })
+
+    $('#jobDisclosed').change(function () {
+        if ($(this).is(":checked")) {
+            $(".salaryhideshow").show();
+        } else {
+            $(".salaryhideshow").hide();
+        }
+    });
+
+    $('#jobOtherDetailPresent').change(function () {
+        if ($(this).is(":checked")) {
+            $(".otherdetailhideshow").show();
+        } else {
+            $(".otherdetailhideshow").hide();
+        }
+
+    });
+</script>
+    
+   
+    
