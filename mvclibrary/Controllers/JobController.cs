@@ -18,9 +18,9 @@ namespace mvclibrary.Controllers
 
         public ActionResult Index()
         {
-           Jobs objJobs = new DLL.Jobs();
-           List<job> listjob = objJobs.getJobs();
-           return View(listjob);
+            Jobs objJobs = new DLL.Jobs();
+            List<job> listjob = objJobs.getJobs();
+            return View(listjob);
         }
 
         [HttpGet]
@@ -157,7 +157,7 @@ namespace mvclibrary.Controllers
                 objError.message = "Enter valid Expiry Date.";
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
-            
+
 
         }
 
@@ -167,6 +167,21 @@ namespace mvclibrary.Controllers
             Jobs objJobs = new DLL.Jobs();
             job objjob = objJobs.getJob(id);
             return View(objjob);
+        }
+
+
+        public ActionResult SearchJob(JobSearchViewModel jobSearch)
+        {
+            Jobs objJobs = new DLL.Jobs();
+            List<job> listjob = objJobs.searchJob(jobSearch.skiilsdesignationcompany, jobSearch.location, jobSearch.jobMinExp, jobSearch.jobMinSalary);
+            return View(listjob);
+        }
+
+        public ActionResult SearchJobCustom(string skiilsdesignationcompany, string location)
+        {
+            Jobs objJobs = new DLL.Jobs();
+            List<job> listjob = objJobs.searchJobCustom(skiilsdesignationcompany, location);
+            return View(listjob);
         }
 
 

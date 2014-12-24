@@ -297,6 +297,9 @@
         })
         .done(function (data) {
             showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
         })
         .fail(function (data) {
             showalert(data.isSuccess, data.message);
@@ -316,6 +319,9 @@
         })
         .done(function (data) {
             showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
         })
         .fail(function (data) {
             showalert(data.isSuccess, data.message);
@@ -334,6 +340,9 @@
         })
         .done(function (data) {
             showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
         })
         .fail(function (data) {
             showalert(data.isSuccess, data.message);

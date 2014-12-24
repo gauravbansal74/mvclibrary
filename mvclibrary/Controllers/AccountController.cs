@@ -31,6 +31,63 @@ namespace mvclibrary.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        [AllowAnonymous]
+        public ActionResult checkLoginWithGmail(string email, string first_name, string last_name, string id, string birthday)
+        {
+            Error objError = new Error();
+            if (string.IsNullOrEmpty(email))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter the email address.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+
+            if (string.IsNullOrEmpty(id))
+            {
+                objError.isSuccess = false;
+                objError.message = "Google user id can't be null.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+            RegexUtilities util = new RegexUtilities();
+            if (!util.IsValidEmail(email))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter valid email address.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                Accounts objAccounts = new Accounts();
+                objError = objAccounts.checkAccountWithGmail(email, first_name, last_name, id);
+                if (objError.isSuccess)
+                {
+                    HttpCookie wunCookie = new HttpCookie("WunelliCookie");
+                    bool remember = true;
+                    if (remember)
+                    {
+                        const int persistMonths = 12;
+                        wunCookie.Values.Add("username", objError.message);
+                        wunCookie.Expires = DateTime.Now.AddMonths(persistMonths);
+                    }
+                    else
+                    {
+                        wunCookie.Values.Add("username", objError.message);
+                        wunCookie.Expires = DateTime.Now.AddMinutes(5);
+                    }
+                    FormsAuthentication.SetAuthCookie(objError.message, false);
+                    Response.Cookies.Add(wunCookie);
+                    objError.isSuccess = true;
+                    objError.message = "Successfully Logged in.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Email or password is wrong.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
        
         [AllowAnonymous]
         public ActionResult checkLogin(string email, string password)
@@ -77,13 +134,13 @@ namespace mvclibrary.Controllers
                     FormsAuthentication.SetAuthCookie(objError.message, false);
                     Response.Cookies.Add(wunCookie);
                     objError.isSuccess = true;
-                    objError.message = "Succesafully Logged in.";
+                    objError.message = "Successfully Logged in.";
                     return Json(objError, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
                     objError.isSuccess = false;
-                    objError.message = "User is not registred with us.";
+                    objError.message = "Email or password is wrong.";
                     return Json(objError, JsonRequestBehavior.AllowGet);
                 }
             }

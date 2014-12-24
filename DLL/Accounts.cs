@@ -24,17 +24,73 @@ namespace DLL
             try
             {
                 db = new offcampus4uEntities();
-                db.accounts.Add(account);
-                db.SaveChanges();
-                db.Dispose();
-                objError.isSuccess = true;
-                objError.message = "We have created your account. please verify your email address.";
-                return objError;
+                account objaccount = db.accounts.Where(x => x.email == account.email).FirstOrDefault();
+                if (objaccount == null)
+                {
+                    db.accounts.Add(account);
+                    db.SaveChanges();
+                    db.Dispose();
+                    objError.isSuccess = true;
+                    objError.message = "We have created your account. please verify your email address.";
+                    return objError;
+                }
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Account is already registred with this email address.";
+                    return objError;
+                }
             }
             catch
             {
                 objError.isSuccess = false;
                 objError.message = "Oops, something went wrong. please try again after sometime.";
+                return objError;
+            }
+        }
+
+        public Error checkAccountWithGmail(string email, string first_name, string last_name, string id)
+        {
+            Error objError = new Error();
+            try
+            {
+                db = new offcampus4uEntities();
+                var userData = (from user in db.accounts
+                                where user.email.Equals(email)
+                                select user).SingleOrDefault();
+                if (userData != null)
+                {
+                    db.Dispose();
+                    objError.isSuccess = true;
+                    objError.message = userData.accountId.ToString();
+                    return objError;
+                }
+                else
+                {
+                    account objaccount = new account();
+                    objaccount.email = email;
+                    objaccount.firstName = first_name;
+                    objaccount.lastName = last_name;
+                    objaccount.accountStatus = 1;
+                    objaccount.createdOn = DateTime.Now;
+                    objaccount.email = email;
+                    objaccount.password = id;
+                    objaccount.isDeleted = false;
+                    objaccount.modifiedBy = 1;
+                    objaccount.modifiedOn = DateTime.Now;
+                    objaccount = db.accounts.Add(objaccount);
+                    db.SaveChanges();
+                    db.Dispose();
+                    objError.isSuccess = true;
+                    objError.message = objaccount.accountId.ToString();
+                    return objError;
+                }
+
+            }
+            catch
+            {
+                objError.isSuccess = false;
+                objError.message = "OOps.. Something went wrong. please try again later.";
                 return objError;
             }
         }
@@ -46,12 +102,21 @@ namespace DLL
             {
                 db = new offcampus4uEntities();
                 var userData = (from user in db.accounts
-                             where user.email.Equals(email)
+                             where user.email.Equals(email) && user.password.Equals(password)
                              select user).SingleOrDefault();
-                db.Dispose();
-                objError.isSuccess = true;
-                objError.message = userData.accountId.ToString();
-                return objError;
+                if (userData != null)
+                {
+                    db.Dispose();
+                    objError.isSuccess = true;
+                    objError.message = userData.accountId.ToString();
+                    return objError;
+                }
+                else {
+                    objError.isSuccess = false;
+                    objError.message = "Email or Password is wrong.";
+                    return objError;
+                }
+
             }
             catch
             {
