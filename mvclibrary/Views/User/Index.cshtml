@@ -3,10 +3,23 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<main class="bs-docs-masthead-other">
+<main class="bs-docs-masthead-other" id="content" role="main" style="width:80%;margin:0 auto; ">
+     <div class="panel panel-default"  style="width:25%;margin:0 auto;text-align:left;float:left;">
+         <div class="panel-heading">
+            <h3 class="panel-title"><b>Profile Information</b></h3>
+          </div>
+       <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+           <li role="presentation"><a href="#" data-toggle="modal" data-target="#personalprofilemodal">Personal Information</a></li>
+           <li role="presentation"><a href="#" data-toggle="modal" data-target="#QualificationRolepreferences">Qualification & Role preferences</a></li>
+           <li role="presentation"><a href="#" data-toggle="modal" data-target="#currentstatusModel">Current Status</a></li>
+           <li role="presentation"><a href="#" data-toggle="modal" data-target="#resumemodal">Resume</a></li>
 
+              
+        </ul>
+    </div>
+    <div style="width:70%;margin:0 auto;text-align:left;float:right;">
     <!-- Personal Profile Div -->
-    <div class="personalprofile mainwidth">
+    <div class="personalprofile">
         <div class="row">
             <div class="col-xs-8 mt-none ellipsis">
                 <h1>@Model.UserPersonalInformation.firstName @Model.UserPersonalInformation.lastName</h1>
@@ -25,8 +38,49 @@
              
         </div>
     </div>
+
+    <!-- Skills & Role preferences Div -->
+    <div class="well">
+        <div class="pull-right" style="text-align:right;">
+                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#QualificationRolepreferences" style="cursor: pointer;"></i>
+            </div>
+        <h2 class="color-gray-mid">Qualification & Role preferences</h2>
+
+        <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Highest qualification</span>
+            </div>
+            <div class="col-xs-8" >
+               <div>
+                   <div>@Model.UserPersonalInformation.highestEducation</div>
+                </div>
+            </div>
+        </div>
+
+       <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Work types</span>
+            </div>
+            <div class="col-xs-8">
+                <span class="ng-binding">@Model.UserPersonalInformation.workType</span>
+            </div>
+        </div>
+
+      <div class="row mt-one">
+            <div class="col-xs-4">
+                <span class="color-light">Preferred locations</span>
+            </div>
+            <div class="col-xs-8" >
+               <div>
+                   <div>@Model.UserPersonalInformation.Preferredlocations</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <!-- Current Status Div -->
-    <div class="well mainwidth">
+    <div class="well">
         <div class="pull-right" style="text-align:right;">
                 <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#currentstatusModel" style="cursor: pointer;"></i>
             </div>
@@ -75,15 +129,12 @@
             </div>
         </div>
     </div>
-
-
-
-    <!-- Skills & Role preferences Div -->
-    <div class="well mainwidth">
+    <!-- Upload Resume -->
+    <div class="well">
         <div class="pull-right" style="text-align:right;">
-                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#QualificationRolepreferences" style="cursor: pointer;"></i>
+                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#resumemodal" style="cursor: pointer;"></i>
             </div>
-        <h2 class="color-gray-mid">Qualification & Role preferences</h2>
+        <h2 class="color-gray-mid">Resume</h2>
 
         <div class="row mt-one">
             <div class="col-xs-4">
@@ -95,28 +146,9 @@
                 </div>
             </div>
         </div>
-
-       <div class="row mt-one">
-            <div class="col-xs-4">
-                <span class="color-light">Work types</span>
-            </div>
-            <div class="col-xs-8">
-                <span class="ng-binding">@Model.UserPersonalInformation.workType</span>
-            </div>
-        </div>
-
-      <div class="row mt-one">
-            <div class="col-xs-4">
-                <span class="color-light">Preferred locations</span>
-            </div>
-            <div class="col-xs-8" >
-               <div>
-                   <div>@Model.UserPersonalInformation.Preferredlocations</div>
-                </div>
-            </div>
-        </div>
-
     </div>
+</div>
+<div style="clear:both;"></div>
 </main>
 
 <!-- Qualification & Role Prederences Modal Pop-->
@@ -277,6 +309,42 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                 <button id="currentstatusupdatebutton" type="button" class="btn btn-success">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Resume Upload Modal Pop-->
+<div class="modal fade" id="resumemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload Latest Resume</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group pull-left" style="width: 30%; margin-right: 5px;">
+                        @Html.LabelFor(model => model.UserPersonalInformation.firstName)
+                        @Html.TextBoxFor(model => model.UserPersonalInformation.firstName, new { @class = "form-control", placeholder = "Gaurav" })
+                    </div>
+                    <div class="form-group pull-left" style="width: 30%;">
+                        @Html.LabelFor(model => model.UserPersonalInformation.lastName)
+                        @Html.TextBoxFor(model => model.UserPersonalInformation.lastName, new { @class = "form-control", placeholder = "Kumar" })
+                    </div>
+                </div>
+                <div class="form-group" style="width: 50%;">
+                    @Html.LabelFor(model => model.UserPersonalInformation.phoneNumber)
+                    @Html.TextBoxFor(model => model.UserPersonalInformation.phoneNumber, new { @class = "form-control", placeholder = "+91 **** *** ***" })
+                </div>
+                <div class="form-group" style="width: 50%;">
+                    @Html.LabelFor(model => model.UserPersonalInformation.emailAddress)
+                    @Html.TextBoxFor(model => model.UserPersonalInformation.emailAddress, new { @class = "form-control", placeholder = "info@offcampus4u.in" })
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="resumeupdatebutton" type="button" class="btn btn-success">Done</button>
             </div>
         </div>
     </div>
