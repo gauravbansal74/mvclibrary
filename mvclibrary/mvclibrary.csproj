@@ -254,6 +254,7 @@
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\TutorialViewModel.cs" />
     <Compile Include="ViewModels\UserProfileViewModel.cs" />
+    <Compile Include="ViewModels\VideoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\dist\css\bootstrap-theme.css" />
@@ -273,6 +274,8 @@
     <Content Include="Content\jquery.cleditor.css" />
     <Content Include="Content\jquery.cleditor.js" />
     <Content Include="Content\jquery.cleditor.min.js" />
+    <Content Include="emailtemplate\emailverify.html" />
+    <Content Include="emailtemplate\forgotpassword.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\dist\css\bootstrap-theme.css.map" />
@@ -345,6 +348,8 @@
     <Content Include="Views\Job\SearchJob.cshtml" />
     <Content Include="Views\Job\SearchJobCustom.cshtml" />
     <Content Include="Views\Account\forgetpassword.cshtml" />
+    <Content Include="Views\Account\verifyemail.cshtml" />
+    <Content Include="Views\Account\verifyemailerror.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppImages\TutorialCategory\" />

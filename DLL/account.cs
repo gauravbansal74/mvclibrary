@@ -32,6 +32,7 @@ namespace DLL
         public bool QualificationSkillsUpdated { get; set; }
         public bool CurrentStatusUpdated { get; set; }
         public bool ResumeUpdated { get; set; }
+        public string accountKey { get; set; }
         public System.DateTime createdOn { get; set; }
         public System.DateTime modifiedOn { get; set; }
         public long modifiedBy { get; set; }

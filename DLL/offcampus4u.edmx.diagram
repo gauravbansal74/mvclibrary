@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="60b08a12679b4b079a77cad99e455724" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="offcampus4uModel.account" Width="1.5" PointX="4.5161698220838655" PointY="30.178782879458172" />
-        <EntityTypeShape EntityType="offcampus4uModel.highestEducation" Width="1.5" PointX="3.4601145402808271" PointY="30.510127409598848" />
-        <EntityTypeShape EntityType="offcampus4uModel.job" Width="1.5" PointX="10.797311553171515" PointY="4.6795936397647457" />
-        <EntityTypeShape EntityType="offcampus4uModel.tutorialCategory" Width="1.5" PointX="4.6934781208138343" PointY="29.454214839941923" />
-        <EntityTypeShape EntityType="offcampus4uModel.video" Width="1.5" PointX="10.847379035711" PointY="0.18625611075491463" />
+        <EntityTypeShape EntityType="offcampus4uModel.account" Width="1.5" PointX="2.2715905878094915" PointY="25.125364196079488" />
+        <EntityTypeShape EntityType="offcampus4uModel.highestEducation" Width="1.5" PointX="7.5198422705381365" PointY="12.129983400986522" />
+        <EntityTypeShape EntityType="offcampus4uModel.job" Width="1.5" PointX="0.065571494431035354" PointY="15.816774882290874" />
+        <EntityTypeShape EntityType="offcampus4uModel.tutorialCategory" Width="1.5" PointX="6.46933347846816" PointY="10.136528034758069" />
+        <EntityTypeShape EntityType="offcampus4uModel.video" Width="1.5" PointX="11.340359223699364" PointY="15.476011894399306" />
         <AssociationConnector Association="offcampus4uModel.FK__video__categoryI__76969D2E" />
       </Diagram>
     </edmx:Diagrams>

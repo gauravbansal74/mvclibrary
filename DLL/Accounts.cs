@@ -34,11 +34,12 @@ namespace DLL
                 account objaccount = db.accounts.Where(x => x.email == account.email).FirstOrDefault();
                 if (objaccount == null)
                 {
+                    account.accountKey = Convert.ToString(DateTime.Now.Ticks);
                     db.accounts.Add(account);
                     db.SaveChanges();
                     db.Dispose();
                     objError.isSuccess = true;
-                    objError.message = "We have created your account. please verify your email address.";
+                    objError.message = account.accountKey;
                     return objError;
                 }
                 else
@@ -85,6 +86,7 @@ namespace DLL
                     objaccount.isDeleted = false;
                     objaccount.modifiedBy = 1;
                     objaccount.modifiedOn = DateTime.Now;
+                    objaccount.accountKey = Convert.ToString(DateTime.Now.Ticks);
                     objaccount = db.accounts.Add(objaccount);
                     db.SaveChanges();
                     db.Dispose();
@@ -127,6 +129,40 @@ namespace DLL
             }
             catch
             {
+                return objError;
+            }
+        }
+
+        public Error verifyEmail(string key)
+        {
+            Error objError = new Error();
+            try
+            {
+                db = new offcampus4uEntities();
+                account userData = (from user in db.accounts
+                                where user.accountKey.Equals(key)
+                                select user).SingleOrDefault();
+                if (userData != null)
+                {
+                    userData.accountStatus = 1;
+                    db.SaveChanges();
+                    db.Dispose();
+                    objError.isSuccess = true;
+                    objError.message = "Your email address successfully verified.";
+                    return objError;
+                }
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Oops.. something went wrong. please contact to our support team.";
+                    return objError;
+                }
+
+            }
+            catch
+            {
+                objError.isSuccess = false;
+                objError.message = "Oops.. something went wrong. please contact to our support team.";
                 return objError;
             }
         }

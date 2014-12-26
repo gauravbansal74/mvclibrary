@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Offcampus4u : " + Model.videoTitle;
+    ViewBag.Title = "Offcampus4u : " + Model.currentVideo.tutorialCategory.tutorialCategoryName + " " + Model.currentVideo.videoTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,31 +9,22 @@
             <h3 class="panel-title"><b>Tutorial Series</b></h3>
           </div>
        <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-           
-                <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-           <li role="presentation"><a href="#">Android App Development for Beginners - 1 - Introduction</a></li>
-              
+           @foreach (var video in Model.videoList)
+           {
+            <li role="presentation"><a href="@Url.Action("seeTutorial", "Tutorials", new { id=video.videoId,catId = video.categoryId})">@video.videoTitle</a></li>
+           }
         </ul>
     </div>
     <div class="panel panel-default"  style="width:70%;margin:0 auto;text-align:left;float:right;">
+       
         <div class="panel-body">
              <h4 class="signup">
-           <strong id="signuptext">@Model.videoTitle</strong> 
+           <strong id="signuptext">@Model.currentVideo.videoTitle</strong> 
            <br />
            <small>India's Largest Free Tutorials Website.</small>
        </h4>
        <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/@Model.videoYoutubeId?rel=0" allowfullscreen=""></iframe>
+        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/@Model.currentVideo.videoYoutubeId?rel=0" allowfullscreen=""></iframe>
        </div>
             <br /> 
             <div style="margin:0 auto; width:100%;text-align:center;">
@@ -41,7 +32,20 @@
 	            <a class="btn btn-info btn-lg " href="https://twitter.com/intent/tweet?source=&text=:%20&via=Offcampus4u" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;">Share on Twitter</a>
 	            <a class="btn btn-warning btn-lg " href="http://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;">Share on LinkedIn</a>
             </div>
+            <br />
+            
     </div>
+        @*<div style="margin:0 auto;width:100%; text-align:center;">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- offcampus4u_main2_AdSense1_728x90_as -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:728px;height:90px"
+                         data-ad-client="ca-pub-7843509776288043"
+                         data-ad-slot="1962217363"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>*@
         </div>
     <div style="clear:both;"></div>
 </main>

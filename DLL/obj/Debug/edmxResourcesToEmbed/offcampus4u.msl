@@ -9,6 +9,7 @@
           <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
           <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
           <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="accountKey" ColumnName="accountKey" />
           <ScalarProperty Name="ResumeUpdated" ColumnName="ResumeUpdated" />
           <ScalarProperty Name="CurrentStatusUpdated" ColumnName="CurrentStatusUpdated" />
           <ScalarProperty Name="QualificationSkillsUpdated" ColumnName="QualificationSkillsUpdated" />

@@ -27,7 +27,7 @@
                <ul class="list-group">
                @foreach (var category in Model.videoList)
                {
-                <li class="list-group-item"><a href="@Url.Action("seeTutorial", "Tutorials", new { id=category.videoId })">@category.videoTitle"</a></li>
+                <li class="list-group-item"><a href="@Url.Action("seeTutorial", "Tutorials", new { id=category.videoId,catId = category.categoryId})">@category.videoTitle</a></li>
                }
                </ul>
 

@@ -38,6 +38,7 @@
           <Property Name="QualificationSkillsUpdated" Type="bit" Nullable="false" />
           <Property Name="CurrentStatusUpdated" Type="bit" Nullable="false" />
           <Property Name="ResumeUpdated" Type="bit" Nullable="false" />
+          <Property Name="accountKey" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="createdOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
@@ -161,6 +162,7 @@
           <Property Type="Boolean" Name="QualificationSkillsUpdated" Nullable="false" />
           <Property Type="Boolean" Name="CurrentStatusUpdated" Nullable="false" />
           <Property Type="Boolean" Name="ResumeUpdated" Nullable="false" />
+          <Property Type="String" Name="accountKey" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
@@ -263,6 +265,7 @@
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
                 <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
                 <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="accountKey" ColumnName="accountKey" />
                 <ScalarProperty Name="ResumeUpdated" ColumnName="ResumeUpdated" />
                 <ScalarProperty Name="CurrentStatusUpdated" ColumnName="CurrentStatusUpdated" />
                 <ScalarProperty Name="QualificationSkillsUpdated" ColumnName="QualificationSkillsUpdated" />

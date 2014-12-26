@@ -33,6 +33,7 @@
     <Property Name="QualificationSkillsUpdated" Type="bit" Nullable="false" />
     <Property Name="CurrentStatusUpdated" Type="bit" Nullable="false" />
     <Property Name="ResumeUpdated" Type="bit" Nullable="false" />
+    <Property Name="accountKey" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="createdOn" Type="datetime" Nullable="false" />
     <Property Name="modifiedOn" Type="datetime" Nullable="false" />
     <Property Name="modifiedBy" Type="bigint" Nullable="false" />

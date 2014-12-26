@@ -33,6 +33,7 @@
     <Property Type="Boolean" Name="QualificationSkillsUpdated" Nullable="false" />
     <Property Type="Boolean" Name="CurrentStatusUpdated" Nullable="false" />
     <Property Type="Boolean" Name="ResumeUpdated" Nullable="false" />
+    <Property Type="String" Name="accountKey" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
     <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
     <Property Type="Int64" Name="modifiedBy" Nullable="false" />

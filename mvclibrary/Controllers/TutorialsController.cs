@@ -21,11 +21,13 @@ namespace mvclibrary.Controllers
             return View(objCatList);
         }
 
-        public ActionResult seeTutorial(Int64 id)
+        public ActionResult seeTutorial(Int64 id, int catId)
         {
+            VideoViewModel objVideoViewModel = new VideoViewModel();
             Tutorials objTutorials = new Tutorials();
-            video objCatList = objTutorials.getVideo(id);
-            return View(objCatList);
+            objVideoViewModel.currentVideo = objTutorials.getVideo(id);
+            objVideoViewModel.videoList = objTutorials.getVideoListNextTen(catId);
+            return View(objVideoViewModel);
         }
        
         [AllowAnonymous]
@@ -37,11 +39,11 @@ namespace mvclibrary.Controllers
             objTutorialViewModel.tutorialCategoryList = objTutorials.getCategryList();
             if (objTutorialViewModel.videoList.Count > 0)
             {
-                ViewBag.Title = objTutorialViewModel.videoList[0].tutorialCategory.tutorialCategoryName;
+                ViewBag.PageTitle = objTutorialViewModel.videoList[0].tutorialCategory.tutorialCategoryName;
             }
             else
             {
-                ViewBag.Title = "Tutorials";
+                ViewBag.PageTitle = "Tutorials";
             }
             return View(objTutorialViewModel);
         }

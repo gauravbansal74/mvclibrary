@@ -8,6 +8,8 @@ using System.Text.RegularExpressions;
 using mvclibrary.customlib;
 using System.Web.Security;
 using System.Net.Mail;
+using System.Threading.Tasks;
+using System.Configuration;
 
 namespace mvclibrary.Controllers
 {
@@ -36,33 +38,43 @@ namespace mvclibrary.Controllers
         public JsonResult sendPassword(string email)
         {
             Error objError = new Error();
-            try
+            Accounts objAccounts = new Accounts();
+            string mypassword = objAccounts.getPasswordUsingEmail(email);
+            String path = Server.MapPath("~/emailtemplate/forgotpassword.html");
+            string text = System.IO.File.ReadAllText(path);
+            text = text.Replace("#useremail", email);
+            text = text.Replace("#userpassword", mypassword);
+            Task.Factory.StartNew(() =>
             {
-                Accounts objAccounts = new Accounts();
-                string mypassword = objAccounts.getPasswordUsingEmail(email);
-                MailMessage mail = new MailMessage();
-                mail.To.Add(new MailAddress(email));
-                mail.From = new MailAddress("no-reply@offcampus4u.com");
-                mail.Subject = "Password Offcampus4u";
-                string Body = "Your Password is " + mypassword;
-                mail.Body = Body;
-                mail.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient();
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new System.Net.NetworkCredential
-                ("glueplusdev@gmail.com", "Mxit1234");// Enter seders User name and password  
-                smtp.EnableSsl = true;
-                smtp.Send(mail);
-                objError.isSuccess = true;
-                objError.message = "We have sent you password on your registred email address.";
-            }
-            catch
-            {
-                objError.isSuccess = false;
-                objError.message = "OOps.. somthing went wrong. please try again after sometime.";
-            }
+                try
+                {
+
+                    MailMessage mail = new MailMessage();
+                    mail.To.Add(new MailAddress(email));
+                    mail.From = new MailAddress(Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]));
+                    mail.Subject = "Password for Offcampus4u";
+                    string Body = text;
+                    mail.Body = Body;
+                    mail.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminsmtp"]);
+                    smtp.Port = 587;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new System.Net.NetworkCredential
+                    (Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminpassword"]));// Enter seders User name and password  
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                    objError.isSuccess = true;
+                    objError.message = "We have sent you password on your registred email address.";
+                }
+                catch
+                {
+                    objError.isSuccess = false;
+                    objError.message = "OOps.. somthing went wrong. please try again after sometime.";
+                }
+            });
+            objError.isSuccess = true;
+            objError.message = "We have sent you password on your registred email address.";
             return Json(objError, JsonRequestBehavior.AllowGet);
         }
 
@@ -223,7 +235,47 @@ namespace mvclibrary.Controllers
                 objAccount.modifiedBy = 1;
                 objAccount.modifiedOn = DateTime.Now;
                 objError = objAccounts.registerAccount(objAccount);
-                return Json(objError, JsonRequestBehavior.AllowGet);
+                if (objError.isSuccess)
+                {
+                    String path = Server.MapPath("~/emailtemplate/emailverify.html");
+                    string text = System.IO.File.ReadAllText(path);
+                    text = text.Replace("#useremail", email);
+                    text = text.Replace("#userverificationLink", ConfigurationManager.AppSettings["localurl"] + "Account/verifyemail/" + objError.message);
+                    Task.Factory.StartNew(() =>
+                   {
+                       try
+                       {
+                           
+                           MailMessage mail = new MailMessage();
+                           mail.To.Add(new MailAddress(email));
+                           mail.From = new MailAddress(Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]));
+                           mail.Subject = "Verify your email for Offcampus4u";
+                           string Body = text;
+                           mail.Body = Body;
+                           mail.IsBodyHtml = true;
+                           SmtpClient smtp = new SmtpClient();
+                           smtp.Host = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminsmtp"]);
+                           smtp.Port = 587;
+                           smtp.UseDefaultCredentials = false;
+                           smtp.Credentials = new System.Net.NetworkCredential
+                           (Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminpassword"]));// Enter seders User name and password  
+                           smtp.EnableSsl = true;
+                           smtp.Send(mail);
+                       }
+                       catch
+                       {
+                           
+                           
+                       }
+                   });
+                    objError.isSuccess = true;
+                    objError.message = "We have created your account. please verify your email address.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
             }
             else
             {
@@ -234,5 +286,34 @@ namespace mvclibrary.Controllers
             
         }
 
+
+        [AllowAnonymous]
+        public ActionResult verifyemail(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                Accounts objAccounts = new Accounts();
+                Error objError = objAccounts.verifyEmail(id);
+                if (objError.isSuccess)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("verifyemailerror");
+                }
+            }
+            else
+            {
+                return RedirectToAction("verifyemailerror");
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult verifyemailerror()
+        {
+
+            return View();
+        }
     }
 }

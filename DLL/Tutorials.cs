@@ -24,6 +24,14 @@ namespace DLL
            return objTutorialsList;
        }
 
+
+       public List<video> getVideoListNextTen(Int64 id)
+       {
+           db = new offcampus4uEntities();
+           List<video> objTutorialsList = db.videos.Where(x => x.categoryId.Equals(id) && x.videoId > id && x.isDeleted.Equals(false)).Take(15).ToList<video>();
+           return objTutorialsList;
+       }
+
        public video getVideo(Int64 id)
        {
            db = new offcampus4uEntities();
