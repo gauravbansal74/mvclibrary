@@ -63,7 +63,7 @@ namespace DLL
             try
             {
                 db = new offcampus4uEntities();
-                var userData = (from user in db.accounts
+                account userData = (from user in db.accounts
                                 where user.email.Equals(email)
                                 select user).SingleOrDefault();
                 if (userData != null)
@@ -165,6 +165,38 @@ namespace DLL
                 objError.message = "Oops.. something went wrong. please contact to our support team.";
                 return objError;
             }
+        }
+
+        public Error changePassword(string currentpassword, long userid, string newpassword)
+        {
+            Error objError = new Error();
+            try
+            {
+                db = new offcampus4uEntities();
+                account userData = (from user in db.accounts
+                                where user.accountId.Equals(userid) && user.password.Equals(currentpassword)
+                                select user).SingleOrDefault();
+                if (userData != null)
+                {
+                    userData.password = newpassword;
+                    db.SaveChanges();
+                    db.Dispose();
+                    objError.isSuccess = true;
+                    objError.message = "Password successfully updated.";
+                }
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Current Password is invaild.";
+                }
+
+            }
+            catch
+            {
+                objError.isSuccess = true;
+                objError.message = "OOps. something went wrong. please try again after sometime.";
+            }
+            return objError;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿@model mvclibrary.ViewModels.ProfileViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Offcampus4u : User Profile Information";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,10 +14,17 @@
            <li role="presentation"><a href="#" data-toggle="modal" data-target="#QualificationRolepreferences">Qualification & Role preferences</a></li>
            <li role="presentation"><a href="#" data-toggle="modal" data-target="#currentstatusModel">Current Status</a></li>
            <li role="presentation"><a href="#" data-toggle="modal" data-target="#resumemodal">Resume</a></li>
+       </ul>
+         <div class="panel-heading">
+            <h3 class="panel-title"><b>Account Settings</b></h3>
+          </div>
+         <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+           <li role="presentation"><a href="#" data-toggle="modal" data-target="#changepasswordmodel">Change Password</a></li>
+       </ul>
 
-              
-        </ul>
+
     </div>
+
     <div style="width:70%;margin:0 auto;text-align:left;float:right;">
             <!-- Personal Profile Div -->
             <div class="personalprofile">
@@ -178,6 +185,35 @@
     </div>
 <div style="clear:both;"></div>
 </main>
+
+<!-- Change Password Modal Pop-->
+<div class="modal fade" id="changepasswordmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="width: 50%;">
+                    <label>Current Password</label>
+                    <input type="password" class="form-control" placeholder="************" id="currentpassword" />
+                </div>
+                <div class="form-group" style="width: 50%;">
+                    <lable>New Password</lable>
+                    <input type="password" class="form-control" placeholder="************" id="newpassword" />
+                </div>
+                <div class="form-group" style="width: 50%;">
+                    <label>Confirm New Password</label>
+                   <input type="password" class="form-control" placeholder="************" id="newpassword1" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="changepasswordbutton" type="button" class="btn btn-success">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Qualification & Role Prederences Modal Pop-->
 <div class="modal fade" id="QualificationRolepreferences" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left;">
@@ -363,8 +399,27 @@
             </div>
         </div>
     </div>
+    </div>
 
     <script>
+        $("#changepasswordbutton").on('click', function () {
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("UpdateUserPassword", "User"))",
+                data: { currentpassword: $("#currentpassword").val(), newpassword: $("#newpassword").val(), newpassword1: $("#newpassword1").val() }
+                })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
+        })
+        .fail(function (data) {
+            showalert(data.isSuccess, data.message);
+        });
+        });
+
+
         $("#uploadresumesubmit").submit(function () {
             var data = new FormData();
             var files = $("#fileUpload").get(0).files;

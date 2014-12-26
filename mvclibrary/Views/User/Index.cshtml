@@ -196,15 +196,15 @@
             <div class="modal-body">
                 <div class="form-group" style="width: 50%;">
                     <label>Current Password</label>
-                    @Html.TextBoxFor(model => model.UserPersonalInformation.phoneNumber, new { @class = "form-control", placeholder = "+91 **** *** ***" })
+                    <input type="password" class="form-control" placeholder="************" id="currentpassword" />
                 </div>
                 <div class="form-group" style="width: 50%;">
                     <lable>New Password</lable>
-                    @Html.TextBoxFor(model => model.UserPersonalInformation.emailAddress, new { @class = "form-control", placeholder = "info@offcampus4u.in" })
+                    <input type="password" class="form-control" placeholder="************" id="newpassword" />
                 </div>
                 <div class="form-group" style="width: 50%;">
                     <label>Confirm New Password</label>
-                    @Html.TextBoxFor(model => model.UserPersonalInformation.emailAddress, new { @class = "form-control", placeholder = "info@offcampus4u.in" })
+                   <input type="password" class="form-control" placeholder="************" id="newpassword1" />
                 </div>
             </div>
             <div class="modal-footer">
@@ -402,6 +402,24 @@
     </div>
 
     <script>
+        $("#changepasswordbutton").on('click', function () {
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("UpdateUserPassword", "User"))",
+                data: { currentpassword: $("#currentpassword").val(), newpassword: $("#newpassword").val(), newpassword1: $("#newpassword1").val() }
+                })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
+        })
+        .fail(function (data) {
+            showalert(data.isSuccess, data.message);
+        });
+        });
+
+
         $("#uploadresumesubmit").submit(function () {
             var data = new FormData();
             var files = $("#fileUpload").get(0).files;

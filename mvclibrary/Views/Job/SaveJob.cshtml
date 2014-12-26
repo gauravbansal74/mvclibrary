@@ -184,19 +184,43 @@
         });
         $btn.button('reset');
     })
+    $("#jobDisclosed").val(false);
+
+    if ($("#jobDisclosed").is(":checked")) {
+        $("#jobDisclosed").val($("#jobDisclosed").prop('checked'));
+        $(".salaryhideshow").show();
+    } else {
+        $("#jobDisclosed").val(false);
+        $(".salaryhideshow").hide();
+    }
+
+
+    $("#jobOtherDetailPresent").val(false);
+
+    if ($("#jobOtherDetailPresent").is(":checked")) {
+        $("#jobOtherDetailPresent").val($("#jobOtherDetailPresent").prop('checked'));
+        $(".otherdetailhideshow").show();
+    } else {
+        $("#jobOtherDetailPresent").val(false);
+        $(".otherdetailhideshow").hide();
+    }
 
     $('#jobDisclosed').change(function () {
         if ($(this).is(":checked")) {
+            $(this).val($(this).prop('checked'));
             $(".salaryhideshow").show();
         } else {
+            $(this).val(false);
             $(".salaryhideshow").hide();
         }
     });
 
     $('#jobOtherDetailPresent').change(function () {
         if ($(this).is(":checked")) {
+            $(this).val($(this).prop('checked'));
             $(".otherdetailhideshow").show();
         } else {
+            $(this).val(false);
             $(".otherdetailhideshow").hide();
         }
 

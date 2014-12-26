@@ -54,11 +54,9 @@
                                 <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
                                   <li role="presentation">@Html.ActionLink("Create Tutorial Category","Category","Tutorials")</li>
                                   <li role="presentation">@Html.ActionLink("Post New Job","SaveJob","Job")</li>
-                                    <li role="presentation">@Html.ActionLink("Job Posting History","Logout","Account")</li>
+                                  <li role="presentation">@Html.ActionLink("Job Posting History","Logout","Account")</li>
                                   <li role="presentation">@Html.ActionLink("Wallet","Logout","Account")</li>
-                                  <li role="presentation" class="divider"></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Separated link</a></li>
-                                </ul>
+                                 </ul>
                               </li>
                     </li>
                     <li>
@@ -74,11 +72,9 @@
                                 <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
                                   <li role="presentation">@Html.ActionLink("Profile","Index","User")</li>
                                   <li role="presentation">@Html.ActionLink("Post New Job","SaveJob","Job")</li>
-                                    <li role="presentation">@Html.ActionLink("Job Posting History","Logout","Account")</li>
-                                  <li role="presentation">@Html.ActionLink("Wallet","Logout","Account")</li>
-                                  <li role="presentation" class="divider"></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Separated link</a></li>
-                                </ul>
+                                  <li role="presentation">@Html.ActionLink("Job Posting History","Index","Account")</li>
+                                  <li role="presentation">@Html.ActionLink("Wallet","Index","Account")</li>
+                                 </ul>
                               </li>
                            <li>@Html.ActionLink("Logout","Logout","Account")</li>
                         }else{

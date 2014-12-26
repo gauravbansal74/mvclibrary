@@ -231,5 +231,27 @@ namespace mvclibrary.Controllers
             }
         }
 
+        public JsonResult UpdateUserPassword(string currentpassword, string newpassword, string newpassword1)
+        {
+            Error objError = new Error();
+            if (string.IsNullOrEmpty(currentpassword) || string.IsNullOrEmpty(newpassword) || string.IsNullOrEmpty(newpassword1))
+            {
+                objError.isSuccess = false;
+                objError.message = "All fields are compulsory.";
+            }
+
+            if (newpassword.Equals(newpassword1))
+            {
+                Accounts objAccount = new Accounts();
+                objError = objAccount.changePassword(currentpassword, Convert.ToInt64(User.Identity.Name), newpassword);
+            }
+            else
+            {
+                objError.isSuccess = false;
+                objError.message = "New Password and Confirm New Password should be match.";
+            }
+            return Json(objError, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
