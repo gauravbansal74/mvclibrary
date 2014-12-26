@@ -18,6 +18,13 @@ namespace DLL
             return objAccount;
         }
 
+        public string getPasswordUsingEmail(string email)
+        {
+            db = new offcampus4uEntities();
+            account objAccount = db.accounts.Where(x => x.email == email).FirstOrDefault();
+            return objAccount.password;
+        }
+
         public Error registerAccount(account account)
         {
             Error objError = new Error();

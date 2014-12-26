@@ -7,10 +7,11 @@
     <Schema Namespace="offcampus4uModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="offcampus4uModelStoreContainer">
           <EntitySet Name="account" EntityType="offcampus4uModel.Store.account" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="highestEducation" EntityType="offcampus4uModel.Store.highestEducation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="job" EntityType="offcampus4uModel.Store.job" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tutorialCategory" EntityType="offcampus4uModel.Store.tutorialCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="video" EntityType="offcampus4uModel.Store.video" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__video__categoryI__59FA5E80" Association="offcampus4uModel.Store.FK__video__categoryI__59FA5E80">
+          <AssociationSet Name="FK__video__categoryI__76969D2E" Association="offcampus4uModel.Store.FK__video__categoryI__76969D2E">
             <End Role="tutorialCategory" EntitySet="tutorialCategory" />
             <End Role="video" EntitySet="video" />
           </AssociationSet>
@@ -32,10 +33,27 @@
           <Property Name="highestEducation" Type="varchar" MaxLength="100" />
           <Property Name="workType" Type="varchar" MaxLength="100" />
           <Property Name="Preferredlocations" Type="varchar" MaxLength="100" />
+          <Property Name="ResumeFileName" Type="varchar" MaxLength="100" />
+          <Property Name="PersonalInformationUpdated" Type="bit" Nullable="false" />
+          <Property Name="QualificationSkillsUpdated" Type="bit" Nullable="false" />
+          <Property Name="CurrentStatusUpdated" Type="bit" Nullable="false" />
+          <Property Name="ResumeUpdated" Type="bit" Nullable="false" />
           <Property Name="createdOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
           <Property Name="accountStatus" Type="int" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="highestEducation">
+          <Key>
+            <PropertyRef Name="highestEducationId" />
+          </Key>
+          <Property Name="highestEducationId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="highestEducationName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdOn" Type="datetime" Nullable="false" />
+          <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
           <Property Name="isDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="job">
@@ -94,7 +112,7 @@
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
           <Property Name="isDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__video__categoryI__59FA5E80">
+        <Association Name="FK__video__categoryI__76969D2E">
           <End Role="tutorialCategory" Type="offcampus4uModel.Store.tutorialCategory" Multiplicity="1" />
           <End Role="video" Type="offcampus4uModel.Store.video" Multiplicity="*" />
           <ReferentialConstraint>
@@ -112,10 +130,11 @@
       <Schema Namespace="offcampus4uModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="offcampus4uEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
+          <EntitySet Name="highestEducations" EntityType="offcampus4uModel.highestEducation" />
           <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
           <EntitySet Name="tutorialCategories" EntityType="offcampus4uModel.tutorialCategory" />
           <EntitySet Name="videos" EntityType="offcampus4uModel.video" />
-          <AssociationSet Name="FK__video__categoryI__59FA5E80" Association="offcampus4uModel.FK__video__categoryI__59FA5E80">
+          <AssociationSet Name="FK__video__categoryI__76969D2E" Association="offcampus4uModel.FK__video__categoryI__76969D2E">
             <End Role="tutorialCategory" EntitySet="tutorialCategories" />
             <End Role="video" EntitySet="videos" />
           </AssociationSet>
@@ -137,10 +156,27 @@
           <Property Type="String" Name="highestEducation" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="workType" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Preferredlocations" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ResumeFileName" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="PersonalInformationUpdated" Nullable="false" />
+          <Property Type="Boolean" Name="QualificationSkillsUpdated" Nullable="false" />
+          <Property Type="Boolean" Name="CurrentStatusUpdated" Nullable="false" />
+          <Property Type="Boolean" Name="ResumeUpdated" Nullable="false" />
           <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Int32" Name="accountStatus" Nullable="false" />
+          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+        </EntityType>
+        <EntityType Name="highestEducation">
+          <Key>
+            <PropertyRef Name="highestEducationId" />
+          </Key>
+          <Property Type="Int64" Name="highestEducationId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="highestEducationName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="createdBy" Nullable="false" />
+          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
         </EntityType>
         <EntityType Name="job">
@@ -184,7 +220,7 @@
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Int32" Name="tutorialCategoryStatus" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="videos" Relationship="offcampus4uModel.FK__video__categoryI__59FA5E80" FromRole="tutorialCategory" ToRole="video" />
+          <NavigationProperty Name="videos" Relationship="offcampus4uModel.FK__video__categoryI__76969D2E" FromRole="tutorialCategory" ToRole="video" />
         </EntityType>
         <EntityType Name="video">
           <Key>
@@ -199,9 +235,9 @@
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="tutorialCategory" Relationship="offcampus4uModel.FK__video__categoryI__59FA5E80" FromRole="video" ToRole="tutorialCategory" />
+          <NavigationProperty Name="tutorialCategory" Relationship="offcampus4uModel.FK__video__categoryI__76969D2E" FromRole="video" ToRole="tutorialCategory" />
         </EntityType>
-        <Association Name="FK__video__categoryI__59FA5E80">
+        <Association Name="FK__video__categoryI__76969D2E">
           <End Type="offcampus4uModel.tutorialCategory" Role="tutorialCategory" Multiplicity="1" />
           <End Type="offcampus4uModel.video" Role="video" Multiplicity="*" />
           <ReferentialConstraint>
@@ -213,7 +249,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -227,6 +263,11 @@
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
                 <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
                 <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="ResumeUpdated" ColumnName="ResumeUpdated" />
+                <ScalarProperty Name="CurrentStatusUpdated" ColumnName="CurrentStatusUpdated" />
+                <ScalarProperty Name="QualificationSkillsUpdated" ColumnName="QualificationSkillsUpdated" />
+                <ScalarProperty Name="PersonalInformationUpdated" ColumnName="PersonalInformationUpdated" />
+                <ScalarProperty Name="ResumeFileName" ColumnName="ResumeFileName" />
                 <ScalarProperty Name="Preferredlocations" ColumnName="Preferredlocations" />
                 <ScalarProperty Name="workType" ColumnName="workType" />
                 <ScalarProperty Name="highestEducation" ColumnName="highestEducation" />
@@ -240,6 +281,19 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="highestEducations">
+            <EntityTypeMapping TypeName="offcampus4uModel.highestEducation">
+              <MappingFragment StoreEntitySet="highestEducation">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="highestEducationName" ColumnName="highestEducationName" />
+                <ScalarProperty Name="highestEducationId" ColumnName="highestEducationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -302,7 +356,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

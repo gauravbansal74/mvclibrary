@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using mvclibrary.ViewModels;
 using DLL;
+using System.IO;
+
 namespace mvclibrary.Controllers
 {
     public class UserController : Controller
@@ -18,7 +20,9 @@ namespace mvclibrary.Controllers
             ProfileViewModel objProfileViewModel = new ProfileViewModel();
             account objpersonalInformation = objProfile.GetPersonalInformation(Convert.ToInt64(User.Identity.Name));
             UserProfileViewModel objUserProfileViewModel = new UserProfileViewModel();
-            if (objUserProfileViewModel != null)
+            Commondetail objEducation = new Commondetail();
+          
+            if (objpersonalInformation != null)
             {
                 objUserProfileViewModel.firstName = (objpersonalInformation.firstName == null) ? "" : objpersonalInformation.firstName;
                 objUserProfileViewModel.lastName = objpersonalInformation.lastName == null ? "" : objpersonalInformation.lastName;
@@ -32,10 +36,15 @@ namespace mvclibrary.Controllers
                 objUserProfileViewModel.highestEducation = objpersonalInformation.highestEducation == null ? "" : objpersonalInformation.highestEducation;
                 objUserProfileViewModel.workType = objpersonalInformation.workType == null ? "" : objpersonalInformation.workType;
                 objUserProfileViewModel.Preferredlocations = objpersonalInformation.Preferredlocations == null ? "" : objpersonalInformation.Preferredlocations;
-                
+                objUserProfileViewModel.ResumeFileName = objpersonalInformation.ResumeFileName == null ? "" : objpersonalInformation.ResumeFileName;
+                objUserProfileViewModel.PersonalInformationUpdated = objpersonalInformation.PersonalInformationUpdated;
+                objUserProfileViewModel.QualificationSkillsUpdated = objpersonalInformation.QualificationSkillsUpdated;
+                objUserProfileViewModel.CurrentStatusUpdated = objpersonalInformation.CurrentStatusUpdated;
+                objUserProfileViewModel.ResumeUpdated = objpersonalInformation.ResumeUpdated;
                 objProfileViewModel.UserPersonalInformation = objUserProfileViewModel;
             }
-            
+            //objProfileViewModel.EducationList = objEducation.getHighestEducation();
+            //objProfileViewModel.myeducation = 2;
             
             return View(objProfileViewModel);
         }
@@ -165,6 +174,61 @@ namespace mvclibrary.Controllers
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
 
+        }
+
+
+        public JsonResult UploadResume()
+        {
+            if (Request.Files.AllKeys.Any())
+            {
+                // Get the uploaded image from the Files collection
+                var httpPostedFile = Request.Files["UploadedImage"];
+                // Validate the uploaded image(optional)
+                string randonname = Convert.ToString(DateTime.Now.Ticks);
+                string[] originalFileName = httpPostedFile.FileName.Split('.');
+                if (httpPostedFile != null)
+                {
+                   
+
+                    // Get the complete file path
+                    try
+                    {
+                        var fileSavePath = Path.Combine(Server.MapPath("~/UserFiles/Resume"), randonname+"."+originalFileName[1]);
+
+                        // Save the uploaded file to "UploadedFiles" folder
+                        httpPostedFile.SaveAs(fileSavePath);
+                    }
+                    catch
+                    {
+                        Error objError = new Error();
+                        objError.isSuccess = false;
+                        objError.message = "OOps Something went wrong. please try again later.";
+                        return Json(objError, JsonRequestBehavior.AllowGet);
+                    }
+                    account objAccount = new account();
+                    objAccount.accountId = Convert.ToInt64(User.Identity.Name);
+                    objAccount.ResumeFileName = randonname + "." + originalFileName[1];
+                    objAccount.modifiedBy = Convert.ToInt64(User.Identity.Name);
+                    objAccount.modifiedOn = DateTime.Now;
+                    Profile objProfile = new Profile();
+                    Error objError1 = objProfile.updateResumeFile(objAccount);
+                    return Json(objError1, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    Error objError = new Error();
+                    objError.isSuccess = false;
+                    objError.message = "Selected Icon size can't be null";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                Error objError = new Error();
+                objError.isSuccess = false;
+                objError.message = "Please select Icon for the category";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
         }
 
     }

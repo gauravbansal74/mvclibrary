@@ -3,120 +3,180 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<main class="bs-docs-masthead-other">
 
-    <!-- Personal Profile Div -->
-    <div class="personalprofile mainwidth">
-        <div class="row">
-            <div class="col-xs-8 mt-none ellipsis">
-                <h1>@Model.UserPersonalInformation.firstName @Model.UserPersonalInformation.lastName</h1>
-            </div>
-            <div class="col-xs-4 mt-none" style="text-align:right;">
-                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#personalprofilemodal" style="cursor: pointer;"></i>
-            </div>
-         </div>
-        <div class="row">
-            <div class="col-xs-4 ellipsis">
-               @Model.UserPersonalInformation.emailAddress
-              </div>
-              <div class="col-xs-4 ellipsis">
-                @Model.UserPersonalInformation.phoneNumber
-              </div>
+<main class="bs-docs-masthead-other" id="content" role="main" style="width: 80%; margin: 0 auto;">
+     <div class="panel panel-default"  style="width:25%;margin:0 auto;text-align:left;float:left;">
+         <div class="panel-heading">
+            <h3 class="panel-title"><b>Profile Information</b></h3>
+          </div>
+       <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+           <li role="presentation"><a href="#" data-toggle="modal" data-target="#personalprofilemodal">Personal Information</a></li>
+           <li role="presentation"><a href="#" data-toggle="modal" data-target="#QualificationRolepreferences">Qualification & Role preferences</a></li>
+           <li role="presentation"><a href="#" data-toggle="modal" data-target="#currentstatusModel">Current Status</a></li>
+           <li role="presentation"><a href="#" data-toggle="modal" data-target="#resumemodal">Resume</a></li>
+
+              
+        </ul>
+    </div>
+    <div style="width:70%;margin:0 auto;text-align:left;float:right;">
+            <!-- Personal Profile Div -->
+            <div class="personalprofile">
+                <div class="row">
+                    <div class="col-xs-8 mt-none ellipsis">
+                        <h1>@Model.UserPersonalInformation.firstName @Model.UserPersonalInformation.lastName</h1>
+                    </div>
+                    <div class="col-xs-4 mt-none" style="text-align:right;">
+                        <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#personalprofilemodal" style="cursor: pointer;"></i>
+                    </div>
+                 </div>
+                <div class="row">
+                    <div class="col-xs-4 ellipsis">
+                       @Model.UserPersonalInformation.emailAddress
+                      </div>
+                      <div class="col-xs-4 ellipsis">
+                        @Model.UserPersonalInformation.phoneNumber
+                      </div>
              
-        </div>
+                </div>
+            </div>
+        @if(@Model.UserPersonalInformation.QualificationSkillsUpdated){
+            <!-- Skills & Role preferences Div -->
+            <div class="well">
+                <div class="pull-right" style="text-align:right;">
+                        <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#QualificationRolepreferences" style="cursor: pointer;"></i>
+                    </div>
+                <h2 class="color-gray-mid">Qualification & Role preferences</h2>
+
+                <div class="row mt-one">
+                    <div class="col-xs-4">
+                        <span class="color-light">Highest qualification</span>
+                    </div>
+                    <div class="col-xs-8" >
+                       <div>
+                           <div id="UserPersonalInformation_highestEducation_val">@Model.UserPersonalInformation.highestEducation</div>
+                        </div>
+                    </div>
+                </div>
+
+               <div class="row mt-one">
+                    <div class="col-xs-4">
+                        <span class="color-light">Work types</span>
+                    </div>
+                    <div class="col-xs-8">
+                        <span id="UserPersonalInformation_workType_val">@Model.UserPersonalInformation.workType</span>
+                    </div>
+                </div>
+
+              <div class="row mt-one">
+                    <div class="col-xs-4">
+                        <span class="color-light">Preferred locations</span>
+                    </div>
+                    <div class="col-xs-8" >
+                       <div>
+                           <div>@Model.UserPersonalInformation.Preferredlocations</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }else{
+            <div class="personalprofile" style="background-color:#2c559c">
+                <h2>What qualifications have you got?</h2>
+                <p>The more you include, the better your chances of being tapped on the shoulder.</p>
+                <button class="btn btn-default" data-toggle="modal" data-target="#QualificationRolepreferences">Add Qualifications and Role Preferences</button>
+            </div>
+        }
+
+        @if(Model.UserPersonalInformation.CurrentStatusUpdated){
+            <!-- Current Status Div -->
+            <div class="well">
+                <div class="pull-right" style="text-align:right;">
+                        <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#currentstatusModel" style="cursor: pointer;"></i>
+                    </div>
+                <h2 class="color-gray-mid">Current status</h2>
+
+               <div class="row mt-one">
+                    <div class="col-xs-4">
+                        <span class="color-light">Home location</span>
+                    </div>
+                    <div class="col-xs-8">
+                        <span class="ng-binding">@Model.UserPersonalInformation.basedIn</span>
+                    </div>
+                </div>
+
+              <div class="row mt-one">
+                    <div class="col-xs-4">
+                        <span class="color-light">Classifications</span>
+                    </div>
+                    <div class="col-xs-8" >
+                       <div>
+                           <div id="UserPersonalInformation_classifiedRole_val">@Model.UserPersonalInformation.classifiedRole</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-one">
+                    <div class="col-xs-4">
+                        <span class="color-light">Jobseeking status</span>
+                    </div>
+                    <div class="col-xs-8" >
+                       <div>
+                           <div id="UserPersonalInformation_jobseekingStatus_val">@Model.UserPersonalInformation.jobseekingStatus</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mt-one">
+                    <div class="col-xs-4">
+                        <span class="color-light">Availability</span>
+                    </div>
+                    <div class="col-xs-8" >
+                       <div>
+                           <div id="UserPersonalInformation_availability_val">@Model.UserPersonalInformation.availability</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }else{
+            <div class="personalprofile" style="background-color:#2c559c;padding-top:10px;">
+                <h2>What is current status?</h2>
+                <p>Update current status to your profile so more employers can contact you.</p>
+                <button class="btn btn-default" data-toggle="modal" data-target="#currentstatusModel">Add Current Status</button>
+            </div>
+        }
+
+        @if (Model.UserPersonalInformation.ResumeUpdated)
+        {
+            <!-- Upload Resume -->
+            <div class="well">
+                <div class="pull-right" style="text-align:right;">
+                        <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#resumemodal" style="cursor: pointer;"></i>
+                    </div>
+                <h2 class="color-gray-mid">Resume</h2>
+
+                <div class="row mt-one">
+                    <div class="col-xs-4">
+                        <span class="color-light">Your Latest Uploded resume</span>
+                    </div>
+                    <div class="col-xs-8" >
+                       <div>
+                           <div><a target="_blank" href="~/UserFiles/Resume/@Model.UserPersonalInformation.ResumeFileName">@Model.UserPersonalInformation.ResumeFileName</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="personalprofile" style="background-color:#2c559c;padding-top:10px;">
+                <h2>Adding a resume opens up more opportunities</h2>
+                <p>Add a resume to your profile so more employers can contact you.</p>
+                <button class="btn btn-default" data-toggle="modal" data-target="#resumemodal">Add Resume</button>
+            </div>
+        }
     </div>
-    <!-- Current Status Div -->
-    <div class="well mainwidth">
-        <div class="pull-right" style="text-align:right;">
-                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#currentstatusModel" style="cursor: pointer;"></i>
-            </div>
-        <h2 class="color-gray-mid">Current status</h2>
-
-       <div class="row mt-one">
-            <div class="col-xs-4">
-                <span class="color-light">Home location</span>
-            </div>
-            <div class="col-xs-8">
-                <span class="ng-binding">@Model.UserPersonalInformation.basedIn</span>
-            </div>
-        </div>
-
-      <div class="row mt-one">
-            <div class="col-xs-4">
-                <span class="color-light">Classifications</span>
-            </div>
-            <div class="col-xs-8" >
-               <div>
-                   <div>@Model.UserPersonalInformation.classifiedRole</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-one">
-            <div class="col-xs-4">
-                <span class="color-light">Jobseeking status</span>
-            </div>
-            <div class="col-xs-8" >
-               <div>
-                   <div>@Model.UserPersonalInformation.jobseekingStatus</div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row mt-one">
-            <div class="col-xs-4">
-                <span class="color-light">Availability</span>
-            </div>
-            <div class="col-xs-8" >
-               <div>
-                   <div>@Model.UserPersonalInformation.availability</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- Skills & Role preferences Div -->
-    <div class="well mainwidth">
-        <div class="pull-right" style="text-align:right;">
-                <i class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#QualificationRolepreferences" style="cursor: pointer;"></i>
-            </div>
-        <h2 class="color-gray-mid">Qualification & Role preferences</h2>
-
-        <div class="row mt-one">
-            <div class="col-xs-4">
-                <span class="color-light">Highest qualification</span>
-            </div>
-            <div class="col-xs-8" >
-               <div>
-                   <div>@Model.UserPersonalInformation.highestEducation</div>
-                </div>
-            </div>
-        </div>
-
-       <div class="row mt-one">
-            <div class="col-xs-4">
-                <span class="color-light">Work types</span>
-            </div>
-            <div class="col-xs-8">
-                <span class="ng-binding">@Model.UserPersonalInformation.workType</span>
-            </div>
-        </div>
-
-      <div class="row mt-one">
-            <div class="col-xs-4">
-                <span class="color-light">Preferred locations</span>
-            </div>
-            <div class="col-xs-8" >
-               <div>
-                   <div>@Model.UserPersonalInformation.Preferredlocations</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+<div style="clear:both;"></div>
 </main>
 
 <!-- Qualification & Role Prederences Modal Pop-->
@@ -127,7 +187,7 @@
                 <h4 class="modal-title">Qualification & Role preferences</h4>
             </div>
             <div class="modal-body">
-                <div class="form-group" style="width:60%;">
+                <div class="form-group" style="width: 60%;">
                     @Html.LabelFor(model => model.UserPersonalInformation.highestEducation)
                     <select id="UserPersonalInformation_highestEducation" name="UserPersonalInformation_highestEducation" class="form-control">
                         <option>Select level of qualification...</option>
@@ -143,7 +203,7 @@
                     </select>
 
                 </div>
-                <div class="form-group" style="width:60%;">
+                <div class="form-group" style="width: 60%;">
                     @Html.LabelFor(model => model.UserPersonalInformation.workType)
                     <select id="UserPersonalInformation_workType" name="UserPersonalInformation_workType" class="form-control">
                         <option value="Full time">Full time</option>
@@ -282,40 +342,93 @@
     </div>
 </div>
 
-<script>
+<!-- Resume Upload Modal Pop-->
+<div class="modal fade" id="resumemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload Latest Resume</h4>
+            </div>
+            <div class="modal-body">
+                <form id="uploadresumesubmit" enctype="multipart/form-data">
+                    <div class="form-group" style="width: 50%;">
+                        <label>Upload Resume</label>
+                        <input type="file" class="form-control" id="fileUpload" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                        <button id="resumeupdatebutton" type="submit" class="btn btn-success">Done</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    $("#qualificationrolepreferencesbutton").on('click', function () {
-        var UserProfileViewModel = {
-            highestEducation: $("#UserPersonalInformation_highestEducation").val(),
-            workType: $("#UserPersonalInformation_workType").val(),
-            Preferredlocations: $("#UserPersonalInformation_Preferredlocations").val()
-        };
-        $.ajax({
-            type: "POST",
-            url: "@(Url.Action("UpdateQualiifcationPreferencesInformation", "User"))",
-            data: UserProfileViewModel
-        })
+    <script>
+        $("#uploadresumesubmit").submit(function () {
+            var data = new FormData();
+            var files = $("#fileUpload").get(0).files;
+            if (files.length > 0) {
+                data.append("UploadedImage", files[0]);
+
+                $.ajax({
+                    type: "POST",
+                    url: "@(Url.Action("UploadResume", "User"))",
+                    contentType: false,
+                    processData: false,
+                    data: data
+                })
+                .done(function (data) {
+                    showalert(data.isSuccess, data.message);
+                    if (data.isSuccess) {
+                        location.reload();
+                    }
+                })
+                .fail(function (data) {
+                    showalert(data.isSuccess, data.message);
+                });
+        } else {
+                showalert(false,"Select your resume to upload and update.");
+        }
+         });
+        $("#qualificationrolepreferencesbutton").on('click', function () {
+            var UserProfileViewModel = {
+                highestEducation: $("#UserPersonalInformation_highestEducation").val(),
+                workType: $("#UserPersonalInformation_workType").val(),
+                Preferredlocations: $("#UserPersonalInformation_Preferredlocations").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("UpdateQualiifcationPreferencesInformation", "User"))",
+                data: UserProfileViewModel
+            })
         .done(function (data) {
             showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
         })
         .fail(function (data) {
             showalert(data.isSuccess, data.message);
         });
-    });
-    $("#currentstatusupdatebutton").on('click', function () {
-        var UserProfileViewModel = {
-            basedIn: $("#UserPersonalInformation_basedIn").val(),
-            classifiedRole: $("#UserPersonalInformation_classifiedRole").val(),
-            jobseekingStatus: $("#UserPersonalInformation_jobseekingStatus").val(),
-            availability: $("#UserPersonalInformation_availability").val()
-        };
-        $.ajax({
-            type: "POST",
-            url: "@(Url.Action("UpdateCurrentStatusInformation", "User"))",
+        });
+        $("#currentstatusupdatebutton").on('click', function () {
+            var UserProfileViewModel = {
+                basedIn: $("#UserPersonalInformation_basedIn").val(),
+                classifiedRole: $("#UserPersonalInformation_classifiedRole").val(),
+                jobseekingStatus: $("#UserPersonalInformation_jobseekingStatus").val(),
+                availability: $("#UserPersonalInformation_availability").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("UpdateCurrentStatusInformation", "User"))",
             data: UserProfileViewModel
         })
         .done(function (data) {
             showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
         })
         .fail(function (data) {
             showalert(data.isSuccess, data.message);
@@ -334,10 +447,20 @@
         })
         .done(function (data) {
             showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
         })
         .fail(function (data) {
             showalert(data.isSuccess, data.message);
         });
     });
-</script>
+    $('#UserPersonalInformation_highestEducation').val($("#UserPersonalInformation_highestEducation_val").text());
+    $('#UserPersonalInformation_workType').val($("#UserPersonalInformation_workType_val").text());
+    $('#UserPersonalInformation_classifiedRole').val($("#UserPersonalInformation_classifiedRole_val").text());
+    $('#UserPersonalInformation_jobseekingStatus').val($("#UserPersonalInformation_jobseekingStatus_val").text());
+    $('#UserPersonalInformation_availability').val($("#UserPersonalInformation_availability_val").text());
 
+
+    // $('#UserPersonalInformation_highestEducation option:eq('+$("#UserPersonalInformation_highestEducation_val").text() + ')').prop('selected', true)
+    </script>

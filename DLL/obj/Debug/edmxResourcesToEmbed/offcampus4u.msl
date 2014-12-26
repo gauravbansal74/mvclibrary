@@ -9,6 +9,11 @@
           <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
           <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
           <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="ResumeUpdated" ColumnName="ResumeUpdated" />
+          <ScalarProperty Name="CurrentStatusUpdated" ColumnName="CurrentStatusUpdated" />
+          <ScalarProperty Name="QualificationSkillsUpdated" ColumnName="QualificationSkillsUpdated" />
+          <ScalarProperty Name="PersonalInformationUpdated" ColumnName="PersonalInformationUpdated" />
+          <ScalarProperty Name="ResumeFileName" ColumnName="ResumeFileName" />
           <ScalarProperty Name="Preferredlocations" ColumnName="Preferredlocations" />
           <ScalarProperty Name="workType" ColumnName="workType" />
           <ScalarProperty Name="highestEducation" ColumnName="highestEducation" />
@@ -22,6 +27,19 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="accountId" ColumnName="accountId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="highestEducations">
+      <EntityTypeMapping TypeName="offcampus4uModel.highestEducation">
+        <MappingFragment StoreEntitySet="highestEducation">
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="highestEducationName" ColumnName="highestEducationName" />
+          <ScalarProperty Name="highestEducationId" ColumnName="highestEducationId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

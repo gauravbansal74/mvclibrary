@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Offcampus4u : " + @Model.jobTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main class="bs-docs-masthead-other" style="width:80%;margin:0 auto; ">
+<main class="bs-docs-masthead-other" style="width: 80%; margin: 0 auto;">
  <div>
      <form class="navbar-form " role="search" method="post" action="/Job/SearchJob">
         <div class="form-group">
@@ -111,13 +111,18 @@
             <em></em>&nbsp;&nbsp;4,00,000 - 5,00,000 PA
         </div><br />
         <button class="btn btn-primary">Apply</button>
+         <div class="pull-right">
+            
+         
+	<a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;">Share on Facebook</a>
+	<a class="btn btn-info" href="https://twitter.com/intent/tweet?source=&text=:%20&via=Offcampus4u" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;">Share on Twitter</a>
+	<a class="btn btn-warning" href="http://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;">Share on LinkedIn</a>
+
+        </div>
     </div>  
     
     <div class="well" style="line-height: 1.42857143;">
-       <div class="pull-left"><b>Job Description</b></div>
-        <div class="pull-right">Social Media Share </div>
-        <div class="clear"></div>
-        <br />
+       <div ><b>Job Description</b></div>
         <div>
             @Html.Raw(Model.jobDescription)
         </div>

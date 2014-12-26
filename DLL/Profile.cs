@@ -28,6 +28,7 @@ namespace DLL
                 objPersonalInformation.firstName = account.firstName;
                 objPersonalInformation.lastName = account.lastName;
                 objPersonalInformation.phoneNumber = account.phoneNumber;
+                objPersonalInformation.PersonalInformationUpdated = true;
                 objPersonalInformation.modifiedBy = account.modifiedBy;
                 objPersonalInformation.modifiedOn = account.modifiedOn;
                 db.SaveChanges();
@@ -54,6 +55,7 @@ namespace DLL
                 objPersonalInformation.classifiedRole = account.classifiedRole;
                 objPersonalInformation.jobseekingStatus = account.jobseekingStatus;
                 objPersonalInformation.availability = account.availability;
+                objPersonalInformation.CurrentStatusUpdated = true;
                 objPersonalInformation.modifiedBy = account.modifiedBy;
                 objPersonalInformation.modifiedOn = account.modifiedOn;
                 db.SaveChanges();
@@ -79,11 +81,37 @@ namespace DLL
                 objPersonalInformation.highestEducation = account.highestEducation;
                 objPersonalInformation.workType = account.workType;
                 objPersonalInformation.Preferredlocations = account.Preferredlocations;
+                objPersonalInformation.QualificationSkillsUpdated = true;
                 objPersonalInformation.modifiedBy = account.modifiedBy;
                 objPersonalInformation.modifiedOn = account.modifiedOn;
                 db.SaveChanges();
                 objError.isSuccess = true;
                 objError.message = "Qualification & Role preferences Information successfully updated";
+                return objError;
+            }
+            catch
+            {
+                objError.isSuccess = false;
+                objError.message = "Oops.. Somthing went wrong. please try again after sometime.";
+                return objError;
+            }
+        }
+
+
+        public Error updateResumeFile(account account)
+        {
+            Error objError = new Error();
+            try
+            {
+                db = new offcampus4uEntities();
+                account objPersonalInformation = db.accounts.Where(x => x.accountId == account.accountId).FirstOrDefault();
+                objPersonalInformation.ResumeFileName = account.ResumeFileName;
+                objPersonalInformation.ResumeUpdated = true;
+                objPersonalInformation.modifiedBy = account.modifiedBy;
+                objPersonalInformation.modifiedOn = account.modifiedOn;
+                db.SaveChanges();
+                objError.isSuccess = true;
+                objError.message = "Resume successfully uploaded and updated to your profile.";
                 return objError;
             }
             catch

@@ -7,6 +7,7 @@ using DLL;
 using System.Text.RegularExpressions;
 using mvclibrary.customlib;
 using System.Web.Security;
+using System.Net.Mail;
 
 namespace mvclibrary.Controllers
 {
@@ -23,6 +24,46 @@ namespace mvclibrary.Controllers
             {
                 return View();
             }
+        }
+
+        [AllowAnonymous]
+        public ActionResult forgetpassword()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public JsonResult sendPassword(string email)
+        {
+            Error objError = new Error();
+            try
+            {
+                Accounts objAccounts = new Accounts();
+                string mypassword = objAccounts.getPasswordUsingEmail(email);
+                MailMessage mail = new MailMessage();
+                mail.To.Add(new MailAddress(email));
+                mail.From = new MailAddress("no-reply@offcampus4u.com");
+                mail.Subject = "Password Offcampus4u";
+                string Body = "Your Password is " + mypassword;
+                mail.Body = Body;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential
+                ("glueplusdev@gmail.com", "Mxit1234");// Enter seders User name and password  
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+                objError.isSuccess = true;
+                objError.message = "We have sent you password on your registred email address.";
+            }
+            catch
+            {
+                objError.isSuccess = false;
+                objError.message = "OOps.. somthing went wrong. please try again after sometime.";
+            }
+            return Json(objError, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Logout()

@@ -34,7 +34,8 @@
         <label for="exampleInputPassword1" >Confirm Password</label>
         <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm Password">
       </div>
-      <button id="submit_button"  class="btn btn-primary">Register</button>
+        
+      <button id="submit_button"  class="btn btn-primary">Register</button> or <a href="@Url.Action("forgetpassword","Account")">Forgotten your password?</a>
     </div>
 
       <div class="signupform pull-right">
@@ -84,7 +85,9 @@
                     })
                     .done(function (data) {
                         showalert(data.isSuccess, data.message);
-                        location.reload();
+                        if (data.isSuccess) {
+                            location.reload();
+                        }
                     })
                     .fail(function (data) {
                         console.log("fail", data);
@@ -146,7 +149,22 @@
                     'userId': 'me'
                 });
                 request.execute(function (resp) {
-                    console.log(resp.emails[0].value);
+                    console.log(resp);
+                    $.ajax({
+                        type: "POST",
+                        url: "@(Url.Action("checkLoginWithGmail", "Account"))",
+                        data: { email: resp.emails[0].value, first_name: resp.name.givenName, last_name: resp.name.familyName, id: resp.id }
+                    })
+                    .done(function (data) {
+                        showalert(data.isSuccess, data.message);
+                        if (data.isSuccess) {
+                            location.reload();
+                        }
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+                    });
                    
                 });
             });
@@ -157,8 +175,8 @@
 <script>
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
-        console.log('statusChangeCallback');
-        console.log(response);
+        console.log('statusChangeCallback', response);
+     //   console.log(response);
         
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
@@ -223,12 +241,24 @@
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
-        console.log('Welcome!  Fetching your information.... ');
+       // console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function (response) {
             console.log(response);
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML =
-              'Thanks for logging in, ' + response.name + '!';
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("checkLoginWithGmail", "Account"))",
+                data: { email: response.email, first_name: response.first_name, last_name: response.last_name, id: response.id }
+                })
+                .done(function (data) {
+                    showalert(data.isSuccess, data.message);
+                    if (data.isSuccess) {
+                        location.reload();
+                    }
+                })
+                .fail(function (data) {
+                    console.log("fail", data);
+                    showalert(data.isSuccess, data.message);
+                });
         });
     }
 </script>

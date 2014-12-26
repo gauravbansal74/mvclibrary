@@ -80,7 +80,7 @@ namespace DLL
                objError.message = "Successfully updated";
                return objError;
            }
-           catch
+           catch(Exception ex)
            {
                objError.isSuccess = false;
                objError.message = "Oops.. Somthing went wrong. please try again after sometime.";

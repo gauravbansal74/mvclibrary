@@ -17,7 +17,7 @@
     <div class="signupform">
       <div class="form-group">
           @Html.LabelFor(model => model.jobTitle)
-          @Html.TextBoxFor(model => model.jobTitle, new { @class = "form-control", placeholder = "Offcampus4u is hiring .Net Developer ( 3-4 yrs of Exps)" })
+          @Html.TextBoxFor(model => model.jobTitle, new { @class = "form-control", placeholder = "Offcampus4u is hiring .Net Developer ( 3-4 yrs of Exps)", maxlength="120", size="120" })
         
       </div>
       <div class="form-group pull-left" style="margin-right:5px;">
@@ -87,7 +87,7 @@
         
         <div class="form-group">
             @Html.LabelFor(model => model.jobLocation)
-            @Html.TextBoxFor(model => model.jobLocation, new {@class="form-control", placeholder="Bengaluru, Hyderabad, Delhi" })
+            @Html.TextBoxFor(model => model.jobLocation, new {@class="form-control", placeholder="Bengaluru, Hyderabad, Delhi" , maxlength="150", size="150" })
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.jobDescription)

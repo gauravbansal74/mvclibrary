@@ -1,30 +1,3 @@
-CREATE TABLE video(
-videoId BIGINT IDENTITY(1,1) PRIMARY KEY,
-categoryId BIGINT NOT NULL,
-videoTitle VARCHAR(300) NOT NULL,
-videoYoutubeId VARCHAR(100) NOT NULL,
-createdBy BIGINT NOT NULL,
-createdOn DATETIME NOT NULL,
-modifiedOn DATETIME NOT NULL,
-modifiedBy	BIGINT NOT NULL,
-isDeleted BIT NOT NULL,
-FOREIGN KEY (categoryId) REFERENCES tutorialCategory(tutorialCategoryId)
-)
-
-CREATE TABLE tutorialCategory(
-tutorialCategoryId BIGINT IDENTITY(1,1) PRIMARY KEY,
-tutorialCategoryName VARCHAR(100) NOT NULL,
-tutorialCategoryFileName VARCHAR(100) NOT NULL,
-createdBy BIGINT NOT NULL,
-createdOn DATETIME NOT NULL,
-modifiedOn DATETIME NOT NULL,
-modifiedBy	BIGINT NOT NULL,
-tutorialCategoryStatus INT DEFAULT 0 NOT NULL,
-isDeleted BIT NOT NULL
-)
-
-
-
 Create table account(
 accountId BIGINT IDENTITY(1,1) PRIMARY KEY, 
 email VARCHAR(100) NOT NULL,
@@ -39,6 +12,11 @@ availability VARCHAR(50),
 highestEducation VARCHAR(100),
 workType VARCHAR(100),
 Preferredlocations VARCHAR(100),
+ResumeFileName VARCHAR(100),
+PersonalInformationUpdated BIT DEFAULT 0 NOT NULL,
+QualificationSkillsUpdated BIT DEFAULT 0 NOT NULL,
+CurrentStatusUpdated BIT DEFAULT 0 NOT NULL,
+ResumeUpdated BIT DEFAULT 0 NOT NULL,
 createdOn DATETIME NOT NULL,
 modifiedOn DATETIME NOT NULL,
 modifiedBy	BIGINT NOT NULL,
@@ -71,6 +49,58 @@ modifiedBy	BIGINT NOT NULL,
 jobStatus INT NOT NULL,
 jobDeteled BIT NOT NULL
 )
+
+CREATE TABLE highestEducation(
+highestEducationId BIGINT IDENTITY(1,1) PRIMARY KEY,
+highestEducationName VARCHAR(100) NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+isDeleted BIT NOT NULL,
+)
+
+INSERT INTO highestEducation (highestEducationName, createdBy, createdOn, modifiedBy, modifiedOn, isDeleted) VALUES ('Completed Year 9-11',1,GETDATE(),1,GETDATE(), 0);
+INSERT INTO highestEducation (highestEducationName, createdBy, createdOn, modifiedBy, modifiedOn, isDeleted) VALUES ('Completed High School (Year 12)',1,GETDATE(),1,GETDATE(),0);
+INSERT INTO highestEducation (highestEducationName, createdBy, createdOn, modifiedBy, modifiedOn, isDeleted) VALUES ('Diploma',1,GETDATE(),1,GETDATE(),0);
+INSERT INTO highestEducation (highestEducationName, createdBy, createdOn, modifiedBy, modifiedOn, isDeleted) VALUES ('TAFE/Trade Certificate',1,GETDATE(),1,GETDATE(),0);
+INSERT INTO highestEducation (highestEducationName, createdBy, createdOn, modifiedBy, modifiedOn, isDeleted) VALUES ('Undergraduate',1,GETDATE(),1,GETDATE(),0);
+INSERT INTO highestEducation (highestEducationName, createdBy, createdOn, modifiedBy, modifiedOn, isDeleted) VALUES ('Post Graduate Degree',1,GETDATE(),1,GETDATE(),0);
+INSERT INTO highestEducation (highestEducationName, createdBy, createdOn, modifiedBy, modifiedOn, isDeleted) VALUES ('Masters',1,GETDATE(),1,GETDATE(),0);
+INSERT INTO highestEducation (highestEducationName, createdBy, createdOn, modifiedBy, modifiedOn, isDeleted) VALUES ('PhD',1,GETDATE(),1,GETDATE(),0);
+INSERT INTO highestEducation (highestEducationName, createdBy, createdOn, modifiedBy, modifiedOn, isDeleted) VALUES ('Not specified',1,GETDATE(),1,GETDATE(),0);
+
+
+CREATE TABLE tutorialCategory(
+tutorialCategoryId BIGINT IDENTITY(1,1) PRIMARY KEY,
+tutorialCategoryName VARCHAR(100) NOT NULL,
+tutorialCategoryFileName VARCHAR(100) NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+tutorialCategoryStatus INT DEFAULT 0 NOT NULL,
+isDeleted BIT NOT NULL
+)
+
+CREATE TABLE video(
+videoId BIGINT IDENTITY(1,1) PRIMARY KEY,
+categoryId BIGINT NOT NULL,
+videoTitle VARCHAR(300) NOT NULL,
+videoYoutubeId VARCHAR(100) NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+isDeleted BIT NOT NULL,
+FOREIGN KEY (categoryId) REFERENCES tutorialCategory(tutorialCategoryId)
+)
+
+
+
+
+
+
 
 
 

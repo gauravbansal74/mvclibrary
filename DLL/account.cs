@@ -27,6 +27,11 @@ namespace DLL
         public string highestEducation { get; set; }
         public string workType { get; set; }
         public string Preferredlocations { get; set; }
+        public string ResumeFileName { get; set; }
+        public bool PersonalInformationUpdated { get; set; }
+        public bool QualificationSkillsUpdated { get; set; }
+        public bool CurrentStatusUpdated { get; set; }
+        public bool ResumeUpdated { get; set; }
         public System.DateTime createdOn { get; set; }
         public System.DateTime modifiedOn { get; set; }
         public long modifiedBy { get; set; }

@@ -26,6 +26,7 @@ namespace DLL
         }
     
         public DbSet<account> accounts { get; set; }
+        public DbSet<highestEducation> highestEducations { get; set; }
         public DbSet<job> jobs { get; set; }
         public DbSet<tutorialCategory> tutorialCategories { get; set; }
         public DbSet<video> videos { get; set; }

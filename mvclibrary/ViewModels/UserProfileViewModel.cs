@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -40,6 +41,16 @@ namespace mvclibrary.ViewModels
 
         [Display(Name = "Preferred work locations")]
         public string Preferredlocations { get; set; }
+
+        public string ResumeFileName { get; set; }
+
+        public bool PersonalInformationUpdated { get; set;}
+
+        public bool QualificationSkillsUpdated { get; set;}
+
+        public bool CurrentStatusUpdated { get; set;}
+
+        public bool ResumeUpdated { get; set;}
 
     }
 }
