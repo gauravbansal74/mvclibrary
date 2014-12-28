@@ -118,14 +118,7 @@
                  @job.jobCompnayName <br />
                 <div class="color-light pull-left" style="margin-right:10%;line-height: 1.42857143;">
                     <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;
-                        @if (!job.jobDisclosed)
-                        {
-                            <span>Not Disclosed</span>
-                        }
-                        else
-                        {
                         <span>@job.jobMinExp</span><span> - </span><span>@job.jobMaxExp</span><span> yrs.</span>
-                        }
                 </div>
                 <div class="color-light" style="line-height: 1.42857143;">
                     <span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="line-height: 1.42857143;">
@@ -133,7 +126,15 @@
                     </span>&nbsp;&nbsp;@job.jobLocation
                 </div>
                 <div class="salary" style="line-height: 2.42857143;">
-                    <em></em>&nbsp;&nbsp;@job.jobMinSalary - @job.jobMaxSalary Per Annum
+                     @if (!job.jobDisclosed)
+                        {
+                          <span>&#8377;&nbsp;&nbsp;Not Disclosed</span>
+                        }
+                        else
+                        {
+                        <span>&#8377;&nbsp;&nbsp;@job.jobMinSalary - @job.jobMaxSalary PA</span>
+                        }
+                   
                 </div>
             </div>   
         }

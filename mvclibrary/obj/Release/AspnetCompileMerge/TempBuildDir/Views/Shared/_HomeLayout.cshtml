@@ -54,13 +54,12 @@
                                   <span class="caret"></span>
                                 </a>
                                 <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-                                  <li role="presentation">@Html.ActionLink("Profile","Index","User")</li>
-                                  <li role="presentation">@Html.ActionLink("Post New Job","SaveJob","Job")</li>
-                                    <li role="presentation">@Html.ActionLink("Job Posting History","Logout","Account")</li>
-                                  <li role="presentation">@Html.ActionLink("Wallet","Logout","Account")</li>
-                                  <li role="presentation" class="divider"></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Separated link</a></li>
-                                </ul>
+                                 <li role="presentation">@Html.ActionLink("Profile","Index","User")</li>
+                                  <li role="presentation"><a href="@Url.Action("AppliedJob", "Job")">Applied Jobs</a></li>
+                                  <li role="presentation"><a href="@Url.Action("SaveJob", "Job")">Post New Job</a></li>
+                                  <li role="presentation"><a href="@Url.Action("PostingHistory", "Job")">Job Posting History</a></li>
+                                  <li role="presentation">@Html.ActionLink("Wallet","Index","Wallet")</li>
+                                 </ul>
                               </li>
                            <li>@Html.ActionLink("Logout","Logout","Account")</li>
                         }else{

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "SaveJob";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="bs-docs-masthead-other" style="text-align:left;">
+     
+ <div class="panel panel-default">
+  <div class="panel-body">
+       <h4 class="signup">
+           <strong id="signuptext">Approve Post</strong> 
+       </h4>
+    <div class="signupform">
+        <ul class="list-group">
+            @foreach(var apply in Model){
+              <li class="list-group-item">
+                <a target="_blank" href="@Url.Action("Detail", "Job", new { id=@apply.jobId })">@apply.jobTitle </a><br />
+                  <a class="btn btn-success" href="@Url.Action("jobStatusApprove", "Account", new { id=apply.jobId })">Approve</a> 
+                  <a class="btn btn-danger" href="@Url.Action("jobStatusReject","Account", new { id=apply.jobId })">Reject</a> <br />
+              </li>
+            }
+            
+        </ul>
+         <div style="clear:both;"></div>
+
+       </div>
+  </div>
+</div>
+    <div style="clear:both;"></div>
+</main>

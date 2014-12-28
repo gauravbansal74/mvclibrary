@@ -150,21 +150,23 @@
                 });
                 request.execute(function (resp) {
                     console.log(resp);
-                    $.ajax({
-                        type: "POST",
-                        url: "@(Url.Action("checkLoginWithGmail", "Account"))",
-                        data: { email: resp.emails[0].value, first_name: resp.name.givenName, last_name: resp.name.familyName, id: resp.id }
-                    })
-                    .done(function (data) {
-                        showalert(data.isSuccess, data.message);
-                        if (data.isSuccess) {
-                            location.reload();
-                        }
-                    })
-                    .fail(function (data) {
-                        console.log("fail", data);
-                        showalert(data.isSuccess, data.message);
-                    });
+                    if (resp.verified) {
+                        $.ajax({
+                            type: "POST",
+                            url: "@(Url.Action("checkLoginWithGmail", "Account"))",
+                            data: { email: resp.emails[0].value, first_name: resp.name.givenName, last_name: resp.name.familyName, id: resp.id }
+                        })
+                        .done(function (data) {
+                            showalert(data.isSuccess, data.message);
+                            if (data.isSuccess) {
+                                location.reload();
+                            }
+                        })
+                        .fail(function (data) {
+                            console.log("fail", data);
+                            showalert(data.isSuccess, data.message);
+                        });
+                    }
                    
                 });
             });
@@ -244,21 +246,23 @@
        // console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function (response) {
             console.log(response);
-            $.ajax({
-                type: "POST",
-                url: "@(Url.Action("checkLoginWithGmail", "Account"))",
-                data: { email: response.email, first_name: response.first_name, last_name: response.last_name, id: response.id }
+            if (response.verified) {
+                $.ajax({
+                    type: "POST",
+                    url: "@(Url.Action("checkLoginWithGmail", "Account"))",
+                    data: { email: response.email, first_name: response.first_name, last_name: response.last_name, id: response.id }
                 })
-                .done(function (data) {
-                    showalert(data.isSuccess, data.message);
-                    if (data.isSuccess) {
-                        location.reload();
-                    }
-                })
-                .fail(function (data) {
-                    console.log("fail", data);
-                    showalert(data.isSuccess, data.message);
-                });
+                    .done(function (data) {
+                        showalert(data.isSuccess, data.message);
+                        if (data.isSuccess) {
+                            location.reload();
+                        }
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+                    });
+            }
         });
     }
 </script>

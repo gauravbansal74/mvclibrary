@@ -5,7 +5,7 @@
 }
 
 <main class="bs-docs-masthead-other" id="content" role="main" style="width: 80%; margin: 0 auto;">
-     <div class="panel panel-default"  style="width:25%;margin:0 auto;text-align:left;float:left;">
+     <div class="panel panel-default"  style="width:20%;margin:0 auto;text-align:left;float:left;position:fixed;">
          <div class="panel-heading">
             <h3 class="panel-title"><b>Profile Information</b></h3>
           </div>
@@ -20,6 +20,22 @@
           </div>
          <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
            <li role="presentation"><a href="#" data-toggle="modal" data-target="#changepasswordmodel">Change Password</a></li>
+       </ul>
+         <div class="panel-heading">
+            <h3 class="panel-title"><b>Wallet Information</b></h3>
+          </div>
+       <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+           <li role="presentation"><a href="@Url.Action("Index", "Wallet")">Wallet</a></li>
+           <li role="presentation"><a href="@Url.Action("SaveJob", "Job")">Bank Details</a></li>
+          
+        </ul>
+         <div class="panel-heading">
+            <h3 class="panel-title"><b>Account Activity</b></h3>
+          </div>
+         <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+          <li role="presentation"><a href="@Url.Action("AppliedJob", "Job")">Applied Jobs</a></li>
+           <li role="presentation"><a href="@Url.Action("SaveJob", "Job")">Post New Job</a></li>
+           <li role="presentation"><a href="@Url.Action("PostingHistory", "Job")">Job Posting History</a></li>
        </ul>
 
 

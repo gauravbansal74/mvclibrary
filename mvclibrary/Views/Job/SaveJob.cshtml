@@ -1,12 +1,20 @@
 ﻿@model mvclibrary.ViewModels.JobViewModel
 @{
-    ViewBag.Title = "SaveJob";
+    ViewBag.Title = "Offcampus4u : Submit New Job Post";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
   <link rel="stylesheet" type="text/css" href="~/Content/jquery.cleditor.css" />
 <script type="text/javascript" src="~/Content/jquery.cleditor.min.js"></script>
 <main class="bs-docs-masthead-other" style="width:80%;margin:0 auto;">
      <div class="panel panel-default"  style="width:15%;margin:0 auto;text-align:left;float:left;position:fixed;">
+           <div class="panel-heading">
+            <h3 class="panel-title"><b>Wallet Information</b></h3>
+          </div>
+       <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+           <li role="presentation"><a href="@Url.Action("Index", "Wallet")">Wallet</a></li>
+              <li role="presentation"><a href="@Url.Action("BankDetail", "Wallet")">Bank Details</a></li>
+          
+        </ul>
          <div class="panel-heading">
             <h3 class="panel-title"><b>Account Activity</b></h3>
           </div>
