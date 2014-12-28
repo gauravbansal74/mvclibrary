@@ -14,6 +14,13 @@ namespace DLL
     
     public partial class account
     {
+        public account()
+        {
+            this.applyJobs = new HashSet<applyJob>();
+            this.wallets = new HashSet<wallet>();
+            this.BankDetails = new HashSet<BankDetail>();
+        }
+    
         public long accountId { get; set; }
         public string email { get; set; }
         public string password { get; set; }
@@ -38,5 +45,9 @@ namespace DLL
         public long modifiedBy { get; set; }
         public int accountStatus { get; set; }
         public bool isDeleted { get; set; }
+    
+        public virtual ICollection<applyJob> applyJobs { get; set; }
+        public virtual ICollection<wallet> wallets { get; set; }
+        public virtual ICollection<BankDetail> BankDetails { get; set; }
     }
 }

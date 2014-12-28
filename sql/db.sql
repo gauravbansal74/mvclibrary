@@ -25,6 +25,46 @@ accountStatus INT DEFAULT 0 NOT NULL,
 isDeleted BIT NOT NULL
 )
 
+CREATE TABLE BankDetail(
+BankDetailId BIGINT IDENTITY(1,1) PRIMARY KEY,
+accountId BIGINT NOT NULL,
+BankAccountName VARCHAR(100) NOT NULL,
+BankAccountNumber VARCHAR(100) NOT NULL,
+BankIFSCCode VARCHAR(50) NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+isDeleted BIT DEFAULT 0 NOT NULL,
+FOREIGN KEY (accountId) REFERENCES account(accountId)
+)
+
+CREATE TABLE wallet(
+walletId BIGINT IDENTITY(1,1) PRIMARY KEY,
+accountId BIGINT NOT NULL,
+walletBalance VARCHAR(100) DEFAULT '0' NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+isDeleted BIT NOT NULL,
+FOREIGN KEY (accountId) REFERENCES account(accountId)
+)
+
+CREATE TABLE walletTransaction(
+walletTransactionId BIGINT IDENTITY(1,1) PRIMARY KEY,
+walletId BIGINT NOT NULL,
+walletDescription VARCHAR(100) NOT NULL,
+transactionAmount VARCHAR(100) NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+transactionStatus INT DEFAULT 0 NOT NULL,
+isDeleted BIT NOT NULL,
+FOREIGN KEY (walletId) REFERENCES wallet(walletId)
+)
+
 CREATE TABLE job(
 jobId BIGINT IDENTITY(1,1) PRIMARY KEY,
 jobTitle VARCHAR(150) NOT NULL,
@@ -50,6 +90,20 @@ modifiedBy	BIGINT NOT NULL,
 jobStatus INT NOT NULL,
 jobDeteled BIT NOT NULL
 )
+
+CREATE TABLE applyJob(
+applyJobId BIGINT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+accountId BIGINT NOT NULL,
+jobId BIGINT NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+isDeleted BIT NOT NULL,
+FOREIGN KEY (accountId) REFERENCES account(accountId),
+FOREIGN KEY (jobId) REFERENCES job(jobId)
+)
+
 
 CREATE TABLE highestEducation(
 highestEducationId BIGINT IDENTITY(1,1) PRIMARY KEY,

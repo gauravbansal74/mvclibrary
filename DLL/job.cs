@@ -14,6 +14,11 @@ namespace DLL
     
     public partial class job
     {
+        public job()
+        {
+            this.applyJobs = new HashSet<applyJob>();
+        }
+    
         public long jobId { get; set; }
         public string jobTitle { get; set; }
         public int jobMinExp { get; set; }
@@ -37,5 +42,7 @@ namespace DLL
         public long modifiedBy { get; set; }
         public int jobStatus { get; set; }
         public bool jobDeteled { get; set; }
+    
+        public virtual ICollection<applyJob> applyJobs { get; set; }
     }
 }

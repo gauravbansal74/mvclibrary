@@ -315,5 +315,26 @@ namespace mvclibrary.Controllers
 
             return View();
         }
+
+        public ActionResult ApprovePost()
+        {
+            Jobs objJobs = new Jobs();
+            List<job> objJob = objJobs.getunApproveJobs();
+            return View(objJob);
+        }
+
+        public ActionResult jobStatusApprove(Int64 id)
+        {
+            Jobs objJobs = new Jobs();
+            Error objError = objJobs.changeJobStatus(id, 1, Convert.ToInt64(User.Identity.Name));
+            return RedirectToAction("ApprovePost");
+        }
+        public ActionResult jobStatusReject(Int64 id)
+        {
+            Jobs objJobs = new Jobs();
+            Error objError = objJobs.changeJobStatus(id, 2, Convert.ToInt64(User.Identity.Name));
+            return RedirectToAction("ApprovePost");
+        }
+        
     }
 }

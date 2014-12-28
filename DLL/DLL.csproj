@@ -37,10 +37,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +54,12 @@
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
     <Compile Include="Accounts.cs" />
+    <Compile Include="applyJob.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BankDetail.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
     <Compile Include="Commondetail.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="highestEducation.cs">
@@ -61,6 +69,7 @@
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
     <Compile Include="Jobs.cs" />
+    <Compile Include="MyWallet.cs" />
     <Compile Include="offcampus4u.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +93,12 @@
     </Compile>
     <Compile Include="Tutorials.cs" />
     <Compile Include="video.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wallet.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
+    <Compile Include="walletTransaction.cs">
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
   </ItemGroup>

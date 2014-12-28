@@ -1,0 +1,69 @@
+﻿@model mvclibrary.ViewModels.BankViewModel
+@{
+    ViewBag.Title = "SaveJob";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/jquery.cleditor.css" />
+<script type="text/javascript" src="~/Content/jquery.cleditor.min.js"></script>
+<main class="bs-docs-masthead-other" style="width: 80%; margin: 0 auto;">
+     <div class="panel panel-default"  style="width:15%;margin:0 auto;text-align:left;float:left;position:fixed;">
+          <div class="panel-heading">
+            <h3 class="panel-title"><b>Wallet Information</b></h3>
+          </div>
+       <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+           <li role="presentation"><a href="@Url.Action("Index", "Wallet")">Wallet</a></li>
+           <li role="presentation"><a href="@Url.Action("SaveJob", "Job")">Bank Details</a></li>
+          
+        </ul>
+         <div class="panel-heading">
+            <h3 class="panel-title"><b>Account Activity</b></h3>
+          </div>
+       <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+           <li role="presentation"><a href="@Url.Action("AppliedJob", "Job")">Applied Jobs</a></li>
+           <li role="presentation"><a href="@Url.Action("SaveJob", "Job")">Post New Job</a></li>
+           <li role="presentation"><a href="@Url.Action("PostingHistory", "Job")">Job Posting History</a></li>
+        </ul>
+         </div>
+ <div class="panel panel-default"  style="width:78%;margin:0 auto;text-align:left;float:right;">
+  <div class="panel-body">
+       <h4 class="signup">
+           <strong id="signuptext">Bank Details ( We will transfer amount to this account only) </strong> 
+       </h4>
+    <div class="signupform">
+         <div class="form-group">
+            @Html.LabelFor(model => model.accountholdername)
+            @Html.TextBoxFor(model => model.accountholdername, new { @class = "form-control", placeholder = "Account Holder Name" })
+          </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.accountnumber)
+            @Html.TextBoxFor(model => model.accountnumber, new { @class = "form-control", placeholder = "Account Number" })
+          </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.accountifsccode)
+            @Html.TextBoxFor(model => model.accountifsccode, new { @class = "form-control", placeholder = "Branch IFSC Code" })
+          </div>
+         <button type="button" id="submitbank">Save Details</button> or @Html.ActionLink("Cancel", "")
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+    <div style="clear:both;"></div>
+</main>
+<script>
+    $("#submitbank").on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("updateBank", "Wallet"))",
+            data: { holdername: $("#accountholdername").val(),  accountnumber: $("#accountnumber").val(), ifsccode: $("#accountifsccode").val() }
+            })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
+        })
+        .fail(function (data) {
+            showalert(data.isSuccess, data.message);
+        });
+    });
+</script>

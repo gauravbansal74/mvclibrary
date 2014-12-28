@@ -10,6 +10,30 @@
       <End Role="tutorialCategory" EntitySet="tutorialCategories" />
       <End Role="video" EntitySet="videos" />
     </AssociationSet>
+    <EntitySet Name="applyJobs" EntityType="offcampus4uModel.applyJob" />
+    <AssociationSet Name="FK__applyJob__accoun__14270015" Association="offcampus4uModel.FK__applyJob__accoun__14270015">
+      <End Role="account" EntitySet="accounts" />
+      <End Role="applyJob" EntitySet="applyJobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__applyJob__jobId__151B244E" Association="offcampus4uModel.FK__applyJob__jobId__151B244E">
+      <End Role="job" EntitySet="jobs" />
+      <End Role="applyJob" EntitySet="applyJobs" />
+    </AssociationSet>
+    <EntitySet Name="wallets" EntityType="offcampus4uModel.wallet" />
+    <EntitySet Name="walletTransactions" EntityType="offcampus4uModel.walletTransaction" />
+    <AssociationSet Name="FK__wallet__accountI__2645B050" Association="offcampus4uModel.FK__wallet__accountI__2645B050">
+      <End Role="account" EntitySet="accounts" />
+      <End Role="wallet" EntitySet="wallets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__walletTra__walle__2BFE89A6" Association="offcampus4uModel.FK__walletTra__walle__2BFE89A6">
+      <End Role="wallet" EntitySet="wallets" />
+      <End Role="walletTransaction" EntitySet="walletTransactions" />
+    </AssociationSet>
+    <EntitySet Name="BankDetails" EntityType="offcampus4uModel.BankDetail" />
+    <AssociationSet Name="FK__BankDetai__accou__31B762FC" Association="offcampus4uModel.FK__BankDetai__accou__31B762FC">
+      <End Role="account" EntitySet="accounts" />
+      <End Role="BankDetail" EntitySet="BankDetails" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="account">
     <Key>
@@ -39,6 +63,9 @@
     <Property Type="Int64" Name="modifiedBy" Nullable="false" />
     <Property Type="Int32" Name="accountStatus" Nullable="false" />
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+    <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__accoun__14270015" FromRole="account" ToRole="applyJob" />
+    <NavigationProperty Name="wallets" Relationship="offcampus4uModel.FK__wallet__accountI__2645B050" FromRole="account" ToRole="wallet" />
+    <NavigationProperty Name="BankDetails" Relationship="offcampus4uModel.FK__BankDetai__accou__31B762FC" FromRole="account" ToRole="BankDetail" />
   </EntityType>
   <EntityType Name="highestEducation">
     <Key>
@@ -79,6 +106,7 @@
     <Property Type="Int64" Name="modifiedBy" Nullable="false" />
     <Property Type="Int32" Name="jobStatus" Nullable="false" />
     <Property Type="Boolean" Name="jobDeteled" Nullable="false" />
+    <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__jobId__151B244E" FromRole="job" ToRole="applyJob" />
   </EntityType>
   <EntityType Name="tutorialCategory">
     <Key>
@@ -119,6 +147,128 @@
       </Principal>
       <Dependent Role="video">
         <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="applyJob">
+    <Key>
+      <PropertyRef Name="applyJobId" />
+    </Key>
+    <Property Type="Int64" Name="applyJobId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="accountId" Nullable="false" />
+    <Property Type="Int64" Name="jobId" Nullable="false" />
+    <Property Type="Int64" Name="createdBy" Nullable="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__applyJob__accoun__14270015" FromRole="applyJob" ToRole="account" />
+    <NavigationProperty Name="job" Relationship="offcampus4uModel.FK__applyJob__jobId__151B244E" FromRole="applyJob" ToRole="job" />
+  </EntityType>
+  <Association Name="FK__applyJob__accoun__14270015">
+    <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
+    <End Type="offcampus4uModel.applyJob" Role="applyJob" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="applyJob">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__applyJob__jobId__151B244E">
+    <End Type="offcampus4uModel.job" Role="job" Multiplicity="1" />
+    <End Type="offcampus4uModel.applyJob" Role="applyJob" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="job">
+        <PropertyRef Name="jobId" />
+      </Principal>
+      <Dependent Role="applyJob">
+        <PropertyRef Name="jobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="wallet">
+    <Key>
+      <PropertyRef Name="walletId" />
+    </Key>
+    <Property Type="Int64" Name="walletId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="accountId" Nullable="false" />
+    <Property Type="String" Name="walletBalance" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="createdBy" Nullable="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__wallet__accountI__2645B050" FromRole="wallet" ToRole="account" />
+    <NavigationProperty Name="walletTransactions" Relationship="offcampus4uModel.FK__walletTra__walle__2BFE89A6" FromRole="wallet" ToRole="walletTransaction" />
+  </EntityType>
+  <EntityType Name="walletTransaction">
+    <Key>
+      <PropertyRef Name="walletTransactionId" />
+    </Key>
+    <Property Type="Int64" Name="walletTransactionId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="walletId" Nullable="false" />
+    <Property Type="String" Name="walletDescription" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="transactionAmount" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="createdBy" Nullable="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <Property Type="Int32" Name="transactionStatus" Nullable="false" />
+    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+    <NavigationProperty Name="wallet" Relationship="offcampus4uModel.FK__walletTra__walle__2BFE89A6" FromRole="walletTransaction" ToRole="wallet" />
+  </EntityType>
+  <Association Name="FK__wallet__accountI__2645B050">
+    <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
+    <End Type="offcampus4uModel.wallet" Role="wallet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="wallet">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__walletTra__walle__2BFE89A6">
+    <End Type="offcampus4uModel.wallet" Role="wallet" Multiplicity="1" />
+    <End Type="offcampus4uModel.walletTransaction" Role="walletTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wallet">
+        <PropertyRef Name="walletId" />
+      </Principal>
+      <Dependent Role="walletTransaction">
+        <PropertyRef Name="walletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BankDetail">
+    <Key>
+      <PropertyRef Name="BankDetailId" />
+    </Key>
+    <Property Type="Int64" Name="BankDetailId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="accountId" Nullable="false" />
+    <Property Type="String" Name="BankAccountName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BankAccountNumber" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BankIFSCCode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="createdBy" Nullable="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__BankDetai__accou__31B762FC" FromRole="BankDetail" ToRole="account" />
+  </EntityType>
+  <Association Name="FK__BankDetai__accou__31B762FC">
+    <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
+    <End Type="offcampus4uModel.BankDetail" Role="BankDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="BankDetail">
+        <PropertyRef Name="accountId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

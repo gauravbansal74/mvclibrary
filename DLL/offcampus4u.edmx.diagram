@@ -11,6 +11,15 @@
         <EntityTypeShape EntityType="offcampus4uModel.tutorialCategory" Width="1.5" PointX="6.46933347846816" PointY="10.136528034758069" />
         <EntityTypeShape EntityType="offcampus4uModel.video" Width="1.5" PointX="11.340359223699364" PointY="15.476011894399306" />
         <AssociationConnector Association="offcampus4uModel.FK__video__categoryI__76969D2E" />
+        <EntityTypeShape EntityType="offcampus4uModel.applyJob" Width="1.5" PointX="10.041225486454193" PointY="31.22015011274263" />
+        <AssociationConnector Association="offcampus4uModel.FK__applyJob__accoun__14270015" />
+        <AssociationConnector Association="offcampus4uModel.FK__applyJob__jobId__151B244E" />
+        <EntityTypeShape EntityType="offcampus4uModel.wallet" Width="1.5" PointX="0.49961699568648688" PointY="20.252412075294373" />
+        <EntityTypeShape EntityType="offcampus4uModel.walletTransaction" Width="1.5" PointX="3.05637625188398" PointY="17.787289672432138" />
+        <AssociationConnector Association="offcampus4uModel.FK__wallet__accountI__2645B050" />
+        <AssociationConnector Association="offcampus4uModel.FK__walletTra__walle__2BFE89A6" />
+        <EntityTypeShape EntityType="offcampus4uModel.BankDetail" Width="1.5" PointX="6.4499513443792011" PointY="11.395519232095927" />
+        <AssociationConnector Association="offcampus4uModel.FK__BankDetai__accou__31B762FC" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

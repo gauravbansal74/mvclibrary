@@ -121,5 +121,48 @@ namespace DLL
                 return objError;
             }
         }
+
+        public BankDetail getBankDetail(Int64 id)
+        {
+            db = new offcampus4uEntities();
+            BankDetail objPersonalInformation = db.BankDetails.Where(x => x.accountId.Equals(id)).FirstOrDefault();
+            return objPersonalInformation;
+        }
+
+        public Error updateBankDetail(BankDetail bank)
+        {
+            Error objError = new Error();
+            try
+            {
+                db = new offcampus4uEntities();
+                BankDetail objBankDetail = db.BankDetails.Where(x => x.accountId == bank.accountId).FirstOrDefault();
+                if (objBankDetail != null)
+                {
+                    objBankDetail.BankAccountName = bank.BankAccountName;
+                    objBankDetail.BankAccountNumber = bank.BankAccountNumber;
+                    objBankDetail.BankIFSCCode = bank.BankIFSCCode;
+                    objBankDetail.modifiedBy = bank.modifiedBy;
+                    objBankDetail.modifiedOn = bank.modifiedOn;
+                    db.SaveChanges();
+                    objError.isSuccess = true;
+                    objError.message = "Bank account Details Succesfully saved.";
+                    return objError;
+                }
+                else
+                {
+                    db.BankDetails.Add(bank);
+                    db.SaveChanges();
+                    objError.isSuccess = true;
+                    objError.message = "Bank account Details Succesfully saved.";
+                    return objError;
+                }
+            }
+            catch
+            {
+                objError.isSuccess = false;
+                objError.message = "Oops.. Somthing went wrong. please try again after sometime.";
+                return objError;
+            }
+        }
     }
 }

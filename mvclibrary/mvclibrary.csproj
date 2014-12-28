@@ -242,12 +242,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WalletController.cs" />
     <Compile Include="customlib\RegexUtilities.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BankViewModel.cs" />
     <Compile Include="ViewModels\HighEducationViewModel.cs" />
     <Compile Include="ViewModels\JobSearchViewModel.cs" />
     <Compile Include="ViewModels\JobViewModel.cs" />
@@ -255,6 +257,7 @@
     <Compile Include="ViewModels\TutorialViewModel.cs" />
     <Compile Include="ViewModels\UserProfileViewModel.cs" />
     <Compile Include="ViewModels\VideoViewModel.cs" />
+    <Compile Include="ViewModels\WalletViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\dist\css\bootstrap-theme.css" />
@@ -276,6 +279,7 @@
     <Content Include="Content\jquery.cleditor.min.js" />
     <Content Include="emailtemplate\emailverify.html" />
     <Content Include="emailtemplate\forgotpassword.html" />
+    <Content Include="emailtemplate\jobapplication.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\dist\css\bootstrap-theme.css.map" />
@@ -350,6 +354,11 @@
     <Content Include="Views\Account\forgetpassword.cshtml" />
     <Content Include="Views\Account\verifyemail.cshtml" />
     <Content Include="Views\Account\verifyemailerror.cshtml" />
+    <Content Include="Views\Job\PostingHistory.cshtml" />
+    <Content Include="Views\Job\AppliedJob.cshtml" />
+    <Content Include="Views\Account\ApprovePost.cshtml" />
+    <Content Include="Views\Wallet\Index.cshtml" />
+    <Content Include="Views\Wallet\BankDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppImages\TutorialCategory\" />

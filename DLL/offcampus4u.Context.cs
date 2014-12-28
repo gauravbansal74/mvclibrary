@@ -30,5 +30,9 @@ namespace DLL
         public DbSet<job> jobs { get; set; }
         public DbSet<tutorialCategory> tutorialCategories { get; set; }
         public DbSet<video> videos { get; set; }
+        public DbSet<applyJob> applyJobs { get; set; }
+        public DbSet<wallet> wallets { get; set; }
+        public DbSet<walletTransaction> walletTransactions { get; set; }
+        public DbSet<BankDetail> BankDetails { get; set; }
     }
 }

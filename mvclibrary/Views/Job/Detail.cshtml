@@ -74,20 +74,20 @@
             </span>&nbsp;&nbsp;@Model.jobLocation
         </div>
         <div class="salary">
-            <em></em>&nbsp;&nbsp;
+           
             @if(Model.jobDisclosed){
-           <span> 4,00,000 - 5,00,000 PA</span>
+                <span>&#8377;&nbsp;&nbsp;@Model.jobMinSalary - @Model.jobMaxSalary PA</span>
             }else{
-              <span>Not Disclosed</span>
+              <span> &#8377;&nbsp;&nbsp;Not Disclosed</span>
             }
         </div><br />
         @if (Model.jobApplyModeIsEmail)
         {
-        <button class="btn btn-primary">Apply</button>
+        <button class="btn btn-primary" onclick="applyusingemail(@Model.jobId)">Apply</button>
         }
         else
         {
-            <a target="_blank" class="btn btn-primary" href="@Model.jobApplyMode">Click here to Apply</a>
+            <a target="_blank" class="btn btn-primary" href="@Model.jobApplyMode">Apply on Company Website</a>
         }
          <div class="pull-right">
             
@@ -129,14 +129,32 @@
        
          @if (Model.jobApplyModeIsEmail)
          {
-        <button class="btn btn-primary">Apply</button>
+        <button class="btn btn-primary" onclick="applyusingemail(@Model.jobId)">Apply</button>
          }
          else
          {
-            <a target="_blank" class="btn btn-primary" href="@Model.jobApplyMode">Click here to Apply</a>
+            <a target="_blank" class="btn btn-primary" href="@Model.jobApplyMode">Apply on Company Website</a>
          }
     </div>  
        </div>
     <div style="clear:both;"></div>
     
 </main>
+<script>
+
+    function applyusingemail(jobid) {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("applyjobpost", "Job"))",
+                data: { id: jobid}
+         })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+        })
+        .fail(function (data) {
+            showalert(data.isSuccess, data.message);
+        });
+    }
+
+
+</script>

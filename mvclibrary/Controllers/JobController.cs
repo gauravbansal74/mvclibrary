@@ -7,6 +7,9 @@ using DLL;
 using mvclibrary.ViewModels;
 using mvclibrary.customlib;
 using DLL;
+using System.Threading.Tasks;
+using System.Configuration;
+using System.Net.Mail;
 
 namespace mvclibrary.Controllers
 {
@@ -21,6 +24,20 @@ namespace mvclibrary.Controllers
             Jobs objJobs = new DLL.Jobs();
             List<job> listjob = objJobs.getJobs();
             return View(listjob);
+        }
+
+        public ActionResult PostingHistory()
+        {
+            Jobs objJob = new DLL.Jobs();
+            List<job> listApplyJob = objJob.getJobPostingHistory(Convert.ToInt64(User.Identity.Name));
+            return View(listApplyJob);
+        }
+
+        public ActionResult AppliedJob()
+        {
+            Jobs objJob = new DLL.Jobs();
+            List<applyJob> listApplyJob = objJob.getApplyHistory(Convert.ToInt64(User.Identity.Name));
+            return View(listApplyJob);
         }
 
         [HttpGet]
@@ -182,6 +199,68 @@ namespace mvclibrary.Controllers
             Jobs objJobs = new DLL.Jobs();
             List<job> listjob = objJobs.searchJobCustom(skiilsdesignationcompany, location);
             return View(listjob);
+        }
+
+        public JsonResult applyjobpost(string id)
+        {
+
+            Error objError = new DLL.Error();
+            if (string.IsNullOrEmpty(id))
+            {
+                objError.isSuccess = false;
+                objError.message = "Oops..Dont try to do useless things.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                Jobs objJobs = new DLL.Jobs();
+                objError = objJobs.applyJobPost(Convert.ToInt64(User.Identity.Name), Convert.ToInt64(id));
+                if (objError.isSuccess)
+                {
+                    Profile objProfile = new Profile();
+                    account objAccount = objProfile.GetPersonalInformation(Convert.ToInt64(User.Identity.Name));
+                    string applicantemail = objAccount.email;
+                    string applicantresume = objAccount.ResumeFileName;
+                    string resumelink = Convert.ToString(ConfigurationManager.AppSettings["localurl"])+"UserFiles/Resume/"+applicantresume;
+                    job objjob = objJobs.getJob(Convert.ToInt64(id));
+                    string jobemail = objjob.jobApplyMode;
+                    string jobpottitle = objjob.jobTitle;
+                    String path = Server.MapPath("~/emailtemplate/jobapplication.html");
+                    string text = System.IO.File.ReadAllText(path);
+                    text = text.Replace("#applicantemail", applicantemail);
+                    text = text.Replace("#resumelink", resumelink);
+                    text = text.Replace("#useremail", jobemail);
+                    text = text.Replace("#jobposttitle", jobpottitle);
+                    Task.Factory.StartNew(() =>
+                    {
+                        try
+                        {
+
+                            MailMessage mail = new MailMessage();
+                            mail.To.Add(new MailAddress(jobemail));
+                            mail.From = new MailAddress(Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]));
+                            mail.Subject = "Application for your Job Post on Offcampus4u";
+                            string Body = text;
+                            mail.Body = Body;
+                            mail.IsBodyHtml = true;
+                            SmtpClient smtp = new SmtpClient();
+                            smtp.Host = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminsmtp"]);
+                            smtp.Port = 587;
+                            smtp.UseDefaultCredentials = false;
+                            smtp.Credentials = new System.Net.NetworkCredential
+                            (Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminpassword"]));// Enter seders User name and password  
+                            smtp.EnableSsl = true;
+                            smtp.Send(mail);
+                        }
+                        catch(Exception ex)
+                        {
+
+
+                        }
+                    });
+                }
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
         }
 
 

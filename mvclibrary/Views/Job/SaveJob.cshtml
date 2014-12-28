@@ -5,9 +5,18 @@
 }
   <link rel="stylesheet" type="text/css" href="~/Content/jquery.cleditor.css" />
 <script type="text/javascript" src="~/Content/jquery.cleditor.min.js"></script>
-<main class="bs-docs-masthead-other" >
-     @Html.ValidationSummary(true)
- <div class="panel panel-default"  style="width:60%;margin:0 auto;text-align:left;">
+<main class="bs-docs-masthead-other" style="width:80%;margin:0 auto;">
+     <div class="panel panel-default"  style="width:15%;margin:0 auto;text-align:left;float:left;position:fixed;">
+         <div class="panel-heading">
+            <h3 class="panel-title"><b>Account Activity</b></h3>
+          </div>
+       <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+           <li role="presentation"><a href="@Url.Action("AppliedJob", "Job")">Applied Jobs</a></li>
+           <li role="presentation"><a href="@Url.Action("SaveJob", "Job")">Post New Job</a></li>
+           <li role="presentation"><a href="@Url.Action("PostingHistory", "Job")">Job Posting History</a></li>
+        </ul>
+         </div>
+ <div class="panel panel-default"  style="width:78%;margin:0 auto;text-align:left;float:right;">
   <div class="panel-body">
        <h4 class="signup">
            <strong id="signuptext">Submit New Job Post</strong> 
@@ -145,6 +154,7 @@
     </div>
   </div>
 </div>
+    <div style="clear:both;"></div>
 </main>
 
 <script>
