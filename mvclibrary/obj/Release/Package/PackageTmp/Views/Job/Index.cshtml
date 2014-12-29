@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Offcampus4u : Largest Job Posting Community.";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -114,7 +114,7 @@
         foreach (var job in Model)
         {
            <div class="well" style="line-height: 1.42857143;">
-                <a href="@Url.Action("Detail", "Job", new { id = @job.jobId })" style="line-height: 1.42857143;">@job.jobTitle</a> <br />
+                <a target="_blank" href="@Url.Action("Detail", "Job", new { id = @job.jobId })" style="line-height: 1.42857143;">@job.jobTitle</a> <br />
                  @job.jobCompnayName <br />
                 <div class="color-light pull-left" style="margin-right:10%;line-height: 1.42857143;">
                     <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;

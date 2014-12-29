@@ -341,6 +341,18 @@ namespace mvclibrary.Controllers
             Error objError = objJobs.changeJobStatus(id, 2, Convert.ToInt64(User.Identity.Name));
             return RedirectToAction("ApprovePost");
         }
+
+        [AllowAnonymous]
+        public ActionResult error()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult pnf()
+        {
+            return View();
+        }
         
     }
 }

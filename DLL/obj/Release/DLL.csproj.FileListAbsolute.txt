@@ -1,0 +1,7 @@
+C:\Users\noname\Documents\GitHub\mvclibrary\DLL\bin\Release\DLL.exe.config
+C:\Users\noname\Documents\GitHub\mvclibrary\DLL\bin\Release\DLL.exe
+C:\Users\noname\Documents\GitHub\mvclibrary\DLL\bin\Release\DLL.pdb
+C:\Users\noname\Documents\GitHub\mvclibrary\DLL\bin\Release\EntityFramework.dll
+C:\Users\noname\Documents\GitHub\mvclibrary\DLL\bin\Release\EntityFramework.xml
+C:\Users\noname\Documents\GitHub\mvclibrary\DLL\obj\Release\DLL.exe
+C:\Users\noname\Documents\GitHub\mvclibrary\DLL\obj\Release\DLL.pdb

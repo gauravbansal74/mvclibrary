@@ -17,7 +17,7 @@ namespace DLL
        {
            List<job> listJob = new List<job>();
            db = new offcampus4uEntities();
-           listJob = db.jobs.Where(x => x.jobDeteled.Equals(false) && x.jobStatus.Equals(1)).ToList<job>();
+           listJob = db.jobs.Where(x => x.jobDeteled.Equals(false) && x.jobStatus.Equals(1)).OrderByDescending(x=>x.jobId).ToList<job>();
            return listJob;
        }
 
@@ -41,17 +41,17 @@ namespace DLL
            List<job> listJob = new List<job>();
            db = new offcampus4uEntities();
            if(!string.IsNullOrWhiteSpace(skillsdesignationcompany) && !string.IsNullOrEmpty(location)){
-               listJob = db.jobs.Where(x => x.jobCompnayName.Contains(skillsdesignationcompany) || x.jobDescription.Contains(skillsdesignationcompany) || x.jobTitle.Contains(skillsdesignationcompany) || x.jobLocation.Contains(location) || x.jobMinExp <= experience || x.jobMaxExp >= experience || x.jobMinSalary <= salary || x.jobMaxSalary >= salary).ToList<job>();
+               listJob = db.jobs.Where(x => x.jobCompnayName.Contains(skillsdesignationcompany) || x.jobDescription.Contains(skillsdesignationcompany) || x.jobTitle.Contains(skillsdesignationcompany) || x.jobLocation.Contains(location) || x.jobMinExp <= experience || x.jobMaxExp >= experience || x.jobMinSalary <= salary || x.jobMaxSalary >= salary).OrderByDescending(x => x.jobId).ToList<job>();
            }
 
            if (string.IsNullOrEmpty(skillsdesignationcompany) && !string.IsNullOrEmpty(location))
            {
-               listJob = db.jobs.Where(x => x.jobLocation.Contains(location) || x.jobMinExp <= experience || x.jobMaxExp >= experience || x.jobMinSalary <= salary || x.jobMaxSalary >= salary).ToList<job>();
+               listJob = db.jobs.Where(x => x.jobLocation.Contains(location) || x.jobMinExp <= experience || x.jobMaxExp >= experience || x.jobMinSalary <= salary || x.jobMaxSalary >= salary).OrderByDescending(x => x.jobId).ToList<job>();
            }
 
            if (string.IsNullOrEmpty(location) && !string.IsNullOrEmpty(skillsdesignationcompany))
            {
-               listJob = db.jobs.Where(x => x.jobCompnayName.Contains(skillsdesignationcompany) || x.jobDescription.Contains(skillsdesignationcompany) || x.jobTitle.Contains(skillsdesignationcompany) || x.jobLocation.Contains(location) || x.jobMinExp <= experience || x.jobMaxExp >= experience || x.jobMinSalary <= salary || x.jobMaxSalary >= salary).ToList<job>();
+               listJob = db.jobs.Where(x => x.jobCompnayName.Contains(skillsdesignationcompany) || x.jobDescription.Contains(skillsdesignationcompany) || x.jobTitle.Contains(skillsdesignationcompany) || x.jobLocation.Contains(location) || x.jobMinExp <= experience || x.jobMaxExp >= experience || x.jobMinSalary <= salary || x.jobMaxSalary >= salary).OrderByDescending(x => x.jobId).ToList<job>();
            }
          //  listJob = db.jobs.Where(x => x.jobDeteled.Equals(false)).ToList<job>();
            return listJob;
@@ -63,17 +63,17 @@ namespace DLL
            db = new offcampus4uEntities();
            if (!string.IsNullOrWhiteSpace(skillsdesignationcompany) && !string.IsNullOrEmpty(location))
            {
-               listJob = db.jobs.Where(x => x.jobCompnayName.Contains(skillsdesignationcompany) || x.jobDescription.Contains(skillsdesignationcompany) || x.jobTitle.Contains(skillsdesignationcompany) || x.jobLocation.Contains(location)).ToList<job>();
+               listJob = db.jobs.Where(x => x.jobCompnayName.Contains(skillsdesignationcompany) || x.jobDescription.Contains(skillsdesignationcompany) || x.jobTitle.Contains(skillsdesignationcompany) || x.jobLocation.Contains(location)).OrderByDescending(x => x.jobId).ToList<job>();
            }
 
            if (string.IsNullOrEmpty(skillsdesignationcompany) && !string.IsNullOrEmpty(location))
            {
-               listJob = db.jobs.Where(x => x.jobLocation.Contains(location)).ToList<job>();
+               listJob = db.jobs.Where(x => x.jobLocation.Contains(location)).OrderByDescending(x => x.jobId).ToList<job>();
            }
 
            if (string.IsNullOrEmpty(location) && !string.IsNullOrEmpty(skillsdesignationcompany))
            {
-               listJob = db.jobs.Where(x => x.jobCompnayName.Contains(skillsdesignationcompany) || x.jobDescription.Contains(skillsdesignationcompany) || x.jobTitle.Contains(skillsdesignationcompany) || x.jobLocation.Contains(location)).ToList<job>();
+               listJob = db.jobs.Where(x => x.jobCompnayName.Contains(skillsdesignationcompany) || x.jobDescription.Contains(skillsdesignationcompany) || x.jobTitle.Contains(skillsdesignationcompany) || x.jobLocation.Contains(location)).OrderByDescending(x => x.jobId).ToList<job>();
            }
            //  listJob = db.jobs.Where(x => x.jobDeteled.Equals(false)).ToList<job>();
            return listJob;
@@ -137,14 +137,14 @@ namespace DLL
        public List<applyJob> getApplyHistory(Int64 id)
        {
            db = new offcampus4uEntities();
-           List<applyJob> objApplyHistory = db.applyJobs.Where(x => x.accountId.Equals(id)).OrderByDescending(x=>x.createdBy).Take(10).ToList<applyJob>();
+           List<applyJob> objApplyHistory = db.applyJobs.Where(x => x.accountId.Equals(id)).OrderByDescending(x => x.jobId).Take(10).ToList<applyJob>();
            return objApplyHistory;
        }
 
        public List<job> getJobPostingHistory(Int64 id)
        {
            db = new offcampus4uEntities();
-           List<job> objApplyHistory = db.jobs.Where(x => x.createdBy.Equals(id)).OrderByDescending(x=>x.createdBy).Take(10).ToList<job>();
+           List<job> objApplyHistory = db.jobs.Where(x => x.createdBy.Equals(id)).OrderByDescending(x => x.jobId).Take(10).ToList<job>();
            return objApplyHistory;
        }
 

@@ -359,6 +359,8 @@
     <Content Include="Views\Account\ApprovePost.cshtml" />
     <Content Include="Views\Wallet\Index.cshtml" />
     <Content Include="Views\Wallet\BankDetail.cshtml" />
+    <Content Include="Views\Account\error.cshtml" />
+    <Content Include="Views\Account\pnf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppImages\TutorialCategory\" />

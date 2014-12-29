@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "index";
+    ViewBag.Title = "Offcampus4u : Register/Login Panel";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="https://apis.google.com/js/client:platform.js" async defer></script>
@@ -39,8 +39,8 @@
     </div>
 
       <div class="signupform pull-right">
-         <button id="authorize-button" style="visibility: hidden">Authorize using Google</button> <br />
-          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+         <button class="btn btn-danger" id="authorize-button" style="visibility: hidden">Authorize using Google</button> <br />
+          @*<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>*@
       </div>
   </div>
 </div>

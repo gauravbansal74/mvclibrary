@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="offcampus4uModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="offcampus4uModelStoreContainer">
+    <EntitySet Name="account" EntityType="offcampus4uModel.Store.account" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="applyJob" EntityType="offcampus4uModel.Store.applyJob" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BankDetail" EntityType="offcampus4uModel.Store.BankDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="highestEducation" EntityType="offcampus4uModel.Store.highestEducation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="job" EntityType="offcampus4uModel.Store.job" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tutorialCategory" EntityType="offcampus4uModel.Store.tutorialCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="video" EntityType="offcampus4uModel.Store.video" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wallet" EntityType="offcampus4uModel.Store.wallet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="walletTransaction" EntityType="offcampus4uModel.Store.walletTransaction" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__applyJob__accoun__14270015" Association="offcampus4uModel.Store.FK__applyJob__accoun__14270015">
+      <End Role="account" EntitySet="account" />
+      <End Role="applyJob" EntitySet="applyJob" />
+    </AssociationSet>
+    <AssociationSet Name="FK__applyJob__jobId__151B244E" Association="offcampus4uModel.Store.FK__applyJob__jobId__151B244E">
+      <End Role="job" EntitySet="job" />
+      <End Role="applyJob" EntitySet="applyJob" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BankDetai__accou__31B762FC" Association="offcampus4uModel.Store.FK__BankDetai__accou__31B762FC">
+      <End Role="account" EntitySet="account" />
+      <End Role="BankDetail" EntitySet="BankDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__video__categoryI__76969D2E" Association="offcampus4uModel.Store.FK__video__categoryI__76969D2E">
+      <End Role="tutorialCategory" EntitySet="tutorialCategory" />
+      <End Role="video" EntitySet="video" />
+    </AssociationSet>
+    <AssociationSet Name="FK__wallet__accountI__2645B050" Association="offcampus4uModel.Store.FK__wallet__accountI__2645B050">
+      <End Role="account" EntitySet="account" />
+      <End Role="wallet" EntitySet="wallet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__walletTra__walle__2BFE89A6" Association="offcampus4uModel.Store.FK__walletTra__walle__2BFE89A6">
+      <End Role="wallet" EntitySet="wallet" />
+      <End Role="walletTransaction" EntitySet="walletTransaction" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="account">
+    <Key>
+      <PropertyRef Name="accountId" />
+    </Key>
+    <Property Name="accountId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="firstName" Type="varchar" MaxLength="100" />
+    <Property Name="lastName" Type="varchar" MaxLength="100" />
+    <Property Name="phoneNumber" Type="varchar" MaxLength="15" />
+    <Property Name="basedIn" Type="varchar" MaxLength="100" />
+    <Property Name="classifiedRole" Type="varchar" MaxLength="150" />
+    <Property Name="jobseekingStatus" Type="varchar" MaxLength="100" />
+    <Property Name="availability" Type="varchar" MaxLength="50" />
+    <Property Name="highestEducation" Type="varchar" MaxLength="100" />
+    <Property Name="workType" Type="varchar" MaxLength="100" />
+    <Property Name="Preferredlocations" Type="varchar" MaxLength="100" />
+    <Property Name="ResumeFileName" Type="varchar" MaxLength="100" />
+    <Property Name="PersonalInformationUpdated" Type="bit" Nullable="false" />
+    <Property Name="QualificationSkillsUpdated" Type="bit" Nullable="false" />
+    <Property Name="CurrentStatusUpdated" Type="bit" Nullable="false" />
+    <Property Name="ResumeUpdated" Type="bit" Nullable="false" />
+    <Property Name="accountKey" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="accountStatus" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="applyJob">
+    <Key>
+      <PropertyRef Name="applyJobId" />
+    </Key>
+    <Property Name="applyJobId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="accountId" Type="bigint" Nullable="false" />
+    <Property Name="jobId" Type="bigint" Nullable="false" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BankDetail">
+    <Key>
+      <PropertyRef Name="BankDetailId" />
+    </Key>
+    <Property Name="BankDetailId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="accountId" Type="bigint" Nullable="false" />
+    <Property Name="BankAccountName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="BankAccountNumber" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="BankIFSCCode" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="highestEducation">
+    <Key>
+      <PropertyRef Name="highestEducationId" />
+    </Key>
+    <Property Name="highestEducationId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="highestEducationName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="jobId" />
+    </Key>
+    <Property Name="jobId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="jobTitle" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="jobMinExp" Type="int" Nullable="false" />
+    <Property Name="jobMaxExp" Type="int" Nullable="false" />
+    <Property Name="jobDisclosed" Type="bit" Nullable="false" />
+    <Property Name="jobKeyword" Type="text" Nullable="false" />
+    <Property Name="jobMinSalary" Type="bigint" Nullable="false" />
+    <Property Name="jobMaxSalary" Type="bigint" Nullable="false" />
+    <Property Name="jobLocation" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="jobDescription" Type="text" Nullable="false" />
+    <Property Name="jobOtherDetailPresent" Type="bit" Nullable="false" />
+    <Property Name="jobOtherDetail" Type="text" Nullable="false" />
+    <Property Name="jobCompnayName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="jobCompanyInfo" Type="text" Nullable="false" />
+    <Property Name="jobApplyModeIsEmail" Type="bit" Nullable="false" />
+    <Property Name="jobApplyMode" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="jobExpireDate" Type="datetime" Nullable="false" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="jobStatus" Type="int" Nullable="false" />
+    <Property Name="jobDeteled" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tutorialCategory">
+    <Key>
+      <PropertyRef Name="tutorialCategoryId" />
+    </Key>
+    <Property Name="tutorialCategoryId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="tutorialCategoryName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="tutorialCategoryFileName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="tutorialCategoryStatus" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="video">
+    <Key>
+      <PropertyRef Name="videoId" />
+    </Key>
+    <Property Name="videoId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="categoryId" Type="bigint" Nullable="false" />
+    <Property Name="videoTitle" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="videoYoutubeId" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="wallet">
+    <Key>
+      <PropertyRef Name="walletId" />
+    </Key>
+    <Property Name="walletId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="accountId" Type="bigint" Nullable="false" />
+    <Property Name="walletBalance" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="walletTransaction">
+    <Key>
+      <PropertyRef Name="walletTransactionId" />
+    </Key>
+    <Property Name="walletTransactionId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="walletId" Type="bigint" Nullable="false" />
+    <Property Name="walletDescription" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="transactionAmount" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="transactionStatus" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__applyJob__accoun__14270015">
+    <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
+    <End Role="applyJob" Type="offcampus4uModel.Store.applyJob" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="applyJob">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__applyJob__jobId__151B244E">
+    <End Role="job" Type="offcampus4uModel.Store.job" Multiplicity="1" />
+    <End Role="applyJob" Type="offcampus4uModel.Store.applyJob" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="job">
+        <PropertyRef Name="jobId" />
+      </Principal>
+      <Dependent Role="applyJob">
+        <PropertyRef Name="jobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BankDetai__accou__31B762FC">
+    <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
+    <End Role="BankDetail" Type="offcampus4uModel.Store.BankDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="BankDetail">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__video__categoryI__76969D2E">
+    <End Role="tutorialCategory" Type="offcampus4uModel.Store.tutorialCategory" Multiplicity="1" />
+    <End Role="video" Type="offcampus4uModel.Store.video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tutorialCategory">
+        <PropertyRef Name="tutorialCategoryId" />
+      </Principal>
+      <Dependent Role="video">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__wallet__accountI__2645B050">
+    <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
+    <End Role="wallet" Type="offcampus4uModel.Store.wallet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="wallet">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__walletTra__walle__2BFE89A6">
+    <End Role="wallet" Type="offcampus4uModel.Store.wallet" Multiplicity="1" />
+    <End Role="walletTransaction" Type="offcampus4uModel.Store.walletTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wallet">
+        <PropertyRef Name="walletId" />
+      </Principal>
+      <Dependent Role="walletTransaction">
+        <PropertyRef Name="walletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
