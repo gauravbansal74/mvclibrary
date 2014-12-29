@@ -234,6 +234,12 @@ namespace mvclibrary.Controllers
         public JsonResult UpdateUserPassword(string currentpassword, string newpassword, string newpassword1)
         {
             Error objError = new Error();
+            if (newpassword.Length < 8 || newpassword1.Length < 8)
+            {
+                objError.isSuccess = false;
+                objError.message = "Password length can't be less than 7 Characters.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
             if (string.IsNullOrEmpty(currentpassword) || string.IsNullOrEmpty(newpassword) || string.IsNullOrEmpty(newpassword1))
             {
                 objError.isSuccess = false;

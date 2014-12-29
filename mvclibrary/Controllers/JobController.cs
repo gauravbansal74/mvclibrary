@@ -88,6 +88,7 @@ namespace mvclibrary.Controllers
                     return Json(objError, JsonRequestBehavior.AllowGet);
                 }
             }
+            
 
             if (string.IsNullOrEmpty(jobdata.jobDescription))
             {
@@ -111,6 +112,10 @@ namespace mvclibrary.Controllers
                     objError.message = "Enter the Other Detail.";
                     return Json(objError, JsonRequestBehavior.AllowGet);
                 }
+            }
+            else
+            {
+                jobdata.jobOtherDetail = string.Empty;
             }
 
             if (string.IsNullOrEmpty(jobdata.jobCompanyInfo))

@@ -204,6 +204,12 @@ namespace mvclibrary.Controllers
         public JsonResult createAccount(string email, string password, string cfrmpassword)
         {
             Error objError = new Error();
+            if (password.Length < 8 || cfrmpassword.Length < 8)
+            {
+                objError.isSuccess = false;
+                objError.message = "Password length can't be less than 7 Characters.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
             if (string.IsNullOrEmpty(email))
             {
                 objError.isSuccess = false;
