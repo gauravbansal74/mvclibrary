@@ -272,8 +272,11 @@
     <Content Include="Content\dist\js\jquery.min.js" />
     <Content Include="Content\dist\js\npm.js" />
     <Content Include="Content\images\buttons.gif" />
+    <Content Include="Content\images\jobs-less.png" />
     <Content Include="Content\images\ruppes.png" />
     <Content Include="Content\images\toolbar.gif" />
+    <Content Include="Content\images\tutorials-less.png" />
+    <Content Include="Content\images\wallet-less.png" />
     <Content Include="Content\jquery.cleditor.css" />
     <Content Include="Content\jquery.cleditor.js" />
     <Content Include="Content\jquery.cleditor.min.js" />
