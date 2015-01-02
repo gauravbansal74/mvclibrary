@@ -1,12 +1,19 @@
 ﻿@{
-    ViewBag.Title = "Offcampus4u : The Technological Network";
+    ViewBag.Title = "Offcampus4u - Learn, Work & Earn";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
 
 <!-- Page content of course! -->
+<div style="margin: 0 auto; width:65%;text-align:center;">
+    <div style="min-height:10px;"></div>
+    <h4 class="bs-docs-featurette-title">Offcampus4u - Learn, Work &amp; Earn</h4>
+    <p class="lead">Offcampus4u is a FREE networking platform to learn about the latest technologies, apply for new job opportunities and you can earn money by referring jobs.</p>
+    @*<hr class="half-rule">*@
+</div>  
 <main class="bs-docs-masthead" id="content" role="main">
-  <div class="row">
+  
+  <div class="row" style="margin:0px;">
     <div class="col-xs-4">
         <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">T</span>
         <p class="lead">Tutorials</p>
@@ -16,34 +23,35 @@
         <p class="lead">Jobs</p>
    </div>
    <div class="col-xs-4">
-        <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">W</span>
-        <p class="lead">Wallet</p>
+        <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">R</span>
+        <p class="lead">Rewards</p>
    </div>
    </div>
 </main>
 <div class="bs-docs-featurette">
   <div class="container">
-    <h2 class="bs-docs-featurette-title">Offcampus4u : The Technological Network</h2>
-    <p class="lead">Bootstrap makes front-end web development faster and easier. It's made for folks of all skill levels, devices of all shapes, and projects of all sizes.</p>
+   @* <h2 class="bs-docs-featurette-title">Offcampus4u - Learn, Work & Earn</h2>
+    <p class="lead">Offcampus4u is a FREE networking platform for you to learn latest technologies, find new job opportunities and you can earn by referring jobs.</p>*@
 
-    <hr class="half-rule">
+    
 
     <div class="row">
       <div class="col-sm-4">
-        <img src="assets/img/sass-less.png" alt="Sass and Less support" class="img-responsive">
-        <h3>Tutorials</h3>
-        <p>Offcampus4u teaches technologies in the comfort of your browser with video lessons.</p>
+      @*  <img src="~/Content/images/tutorials-less.png" alt="Sass and Less support" class="img-responsive">*@
+        <h3>We Teach</h3>
+        <p>Offcampus4u teaches in the comfort of your browser with interactive video lessons.</p>
       </div>
       <div class="col-sm-4">
-        <img src="assets/img/devices.png" alt="Responsive across devices" class="img-responsive">
-        <h3>Largest Job Posting Community</h3>
-        <p>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+        @*<img src="~/Content/images/jobs-less.png" alt="Responsive across devices" class="img-responsive">*@
+        <h3>We Help</h3>
+        <p>Offcampus4u helps you find latest jobs which helps you start a successfull career.</p>
       </div>
       <div class="col-sm-4">
-        <img src="assets/img/components.png" alt="Components" class="img-responsive">
-        <h3>Full of features</h3>
-        <p>With Bootstrap, you get extensive and beautiful documentation for common HTML elements, dozens of custom HTML and CSS components, and awesome jQuery plugins.</p>
+        @*<img src="~/Content/images/wallet-less.png" alt="Components" class="img-responsive">*@
+        <h3>We Provide</h3>
+        <p>Offcampus4u provides an avenue to earn when you share latest job opportunities.</p>
       </div>
+        <hr class="half-rule"/>
     </div>
   </div>
 </div>

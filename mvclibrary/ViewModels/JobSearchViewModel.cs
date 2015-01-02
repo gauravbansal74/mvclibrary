@@ -9,8 +9,8 @@ namespace mvclibrary.ViewModels
     {
         public string skiilsdesignationcompany { get; set; }
         public string location { get; set; }
-        public int jobMinExp { get; set; }
-        public int jobMinSalary { get; set; }
+        public string jobMinExp { get; set; }
+        public string jobMinSalary { get; set; }
 
     }
 }

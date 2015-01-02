@@ -10,12 +10,14 @@ using System.Web.Security;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Web.UI;
 
 namespace mvclibrary.Controllers
 {
     public class AccountController : Controller
     {
         [AllowAnonymous]
+       
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -29,12 +31,14 @@ namespace mvclibrary.Controllers
         }
 
         [AllowAnonymous]
+       
         public ActionResult forgetpassword()
         {
             return View();
         }
 
         [AllowAnonymous]
+        
         public JsonResult sendPassword(string email)
         {
             Error objError = new Error();
@@ -343,12 +347,14 @@ namespace mvclibrary.Controllers
         }
 
         [AllowAnonymous]
+        
         public ActionResult error()
         {
             return View();
         }
 
         [AllowAnonymous]
+        
         public ActionResult pnf()
         {
             return View();

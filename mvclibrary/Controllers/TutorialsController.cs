@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using DLL;
 using System.IO;
 using mvclibrary.ViewModels;
+using System.Web.UI;
 
 namespace mvclibrary.Controllers
 {
@@ -13,7 +14,8 @@ namespace mvclibrary.Controllers
     {
         //
         // GET: /Course/
-      [AllowAnonymous]
+        [AllowAnonymous]
+        
         public ActionResult Index()
         {
             Tutorials objTutorials = new Tutorials();
@@ -21,6 +23,14 @@ namespace mvclibrary.Controllers
             return View(objCatList);
         }
 
+        public JsonResult getTutorialCatList()
+        {
+            Tutorials objTutorials = new Tutorials();
+            List<tutorialCategory> objCatList = objTutorials.getCategryList();
+            return Json(objCatList, JsonRequestBehavior.AllowGet);
+        }
+
+       
         public ActionResult seeTutorial(Int64 id, int catId)
         {
             VideoViewModel objVideoViewModel = new VideoViewModel();
@@ -29,8 +39,9 @@ namespace mvclibrary.Controllers
             objVideoViewModel.videoList = objTutorials.getVideoListNextTen(catId);
             return View(objVideoViewModel);
         }
-       
+
         [AllowAnonymous]
+        
         public ActionResult Tutorial(Int64 id)
         {
             TutorialViewModel objTutorialViewModel = new TutorialViewModel();
@@ -48,6 +59,7 @@ namespace mvclibrary.Controllers
             return View(objTutorialViewModel);
         }
 
+        
         public ActionResult Category()
         {
             Tutorials objTutorials = new Tutorials();
@@ -109,7 +121,7 @@ namespace mvclibrary.Controllers
                 objError.message = "Please select Icon for the category";
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
-            
+
         }
 
         public JsonResult saveVideo(Int64 categoryId, string videoTitle, string videoYoutubeId)

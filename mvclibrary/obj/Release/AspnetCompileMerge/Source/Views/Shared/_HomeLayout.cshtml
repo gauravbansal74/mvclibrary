@@ -4,13 +4,13 @@
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    @*<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Offcampus4u is a FREE networking platform to learn about the latest technologies, apply for new job opportunities and you can earn money by referring jobs.">
     <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">*@
+    <meta name="author" content="Gaurav Kumar and Offcampus4u contributors team">
 
     <title>
-        Offcampus4u : The Technological Network
+        Offcampus4u - Learn, Work & Earn
     </title>
     <link rel="stylesheet" type="text/css" href="~/Content/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/dist/css/site.css" />
@@ -21,8 +21,7 @@
     <![endif]-->
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico" />
 </head>
 
 <body class="bs-docs-home">
@@ -44,7 +43,7 @@
                          @Html.ActionLink("Tutorials","Index","Tutorials")
                     </li>
                     <li>
-                        @Html.ActionLink("Jobs","Index","Job")
+                        @Html.ActionLink("Jobs","getIndex","Job")
                        
                     </li>
                      @{ if(User.Identity.IsAuthenticated){
@@ -72,9 +71,9 @@
     </header>
     <div id="body">
    
-        <section class="content-wrapper main-content clear-fix">
+        <section class="content-wrapper main-content clear-fix" style="background-color:#eee;">
             @RenderBody()
-            @*<div style="margin:0 auto;width:100%; text-align:center;">
+            <div style="margin:0 auto;width:100%; text-align:center;">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- offcampus4u_main2_AdSense1_728x90_as -->
                     <ins class="adsbygoogle"
@@ -84,15 +83,13 @@
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
-            </div>*@
+            </div>
         </section>
     </div>
     <footer>
         <div class="bs-docs-social">
           <ul class="bs-docs-social-buttons">
-            <li>
-              <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-counter="right"></script>
-            </li>
+            
             <li style="width:150px;">
               <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Foffcampus4u&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=638061509570883" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
             </li>
@@ -102,13 +99,15 @@
             <li class="tweet-btn">
                <a href="https://twitter.com/share" class="twitter-share-button" data-via="offcampus4u" data-related="offcampus4u" data-hashtags="offcampus4u" data-dnt="true">Tweet</a>
             </li>
+              <li>
+              <script src="~/Content/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-counter="right"></script>
+            </li>
           </ul>
         </div>
-        <div class="bs-docs-masthead" style="padding: 30px 15px;">
+        <div class="bs-docs-masthead" style="padding: 10px;">
             <div class="float-left">
                 <p>&copy; @DateTime.Now.Year - Offcampus4u</p>
             </div>
-            <span><a target="_blank" href="http://stats.pingdom.com/v6k2vc1boagi">Our Api Status</a></span>
         </div>
         
     </footer>

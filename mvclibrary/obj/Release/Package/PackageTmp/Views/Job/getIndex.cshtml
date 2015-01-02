@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "Offcampus4u - Learn, Work & Earn";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<style>
+    .main-content {
+    margin-top:-15px;
+    }
+    .wrap {
+        width: 990px;
+        margin: 0 auto;
+    }
+
+    .bgBand .tabs {
+        overflow: hidden;
+    }
+
+    .tabs ul {
+        list-style: none;
+    }
+
+    .tabs {
+        color: white;
+        display: block;
+        list-style-type: disc;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 40px;
+    }
+
+        .tabs li {
+            cursor: pointer;
+            float: left;
+            list-style: none;
+            padding: 13px 35px;
+            color: #fff;
+        }
+
+            .tabs li a {
+                text-decoration: none;
+                color: #fff;
+            }
+
+            .tabs li a:hover {
+                text-decoration: none;
+                color: #34495e;
+            }
+
+    li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+
+
+    .tabs li:hover {
+        background-color: #eee;
+        color: #34495e;
+    }
+</style>
+<main class="bs-docs-masthead" id="content" role="main" style="padding: 0px;">
+  
+    <div style="width:100%;background-color:rgba(35,48,63,.5);min-height:50px;margin:0px;">
+        <div class="wrap">
+            <ul class="tabs">
+            <li><a target="_blank" title="All Jobs" href="@Url.Action("Index","Job")">All Jobs</a></li>
+            <li><a target="_blank" title="Freshers Jobs" href="@Url.Action("SearchJob", "Job", new {experience= 0})">Freshers Jobs</a></li>
+            <li><a target="_blank" title="Placement Drives" href="@Url.Action("SearchJob", "Job", new {skiilsdesignationcompany= "campus"})">Placement Drives</a></li>
+        </ul>
+        </div>
+    </div>
+  <div  style="margin-top:50px;margin-bottom:40px;">
+      
+        <form class="form-inline" action="@Url.Action("SearchJob","Job")" method="GET" >
+            <div style="text-align:left;margin:0 auto;width:60%;">Custom Search</div>
+            <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail2">Email address</label>
+            <input type="text" class="form-control" id="skiilsdesignationcompany" name="skiilsdesignationcompany" placeholder="Skiils, Designation, Company" maxlength="250" style="width:250px;">
+            </div>
+            <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword2">Password</label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="Location">
+            </div>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword2">Password</label>
+            <select id="jobMinExp" name="jobMinExp" class="form-control">
+                <option value="" class="sAct">Experience</option>
+                <option value="0" class="">0 Year</option>
+                <option value="1" class="sAct">1</option>
+                <option value="2" class="">2</option>
+                <option value="3" class="">3</option>
+                <option value="4" class="">4</option>
+                <option value="5" class="">5</option>
+                <option value="6" class="">6</option>
+                <option value="7" class="">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+            </select>
+            </div>
+            <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword2">Password</label>
+            <select id="jobMinSalary" name="jobMinSalary" class="form-control">
+                <option value="" class="sAct">Salary</option>
+                <option value="0" class=""> <1 lac</option>
+                <option value="1" class="sAct">1</option>
+                <option value="2" class="">2</option>
+                <option value="3" class="">3</option>
+                <option value="4" class="">4</option>
+                <option value="5" class="">5</option>
+                <option value="6" class="">6</option>
+                <option value="7" class="">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+            </select>
+            </div>
+                <button type="submit" class="btn btn-outline-inverse btn-lg" style="padding:7px;">Search</button>
+        </form>
+      <div style="clear:both;"></div>
+  </div>
+
+    <div style="width:100%;background-color:rgba(35,48,63,.5);min-height:50px;margin:0px;">
+        <div class="wrap">
+            <ul class="tabs">
+            <li>Browse Jobs :</li>
+            <li><a title="Freshers Jobs">Jobs By Location</a></li>
+            <li><a title="Govt. Jobs" >Jobs By Category</a></li>
+            <li><a title="International Jobs">Jobs By Experience</a></li>
+        </ul>
+        </div>
+    </div>
+</main>
+<div class="bs-docs-featurette">
+    <div class="container" style="margin:0 auto; text-align:center;width:80%;font-size:14px;">
+        <div class="row" style="margin:0 auto; text-align:left;">
+            <div class="col-sm-1">
+               </div>
+            <div class="col-sm-3">
+                <h5><b>Jobs By Top Locations</b></h5>
+               <a target="_blank" href="@Url.Action("SearchJob","Job",new { location="Hyderabad"})">Jobs in Hyderabad</a> <br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { location="Bangalore"})">Jobs in Bangalore</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { location="Mumbai"})">Jobs in Mumbai</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { location="Pune"})">Jobs in Pune</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { location="Noida"})">Jobs in Noida</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { location="Chennai"})">Jobs in Chennai</a><br />
+            </div>
+            <div class="col-sm-3">
+                <h5><b>Jobs By Top Categories</b></h5>
+               <a target="_blank" href="@Url.Action("SearchJob","Job",new { skiilsdesignationcompany="Developer"})">Jobs For Developers</a> <br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { skiilsdesignationcompany="Fresher"})">Jobs For Freshers</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { skiilsdesignationcompany="Engineer"})">Jobs For Engineers</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { skiilsdesignationcompany="Graduates"})">Jobs For Graduates</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { skiilsdesignationcompany="Support"})">Jobs For Support Engineers</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob","Job",new { skiilsdesignationcompany="Mobile"})">Jobs For Mobile Developers</a><br />
+            </div>
+            <div class="col-sm-3">
+                <h5><b>Jobs By Experience</b></h5>
+                <a target="_blank" href="@Url.Action("SearchJob", "Job", new {experience= 0})">Jobs For Freshers</a> <br />
+                <a target="_blank" href="@Url.Action("SearchJob", "Job", new {experience= 2})">Jobs For Junior Level</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob", "Job", new {experience= 4})">Jobs For Mid Level</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob", "Job", new {experience= 6})">Jobs For Senior Level</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob", "Job", new {experience= 8})">Jobs For Manager Level</a><br />
+                <a target="_blank" href="@Url.Action("SearchJob", "Job", new {experience= 10})">Jobs For Sr. Manager Level</a><br />
+            </div>
+           <div class="col-sm-1">
+               </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</div>

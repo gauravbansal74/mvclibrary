@@ -277,9 +277,11 @@
     <Content Include="Content\images\toolbar.gif" />
     <Content Include="Content\images\tutorials-less.png" />
     <Content Include="Content\images\wallet-less.png" />
+    <Content Include="Content\in.js" />
     <Content Include="Content\jquery.cleditor.css" />
     <Content Include="Content\jquery.cleditor.js" />
     <Content Include="Content\jquery.cleditor.min.js" />
+    <Content Include="emailimages\logo.png" />
     <Content Include="emailtemplate\emailverify.html" />
     <Content Include="emailtemplate\forgotpassword.html" />
     <Content Include="emailtemplate\jobapplication.html" />
@@ -364,6 +366,7 @@
     <Content Include="Views\Wallet\BankDetail.cshtml" />
     <Content Include="Views\Account\error.cshtml" />
     <Content Include="Views\Account\pnf.cshtml" />
+    <Content Include="Views\Job\getIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppImages\TutorialCategory\" />

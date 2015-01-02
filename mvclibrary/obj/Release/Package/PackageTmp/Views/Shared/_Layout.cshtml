@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @*<meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">*@
+    <meta name="description" content="Offcampus4u is a FREE networking platform to learn about the latest technologies, apply for new job opportunities and you can earn money by referring jobs.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
     <meta name="author" content="Gaurav Kumar and Offcampus4u contributors team">
 
     <title>@ViewBag.Title</title>
@@ -19,9 +19,10 @@
     <![endif]-->
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="~/Content/dist/js/cstm.js"></script>
     <script>
         CURRENT_PAGE_URL = document.URL;
     </script>
@@ -32,7 +33,7 @@
     </style>
 </head>
 
-<body class="bs-docs-home" id="maindiv" style="z-index:1;text-align:center;">
+<body class="bs-docs-home" id="maindiv" style="z-index: 1; text-align: center;">
     <!-- Docs master nav -->
     <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
         <div class="container">
@@ -43,47 +44,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="@Url.Action("Index","Home")" style="font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;font-size: 33px;font-style: normal;font-variant: normal;font-weight: bold;color:#34495e;text-decoration:none;">Offcampus4u</a>               
+                <a href="@Url.Action("Index", "Home")" style="font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;font-size: 33px;font-style: normal;font-variant: normal;font-weight: bold;color:#34495e;text-decoration:none;">Offcampus4u</a>
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                         @Html.ActionLink("Tutorials","Index","Tutorials")
+                        @Html.ActionLink("Tutorials", "Index", "Tutorials")
                     </li>
                     <li>
-                             <li role="presentation" class="dropdown">
-                                <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                  My Menu
-                                  <span class="caret"></span>
-                                </a>
-                                <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-                                  <li role="presentation">@Html.ActionLink("Create Tutorial Category","Category","Tutorials")</li>
-                                    <li role="presentation">@Html.ActionLink("Approve Post","ApprovePost","Account")</li>
-                                 </ul>
-                              </li>
+                        @Html.ActionLink("Jobs", "getIndex", "Job")
+
                     </li>
-                    <li>
-                        @Html.ActionLink("Jobs","Index","Job")
-                       
-                    </li>
-                    @{ if(User.Identity.IsAuthenticated){
-                            <li role="presentation" class="dropdown">
-                                <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                  My Account
+                    @{ if (User.Identity.IsAuthenticated)
+                       {
+                        <li role="presentation" class="dropdown">
+                            <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">My Account
                                   <span class="caret"></span>
-                                </a>
-                                <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-                                  <li role="presentation">@Html.ActionLink("Profile","Index","User")</li>
-                                  <li role="presentation"><a href="@Url.Action("AppliedJob", "Job")">Applied Jobs</a></li>
-                                  <li role="presentation"><a href="@Url.Action("SaveJob", "Job")">Post New Job</a></li>
-                                  <li role="presentation"><a href="@Url.Action("PostingHistory", "Job")">Job Posting History</a></li>
-                                  <li role="presentation">@Html.ActionLink("Wallet","Index","Wallet")</li>
-                                 </ul>
-                              </li>
-                           <li>@Html.ActionLink("Logout","Logout","Account")</li>
-                        }else{
-                            <li>@Html.ActionLink("Register/Login","Index","Account")</li>
-                        }
+                            </a>
+                            <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+                                <li role="presentation">@Html.ActionLink("Profile", "Index", "User")</li>
+                                <li role="presentation"><a href="@Url.Action("AppliedJob", "Job")">Applied Jobs</a></li>
+                                <li role="presentation"><a href="@Url.Action("SaveJob", "Job")">Post New Job</a></li>
+                                <li role="presentation"><a href="@Url.Action("PostingHistory", "Job")">Job Posting History</a></li>
+                                <li role="presentation">@Html.ActionLink("Wallet", "Index", "Wallet")</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                       }
+                       else
+                       {
+                        <li>@Html.ActionLink("Register/Login", "Index", "Account")</li>
+                       }
                     }
                 </ul>
             </nav>
@@ -93,37 +84,40 @@
 
         <section class="content-wrapper main-content clear-fix">
             @RenderBody()
-            @*<div style="margin:0 auto;width:100%; text-align:center;">
+            <div class="well" style="margin:0 auto;width:100%; text-align:center;">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- offcampus4u_main2_AdSense1_728x90_as -->
                     <ins class="adsbygoogle"
-                         style="display:inline-block;width:728px;height:90px"
-                         data-ad-client="ca-pub-7843509776288043"
-                         data-ad-slot="1962217363"></ins>
+                            style="display:inline-block;width:728px;height:90px"
+                            data-ad-client="ca-pub-7843509776288043"
+                            data-ad-slot="1962217363"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
-            </div>*@
+              </div>
+            
         </section>
     </div>
     <footer>
         <div class="bs-docs-social">
-          <ul class="bs-docs-social-buttons">
-            <li>
-              <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-counter="right"></script>
-            </li>
-            <li style="width:150px;">
-              <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Foffcampus4u&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=638061509570883" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
-            </li>
-            <li class="follow-btn">
-              <a class="twitter-follow-button"  href="https://twitter.com/offcampus4u"  data-show-count="true"  data-lang="en">Follow @@offcampus4u</a>
-            </li>
-            <li class="tweet-btn">
-               <a href="https://twitter.com/share" class="twitter-share-button" data-via="offcampus4u" data-related="offcampus4u" data-hashtags="offcampus4u" data-dnt="true">Tweet</a>
-            </li>
-          </ul>
+            <ul class="bs-docs-social-buttons">
+
+                <li style="width: 150px;">
+                    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Foffcampus4u&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=638061509570883" scrolling="no" frameborder="0" style="border: none; overflow: hidden; height: 21px;" allowtransparency="true"></iframe>
+                </li>
+                <li class="follow-btn">
+                    <a class="twitter-follow-button" href="https://twitter.com/offcampus4u" data-show-count="true" data-lang="en">Follow @@offcampus4u</a>
+                </li>
+                <li class="tweet-btn">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="offcampus4u" data-related="offcampus4u" data-hashtags="offcampus4u" data-dnt="true">Tweet</a>
+                </li>
+                <li>
+                    <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+                    <script type="IN/Share" data-counter="right"></script>
+                </li>
+            </ul>
         </div>
-        <div class="bs-docs-masthead" style="padding: 30px 15px;">
+        <div class="bs-docs-masthead" style="padding: 10px;">
             <div class="float-left">
                 <p>&copy; @DateTime.Now.Year - Offcampus4u</p>
             </div>
@@ -132,22 +126,21 @@
 
 
 
+
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
     <script src="~/Content/dist/js/bootstrap.min.js"></script>
-    <script src="~/Content/dist/js/cstm.js"></script>
-   <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
-    
-  
-   <script>
-       (function (i, s, o, g, r, a, m) {
-           i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-               (i[r].q = i[r].q || []).push(arguments)
-           }, i[r].l = 1 * new Date(); a = s.createElement(o),
-           m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-       })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-       ga('create', 'UA-58038881-1', 'auto');
-       ga('send', 'pageview');
+        ga('create', 'UA-58038881-1', 'auto');
+        ga('send', 'pageview');
 
-</script>
+    </script>
 </body>
 </html>

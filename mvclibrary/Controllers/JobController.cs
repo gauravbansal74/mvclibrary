@@ -10,20 +10,32 @@ using DLL;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Net.Mail;
+using System.Web.UI;
+using System.Linq.Expressions;
 
 namespace mvclibrary.Controllers
 {
     public class JobController : Controller
     {
-        //
-        // GET: /Job/
-        private Jobs objJob;
+        [AllowAnonymous]
+        public ActionResult getIndex(){
+            return View();
+        }
 
+        [OutputCache(Duration = 7200, VaryByParam = "none", Location = OutputCacheLocation.Server)]   
         public ActionResult Index()
         {
+            return View();
+        }
+
+        [OutputCache(Duration = 7200, VaryByParam = "id", Location = OutputCacheLocation.Server)]
+        public JsonResult getJobs(int id)
+        {
+            int limit = 6;
+            int skiprecords = id * limit;
             Jobs objJobs = new DLL.Jobs();
-            List<job> listjob = objJobs.getJobs();
-            return View(listjob);
+            List<job> listjob = objJobs.getJobs(skiprecords, limit);
+            return Json(listjob,JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult PostingHistory()
@@ -146,7 +158,7 @@ namespace mvclibrary.Controllers
 
             if (jobdata.jobExpireDate != null)
             {
-                objJob = new Jobs();
+               Jobs objJob = new Jobs();
                 job job = new job();
                 job.jobCompanyInfo = jobdata.jobCompanyInfo;
                 job.jobDescription = jobdata.jobDescription;
@@ -183,7 +195,7 @@ namespace mvclibrary.Controllers
 
         }
 
-
+       
         public ActionResult Detail(Int64 id)
         {
             Jobs objJobs = new DLL.Jobs();
@@ -192,17 +204,36 @@ namespace mvclibrary.Controllers
         }
 
 
-        public ActionResult SearchJob(JobSearchViewModel jobSearch)
+        public JsonResult GetSearchResult(string skiilsdesignationcompany, string location, string jobMinExp, string jobMinSalary, int id)
         {
+            int limit = 6;
+            int skiprecords = id * limit;
+            JobSearchViewModel jobSearch = new JobSearchViewModel();
+            jobSearch.skiilsdesignationcompany = skiilsdesignationcompany;
+            jobSearch.location = location;
+            jobSearch.jobMinExp = jobMinExp;
+            jobSearch.jobMinSalary = jobMinSalary;
             Jobs objJobs = new DLL.Jobs();
-            List<job> listjob = objJobs.searchJob(jobSearch.skiilsdesignationcompany, jobSearch.location, jobSearch.jobMinExp, jobSearch.jobMinSalary);
-            return View(listjob);
+            List<job> listjob = objJobs.searchJob(jobSearch.skiilsdesignationcompany, jobSearch.location, jobSearch.jobMinExp, jobSearch.jobMinSalary,skiprecords, limit);
+            return Json(listjob,JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SearchJobCustom(string skiilsdesignationcompany, string location)
+        public ActionResult SearchJob(string skiilsdesignationcompany, string location, string jobMinExp, string jobMinSalary)
+        {
+            return View("SearchJob", 
+                new { 
+                    skiilsdesignationcompany = skiilsdesignationcompany , 
+                    location = location,
+                    jobMinExp = jobMinExp,
+                    jobMinSalary = jobMinSalary
+});
+        }
+        
+         
+        public ActionResult SearchJobCustom(string skiilsdesignationcompany, string location, string experience, string salary)
         {
             Jobs objJobs = new DLL.Jobs();
-            List<job> listjob = objJobs.searchJobCustom(skiilsdesignationcompany, location);
+            List<job> listjob = objJobs.searchJobCustom(skiilsdesignationcompany, location, experience,salary);
             return View(listjob);
         }
 
@@ -267,7 +298,6 @@ namespace mvclibrary.Controllers
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
         }
-
 
     }
 }

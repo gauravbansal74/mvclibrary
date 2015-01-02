@@ -17,9 +17,9 @@
         </div>
 
        <h4 class="signup">
-           <strong id="signuptext">Register for Offcampus4u</strong> 
+           <strong id="signuptext">Register</strong> 
            <br />
-           <small>India's Largest Technical Network.</small>
+           <small>Offcampus4u - Learn, Work & Earn</small>
        </h4>
     <div class="signupform pull-left" style="width:50%;">
       <div class="form-group">
@@ -38,8 +38,8 @@
       <button id="submit_button"  class="btn btn-primary">Register</button> or <a href="@Url.Action("forgetpassword","Account")">Forgotten your password?</a>
     </div>
 
-      <div class="signupform pull-right">
-         <button class="btn btn-danger" id="authorize-button" style="visibility: hidden">Authorize using Google</button> <br />
+      <div class="signupform pull-right" style="padding:50px;padding-top:120px;">
+         OR &nbsp; &nbsp;<button class="btn btn-danger" id="authorize-button" style="visibility: hidden">Authorize using Google</button> <br />
           @*<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>*@
       </div>
   </div>
@@ -51,7 +51,7 @@
         if (event.target.id === "option1") {
             $("#confirmpasswordinput").show();
             $("#submit_button").html('Register');
-            $("#signuptext").html("Register for Offcampus4u");
+            $("#signuptext").html("Register");
             isLogin = false;
         } else if (event.target.id === "option2") {
             $("#confirmpasswordinput").hide();

@@ -13,10 +13,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>12/30/2014 00:49:05</publishTime>
+      <publishTime>01/03/2015 01:12:12</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>12/30/2014 00:49:04</publishTime>
+      <publishTime>01/03/2015 01:12:12</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
       <publishTime>12/14/2014 21:53:47</publishTime>
@@ -28,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:46</publishTime>
     </File>
     <File Include="bin/DLL.exe">
-      <publishTime>12/30/2014 00:13:01</publishTime>
+      <publishTime>01/03/2015 00:56:59</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
       <publishTime>12/14/2014 21:53:41</publishTime>
@@ -115,7 +115,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:39</publishTime>
     </File>
     <File Include="bin/mvclibrary.dll">
-      <publishTime>12/30/2014 00:22:19</publishTime>
+      <publishTime>01/03/2015 01:11:48</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>12/14/2014 21:53:30</publishTime>
@@ -280,7 +280,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/12/2014 09:03:24</publishTime>
     </File>
     <File Include="Content/dist/css/site.css">
-      <publishTime>12/29/2014 00:10:54</publishTime>
+      <publishTime>12/31/2014 15:47:04</publishTime>
     </File>
     <File Include="Content/dist/fonts/glyphicons-halflings-regular.eot">
       <publishTime>11/11/2014 15:41:18</publishTime>
@@ -301,7 +301,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/12/2014 09:03:24</publishTime>
     </File>
     <File Include="Content/dist/js/cstm.js">
-      <publishTime>12/29/2014 23:11:57</publishTime>
+      <publishTime>01/02/2015 19:33:22</publishTime>
     </File>
     <File Include="Content/dist/js/jquery.min.js">
       <publishTime>12/17/2014 14:54:21</publishTime>
@@ -312,11 +312,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/images/buttons.gif">
       <publishTime>09/20/2010 09:38:24</publishTime>
     </File>
+    <File Include="Content/images/jobs-less.png">
+      <publishTime>12/30/2014 11:59:29</publishTime>
+    </File>
     <File Include="Content/images/ruppes.png">
       <publishTime>12/20/2014 21:49:19</publishTime>
     </File>
     <File Include="Content/images/toolbar.gif">
       <publishTime>07/08/2010 13:53:20</publishTime>
+    </File>
+    <File Include="Content/images/tutorials-less.png">
+      <publishTime>12/30/2014 11:59:29</publishTime>
+    </File>
+    <File Include="Content/images/wallet-less.png">
+      <publishTime>12/30/2014 11:59:29</publishTime>
+    </File>
+    <File Include="Content/in.js">
+      <publishTime>12/30/2014 22:26:27</publishTime>
     </File>
     <File Include="Content/jquery.cleditor.css">
       <publishTime>07/18/2014 21:59:56</publishTime>
@@ -492,17 +504,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/themes/base/minified/jquery.ui.theme.min.css">
       <publishTime>12/14/2014 21:53:26</publishTime>
     </File>
+    <File Include="emailimages/logo.png">
+      <publishTime>12/31/2014 19:13:45</publishTime>
+    </File>
     <File Include="emailtemplate/emailverify.html">
-      <publishTime>12/26/2014 22:39:35</publishTime>
+      <publishTime>12/31/2014 19:20:00</publishTime>
     </File>
     <File Include="emailtemplate/forgotpassword.html">
-      <publishTime>12/26/2014 22:44:18</publishTime>
+      <publishTime>12/31/2014 17:20:14</publishTime>
     </File>
     <File Include="emailtemplate/jobapplication.html">
-      <publishTime>12/27/2014 20:59:59</publishTime>
+      <publishTime>12/31/2014 19:20:04</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>12/14/2014 21:53:09</publishTime>
+      <publishTime>12/30/2014 12:07:45</publishTime>
     </File>
     <File Include="Images/accent.png">
       <publishTime>12/14/2014 21:53:09</publishTime>
@@ -556,7 +571,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:52</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>12/30/2014 00:48:58</publishTime>
+      <publishTime>01/03/2015 01:12:02</publishTime>
     </File>
     <File Include="Scripts/jquery-1.11.1.min.js">
       <publishTime>12/15/2014 23:33:59</publishTime>
@@ -610,7 +625,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/27/2014 23:15:37</publishTime>
     </File>
     <File Include="Views/Account/error.cshtml">
-      <publishTime>12/30/2014 00:15:01</publishTime>
+      <publishTime>12/30/2014 18:55:07</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
       <publishTime>12/14/2014 21:53:09</publishTime>
@@ -619,10 +634,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:09</publishTime>
     </File>
     <File Include="Views/Account/forgetpassword.cshtml">
-      <publishTime>12/29/2014 23:15:02</publishTime>
+      <publishTime>12/30/2014 18:54:48</publishTime>
     </File>
     <File Include="Views/Account/index.cshtml">
-      <publishTime>12/29/2014 23:14:33</publishTime>
+      <publishTime>12/31/2014 19:48:45</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
       <publishTime>12/14/2014 21:53:09</publishTime>
@@ -631,16 +646,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:09</publishTime>
     </File>
     <File Include="Views/Account/pnf.cshtml">
-      <publishTime>12/30/2014 00:15:46</publishTime>
+      <publishTime>12/30/2014 18:57:26</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
       <publishTime>12/14/2014 21:53:09</publishTime>
     </File>
     <File Include="Views/Account/verifyemail.cshtml">
-      <publishTime>12/29/2014 23:25:15</publishTime>
+      <publishTime>12/30/2014 18:57:58</publishTime>
     </File>
     <File Include="Views/Account/verifyemailerror.cshtml">
-      <publishTime>12/29/2014 23:26:33</publishTime>
+      <publishTime>12/30/2014 18:58:35</publishTime>
     </File>
     <File Include="Views/Account/_ChangePasswordPartial.cshtml">
       <publishTime>12/14/2014 21:53:09</publishTime>
@@ -661,37 +676,40 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:09</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>12/29/2014 23:31:49</publishTime>
+      <publishTime>12/30/2014 21:31:45</publishTime>
     </File>
     <File Include="Views/Job/AppliedJob.cshtml">
       <publishTime>12/29/2014 00:26:12</publishTime>
     </File>
     <File Include="Views/Job/Detail.cshtml">
-      <publishTime>12/27/2014 21:01:38</publishTime>
+      <publishTime>01/01/2015 14:27:34</publishTime>
+    </File>
+    <File Include="Views/Job/getIndex.cshtml">
+      <publishTime>01/03/2015 01:07:54</publishTime>
     </File>
     <File Include="Views/Job/Index.cshtml">
-      <publishTime>12/30/2014 00:02:22</publishTime>
+      <publishTime>01/02/2015 20:55:31</publishTime>
     </File>
     <File Include="Views/Job/PostingHistory.cshtml">
       <publishTime>12/29/2014 00:25:15</publishTime>
     </File>
     <File Include="Views/Job/SaveJob.cshtml">
-      <publishTime>12/29/2014 00:34:50</publishTime>
+      <publishTime>12/31/2014 20:12:17</publishTime>
     </File>
     <File Include="Views/Job/SearchJob.cshtml">
-      <publishTime>12/30/2014 00:02:27</publishTime>
+      <publishTime>01/03/2015 01:02:34</publishTime>
     </File>
     <File Include="Views/Job/SearchJobCustom.cshtml">
-      <publishTime>12/30/2014 00:02:29</publishTime>
+      <publishTime>01/02/2015 20:58:09</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>12/30/2014 00:23:33</publishTime>
+      <publishTime>12/30/2014 18:59:58</publishTime>
     </File>
     <File Include="Views/Shared/_HomeLayout.cshtml">
-      <publishTime>12/29/2014 23:58:15</publishTime>
+      <publishTime>01/03/2015 01:03:02</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>12/29/2014 23:49:40</publishTime>
+      <publishTime>01/03/2015 01:02:47</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>12/14/2014 21:53:09</publishTime>
@@ -700,13 +718,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/23/2014 15:40:52</publishTime>
     </File>
     <File Include="Views/Tutorials/index.cshtml">
-      <publishTime>12/26/2014 20:14:50</publishTime>
+      <publishTime>12/31/2014 16:09:00</publishTime>
     </File>
     <File Include="Views/Tutorials/seeTutorial.cshtml">
-      <publishTime>12/29/2014 00:18:23</publishTime>
+      <publishTime>01/01/2015 14:25:34</publishTime>
     </File>
     <File Include="Views/Tutorials/tutorial.cshtml">
-      <publishTime>12/29/2014 23:48:27</publishTime>
+      <publishTime>01/01/2015 14:24:44</publishTime>
     </File>
     <File Include="Views/User/Index.cshtml">
       <publishTime>12/29/2014 00:24:30</publishTime>
@@ -724,7 +742,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:09</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/30/2014 00:48:52</publishTime>
+      <publishTime>01/03/2015 01:11:55</publishTime>
     </File>
   </ItemGroup>
 </Project>

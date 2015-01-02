@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Offcampus4u : Largest Job Posting Community.";
+    ViewBag.Title = "Offcampus4u :  One of the biggest job posting Community.";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -20,125 +20,110 @@
     }
 </style>
 <main class="bs-docs-masthead-other" style="width:80%;margin:0 auto; ">
- <div>
-     <form class="navbar-form " role="search" method="post" action="/Job/SearchJob">
-        <div class="form-group">
-            <input id="skiilsdesignationcompany" name="skiilsdesignationcompany" type="text" class="form-control" placeholder="Skills, Designation, Company" style="width:300px;">
-        </div>
-        <div class="form-group">
-            <input id="location" name="location" type="text" class="form-control" placeholder="Location">
-        </div>
-        <div class="form-group">
-            <select id="jobMinExp" name="jobMinExp" class="form-control" style="width:80px;">
-                <option value="0">0 yr.</option>
-                <option value="1">1 yr.</option>
-                <option value="2">2 yrs.</option>
-                <option value="3">3 yrs.</option>
-                <option value="4">4 yrs.</option>
-                <option value="5">5 yrs.</option>
-                <option value="6">6 yrs.</option>
-                <option value="7">7 yrs.</option>
-                <option value="8">8 yrs.</option>
-            </select>
-       </div>
-         <div class="form-group">
-             <select id="jobMinSalary" name="jobMinSalary" class="form-control" style="width:90px;" placeholder="Salary">
-                <option value="0">0 LPA</option>
-                <option value="100000">1 LPA</option>
-                <option value="200000">2 LPA</option>
-                <option value="300000">3 LPA</option>
-                <option value="400000">4 LPA</option>
-                <option value="500000">5 LPA</option>
-                <option value="600000">6 LPA</option>
-                <option value="700000">7 LPA</option>
-                <option value="800000">8 LPA</option>
-               </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Search</button>
-       </form>
- </div>
      <div class="panel panel-default"  style="width:20%;margin:0 auto;text-align:left;float:left;">
          <div class="panel-heading">
             <h3 class="panel-title"><b>Jobs by Location</b></h3>
           </div>
        <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-           <li role="presentation"><a href="@Url.Action("SearchJobCustom", "Job", new { location = "Bangalore" })">Jobs in Bangalore</a></li>
-           <li role="presentation"><a href="@Url.Action("SearchJobCustom", "Job", new { location = "Mumbai" })">Jobs in Mumbai</a></li>
-           <li role="presentation"><a href="@Url.Action("SearchJobCustom", "Job", new { location = "Delhi" })">Jobs in Delhi</a></li>
-           <li role="presentation"><a href="@Url.Action("SearchJobCustom", "Job", new { location = "Hyderabad" })">Jobs in Hyderabad</a></li>
-           <li role="presentation"><a href="@Url.Action("SearchJobCustom", "Job", new { location = "Pune" })">Jobs in Pune</a></li>
-           <li role="presentation"><a href="@Url.Action("SearchJobCustom", "Job", new { location = "Gurgoan" })">Jobs in Gurgoan</a></li>
-           <li role="presentation"><a href="@Url.Action("SearchJobCustom", "Job", new { location = "Chennai" })">Jobs in Chennai</a></li>
-           <li role="presentation"><a href="@Url.Action("SearchJobCustom", "Job", new { location = "Kolkata" })">Jobs in Kolkata</a></li>
+           <li role="presentation"><a href="@Url.Action("SearchJob", "Job", new { location = "Bangalore" })">Jobs in Bangalore</a></li>
+           <li role="presentation"><a href="@Url.Action("SearchJob", "Job", new { location = "Mumbai" })">Jobs in Mumbai</a></li>
+           <li role="presentation"><a href="@Url.Action("SearchJob", "Job", new { location = "Delhi" })">Jobs in Delhi</a></li>
+           <li role="presentation"><a href="@Url.Action("SearchJob", "Job", new { location = "Hyderabad" })">Jobs in Hyderabad</a></li>
+           <li role="presentation"><a href="@Url.Action("SearchJob", "Job", new { location = "Pune" })">Jobs in Pune</a></li>
+           <li role="presentation"><a href="@Url.Action("SearchJob", "Job", new { location = "Gurgoan" })">Jobs in Gurgoan</a></li>
+           <li role="presentation"><a href="@Url.Action("SearchJob", "Job", new { location = "Chennai" })">Jobs in Chennai</a></li>
+           <li role="presentation"><a href="@Url.Action("SearchJob", "Job", new { location = "Kolkata" })">Jobs in Kolkata</a></li>
         </ul>
-         @*<div class="panel-heading">
-            <h3 class="panel-title"><b>Jobs by Category</b></h3>
-          </div>
-       <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-                            <li role="presentation"><a href="#">Accounting</a></li>
-                            <li role="presentation"><a href="#">Administration &amp; Office Support</a></li>
-                            <li role="presentation"><a href="#">Advertising, Arts &amp; Media</a></li>
-                            <li role="presentation"><a href="#">Banking &amp; Financial Services</a></li>
-                            <li role="presentation"><a href="#">Call Centre &amp; Customer Service</a></li>
-                            <li role="presentation"><a href="#">CEO &amp; General Management</a></li>
-                            <li role="presentation"><a href="#">Community Services &amp; Development</a></li>
-                            <li role="presentation"><a href="#">Construction</a></li>
-                            <li role="presentation"><a href="#">Consulting &amp; Strategy</a></li>
-                            <li role="presentation"><a href="#">Design &amp; Architecture</a></li>
-                            <li role="presentation"><a href="#">Education &amp; Training</a></li>
-                            <li role="presentation"><a href="#">Engineering</a></li>
-                            <li role="presentation"><a href="#">Farming, Animals &amp; Conservation</a></li>
-                            <li role="presentation"><a href="#">Government &amp; Defence</a></li>
-                            <li role="presentation"><a href="#">Healthcare &amp; Medical</a></li>
-                            <li role="presentation"><a href="#">Hospitality &amp; Tourism</a></li>
-                            <li role="presentation"><a href="#">Human Resources &amp; Recruitment</a></li>
-                            <li role="presentation"><a href="#">Information &amp; Communication Technology</a></li>
-                            <li role="presentation"><a href="#">Insurance &amp; Superannuation</a></li>
-                            <li role="presentation"><a href="#">Legal</a></li>
-                            <li role="presentation"><a href="#">Manufacturing, Transport &amp; Logistics</a></li>
-                            <li role="presentation"><a href="#">Marketing &amp; Communications</a></li>
-                            <li role="presentation"><a href="#">Mining, Resources &amp; Energy</a></li>
-                            <li role="presentation"><a href="#">Real Estate &amp; Property</a></li>
-                            <li role="presentation"><a href="#">Retail &amp; Consumer Products</a></li>
-                            <li role="presentation"><a href="#">Sales</a></li>
-                            <li role="presentation"><a href="#">Science &amp; Technology</a></li>
-                            <li role="presentation"><a href="#">Self Employment</a></li>
-                            <li role="presentation"><a href="#">Sport &amp; Recreation</a></li>
-                            <li role="presentation"><a href="#">Trades &amp; Services</a></li>
-                        </ul>*@
     </div>
-    <div class="panel panel-default"  style="width:78%;margin:0 auto;text-align:left;float:right;">
-    @{
-        
-        foreach (var job in Model)
-        {
-           <div class="well" style="line-height: 1.42857143;">
-                <a target="_blank" href="@Url.Action("Detail", "Job", new { id = @job.jobId })" style="line-height: 1.42857143;">@job.jobTitle</a> <br />
-                 @job.jobCompnayName <br />
-                <div class="color-light pull-left" style="margin-right:10%;line-height: 1.42857143;">
-                    <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;
-                        <span>@job.jobMinExp</span><span> - </span><span>@job.jobMaxExp</span><span> yrs.</span>
-                </div>
-                <div class="color-light" style="line-height: 1.42857143;">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="line-height: 1.42857143;">
-
-                    </span>&nbsp;&nbsp;@job.jobLocation
-                </div>
-                <div class="salary" style="line-height: 2.42857143;">
-                     @if (!job.jobDisclosed)
-                        {
-                          <span>&#8377;&nbsp;&nbsp;Not Disclosed</span>
-                        }
-                        else
-                        {
-                        <span>&#8377;&nbsp;&nbsp;@job.jobMinSalary - @job.jobMaxSalary PA</span>
-                        }
-                   
-                </div>
-            </div>   
-        }
-    }
+    <div class="panel panel-default"  style="width:78%;margin:0 auto;text-align:left;float:right;" >
+    <div class="well" style="margin:0 auto;width:100%; text-align:center;">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- offcampus4u_main2_AdSense1_728x90_as -->
+            <ins class="adsbygoogle"
+                    style="display:inline-block;width:728px;height:90px"
+                    data-ad-client="ca-pub-7843509776288043"
+                    data-ad-slot="1962217363"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+      </div>
+        <div id="jobList"></div>
     </div>
     <div style="clear:both;"></div>
 </main>
+<script>
+    blockBySpinner('#jobList');
+    var pageNumber = 0;
+    $.ajax({
+        type: "POST",
+        url: "@(Url.Action("GetSearchResult", "Job"))",
+        data: {
+            id: pageNumber,
+            skiilsdesignationcompany: getParameterByName('skiilsdesignationcompany'),
+            location: getParameterByName('location'),
+            jobMinExp: getParameterByName('jobMinExp'),
+            jobMinSalary: getParameterByName('jobMinSalary'),
+
+        }
+    })
+    .done(function (data) {
+        var myhtml = "";
+        data.forEach(function (entry) {
+            myhtml = myhtml + '<div class="well" style="line-height: 1.42857143;"><a target="_blank" href="/Job/Detail/' + entry.jobId + '" style="line-height: 1.42857143;">' + entry.jobTitle + '</a> <br />';
+            myhtml = myhtml + entry.jobCompnayName + ' <br />';
+            myhtml = myhtml + '<div class="color-light pull-left" style="margin-right:10%;line-height: 1.42857143;"><span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;<span>' + entry.jobMinExp + '</span><span> - </span><span>' + entry.jobMaxExp + '</span><span> yrs.</span></div>';
+            myhtml = myhtml + '<div class="color-light" style="line-height: 1.42857143;"><span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;' + entry.jobLocation + '</div>';
+
+            if (!entry.jobDisclosed) {
+                myhtml = myhtml + '<div class="salary" style="line-height: 2.42857143;"><span>&#8377;&nbsp;&nbsp;Not Disclosed</span></div></div>';
+            }
+            else {
+                myhtml = myhtml + '<span>&#8377;&nbsp;&nbsp;' + entry.jobMinSalary + ' - ' + entry.jobMaxSalary + ' PA</span> </div></div>';
+            }
+        });
+        $("#jobList").html(myhtml);
+        blockBySpinner('#jobList', true);
+        pageNumber = pageNumber + 1;
+    })
+    .fail(function (data) {
+        showalert(data.isSuccess, data.message);
+    });
+
+    function getjobPagination() {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("getjobs", "Job"))",
+            data: { id: pageNumber }
+        })
+    .done(function (data) {
+        var myhtml = "";
+        data.forEach(function (entry) {
+            myhtml = myhtml + '<div class="well" style="line-height: 1.42857143;"><a target="_blank" href="/Job/Detail/' + entry.jobId + '" style="line-height: 1.42857143;">' + entry.jobTitle + '</a> <br />';
+            myhtml = myhtml + entry.jobCompnayName + ' <br />';
+            myhtml = myhtml + '<div class="color-light pull-left" style="margin-right:10%;line-height: 1.42857143;"><span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;<span>' + entry.jobMinExp + '</span><span> - </span><span>' + entry.jobMaxExp + '</span><span> yrs.</span></div>';
+            myhtml = myhtml + '<div class="color-light" style="line-height: 1.42857143;"><span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;' + entry.jobLocation + '</div>';
+
+            if (!entry.jobDisclosed) {
+                myhtml = myhtml + '<div class="salary" style="line-height: 2.42857143;"><span>&#8377;&nbsp;&nbsp;Not Disclosed</span></div></div>';
+            }
+            else {
+                myhtml = myhtml + '<span>&#8377;&nbsp;&nbsp;' + entry.jobMinSalary + ' - ' + entry.jobMaxSalary + ' PA</span> </div></div>';
+            }
+        });
+        $("#jobList").append(myhtml);
+        blockBySpinner('#jobList', true);
+        pageNumber = pageNumber + 1;
+    })
+        .fail(function (data) {
+            showalert(data.isSuccess, data.message);
+        });
+    }
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+            blockBySpinner('#jobList');
+            getjobPagination();
+        }
+    });
+
+</script>

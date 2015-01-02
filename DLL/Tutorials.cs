@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
+
 
 namespace DLL
 {
@@ -12,8 +15,9 @@ namespace DLL
 
        public List<tutorialCategory> getCategryList()
        {
+           List<tutorialCategory> objTutorialsList = new List<tutorialCategory>();
            db = new offcampus4uEntities();
-           List<tutorialCategory> objTutorialsList = db.tutorialCategories.Where(x => x.isDeleted == false).ToList<tutorialCategory>();
+           objTutorialsList = db.tutorialCategories.Where(x => x.isDeleted == false).ToList<tutorialCategory>();
            return objTutorialsList;
        }
 
@@ -28,7 +32,7 @@ namespace DLL
        public List<video> getVideoListNextTen(Int64 id)
        {
            db = new offcampus4uEntities();
-           List<video> objTutorialsList = db.videos.Where(x => x.categoryId.Equals(id) && x.videoId > id && x.isDeleted.Equals(false)).Take(15).ToList<video>();
+           List<video> objTutorialsList = db.videos.Where(x => x.categoryId.Equals(id) && x.videoId > id && x.isDeleted.Equals(false)).OrderBy(x=>x.videoId).Skip(10).Take(10).ToList<video>();
            return objTutorialsList;
        }
 

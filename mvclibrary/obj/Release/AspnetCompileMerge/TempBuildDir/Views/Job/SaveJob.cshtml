@@ -29,7 +29,7 @@
        <h4 class="signup">
            <strong id="signuptext">Submit New Job Post</strong> 
            <br />
-           <small>India's Largest Job Posting Community.</small>
+           <small>Offcampus4u - Learn, Work & Earn</small>
        </h4>
     <div class="signupform">
       <div class="form-group">
@@ -49,6 +49,13 @@
               <option value="6">6 yrs.</option>
               <option value="7">7 yrs.</option>
               <option value="8">8 yrs.</option>
+              <option value="9">9 yrs.</option>
+              <option value="10">10 yrs.</option>
+              <option value="11">11 yrs.</option>
+              <option value="12">12 yrs.</option>
+              <option value="13">13 yrs.</option>
+              <option value="14">14 yrs.</option>
+              <option value="15">15 yrs.</option>
           </select>
       </div>
         <div class="form-group">
@@ -63,6 +70,13 @@
               <option value="6">6 yrs.</option>
               <option value="7">7 yrs.</option>
               <option value="8">8 yrs.</option>
+              <option value="9">9 yrs.</option>
+              <option value="10">10 yrs.</option>
+              <option value="11">11 yrs.</option>
+              <option value="12">12 yrs.</option>
+              <option value="13">13 yrs.</option>
+              <option value="14">14 yrs.</option>
+              <option value="15">15 yrs.</option>
           </select>
       </div>
       <div class="form-group">
@@ -85,6 +99,13 @@
                 <option value="600000">6 LPA</option>
                 <option value="700000">7 LPA</option>
                 <option value="800000">8 LPA</option>
+                <option value="900000">9 LPA</option>
+                <option value="1000000">10 LPA</option>
+                <option value="1100000">11 LPA</option>
+                <option value="1200000">12 LPA</option>
+                <option value="1300000">13 LPA</option>
+                <option value="1400000">14 LPA</option>
+                <option value="1500000">15 LPA +</option>
             </select>
         </div>
         <div class="form-group salaryhideshow">
@@ -135,7 +156,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.jobExpireDate)
-            @Html.TextBoxFor(model => model.jobExpireDate, new {@class="form-control" })
+            @*<input type="date" id="jobExpireDate" name="jobExpireDate" class="form-control" />*@
+            @Html.TextBoxFor(model => model.jobExpireDate, new {@class="form-control", type="date"})
         </div>
 
         <div class="form-group">
