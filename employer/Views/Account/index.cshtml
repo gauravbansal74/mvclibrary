@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Offcampus4u : Register/Login Panel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+<main class="bs-docs-masthead-other" id="maindiv">
+    
+ <div class="panel panel-default"  style="width:80%;margin:0 auto;text-align:left;">
+  <div class="panel-body">
+         <div id="option" class="btn-group" data-toggle="buttons" style="margin: 0 auto; text-align:center;width:100%;">
+          <label class="btn btn-info active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Register
+          </label>
+          <label class="btn btn-info">
+            <input  type="radio" name="options" id="option2" autocomplete="off"> Login
+          </label> 
+        </div>
+
+       <h4 class="signup">
+           <strong id="signuptext">Employer : Register</strong> 
+           <br />
+           <small>Offcampus4u - Learn, Work & Earn</small>
+       </h4>
+    <div class="signupform" style="margin:0 auto; width:50%;">
+        <div class="form-group" id="nameinputdiv">
+        <label for="exampleInputEmail1" >Enter Name</label>
+        <input type="email" class="form-control" id="inputName" placeholder="Enter Your Name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email Address">
+      </div>
+        <div class="form-group" id="phoneInputDiv">
+        <label for="exampleInputEmail1">Phone Number</label>
+        <input type="email" class="form-control" id="inputPhone" placeholder="Enter Phone Number With Extension">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" >Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      </div>
+        <div class="form-group" id="confirmpasswordinput">
+        <label for="exampleInputPassword1" >Confirm Password</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm Password">
+      </div>
+        
+      <button id="submit_button"  class="btn btn-primary">Register</button> or <a href="@Url.Action("forgetpassword","Account")">Forgotten your password?</a>
+    </div>
+  </div>
+</div>
+</main>
+<script>
+    var isLogin = false;
+    $(document).on('change', 'input:radio[id^="option"]', function (event) {
+        if (event.target.id === "option1") {
+            $("#confirmpasswordinput").show();
+            $("#nameinputdiv").show();
+            $("#phoneInputDiv").show();
+            $("#submit_button").html('Register');
+            $("#signuptext").html("Employer : Register");
+            isLogin = false;
+        } else if (event.target.id === "option2") {
+            $("#confirmpasswordinput").hide();
+            $("#nameinputdiv").hide();
+            $("#phoneInputDiv").hide();
+            $("#submit_button").html('Login');
+            $("#signuptext").html("Employer : Login");
+            isLogin = true;
+        }
+    });
+
+    $("#submit_button").on('click', function () {
+
+        if (!isLogin) {
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("createAccount", "Account"))",
+                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val(), cfrmpassword: $("#inputPassword2").val() }
+                    })
+                    .done(function (data) {
+                        console.log("done", data);
+                        showalert(data.isSuccess, data.message);
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+                    });
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "@(Url.Action("checkLogin", "Account"))",
+                        data: { email: $("#inputEmail").val(), password: $("#inputPassword").val() }
+                    })
+                    .done(function (data) {
+                        showalert(data.isSuccess, data.message);
+                        if (data.isSuccess) {
+                            location.reload();
+                        }
+                    })
+                    .fail(function (data) {
+                        console.log("fail", data);
+                        showalert(data.isSuccess, data.message);
+                    });
+                }
+
+            });
+</script>
+   
+ 
+
+
+
+    
+

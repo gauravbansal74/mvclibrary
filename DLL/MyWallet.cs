@@ -19,7 +19,7 @@ namespace DLL
         public List<walletTransaction> getWalletTransactions(Int64 id)
         {
             db = new offcampus4uEntities();
-            List<walletTransaction> objWallet = db.walletTransactions.Where(x => x.walletId.Equals(id)).ToList<walletTransaction>();
+            List<walletTransaction> objWallet = db.walletTransactions.Where(x => x.walletId.Equals(id)).OrderByDescending(x=>x.walletTransactionId).Take(10).ToList<walletTransaction>();
             return objWallet;
         }
     }
