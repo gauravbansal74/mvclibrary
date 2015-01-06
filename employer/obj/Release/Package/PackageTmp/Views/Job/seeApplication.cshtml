@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Offcampus4u : Submit New Job Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="bs-docs-masthead-other" style="width:80%;margin:0 auto;text-align:left;">
+    
+ <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Applications for the Post</div>
+
+      <!-- Table -->
+      <table class="table">
+          <thead>
+          <tr>
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="jobHistorybody">
+          @if(Model.Count > 0){
+                foreach(var user in Model){
+                    <tr>
+                  <td>@user.account.email</td>
+                  <td><a target="_blank" href="http://offcampus4u.com/UserFiles/Resume/@user.account.ResumeFileName">Download Resume</a></td>
+                        </tr>
+                }
+            }else{
+              <tr>
+                <td>There is nothing in Job Applications.</td>
+                  </tr>
+            }
+            
+        </tbody>
+      </table>
+    </div>
+</main>
+

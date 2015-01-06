@@ -20,6 +20,8 @@
         <AssociationConnector Association="offcampus4uModel.FK__walletTra__walle__2BFE89A6" />
         <EntityTypeShape EntityType="offcampus4uModel.BankDetail" Width="1.5" PointX="6.4499513443792011" PointY="11.395519232095927" />
         <AssociationConnector Association="offcampus4uModel.FK__BankDetai__accou__31B762FC" />
+        <EntityTypeShape EntityType="offcampus4uModel.company" Width="1.5" PointX="6.5" PointY="15.25" />
+        <EntityTypeShape EntityType="offcampus4uModel.employer" Width="1.5" PointX="9.5" PointY="16.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

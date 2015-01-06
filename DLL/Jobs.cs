@@ -205,10 +205,22 @@ namespace DLL
             return objApplyHistory;
         }
 
+        public List<applyJob> getJobApplication(Int64 id)
+        {
+            db = new offcampus4uEntities();
+            List<applyJob> objApplyHistory = db.applyJobs.Where(x => x.jobId.Equals(id)).OrderByDescending(x => x.jobId).ToList<applyJob>();
+            return objApplyHistory;
+        }
+
+
+
+
+
         public List<job> getJobPostingHistory(Int64 id)
         {
             db = new offcampus4uEntities();
-            List<job> objApplyHistory = db.jobs.Where(x => x.createdBy.Equals(id)).OrderByDescending(x => x.jobId).Take(10).ToList<job>();
+            db.Configuration.ProxyCreationEnabled = false;
+            List<job> objApplyHistory = db.jobs.Where(x => x.createdBy.Equals(id) && x.jobStatus.Equals(1) && x.jobDeteled.Equals(false)).OrderByDescending(x => x.jobId).Take(10).ToList<job>();
             return objApplyHistory;
         }
 

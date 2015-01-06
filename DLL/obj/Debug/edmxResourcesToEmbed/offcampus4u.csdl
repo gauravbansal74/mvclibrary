@@ -34,6 +34,8 @@
       <End Role="account" EntitySet="accounts" />
       <End Role="BankDetail" EntitySet="BankDetails" />
     </AssociationSet>
+    <EntitySet Name="companies" EntityType="offcampus4uModel.company" />
+    <EntitySet Name="employers" EntityType="offcampus4uModel.employer" />
   </EntityContainer>
   <EntityType Name="account">
     <Key>
@@ -272,4 +274,36 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="companyId" />
+    </Key>
+    <Property Type="Int64" Name="companyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="companyName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="companyAbout" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="companyWebsite" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="createdBy" Nullable="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employer">
+    <Key>
+      <PropertyRef Name="employerId" />
+    </Key>
+    <Property Type="Int64" Name="employerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="companyId" Nullable="false" />
+    <Property Type="String" Name="employerFirstName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="employerLastName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="employerEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="employerPhoneNumber" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="employerPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="employerDesignation" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="employerKey" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <Property Type="Int32" Name="accountStatus" Nullable="false" />
+    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+  </EntityType>
 </Schema>

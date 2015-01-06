@@ -1,0 +1,48 @@
+﻿@model employer.ViewModels.JobViewModel
+@{
+    ViewBag.Title = "Offcampus4u : Submit New Job Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="bs-docs-masthead-other" style="width:80%;margin:0 auto;text-align:left;">
+    
+ <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Job Post History</div>
+
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="jobHistorybody">
+         
+        </tbody>
+      </table>
+    </div>
+</main>
+<script>
+    blockBySpinner('#jobHistorybody');
+    var pageNumber = 0;
+    $.ajax({
+        type: "POST",
+        url: "@(Url.Action("getJobHistory", "Job"))",
+        data: { id: pageNumber }
+    })
+    .done(function (data) {
+        console.log(data);
+        var myhtml = "";
+        data.forEach(function (entry) {
+            myhtml = myhtml + '<tr><td>' + entry.jobTitle + '</td><td><a href="/Job/seeApplication/' + entry.jobId + '">Applications</a></td><td><a href="/Job/deletePost/' + entry.jobId + '">Delete</a></td></tr>';
+        });
+        $("#jobHistorybody").html(myhtml);
+        blockBySpinner('#jobHistorybody', true);
+        pageNumber = pageNumber + 1;
+    })
+    .fail(function (data) {
+        showalert(data.isSuccess, data.message);
+    });
+</script>

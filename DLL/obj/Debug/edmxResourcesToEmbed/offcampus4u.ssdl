@@ -4,6 +4,8 @@
     <EntitySet Name="account" EntityType="offcampus4uModel.Store.account" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="applyJob" EntityType="offcampus4uModel.Store.applyJob" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BankDetail" EntityType="offcampus4uModel.Store.BankDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="company" EntityType="offcampus4uModel.Store.company" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="employer" EntityType="offcampus4uModel.Store.employer" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="highestEducation" EntityType="offcampus4uModel.Store.highestEducation" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="job" EntityType="offcampus4uModel.Store.job" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="tutorialCategory" EntityType="offcampus4uModel.Store.tutorialCategory" store:Type="Tables" Schema="dbo" />
@@ -90,6 +92,38 @@
     <Property Name="createdOn" Type="datetime" Nullable="false" />
     <Property Name="modifiedOn" Type="datetime" Nullable="false" />
     <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="companyId" />
+    </Key>
+    <Property Name="companyId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="companyName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="companyAbout" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="companyWebsite" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employer">
+    <Key>
+      <PropertyRef Name="employerId" />
+    </Key>
+    <Property Name="employerId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="companyId" Type="bigint" Nullable="false" />
+    <Property Name="employerFirstName" Type="varchar" MaxLength="100" />
+    <Property Name="employerLastName" Type="varchar" MaxLength="100" />
+    <Property Name="employerEmail" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="employerPhoneNumber" Type="varchar" MaxLength="15" />
+    <Property Name="employerPassword" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="employerDesignation" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="employerKey" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="accountStatus" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="highestEducation">

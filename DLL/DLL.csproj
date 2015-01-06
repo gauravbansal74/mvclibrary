@@ -61,6 +61,13 @@
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
     <Compile Include="Commondetail.cs" />
+    <Compile Include="company.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpAccount.cs" />
+    <Compile Include="employer.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
     <Compile Include="Error.cs" />
     <Compile Include="highestEducation.cs">
       <DependentUpon>offcampus4u.tt</DependentUpon>
