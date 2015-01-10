@@ -31,6 +31,10 @@
             <End Role="account" EntitySet="account" />
             <End Role="BankDetail" EntitySet="BankDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK__job__createdBy__3552E9B6" Association="offcampus4uModel.Store.FK__job__createdBy__3552E9B6">
+            <End Role="account" EntitySet="account" />
+            <End Role="job" EntitySet="job" />
+          </AssociationSet>
           <AssociationSet Name="FK__video__categoryI__19AACF41" Association="offcampus4uModel.Store.FK__video__categoryI__19AACF41">
             <End Role="tutorialCategory" EntitySet="tutorialCategory" />
             <End Role="video" EntitySet="video" />
@@ -43,11 +47,11 @@
             <End Role="wallet" EntitySet="wallet" />
             <End Role="walletTransaction" EntitySet="walletTransaction" />
           </AssociationSet>
-          <AssociationSet Name="FK__withdrawa__accou__56B3DD81" Association="offcampus4uModel.Store.FK__withdrawa__accou__56B3DD81">
+          <AssociationSet Name="FK__withdrawa__accou__1E6F845E" Association="offcampus4uModel.Store.FK__withdrawa__accou__1E6F845E">
             <End Role="account" EntitySet="account" />
             <End Role="withdrawal" EntitySet="withdrawal" />
           </AssociationSet>
-          <AssociationSet Name="FK__withdrawa__walle__57A801BA" Association="offcampus4uModel.Store.FK__withdrawa__walle__57A801BA">
+          <AssociationSet Name="FK__withdrawa__walle__1F63A897" Association="offcampus4uModel.Store.FK__withdrawa__walle__1F63A897">
             <End Role="wallet" EntitySet="wallet" />
             <End Role="withdrawal" EntitySet="withdrawal" />
           </AssociationSet>
@@ -80,6 +84,7 @@
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
           <Property Name="accountStatus" Type="int" Nullable="false" />
           <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="isAdmin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="admin">
           <Key>
@@ -300,6 +305,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__job__createdBy__3552E9B6">
+          <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
+          <End Role="job" Type="offcampus4uModel.Store.job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="accountId" />
+            </Principal>
+            <Dependent Role="job">
+              <PropertyRef Name="createdBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__video__categoryI__19AACF41">
           <End Role="tutorialCategory" Type="offcampus4uModel.Store.tutorialCategory" Multiplicity="1" />
           <End Role="video" Type="offcampus4uModel.Store.video" Multiplicity="*" />
@@ -336,7 +353,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__withdrawa__accou__56B3DD81">
+        <Association Name="FK__withdrawa__accou__1E6F845E">
           <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
           <End Role="withdrawal" Type="offcampus4uModel.Store.withdrawal" Multiplicity="*" />
           <ReferentialConstraint>
@@ -348,7 +365,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__withdrawa__walle__57A801BA">
+        <Association Name="FK__withdrawa__walle__1F63A897">
           <End Role="wallet" Type="offcampus4uModel.Store.wallet" Multiplicity="1" />
           <End Role="withdrawal" Type="offcampus4uModel.Store.withdrawal" Multiplicity="*" />
           <ReferentialConstraint>
@@ -366,47 +383,51 @@
       <Schema Namespace="offcampus4uModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="offcampus4uEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
+          <EntitySet Name="admins" EntityType="offcampus4uModel.admin" />
+          <EntitySet Name="applyJobs" EntityType="offcampus4uModel.applyJob" />
+          <EntitySet Name="BankDetails" EntityType="offcampus4uModel.BankDetail" />
+          <EntitySet Name="companies" EntityType="offcampus4uModel.company" />
+          <EntitySet Name="employers" EntityType="offcampus4uModel.employer" />
           <EntitySet Name="highestEducations" EntityType="offcampus4uModel.highestEducation" />
           <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
           <EntitySet Name="tutorialCategories" EntityType="offcampus4uModel.tutorialCategory" />
           <EntitySet Name="videos" EntityType="offcampus4uModel.video" />
-          <AssociationSet Name="FK__video__categoryI__76969D2E" Association="offcampus4uModel.FK__video__categoryI__76969D2E">
-            <End Role="tutorialCategory" EntitySet="tutorialCategories" />
-            <End Role="video" EntitySet="videos" />
-          </AssociationSet>
-          <EntitySet Name="applyJobs" EntityType="offcampus4uModel.applyJob" />
-          <AssociationSet Name="FK__applyJob__accoun__14270015" Association="offcampus4uModel.FK__applyJob__accoun__14270015">
-            <End Role="account" EntitySet="accounts" />
-            <End Role="applyJob" EntitySet="applyJobs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__applyJob__jobId__151B244E" Association="offcampus4uModel.FK__applyJob__jobId__151B244E">
-            <End Role="job" EntitySet="jobs" />
-            <End Role="applyJob" EntitySet="applyJobs" />
-          </AssociationSet>
           <EntitySet Name="wallets" EntityType="offcampus4uModel.wallet" />
           <EntitySet Name="walletTransactions" EntityType="offcampus4uModel.walletTransaction" />
-          <AssociationSet Name="FK__wallet__accountI__2645B050" Association="offcampus4uModel.FK__wallet__accountI__2645B050">
+          <EntitySet Name="withdrawals" EntityType="offcampus4uModel.withdrawal" />
+          <AssociationSet Name="FK__applyJob__accoun__0B5CAFEA" Association="offcampus4uModel.FK__applyJob__accoun__0B5CAFEA">
             <End Role="account" EntitySet="accounts" />
-            <End Role="wallet" EntitySet="wallets" />
+            <End Role="applyJob" EntitySet="applyJobs" />
           </AssociationSet>
-          <AssociationSet Name="FK__walletTra__walle__2BFE89A6" Association="offcampus4uModel.FK__walletTra__walle__2BFE89A6">
-            <End Role="wallet" EntitySet="wallets" />
-            <End Role="walletTransaction" EntitySet="walletTransactions" />
-          </AssociationSet>
-          <EntitySet Name="BankDetails" EntityType="offcampus4uModel.BankDetail" />
-          <AssociationSet Name="FK__BankDetai__accou__31B762FC" Association="offcampus4uModel.FK__BankDetai__accou__31B762FC">
+          <AssociationSet Name="FK__BankDetai__accou__74794A92" Association="offcampus4uModel.FK__BankDetai__accou__74794A92">
             <End Role="account" EntitySet="accounts" />
             <End Role="BankDetail" EntitySet="BankDetails" />
           </AssociationSet>
-          <EntitySet Name="companies" EntityType="offcampus4uModel.company" />
-          <EntitySet Name="employers" EntityType="offcampus4uModel.employer" />
-          <EntitySet Name="admins" EntityType="offcampus4uModel.admin" />
-          <EntitySet Name="withdrawals" EntityType="offcampus4uModel.withdrawal" />
-          <AssociationSet Name="FK__withdrawa__accou__56B3DD81" Association="offcampus4uModel.FK__withdrawa__accou__56B3DD81">
+          <AssociationSet Name="FK__job__createdBy__3552E9B6" Association="offcampus4uModel.FK__job__createdBy__3552E9B6">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="job" EntitySet="jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__wallet__accountI__7A3223E8" Association="offcampus4uModel.FK__wallet__accountI__7A3223E8">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="wallet" EntitySet="wallets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__withdrawa__accou__1E6F845E" Association="offcampus4uModel.FK__withdrawa__accou__1E6F845E">
             <End Role="account" EntitySet="accounts" />
             <End Role="withdrawal" EntitySet="withdrawals" />
           </AssociationSet>
-          <AssociationSet Name="FK__withdrawa__walle__57A801BA" Association="offcampus4uModel.FK__withdrawa__walle__57A801BA">
+          <AssociationSet Name="FK__applyJob__jobId__0C50D423" Association="offcampus4uModel.FK__applyJob__jobId__0C50D423">
+            <End Role="job" EntitySet="jobs" />
+            <End Role="applyJob" EntitySet="applyJobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__video__categoryI__19AACF41" Association="offcampus4uModel.FK__video__categoryI__19AACF41">
+            <End Role="tutorialCategory" EntitySet="tutorialCategories" />
+            <End Role="video" EntitySet="videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__walletTra__walle__7FEAFD3E" Association="offcampus4uModel.FK__walletTra__walle__7FEAFD3E">
+            <End Role="wallet" EntitySet="wallets" />
+            <End Role="walletTransaction" EntitySet="walletTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__withdrawa__walle__1F63A897" Association="offcampus4uModel.FK__withdrawa__walle__1F63A897">
             <End Role="wallet" EntitySet="wallets" />
             <End Role="withdrawal" EntitySet="withdrawals" />
           </AssociationSet>
@@ -439,10 +460,88 @@
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Int32" Name="accountStatus" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__accoun__14270015" FromRole="account" ToRole="applyJob" />
-          <NavigationProperty Name="wallets" Relationship="offcampus4uModel.FK__wallet__accountI__2645B050" FromRole="account" ToRole="wallet" />
-          <NavigationProperty Name="BankDetails" Relationship="offcampus4uModel.FK__BankDetai__accou__31B762FC" FromRole="account" ToRole="BankDetail" />
-          <NavigationProperty Name="withdrawals" Relationship="offcampus4uModel.FK__withdrawa__accou__56B3DD81" FromRole="account" ToRole="withdrawal" />
+          <Property Type="Boolean" Name="isAdmin" Nullable="false" />
+          <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__accoun__0B5CAFEA" FromRole="account" ToRole="applyJob" />
+          <NavigationProperty Name="BankDetails" Relationship="offcampus4uModel.FK__BankDetai__accou__74794A92" FromRole="account" ToRole="BankDetail" />
+          <NavigationProperty Name="jobs" Relationship="offcampus4uModel.FK__job__createdBy__3552E9B6" FromRole="account" ToRole="job" />
+          <NavigationProperty Name="wallets" Relationship="offcampus4uModel.FK__wallet__accountI__7A3223E8" FromRole="account" ToRole="wallet" />
+          <NavigationProperty Name="withdrawals" Relationship="offcampus4uModel.FK__withdrawa__accou__1E6F845E" FromRole="account" ToRole="withdrawal" />
+        </EntityType>
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="adminId" />
+          </Key>
+          <Property Type="Int64" Name="adminId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="adminFirstName" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="adminLastName" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="adminEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="adminPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+        </EntityType>
+        <EntityType Name="applyJob">
+          <Key>
+            <PropertyRef Name="applyJobId" />
+          </Key>
+          <Property Type="Int64" Name="applyJobId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="accountId" Nullable="false" />
+          <Property Type="Int64" Name="jobId" Nullable="false" />
+          <Property Type="Int64" Name="createdBy" Nullable="false" />
+          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__applyJob__accoun__0B5CAFEA" FromRole="applyJob" ToRole="account" />
+          <NavigationProperty Name="job" Relationship="offcampus4uModel.FK__applyJob__jobId__0C50D423" FromRole="applyJob" ToRole="job" />
+        </EntityType>
+        <EntityType Name="BankDetail">
+          <Key>
+            <PropertyRef Name="BankDetailId" />
+          </Key>
+          <Property Type="Int64" Name="BankDetailId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="accountId" Nullable="false" />
+          <Property Type="String" Name="BankAccountName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BankAccountNumber" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BankIFSCCode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="createdBy" Nullable="false" />
+          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__BankDetai__accou__74794A92" FromRole="BankDetail" ToRole="account" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="companyId" />
+          </Key>
+          <Property Type="Int64" Name="companyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="companyName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="companyAbout" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="companyWebsite" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="createdBy" Nullable="false" />
+          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employer">
+          <Key>
+            <PropertyRef Name="employerId" />
+          </Key>
+          <Property Type="Int64" Name="employerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="companyId" Nullable="false" />
+          <Property Type="String" Name="employerFirstName" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employerLastName" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employerEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employerPhoneNumber" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employerPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employerDesignation" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employerKey" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+          <Property Type="Int32" Name="accountStatus" Nullable="false" />
+          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
         </EntityType>
         <EntityType Name="highestEducation">
           <Key>
@@ -483,7 +582,8 @@
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Int32" Name="jobStatus" Nullable="false" />
           <Property Type="Boolean" Name="jobDeteled" Nullable="false" />
-          <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__jobId__151B244E" FromRole="job" ToRole="applyJob" />
+          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__job__createdBy__3552E9B6" FromRole="job" ToRole="account" />
+          <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__jobId__0C50D423" FromRole="job" ToRole="applyJob" />
         </EntityType>
         <EntityType Name="tutorialCategory">
           <Key>
@@ -498,7 +598,7 @@
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Int32" Name="tutorialCategoryStatus" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="videos" Relationship="offcampus4uModel.FK__video__categoryI__76969D2E" FromRole="tutorialCategory" ToRole="video" />
+          <NavigationProperty Name="videos" Relationship="offcampus4uModel.FK__video__categoryI__19AACF41" FromRole="tutorialCategory" ToRole="video" />
         </EntityType>
         <EntityType Name="video">
           <Key>
@@ -513,59 +613,8 @@
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="tutorialCategory" Relationship="offcampus4uModel.FK__video__categoryI__76969D2E" FromRole="video" ToRole="tutorialCategory" />
+          <NavigationProperty Name="tutorialCategory" Relationship="offcampus4uModel.FK__video__categoryI__19AACF41" FromRole="video" ToRole="tutorialCategory" />
         </EntityType>
-        <Association Name="FK__video__categoryI__76969D2E">
-          <End Type="offcampus4uModel.tutorialCategory" Role="tutorialCategory" Multiplicity="1" />
-          <End Type="offcampus4uModel.video" Role="video" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tutorialCategory">
-              <PropertyRef Name="tutorialCategoryId" />
-            </Principal>
-            <Dependent Role="video">
-              <PropertyRef Name="categoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="applyJob">
-          <Key>
-            <PropertyRef Name="applyJobId" />
-          </Key>
-          <Property Type="Int64" Name="applyJobId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="accountId" Nullable="false" />
-          <Property Type="Int64" Name="jobId" Nullable="false" />
-          <Property Type="Int64" Name="createdBy" Nullable="false" />
-          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__applyJob__accoun__14270015" FromRole="applyJob" ToRole="account" />
-          <NavigationProperty Name="job" Relationship="offcampus4uModel.FK__applyJob__jobId__151B244E" FromRole="applyJob" ToRole="job" />
-        </EntityType>
-        <Association Name="FK__applyJob__accoun__14270015">
-          <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
-          <End Type="offcampus4uModel.applyJob" Role="applyJob" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="account">
-              <PropertyRef Name="accountId" />
-            </Principal>
-            <Dependent Role="applyJob">
-              <PropertyRef Name="accountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__applyJob__jobId__151B244E">
-          <End Type="offcampus4uModel.job" Role="job" Multiplicity="1" />
-          <End Type="offcampus4uModel.applyJob" Role="applyJob" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="job">
-              <PropertyRef Name="jobId" />
-            </Principal>
-            <Dependent Role="applyJob">
-              <PropertyRef Name="jobId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="wallet">
           <Key>
             <PropertyRef Name="walletId" />
@@ -578,9 +627,9 @@
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__wallet__accountI__2645B050" FromRole="wallet" ToRole="account" />
-          <NavigationProperty Name="walletTransactions" Relationship="offcampus4uModel.FK__walletTra__walle__2BFE89A6" FromRole="wallet" ToRole="walletTransaction" />
-          <NavigationProperty Name="withdrawals" Relationship="offcampus4uModel.FK__withdrawa__walle__57A801BA" FromRole="wallet" ToRole="withdrawal" />
+          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__wallet__accountI__7A3223E8" FromRole="wallet" ToRole="account" />
+          <NavigationProperty Name="walletTransactions" Relationship="offcampus4uModel.FK__walletTra__walle__7FEAFD3E" FromRole="wallet" ToRole="walletTransaction" />
+          <NavigationProperty Name="withdrawals" Relationship="offcampus4uModel.FK__withdrawa__walle__1F63A897" FromRole="wallet" ToRole="withdrawal" />
         </EntityType>
         <EntityType Name="walletTransaction">
           <Key>
@@ -596,104 +645,7 @@
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Int32" Name="transactionStatus" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="wallet" Relationship="offcampus4uModel.FK__walletTra__walle__2BFE89A6" FromRole="walletTransaction" ToRole="wallet" />
-        </EntityType>
-        <Association Name="FK__wallet__accountI__2645B050">
-          <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
-          <End Type="offcampus4uModel.wallet" Role="wallet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="account">
-              <PropertyRef Name="accountId" />
-            </Principal>
-            <Dependent Role="wallet">
-              <PropertyRef Name="accountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__walletTra__walle__2BFE89A6">
-          <End Type="offcampus4uModel.wallet" Role="wallet" Multiplicity="1" />
-          <End Type="offcampus4uModel.walletTransaction" Role="walletTransaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="wallet">
-              <PropertyRef Name="walletId" />
-            </Principal>
-            <Dependent Role="walletTransaction">
-              <PropertyRef Name="walletId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="BankDetail">
-          <Key>
-            <PropertyRef Name="BankDetailId" />
-          </Key>
-          <Property Type="Int64" Name="BankDetailId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="accountId" Nullable="false" />
-          <Property Type="String" Name="BankAccountName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="BankAccountNumber" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="BankIFSCCode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="createdBy" Nullable="false" />
-          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__BankDetai__accou__31B762FC" FromRole="BankDetail" ToRole="account" />
-        </EntityType>
-        <Association Name="FK__BankDetai__accou__31B762FC">
-          <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
-          <End Type="offcampus4uModel.BankDetail" Role="BankDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="account">
-              <PropertyRef Name="accountId" />
-            </Principal>
-            <Dependent Role="BankDetail">
-              <PropertyRef Name="accountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="company">
-          <Key>
-            <PropertyRef Name="companyId" />
-          </Key>
-          <Property Type="Int64" Name="companyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="companyName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="companyAbout" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="companyWebsite" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="createdBy" Nullable="false" />
-          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-        </EntityType>
-        <EntityType Name="employer">
-          <Key>
-            <PropertyRef Name="employerId" />
-          </Key>
-          <Property Type="Int64" Name="employerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="companyId" Nullable="false" />
-          <Property Type="String" Name="employerFirstName" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="employerLastName" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="employerEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="employerPhoneNumber" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="employerPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="employerDesignation" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="employerKey" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-          <Property Type="Int32" Name="accountStatus" Nullable="false" />
-          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-        </EntityType>
-        <EntityType Name="admin">
-          <Key>
-            <PropertyRef Name="adminId" />
-          </Key>
-          <Property Type="Int64" Name="adminId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="adminFirstName" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="adminLastName" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="adminEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="adminPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+          <NavigationProperty Name="wallet" Relationship="offcampus4uModel.FK__walletTra__walle__7FEAFD3E" FromRole="walletTransaction" ToRole="wallet" />
         </EntityType>
         <EntityType Name="withdrawal">
           <Key>
@@ -708,10 +660,58 @@
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Boolean" Name="isProcessed" Nullable="false" />
-          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__withdrawa__accou__56B3DD81" FromRole="withdrawal" ToRole="account" />
-          <NavigationProperty Name="wallet" Relationship="offcampus4uModel.FK__withdrawa__walle__57A801BA" FromRole="withdrawal" ToRole="wallet" />
+          <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__withdrawa__accou__1E6F845E" FromRole="withdrawal" ToRole="account" />
+          <NavigationProperty Name="wallet" Relationship="offcampus4uModel.FK__withdrawa__walle__1F63A897" FromRole="withdrawal" ToRole="wallet" />
         </EntityType>
-        <Association Name="FK__withdrawa__accou__56B3DD81">
+        <Association Name="FK__applyJob__accoun__0B5CAFEA">
+          <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
+          <End Type="offcampus4uModel.applyJob" Role="applyJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="accountId" />
+            </Principal>
+            <Dependent Role="applyJob">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankDetai__accou__74794A92">
+          <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
+          <End Type="offcampus4uModel.BankDetail" Role="BankDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="accountId" />
+            </Principal>
+            <Dependent Role="BankDetail">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__job__createdBy__3552E9B6">
+          <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
+          <End Type="offcampus4uModel.job" Role="job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="accountId" />
+            </Principal>
+            <Dependent Role="job">
+              <PropertyRef Name="createdBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__wallet__accountI__7A3223E8">
+          <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
+          <End Type="offcampus4uModel.wallet" Role="wallet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="accountId" />
+            </Principal>
+            <Dependent Role="wallet">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__withdrawa__accou__1E6F845E">
           <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
           <End Type="offcampus4uModel.withdrawal" Role="withdrawal" Multiplicity="*" />
           <ReferentialConstraint>
@@ -723,7 +723,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__withdrawa__walle__57A801BA">
+        <Association Name="FK__applyJob__jobId__0C50D423">
+          <End Type="offcampus4uModel.job" Role="job" Multiplicity="1" />
+          <End Type="offcampus4uModel.applyJob" Role="applyJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="jobId" />
+            </Principal>
+            <Dependent Role="applyJob">
+              <PropertyRef Name="jobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__video__categoryI__19AACF41">
+          <End Type="offcampus4uModel.tutorialCategory" Role="tutorialCategory" Multiplicity="1" />
+          <End Type="offcampus4uModel.video" Role="video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tutorialCategory">
+              <PropertyRef Name="tutorialCategoryId" />
+            </Principal>
+            <Dependent Role="video">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__walletTra__walle__7FEAFD3E">
+          <End Type="offcampus4uModel.wallet" Role="wallet" Multiplicity="1" />
+          <End Type="offcampus4uModel.walletTransaction" Role="walletTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wallet">
+              <PropertyRef Name="walletId" />
+            </Principal>
+            <Dependent Role="walletTransaction">
+              <PropertyRef Name="walletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__withdrawa__walle__1F63A897">
           <End Type="offcampus4uModel.wallet" Role="wallet" Multiplicity="1" />
           <End Type="offcampus4uModel.withdrawal" Role="withdrawal" Multiplicity="*" />
           <ReferentialConstraint>
@@ -744,6 +780,7 @@
           <EntitySetMapping Name="accounts">
             <EntityTypeMapping TypeName="offcampus4uModel.account">
               <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
@@ -768,6 +805,84 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="offcampus4uModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="adminPassword" ColumnName="adminPassword" />
+                <ScalarProperty Name="adminEmail" ColumnName="adminEmail" />
+                <ScalarProperty Name="adminLastName" ColumnName="adminLastName" />
+                <ScalarProperty Name="adminFirstName" ColumnName="adminFirstName" />
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applyJobs">
+            <EntityTypeMapping TypeName="offcampus4uModel.applyJob">
+              <MappingFragment StoreEntitySet="applyJob">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="jobId" ColumnName="jobId" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="applyJobId" ColumnName="applyJobId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankDetails">
+            <EntityTypeMapping TypeName="offcampus4uModel.BankDetail">
+              <MappingFragment StoreEntitySet="BankDetail">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="BankIFSCCode" ColumnName="BankIFSCCode" />
+                <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+                <ScalarProperty Name="BankAccountName" ColumnName="BankAccountName" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="BankDetailId" ColumnName="BankDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="offcampus4uModel.company">
+              <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="companyWebsite" ColumnName="companyWebsite" />
+                <ScalarProperty Name="companyAbout" ColumnName="companyAbout" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employers">
+            <EntityTypeMapping TypeName="offcampus4uModel.employer">
+              <MappingFragment StoreEntitySet="employer">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="employerKey" ColumnName="employerKey" />
+                <ScalarProperty Name="employerDesignation" ColumnName="employerDesignation" />
+                <ScalarProperty Name="employerPassword" ColumnName="employerPassword" />
+                <ScalarProperty Name="employerPhoneNumber" ColumnName="employerPhoneNumber" />
+                <ScalarProperty Name="employerEmail" ColumnName="employerEmail" />
+                <ScalarProperty Name="employerLastName" ColumnName="employerLastName" />
+                <ScalarProperty Name="employerFirstName" ColumnName="employerFirstName" />
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="employerId" ColumnName="employerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -843,20 +958,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="applyJobs">
-            <EntityTypeMapping TypeName="offcampus4uModel.applyJob">
-              <MappingFragment StoreEntitySet="applyJob">
-                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="jobId" ColumnName="jobId" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="applyJobId" ColumnName="applyJobId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="wallets">
             <EntityTypeMapping TypeName="offcampus4uModel.wallet">
               <MappingFragment StoreEntitySet="wallet">
@@ -884,70 +985,6 @@
                 <ScalarProperty Name="walletDescription" ColumnName="walletDescription" />
                 <ScalarProperty Name="walletId" ColumnName="walletId" />
                 <ScalarProperty Name="walletTransactionId" ColumnName="walletTransactionId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BankDetails">
-            <EntityTypeMapping TypeName="offcampus4uModel.BankDetail">
-              <MappingFragment StoreEntitySet="BankDetail">
-                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="BankIFSCCode" ColumnName="BankIFSCCode" />
-                <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
-                <ScalarProperty Name="BankAccountName" ColumnName="BankAccountName" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="BankDetailId" ColumnName="BankDetailId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="companies">
-            <EntityTypeMapping TypeName="offcampus4uModel.company">
-              <MappingFragment StoreEntitySet="company">
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="companyWebsite" ColumnName="companyWebsite" />
-                <ScalarProperty Name="companyAbout" ColumnName="companyAbout" />
-                <ScalarProperty Name="companyName" ColumnName="companyName" />
-                <ScalarProperty Name="companyId" ColumnName="companyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="employers">
-            <EntityTypeMapping TypeName="offcampus4uModel.employer">
-              <MappingFragment StoreEntitySet="employer">
-                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
-                <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-                <ScalarProperty Name="employerKey" ColumnName="employerKey" />
-                <ScalarProperty Name="employerDesignation" ColumnName="employerDesignation" />
-                <ScalarProperty Name="employerPassword" ColumnName="employerPassword" />
-                <ScalarProperty Name="employerPhoneNumber" ColumnName="employerPhoneNumber" />
-                <ScalarProperty Name="employerEmail" ColumnName="employerEmail" />
-                <ScalarProperty Name="employerLastName" ColumnName="employerLastName" />
-                <ScalarProperty Name="employerFirstName" ColumnName="employerFirstName" />
-                <ScalarProperty Name="companyId" ColumnName="companyId" />
-                <ScalarProperty Name="employerId" ColumnName="employerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="admins">
-            <EntityTypeMapping TypeName="offcampus4uModel.admin">
-              <MappingFragment StoreEntitySet="admin">
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-                <ScalarProperty Name="adminPassword" ColumnName="adminPassword" />
-                <ScalarProperty Name="adminEmail" ColumnName="adminEmail" />
-                <ScalarProperty Name="adminLastName" ColumnName="adminLastName" />
-                <ScalarProperty Name="adminFirstName" ColumnName="adminFirstName" />
-                <ScalarProperty Name="adminId" ColumnName="adminId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

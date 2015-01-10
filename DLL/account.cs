@@ -17,8 +17,9 @@ namespace DLL
         public account()
         {
             this.applyJobs = new HashSet<applyJob>();
-            this.wallets = new HashSet<wallet>();
             this.BankDetails = new HashSet<BankDetail>();
+            this.jobs = new HashSet<job>();
+            this.wallets = new HashSet<wallet>();
             this.withdrawals = new HashSet<withdrawal>();
         }
     
@@ -46,10 +47,12 @@ namespace DLL
         public long modifiedBy { get; set; }
         public int accountStatus { get; set; }
         public bool isDeleted { get; set; }
+        public bool isAdmin { get; set; }
     
         public virtual ICollection<applyJob> applyJobs { get; set; }
-        public virtual ICollection<wallet> wallets { get; set; }
         public virtual ICollection<BankDetail> BankDetails { get; set; }
+        public virtual ICollection<job> jobs { get; set; }
+        public virtual ICollection<wallet> wallets { get; set; }
         public virtual ICollection<withdrawal> withdrawals { get; set; }
     }
 }

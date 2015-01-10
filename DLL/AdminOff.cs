@@ -16,14 +16,14 @@ namespace DLL
             try
             {
                 db = new offcampus4uEntities();
-                var userData = (from emp in db.admins
-                                where emp.adminEmail.Equals(email) && emp.adminPassword.Equals(password)
-                                select emp).SingleOrDefault();
+                var userData = (from adm in db.accounts
+                                where adm.email.Equals(email) && adm.password.Equals(password) && adm.isAdmin.Equals(true)
+                                select adm).SingleOrDefault();
                 if (userData != null)
                 {
                     db.Dispose();
                     objError.isSuccess = true;
-                    objError.message = userData.adminId.ToString();
+                    objError.message = userData.accountId.ToString();
                     return objError;
                 }
                 else
@@ -38,6 +38,14 @@ namespace DLL
             {
                 return objError;
             }
+        }
+
+        public List<job> getunApproveJobs()
+        {
+            List<job> listJob = new List<job>();
+            db = new offcampus4uEntities();
+            listJob = db.jobs.Where(x => x.jobDeteled.Equals(false) && x.jobStatus.Equals(0)).ToList<job>();
+            return listJob;
         }
     }
 }

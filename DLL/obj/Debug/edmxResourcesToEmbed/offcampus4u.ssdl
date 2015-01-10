@@ -26,6 +26,10 @@
       <End Role="account" EntitySet="account" />
       <End Role="BankDetail" EntitySet="BankDetail" />
     </AssociationSet>
+    <AssociationSet Name="FK__job__createdBy__3552E9B6" Association="offcampus4uModel.Store.FK__job__createdBy__3552E9B6">
+      <End Role="account" EntitySet="account" />
+      <End Role="job" EntitySet="job" />
+    </AssociationSet>
     <AssociationSet Name="FK__video__categoryI__19AACF41" Association="offcampus4uModel.Store.FK__video__categoryI__19AACF41">
       <End Role="tutorialCategory" EntitySet="tutorialCategory" />
       <End Role="video" EntitySet="video" />
@@ -38,11 +42,11 @@
       <End Role="wallet" EntitySet="wallet" />
       <End Role="walletTransaction" EntitySet="walletTransaction" />
     </AssociationSet>
-    <AssociationSet Name="FK__withdrawa__accou__56B3DD81" Association="offcampus4uModel.Store.FK__withdrawa__accou__56B3DD81">
+    <AssociationSet Name="FK__withdrawa__accou__1E6F845E" Association="offcampus4uModel.Store.FK__withdrawa__accou__1E6F845E">
       <End Role="account" EntitySet="account" />
       <End Role="withdrawal" EntitySet="withdrawal" />
     </AssociationSet>
-    <AssociationSet Name="FK__withdrawa__walle__57A801BA" Association="offcampus4uModel.Store.FK__withdrawa__walle__57A801BA">
+    <AssociationSet Name="FK__withdrawa__walle__1F63A897" Association="offcampus4uModel.Store.FK__withdrawa__walle__1F63A897">
       <End Role="wallet" EntitySet="wallet" />
       <End Role="withdrawal" EntitySet="withdrawal" />
     </AssociationSet>
@@ -75,6 +79,7 @@
     <Property Name="modifiedBy" Type="bigint" Nullable="false" />
     <Property Name="accountStatus" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
+    <Property Name="isAdmin" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="admin">
     <Key>
@@ -295,6 +300,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__job__createdBy__3552E9B6">
+    <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
+    <End Role="job" Type="offcampus4uModel.Store.job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__video__categoryI__19AACF41">
     <End Role="tutorialCategory" Type="offcampus4uModel.Store.tutorialCategory" Multiplicity="1" />
     <End Role="video" Type="offcampus4uModel.Store.video" Multiplicity="*" />
@@ -331,7 +348,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__withdrawa__accou__56B3DD81">
+  <Association Name="FK__withdrawa__accou__1E6F845E">
     <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
     <End Role="withdrawal" Type="offcampus4uModel.Store.withdrawal" Multiplicity="*" />
     <ReferentialConstraint>
@@ -343,7 +360,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__withdrawa__walle__57A801BA">
+  <Association Name="FK__withdrawa__walle__1F63A897">
     <End Role="wallet" Type="offcampus4uModel.Store.wallet" Multiplicity="1" />
     <End Role="withdrawal" Type="offcampus4uModel.Store.withdrawal" Multiplicity="*" />
     <ReferentialConstraint>

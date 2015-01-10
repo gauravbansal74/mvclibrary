@@ -43,6 +43,7 @@ namespace DLL
         public int jobStatus { get; set; }
         public bool jobDeteled { get; set; }
     
+        public virtual account account { get; set; }
         public virtual ICollection<applyJob> applyJobs { get; set; }
     }
 }

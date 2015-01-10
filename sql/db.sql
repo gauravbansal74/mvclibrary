@@ -165,8 +165,9 @@ isDeleted BIT NOT NULL,
 FOREIGN KEY (categoryId) REFERENCES tutorialCategory(tutorialCategoryId)
 )
 
+ALTER TABLE dbo.account ADD isAdmin BIT DEFAULT 0 NOT NULL;
 
-
+ALTER TABLE dbo.job ADD FOREIGN KEY (createdBy) REFERENCES account(accountId);
 
 
 
