@@ -54,6 +54,10 @@
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
     <Compile Include="Accounts.cs" />
+    <Compile Include="admin.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminOff.cs" />
     <Compile Include="applyJob.cs">
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
@@ -106,6 +110,9 @@
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
     <Compile Include="walletTransaction.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
+    <Compile Include="withdrawal.cs">
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
   </ItemGroup>

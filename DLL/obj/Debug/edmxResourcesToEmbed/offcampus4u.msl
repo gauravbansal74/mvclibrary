@@ -197,5 +197,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="offcampus4uModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="adminPassword" ColumnName="adminPassword" />
+          <ScalarProperty Name="adminEmail" ColumnName="adminEmail" />
+          <ScalarProperty Name="adminLastName" ColumnName="adminLastName" />
+          <ScalarProperty Name="adminFirstName" ColumnName="adminFirstName" />
+          <ScalarProperty Name="adminId" ColumnName="adminId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="withdrawals">
+      <EntityTypeMapping TypeName="offcampus4uModel.withdrawal">
+        <MappingFragment StoreEntitySet="withdrawal">
+          <ScalarProperty Name="isProcessed" ColumnName="isProcessed" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="walletBalance" ColumnName="walletBalance" />
+          <ScalarProperty Name="walletId" ColumnName="walletId" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="withdrawalId" ColumnName="withdrawalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -65,23 +65,62 @@ namespace mvclibrary.Controllers
             Error objError = new Error();
             if (string.IsNullOrEmpty(jobdata.jobTitle))
             {
-                objError.isSuccess = false;
-                objError.message = "Enter the Title.";
-                return Json(objError, JsonRequestBehavior.AllowGet);
+                    objError.isSuccess = false;
+                    objError.message = "Enter the Title.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                
             }
+            if (string.IsNullOrEmpty(Convert.ToString(jobdata.jobExpireDate)))
+            {
+                objError.isSuccess = false;
+                objError.message = "Choose the Expiry Date.";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                if (jobdata.jobTitle.Length > 150)
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Title Length should be less than 150 Characters.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            
 
             if (string.IsNullOrEmpty(jobdata.jobLocation))
             {
-                objError.isSuccess = false;
-                objError.message = "Enter the Location.";
-                return Json(objError, JsonRequestBehavior.AllowGet);
+                    objError.isSuccess = false;
+                    objError.message = "Enter the Location.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                
+            }
+            else
+            {
+                if (jobdata.jobLocation.Length > 200)
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Location Length should be less than 100 Characters.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
             }
 
             if (string.IsNullOrEmpty(jobdata.jobCompnayName))
             {
-                objError.isSuccess = false;
-                objError.message = "Enter Name of the Company.";
-                return Json(objError, JsonRequestBehavior.AllowGet);
+                    objError.isSuccess = false;
+                    objError.message = "Enter Name of the Company.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                
+            }
+            else
+            {
+                if (jobdata.jobCompnayName.Length > 100)
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Company Length should be less than 100 Characters.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
             }
 
             if (jobdata.jobMinExp > jobdata.jobMaxExp)
@@ -136,13 +175,25 @@ namespace mvclibrary.Controllers
                 objError.message = "Enter the Company Information.";
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
+           
 
             if (string.IsNullOrEmpty(jobdata.jobApplyMode))
             {
+
                 objError.isSuccess = false;
                 objError.message = "Enter the Source Email or Website Linkn.";
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
+            else
+            {
+                if (jobdata.jobApplyMode.Length > 200)
+                {
+                    objError.isSuccess = false;
+                    objError.message = "LInk Lenght should be less than 100 Characters.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+            }
+
 
 
             if (jobdata.jobApplyModeIsEmail)
@@ -172,7 +223,7 @@ namespace mvclibrary.Controllers
                 job.jobOtherDetailPresent = jobdata.jobOtherDetailPresent;
                 job.jobApplyMode = jobdata.jobApplyMode;
                 job.jobApplyModeIsEmail = jobdata.jobApplyModeIsEmail;
-                job.jobExpireDate = jobdata.jobExpireDate;
+                job.jobExpireDate = Convert.ToDateTime(jobdata.jobExpireDate);
                 job.jobLocation = jobdata.jobLocation;
                 job.jobCompnayName = jobdata.jobCompnayName;
                 job.jobTitle = jobdata.jobTitle;
@@ -183,6 +234,18 @@ namespace mvclibrary.Controllers
                 job.jobDeteled = false;
                 job.jobStatus = 0;
                 objError = objJob.saveJob(job);
+                if (objError.isSuccess)
+                {
+                    EmailNotifier objEmailNotifier = new EmailNotifier();
+                    Error objError2 = objEmailNotifier.getUserEmail(Convert.ToInt64(User.Identity.Name));
+                    if (objError2.isSuccess)
+                    {
+                        String path = Server.MapPath("~/emailtemplate/jobpost.html");
+                        string text = System.IO.File.ReadAllText(path);
+                        text = text.Replace("#useremail", objError2.message);
+                        objError = objEmailNotifier.sendEmail(objError2.message,text,"Offcampus4u : Job Posted Successfully");
+                    }
+                }
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
             else

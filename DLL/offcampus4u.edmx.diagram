@@ -22,6 +22,10 @@
         <AssociationConnector Association="offcampus4uModel.FK__BankDetai__accou__31B762FC" />
         <EntityTypeShape EntityType="offcampus4uModel.company" Width="1.5" PointX="6.5" PointY="15.25" />
         <EntityTypeShape EntityType="offcampus4uModel.employer" Width="1.5" PointX="9.5" PointY="16.75" />
+        <EntityTypeShape EntityType="offcampus4uModel.admin" Width="1.5" PointX="14.375" PointY="16.5" />
+        <EntityTypeShape EntityType="offcampus4uModel.withdrawal" Width="1.5" PointX="7.8394842649993874" PointY="19.396230706663911" />
+        <AssociationConnector Association="offcampus4uModel.FK__withdrawa__accou__56B3DD81" />
+        <AssociationConnector Association="offcampus4uModel.FK__withdrawa__walle__57A801BA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -36,6 +36,16 @@
     </AssociationSet>
     <EntitySet Name="companies" EntityType="offcampus4uModel.company" />
     <EntitySet Name="employers" EntityType="offcampus4uModel.employer" />
+    <EntitySet Name="admins" EntityType="offcampus4uModel.admin" />
+    <EntitySet Name="withdrawals" EntityType="offcampus4uModel.withdrawal" />
+    <AssociationSet Name="FK__withdrawa__accou__56B3DD81" Association="offcampus4uModel.FK__withdrawa__accou__56B3DD81">
+      <End Role="account" EntitySet="accounts" />
+      <End Role="withdrawal" EntitySet="withdrawals" />
+    </AssociationSet>
+    <AssociationSet Name="FK__withdrawa__walle__57A801BA" Association="offcampus4uModel.FK__withdrawa__walle__57A801BA">
+      <End Role="wallet" EntitySet="wallets" />
+      <End Role="withdrawal" EntitySet="withdrawals" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="account">
     <Key>
@@ -68,6 +78,7 @@
     <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__accoun__14270015" FromRole="account" ToRole="applyJob" />
     <NavigationProperty Name="wallets" Relationship="offcampus4uModel.FK__wallet__accountI__2645B050" FromRole="account" ToRole="wallet" />
     <NavigationProperty Name="BankDetails" Relationship="offcampus4uModel.FK__BankDetai__accou__31B762FC" FromRole="account" ToRole="BankDetail" />
+    <NavigationProperty Name="withdrawals" Relationship="offcampus4uModel.FK__withdrawa__accou__56B3DD81" FromRole="account" ToRole="withdrawal" />
   </EntityType>
   <EntityType Name="highestEducation">
     <Key>
@@ -205,6 +216,7 @@
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
     <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__wallet__accountI__2645B050" FromRole="wallet" ToRole="account" />
     <NavigationProperty Name="walletTransactions" Relationship="offcampus4uModel.FK__walletTra__walle__2BFE89A6" FromRole="wallet" ToRole="walletTransaction" />
+    <NavigationProperty Name="withdrawals" Relationship="offcampus4uModel.FK__withdrawa__walle__57A801BA" FromRole="wallet" ToRole="withdrawal" />
   </EntityType>
   <EntityType Name="walletTransaction">
     <Key>
@@ -306,4 +318,57 @@
     <Property Type="Int32" Name="accountStatus" Nullable="false" />
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </EntityType>
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="adminId" />
+    </Key>
+    <Property Type="Int64" Name="adminId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="adminFirstName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="adminLastName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="adminEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="adminPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+  </EntityType>
+  <EntityType Name="withdrawal">
+    <Key>
+      <PropertyRef Name="withdrawalId" />
+    </Key>
+    <Property Type="Int64" Name="withdrawalId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="accountId" Nullable="false" />
+    <Property Type="Int64" Name="walletId" Nullable="false" />
+    <Property Type="String" Name="walletBalance" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="createdBy" Nullable="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <Property Type="Boolean" Name="isProcessed" Nullable="false" />
+    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__withdrawa__accou__56B3DD81" FromRole="withdrawal" ToRole="account" />
+    <NavigationProperty Name="wallet" Relationship="offcampus4uModel.FK__withdrawa__walle__57A801BA" FromRole="withdrawal" ToRole="wallet" />
+  </EntityType>
+  <Association Name="FK__withdrawa__accou__56B3DD81">
+    <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
+    <End Type="offcampus4uModel.withdrawal" Role="withdrawal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="withdrawal">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__withdrawa__walle__57A801BA">
+    <End Type="offcampus4uModel.wallet" Role="wallet" Multiplicity="1" />
+    <End Type="offcampus4uModel.withdrawal" Role="withdrawal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wallet">
+        <PropertyRef Name="walletId" />
+      </Principal>
+      <Dependent Role="withdrawal">
+        <PropertyRef Name="walletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

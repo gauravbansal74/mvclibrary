@@ -36,5 +36,7 @@ namespace DLL
         public DbSet<BankDetail> BankDetails { get; set; }
         public DbSet<company> companies { get; set; }
         public DbSet<employer> employers { get; set; }
+        public DbSet<admin> admins { get; set; }
+        public DbSet<withdrawal> withdrawals { get; set; }
     }
 }

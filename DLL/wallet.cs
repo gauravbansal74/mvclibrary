@@ -17,6 +17,7 @@ namespace DLL
         public wallet()
         {
             this.walletTransactions = new HashSet<walletTransaction>();
+            this.withdrawals = new HashSet<withdrawal>();
         }
     
         public long walletId { get; set; }
@@ -30,5 +31,6 @@ namespace DLL
     
         public virtual account account { get; set; }
         public virtual ICollection<walletTransaction> walletTransactions { get; set; }
+        public virtual ICollection<withdrawal> withdrawals { get; set; }
     }
 }

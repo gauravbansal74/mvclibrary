@@ -19,6 +19,7 @@ namespace DLL
             this.applyJobs = new HashSet<applyJob>();
             this.wallets = new HashSet<wallet>();
             this.BankDetails = new HashSet<BankDetail>();
+            this.withdrawals = new HashSet<withdrawal>();
         }
     
         public long accountId { get; set; }
@@ -49,5 +50,6 @@ namespace DLL
         public virtual ICollection<applyJob> applyJobs { get; set; }
         public virtual ICollection<wallet> wallets { get; set; }
         public virtual ICollection<BankDetail> BankDetails { get; set; }
+        public virtual ICollection<withdrawal> withdrawals { get; set; }
     }
 }

@@ -13,10 +13,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>01/06/2015 02:29:45</publishTime>
+      <publishTime>01/07/2015 19:59:56</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>01/06/2015 02:29:45</publishTime>
+      <publishTime>01/07/2015 19:59:56</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
       <publishTime>12/14/2014 21:53:47</publishTime>
@@ -28,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:46</publishTime>
     </File>
     <File Include="bin/DLL.exe">
-      <publishTime>01/03/2015 01:51:21</publishTime>
+      <publishTime>01/07/2015 15:45:34</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
       <publishTime>12/14/2014 21:53:41</publishTime>
@@ -115,7 +115,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:39</publishTime>
     </File>
     <File Include="bin/mvclibrary.dll">
-      <publishTime>01/06/2015 02:29:26</publishTime>
+      <publishTime>01/07/2015 19:58:34</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>12/14/2014 21:53:30</publishTime>
@@ -571,7 +571,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:52</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>01/06/2015 02:29:32</publishTime>
+      <publishTime>01/07/2015 19:59:51</publishTime>
     </File>
     <File Include="Scripts/jquery-1.11.1.min.js">
       <publishTime>12/15/2014 23:33:59</publishTime>
@@ -718,7 +718,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/23/2014 15:40:52</publishTime>
     </File>
     <File Include="Views/Tutorials/index.cshtml">
-      <publishTime>12/31/2014 16:09:00</publishTime>
+      <publishTime>01/06/2015 21:41:33</publishTime>
     </File>
     <File Include="Views/Tutorials/seeTutorial.cshtml">
       <publishTime>01/01/2015 14:25:34</publishTime>

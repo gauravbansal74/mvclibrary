@@ -65,6 +65,20 @@ isDeleted BIT NOT NULL,
 FOREIGN KEY (walletId) REFERENCES wallet(walletId)
 )
 
+CREATE TABLE withdrawal(
+withdrawalId BIGINT IDENTITY(1,1) PRIMARY KEY,
+accountId BIGINT NOT NULL,
+walletId BIGINT NOT NULL,
+walletBalance VARCHAR(100) DEFAULT '0' NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+isProcessed BIT NOT NULL,
+FOREIGN KEY (accountId) REFERENCES account(accountId),
+FOREIGN KEY (walletId) REFERENCES wallet(walletId)
+)
+
 CREATE TABLE job(
 jobId BIGINT IDENTITY(1,1) PRIMARY KEY,
 jobTitle VARCHAR(150) NOT NULL,

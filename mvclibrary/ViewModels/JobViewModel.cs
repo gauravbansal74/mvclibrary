@@ -57,7 +57,7 @@ namespace mvclibrary.ViewModels
         public string jobApplyMode { get; set; }
 
         [Display(Name = "Expires on")]
-        public DateTime jobExpireDate { get; set; }
+        public DateTime? jobExpireDate { get; set; }
 
         [Display(Name = "Location")]
         public string jobLocation { get; set; }
