@@ -99,6 +99,7 @@
     <Compile Include="Profile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransferAmount.cs" />
     <Compile Include="tutorialCategory.cs">
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>

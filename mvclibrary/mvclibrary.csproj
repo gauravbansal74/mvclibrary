@@ -291,6 +291,7 @@
     <Content Include="emailtemplate\forgotpassword.html" />
     <Content Include="emailtemplate\jobapplication.html" />
     <Content Include="emailtemplate\jobpost.html" />
+    <Content Include="emailtemplate\transferperformed.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\dist\css\bootstrap-theme.css.map" />

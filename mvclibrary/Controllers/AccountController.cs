@@ -359,6 +359,29 @@ namespace mvclibrary.Controllers
         {
             return View();
         }
+
+        public JsonResult transferAmount()
+        {
+            Error objError = new Error();
+            objError.isSuccess = false;
+            objError.message = "Oops.. something went wrong. please try again later.";
+            TransferAmount objTransferAmount = new TransferAmount();
+            objError = objTransferAmount.WithdrawAmount(Convert.ToInt64(User.Identity.Name));
+           
+            if (objError.isSuccess)
+            {
+                EmailNotifier objEmailNotifier = new EmailNotifier();
+                Error objError2 = objEmailNotifier.getUserEmail(Convert.ToInt64(User.Identity.Name));
+                if (objError2.isSuccess)
+                {
+                    String path = Server.MapPath("~/emailtemplate/transferperformed.html");
+                    string text = System.IO.File.ReadAllText(path);
+                    text = text.Replace("#useremail", objError2.message);
+                    objError = objEmailNotifier.sendEmail(objError2.message, text, "Offcampus4u : Payment Transfer Request.");
+                }
+            }
+            return Json(objError, JsonRequestBehavior.AllowGet);
+        }
         
     }
 }

@@ -32,6 +32,14 @@
     <div class="signupform">
         @if(@Model.mywallet != null){
         <span>Your account balance is &#8377; @Model.mywallet.walletBalance</span>
+            if (Convert.ToInt64(Model.mywallet.walletBalance) < 200)
+            {
+               <span>&nbsp;&nbsp;&nbsp;</span> <button class="btn btn-warning" onclick="lessAmount();">Transfer Amount to Account</button>
+            }
+            else
+            {
+               <span>&nbsp;&nbsp;&nbsp;</span> <button class="btn btn-success" onclick="transfermoney();">Transfer to Account</button>
+            }
         }else{
         <span>Your account balance is &#8377; 0.0</span>
         }
@@ -63,3 +71,24 @@
 </div>
     <div style="clear:both;"></div>
 </main>
+<script>
+    function transfermoney() {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("transferAmount", "Account"))"
+         })
+                .done(function (data) {
+                    showalert(data.isSuccess, data.message);
+                    if (data.isSuccess) {
+                        location.reload();
+                    }
+                })
+                .fail(function (data) {
+                    showalert(data.isSuccess, data.message);
+                });
+    }
+
+    function lessAmount() {
+        showalert(false,"For transfer to account. You should have minimum 200 INR in your wallet.");
+    }
+</script>
