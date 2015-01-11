@@ -26,5 +26,13 @@ namespace admin.Controllers
             return View(objjob);
         }
 
+        public JsonResult changejobStatus(Int64 jobId, int jobstatus, string reasonstatus)
+        {
+            Error objError = new Error();
+            Jobs objJobs = new Jobs();
+            objError = objJobs.changeJobStatus(jobId, jobstatus, reasonstatus, Convert.ToInt64(User.Identity.Name));
+            return Json(objError, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

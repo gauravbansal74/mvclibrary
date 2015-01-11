@@ -42,6 +42,7 @@ namespace DLL
         public long modifiedBy { get; set; }
         public int jobStatus { get; set; }
         public bool jobDeteled { get; set; }
+        public string Comment { get; set; }
     
         public virtual account account { get; set; }
         public virtual ICollection<applyJob> applyJobs { get; set; }

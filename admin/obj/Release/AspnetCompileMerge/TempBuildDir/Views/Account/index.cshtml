@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Offcampus4u : Register/Login Panel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+<main class="bs-docs-masthead-other" id="maindiv">
+    
+ <div class="panel panel-default"  style="width:80%;margin:0 auto;text-align:left;">
+  <div class="panel-body">
+       <h4 class="signup">
+           <strong id="signuptext">Admin : Login</strong> 
+           <br />
+           <small>Offcampus4u - Learn, Work & Earn</small>
+       </h4>
+    <div class="signupform" style="margin:0 auto; width:50%;">
+        
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email Address">
+      </div>
+       
+      <div class="form-group">
+        <label for="exampleInputPassword1" >Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      </div>
+        
+      <button id="submit_button"  class="btn btn-primary">Login</button> 
+
+    </div>
+  </div>
+</div>
+</main>
+<script>
+    $("#submit_button").on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("checkLogin", "Account"))",
+            data: { email: $("#inputEmail").val(), password: $("#inputPassword").val() }
+        })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+            if (data.isSuccess) {
+                location.reload();
+            }
+        })
+        .fail(function (data) {
+            console.log("fail", data);
+            showalert(data.isSuccess, data.message);
+        });
+    });
+</script>
+   
+ 
+
+
+
+    
+

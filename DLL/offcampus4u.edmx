@@ -198,6 +198,7 @@
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
           <Property Name="jobStatus" Type="int" Nullable="false" />
           <Property Name="jobDeteled" Type="bit" Nullable="false" />
+          <Property Name="Comment" Type="text" />
         </EntityType>
         <EntityType Name="tutorialCategory">
           <Key>
@@ -582,6 +583,7 @@
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
           <Property Type="Int32" Name="jobStatus" Nullable="false" />
           <Property Type="Boolean" Name="jobDeteled" Nullable="false" />
+          <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__job__createdBy__3552E9B6" FromRole="job" ToRole="account" />
           <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__jobId__0C50D423" FromRole="job" ToRole="applyJob" />
         </EntityType>
@@ -902,6 +904,7 @@
           <EntitySetMapping Name="jobs">
             <EntityTypeMapping TypeName="offcampus4uModel.job">
               <MappingFragment StoreEntitySet="job">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="jobDeteled" ColumnName="jobDeteled" />
                 <ScalarProperty Name="jobStatus" ColumnName="jobStatus" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />

@@ -201,6 +201,7 @@
     <Property Type="Int64" Name="modifiedBy" Nullable="false" />
     <Property Type="Int32" Name="jobStatus" Nullable="false" />
     <Property Type="Boolean" Name="jobDeteled" Nullable="false" />
+    <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__job__createdBy__3552E9B6" FromRole="job" ToRole="account" />
     <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__jobId__0C50D423" FromRole="job" ToRole="applyJob" />
   </EntityType>

@@ -193,6 +193,7 @@
     <Property Name="modifiedBy" Type="bigint" Nullable="false" />
     <Property Name="jobStatus" Type="int" Nullable="false" />
     <Property Name="jobDeteled" Type="bit" Nullable="false" />
+    <Property Name="Comment" Type="text" />
   </EntityType>
   <EntityType Name="tutorialCategory">
     <Key>

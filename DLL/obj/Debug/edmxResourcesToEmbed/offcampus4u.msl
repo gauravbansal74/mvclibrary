@@ -126,6 +126,7 @@
     <EntitySetMapping Name="jobs">
       <EntityTypeMapping TypeName="offcampus4uModel.job">
         <MappingFragment StoreEntitySet="job">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
           <ScalarProperty Name="jobDeteled" ColumnName="jobDeteled" />
           <ScalarProperty Name="jobStatus" ColumnName="jobStatus" />
           <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />

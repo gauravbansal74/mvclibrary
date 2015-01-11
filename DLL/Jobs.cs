@@ -300,5 +300,86 @@ namespace DLL
             }
             return objError;
         }
+
+        public Error changeJobStatus(Int64 jobId, int status,string reasonstatus, Int64 accountId)
+        {
+            Error objError = new Error();
+            objError.isSuccess = false;
+            objError.message = "Oops.. Somthing went wrong. please try again later";
+            using (var transaction = new TransactionScope())
+            {
+                try
+                {
+                    db = new offcampus4uEntities();
+                    job objJob = db.jobs.Where(x => x.jobId.Equals(jobId)).FirstOrDefault();
+                    if (objJob != null)
+                    {
+                        objJob.jobStatus = status;
+                        objJob.Comment = reasonstatus;
+                        objJob.modifiedBy = accountId;
+                        objJob.modifiedOn = DateTime.Now;
+                        db.SaveChanges();
+                        if (status == 1)
+                        {
+                            wallet objWallet = db.wallets.Where(x => x.accountId.Equals(objJob.createdBy)).FirstOrDefault();
+                            if (objWallet != null)
+                            {
+                                walletTransaction objwalletTransaction = new walletTransaction();
+                                objwalletTransaction.transactionAmount = Convert.ToString(ConfigurationManager.AppSettings["amountforpost"]);
+                                objwalletTransaction.walletId = objWallet.walletId;
+                                objwalletTransaction.walletDescription = "Job post successfully approved";
+                                objwalletTransaction.createdBy = accountId;
+                                objwalletTransaction.createdOn = DateTime.Now;
+                                objwalletTransaction.modifiedBy = accountId;
+                                objwalletTransaction.modifiedOn = DateTime.Now;
+                                objwalletTransaction.transactionStatus = 1;
+                                objwalletTransaction.isDeleted = false;
+                                db.walletTransactions.Add(objwalletTransaction);
+                                objWallet.walletBalance = Convert.ToString(Convert.ToInt64(objWallet.walletBalance) + Convert.ToInt64(ConfigurationManager.AppSettings["amountforpost"]));
+                                objWallet.modifiedBy = accountId;
+                                objWallet.modifiedOn = DateTime.Now;
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                objWallet = new wallet();
+                                objWallet.walletBalance = "0";
+                                objWallet.accountId = objJob.createdBy;
+                                objWallet.createdBy = accountId;
+                                objWallet.createdOn = DateTime.Now;
+                                objWallet.modifiedBy = accountId;
+                                objWallet.modifiedOn = DateTime.Now;
+                                objWallet.isDeleted = false;
+                                db.wallets.Add(objWallet);
+                                db.SaveChanges();
+                                walletTransaction objwalletTransaction = new walletTransaction();
+                                objwalletTransaction.transactionAmount = Convert.ToString(ConfigurationManager.AppSettings["amountforpost"]);
+                                objwalletTransaction.walletId = objWallet.walletId;
+                                objwalletTransaction.walletDescription = "Job post successfully approved";
+                                objwalletTransaction.createdBy = accountId;
+                                objwalletTransaction.createdOn = DateTime.Now;
+                                objwalletTransaction.modifiedBy = accountId;
+                                objwalletTransaction.modifiedOn = DateTime.Now;
+                                objwalletTransaction.transactionStatus = 1;
+                                objwalletTransaction.isDeleted = false;
+                                db.walletTransactions.Add(objwalletTransaction);
+                                objWallet.walletBalance = Convert.ToString(Convert.ToInt64(objWallet.walletBalance) + Convert.ToInt64(ConfigurationManager.AppSettings["amountforpost"]));
+                                objWallet.modifiedBy = accountId;
+                                objWallet.modifiedOn = DateTime.Now;
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                    transaction.Complete();
+                    objError.isSuccess = true;
+                    objError.message = "Success";
+                }
+                catch (Exception ex)
+                {
+                    transaction.Dispose();
+                }
+            }
+            return objError;
+        }
     }
 }
