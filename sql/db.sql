@@ -170,7 +170,17 @@ ALTER TABLE dbo.account ADD isAdmin BIT DEFAULT 0 NOT NULL;
 ALTER TABLE dbo.job ADD FOREIGN KEY (createdBy) REFERENCES account(accountId);
 
 
-
+CREATE TABLE Rating(
+RatingId BIGINT IDENTITY(1,1) PRIMARY KEY,
+RatingValue BIGINT NOT NULL,
+JobId BIGINT NOT NULL,
+createdBy BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+FOREIGN KEY (JobId) REFERENCES job(jobId),
+FOREIGN KEY (createdBy) REFERENCES account(accountId)
+)
 
 
 

@@ -9,6 +9,7 @@
     <EntitySet Name="employers" EntityType="offcampus4uModel.employer" />
     <EntitySet Name="highestEducations" EntityType="offcampus4uModel.highestEducation" />
     <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
+    <EntitySet Name="Ratings" EntityType="offcampus4uModel.Rating" />
     <EntitySet Name="tutorialCategories" EntityType="offcampus4uModel.tutorialCategory" />
     <EntitySet Name="videos" EntityType="offcampus4uModel.video" />
     <EntitySet Name="wallets" EntityType="offcampus4uModel.wallet" />
@@ -26,6 +27,10 @@
       <End Role="account" EntitySet="accounts" />
       <End Role="job" EntitySet="jobs" />
     </AssociationSet>
+    <AssociationSet Name="FK__Rating__createdB__4E1E9780" Association="offcampus4uModel.FK__Rating__createdB__4E1E9780">
+      <End Role="account" EntitySet="accounts" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
     <AssociationSet Name="FK__wallet__accountI__7A3223E8" Association="offcampus4uModel.FK__wallet__accountI__7A3223E8">
       <End Role="account" EntitySet="accounts" />
       <End Role="wallet" EntitySet="wallets" />
@@ -37,6 +42,10 @@
     <AssociationSet Name="FK__applyJob__jobId__0C50D423" Association="offcampus4uModel.FK__applyJob__jobId__0C50D423">
       <End Role="job" EntitySet="jobs" />
       <End Role="applyJob" EntitySet="applyJobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating__JobId__4D2A7347" Association="offcampus4uModel.FK__Rating__JobId__4D2A7347">
+      <End Role="job" EntitySet="jobs" />
+      <End Role="Rating" EntitySet="Ratings" />
     </AssociationSet>
     <AssociationSet Name="FK__video__categoryI__19AACF41" Association="offcampus4uModel.FK__video__categoryI__19AACF41">
       <End Role="tutorialCategory" EntitySet="tutorialCategories" />
@@ -83,6 +92,7 @@
     <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__accoun__0B5CAFEA" FromRole="account" ToRole="applyJob" />
     <NavigationProperty Name="BankDetails" Relationship="offcampus4uModel.FK__BankDetai__accou__74794A92" FromRole="account" ToRole="BankDetail" />
     <NavigationProperty Name="jobs" Relationship="offcampus4uModel.FK__job__createdBy__3552E9B6" FromRole="account" ToRole="job" />
+    <NavigationProperty Name="Ratings" Relationship="offcampus4uModel.FK__Rating__createdB__4E1E9780" FromRole="account" ToRole="Rating" />
     <NavigationProperty Name="wallets" Relationship="offcampus4uModel.FK__wallet__accountI__7A3223E8" FromRole="account" ToRole="wallet" />
     <NavigationProperty Name="withdrawals" Relationship="offcampus4uModel.FK__withdrawa__accou__1E6F845E" FromRole="account" ToRole="withdrawal" />
   </EntityType>
@@ -204,6 +214,21 @@
     <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__job__createdBy__3552E9B6" FromRole="job" ToRole="account" />
     <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__jobId__0C50D423" FromRole="job" ToRole="applyJob" />
+    <NavigationProperty Name="Ratings" Relationship="offcampus4uModel.FK__Rating__JobId__4D2A7347" FromRole="job" ToRole="Rating" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="RatingId" />
+    </Key>
+    <Property Type="Int64" Name="RatingId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="RatingValue" Nullable="false" />
+    <Property Type="Int64" Name="JobId" Nullable="false" />
+    <Property Type="Int64" Name="createdBy" Nullable="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__Rating__createdB__4E1E9780" FromRole="Rating" ToRole="account" />
+    <NavigationProperty Name="job" Relationship="offcampus4uModel.FK__Rating__JobId__4D2A7347" FromRole="Rating" ToRole="job" />
   </EntityType>
   <EntityType Name="tutorialCategory">
     <Key>
@@ -319,6 +344,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Rating__createdB__4E1E9780">
+    <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
+    <End Type="offcampus4uModel.Rating" Role="Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__wallet__accountI__7A3223E8">
     <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
     <End Type="offcampus4uModel.wallet" Role="wallet" Multiplicity="*" />
@@ -352,6 +389,18 @@
       </Principal>
       <Dependent Role="applyJob">
         <PropertyRef Name="jobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating__JobId__4D2A7347">
+    <End Type="offcampus4uModel.job" Role="job" Multiplicity="1" />
+    <End Type="offcampus4uModel.Rating" Role="Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="job">
+        <PropertyRef Name="jobId" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="JobId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

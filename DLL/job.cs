@@ -17,6 +17,7 @@ namespace DLL
         public job()
         {
             this.applyJobs = new HashSet<applyJob>();
+            this.Ratings = new HashSet<Rating>();
         }
     
         public long jobId { get; set; }
@@ -46,5 +47,6 @@ namespace DLL
     
         public virtual account account { get; set; }
         public virtual ICollection<applyJob> applyJobs { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

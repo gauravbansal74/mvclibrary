@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using DLL.ViewModel;
 
 namespace DLL
 {
@@ -13,14 +14,39 @@ namespace DLL
     {
         private offcampus4uEntities db;
 
-        public List<job> getJobs(int skipRecords, int limit)
+        public List<JobDLLViewModel> getJobs(int skipRecords, int limit)
         {
 
             List<job> listJob = new List<job>();
             db = new offcampus4uEntities();
             db.Configuration.ProxyCreationEnabled = false;
+            List<JobDLLViewModel> objJobViewModelList = new List<JobDLLViewModel>();
+
             listJob = db.jobs.Where(x => x.jobDeteled.Equals(false) && x.jobStatus.Equals(1)).OrderByDescending(x => x.jobId).Skip(skipRecords).Take(limit).ToList<job>();
-            return listJob;
+            if (listJob != null)
+            {
+                foreach (job item in listJob)
+                {
+                        JobDLLViewModel objJobViewModel = new JobDLLViewModel();
+                        objJobViewModel.jobData = item;
+                        var score = (from r in db.Ratings
+                                     where r.JobId.Equals(item.jobId)
+                                     select r.RatingValue);
+                        if (score.Any())
+                        {
+                            Int64 myscore = Convert.ToInt64(score.Average());
+                            objJobViewModel.ratingScore = myscore;
+                        }
+                        else
+                        {
+                            objJobViewModel.ratingScore = 0;
+                        }
+                        objJobViewModelList.Add(objJobViewModel);
+                   
+                    
+                }
+            }
+            return objJobViewModelList;
         }
 
         public List<job> getunApproveJobs()
@@ -31,11 +57,27 @@ namespace DLL
             return listJob;
         }
 
-        public job getJob(Int64 jobId)
+        public JobDLLViewModel getJob(Int64 jobId)
         {
             db = new offcampus4uEntities();
-            job objJob = db.jobs.Where(x => x.jobId.Equals(jobId) && x.jobDeteled.Equals(false)).FirstOrDefault();
-            return objJob;
+            JobDLLViewModel objJobDLLViewModel = new JobDLLViewModel();
+            objJobDLLViewModel.jobData = db.jobs.Where(x => x.jobId.Equals(jobId) && x.jobDeteled.Equals(false)).FirstOrDefault();
+            if (objJobDLLViewModel.jobData != null)
+            {
+                var score = (from r in db.Ratings
+                             where r.JobId.Equals(objJobDLLViewModel.jobData.jobId)
+                             select r.RatingValue);
+                if (score.Any())
+                {
+                    Int64 myscore = Convert.ToInt64(score.Average());
+                    objJobDLLViewModel.ratingScore = myscore;
+                }
+                else
+                {
+                    objJobDLLViewModel.ratingScore = 0;
+                }
+            }
+            return objJobDLLViewModel;
         }
 
        
@@ -372,7 +414,7 @@ namespace DLL
                     }
                     transaction.Complete();
                     objError.isSuccess = true;
-                    objError.message = "Success";
+                    objError.message = Convert.ToString(objJob.createdBy);
                 }
                 catch (Exception ex)
                 {

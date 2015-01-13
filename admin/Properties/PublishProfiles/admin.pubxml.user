@@ -40,16 +40,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/28/2014 17:09:25</publishTime>
     </File>
     <File Include="bin/admin.dll">
-      <publishTime>01/11/2015 16:28:29</publishTime>
+      <publishTime>01/11/2015 23:11:38</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>12/14/2014 21:53:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>01/11/2015 16:28:40</publishTime>
+      <publishTime>01/11/2015 23:12:59</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>01/11/2015 16:28:40</publishTime>
+      <publishTime>01/11/2015 23:12:59</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
       <publishTime>12/14/2014 21:53:47</publishTime>
@@ -61,7 +61,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:46</publishTime>
     </File>
     <File Include="bin/DLL.exe">
-      <publishTime>01/11/2015 16:15:26</publishTime>
+      <publishTime>01/11/2015 22:52:21</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
       <publishTime>12/14/2014 21:53:41</publishTime>
@@ -540,6 +540,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="emailtemplate/jobapplication.html">
       <publishTime>01/06/2015 20:56:52</publishTime>
     </File>
+    <File Include="emailtemplate/postapproved.html">
+      <publishTime>01/11/2015 22:56:16</publishTime>
+    </File>
+    <File Include="emailtemplate/postrejected.html">
+      <publishTime>01/11/2015 22:59:15</publishTime>
+    </File>
     <File Include="favicon.ico">
       <publishTime>01/07/2015 11:52:36</publishTime>
     </File>
@@ -586,7 +592,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2015 11:53:09</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>01/11/2015 16:28:32</publishTime>
+      <publishTime>01/11/2015 23:12:55</publishTime>
     </File>
     <File Include="Scripts/jquery-1.8.2.js">
       <publishTime>12/14/2014 21:53:21</publishTime>
@@ -679,10 +685,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2015 02:45:20</publishTime>
     </File>
     <File Include="Views/Shared/_HomeLayout.cshtml">
-      <publishTime>01/11/2015 15:59:09</publishTime>
+      <publishTime>01/11/2015 23:06:10</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/06/2015 02:58:16</publishTime>
+      <publishTime>01/11/2015 23:09:53</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>01/06/2015 02:45:20</publishTime>

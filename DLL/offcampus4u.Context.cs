@@ -33,6 +33,7 @@ namespace DLL
         public DbSet<employer> employers { get; set; }
         public DbSet<highestEducation> highestEducations { get; set; }
         public DbSet<job> jobs { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
         public DbSet<tutorialCategory> tutorialCategories { get; set; }
         public DbSet<video> videos { get; set; }
         public DbSet<wallet> wallets { get; set; }

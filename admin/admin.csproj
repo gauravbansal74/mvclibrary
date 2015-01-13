@@ -232,6 +232,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmailNotifier.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\RegexUtilities.cs" />
@@ -329,9 +330,11 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="emailimages\logo.png" />
+    <Content Include="emailtemplate\postrejected.html" />
     <Content Include="emailtemplate\emailverify.html" />
     <Content Include="emailtemplate\forgotpassword.html" />
     <Content Include="emailtemplate\jobapplication.html" />
+    <Content Include="emailtemplate\postapproved.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\dist\css\bootstrap-theme.css.map" />

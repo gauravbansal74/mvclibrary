@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Net.Mail;
 using System.Web.UI;
 using System.Linq.Expressions;
+using DLL.ViewModel;
 
 namespace mvclibrary.Controllers
 {
@@ -22,19 +23,19 @@ namespace mvclibrary.Controllers
             return View();
         }
 
-        [OutputCache(Duration = 7200, VaryByParam = "none", Location = OutputCacheLocation.Server)]   
+        //[OutputCache(Duration = 7200, VaryByParam = "none", Location = OutputCacheLocation.Server)]   
         public ActionResult Index()
         {
             return View();
         }
 
-        [OutputCache(Duration = 7200, VaryByParam = "id", Location = OutputCacheLocation.Server)]
+        //[OutputCache(Duration = 7200, VaryByParam = "id", Location = OutputCacheLocation.Server)]
         public JsonResult getJobs(int id)
         {
             int limit = 6;
             int skiprecords = id * limit;
             Jobs objJobs = new DLL.Jobs();
-            List<job> listjob = objJobs.getJobs(skiprecords, limit);
+            List<JobDLLViewModel> listjob = objJobs.getJobs(skiprecords, limit);
             return Json(listjob,JsonRequestBehavior.AllowGet);
         }
 
@@ -262,7 +263,7 @@ namespace mvclibrary.Controllers
         public ActionResult Detail(Int64 id)
         {
             Jobs objJobs = new DLL.Jobs();
-            job objjob = objJobs.getJob(id);
+            JobDLLViewModel objjob = objJobs.getJob(id);
             return View(objjob);
         }
 
@@ -321,7 +322,8 @@ namespace mvclibrary.Controllers
                     string applicantemail = objAccount.email;
                     string applicantresume = objAccount.ResumeFileName;
                     string resumelink = Convert.ToString(ConfigurationManager.AppSettings["localurl"])+"UserFiles/Resume/"+applicantresume;
-                    job objjob = objJobs.getJob(Convert.ToInt64(id));
+                    JobDLLViewModel objjobDLlViewModel = objJobs.getJob(Convert.ToInt64(id));
+                    job objjob = objjobDLlViewModel.jobData;
                     string jobemail = objjob.jobApplyMode;
                     string jobpottitle = objjob.jobTitle;
                     String path = Server.MapPath("~/emailtemplate/jobapplication.html");
@@ -360,6 +362,14 @@ namespace mvclibrary.Controllers
                 }
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public JsonResult saveRating(Int64 jobId, int ratingValue)
+        {
+            Error objError = new DLL.Error();
+            JobRating objJobRating = new DLL.JobRating();
+            objError = objJobRating.saveRating(jobId, Convert.ToInt64(User.Identity.Name), ratingValue);
+            return Json(objError, JsonRequestBehavior.AllowGet);
         }
 
     }
