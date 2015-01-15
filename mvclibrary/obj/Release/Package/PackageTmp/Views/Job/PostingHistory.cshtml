@@ -46,9 +46,11 @@
                           <span class="label label-danger label-as-badge">Rejected</span>
                       }
                 
-                    @job.jobTitle
-                   </li>
+                   <b> @job.jobTitle</b><br />
+                      @job.Comment
+                  </li>
                 }
+                
             }else{
                 <li class="list-group-item">There is nothing in Job Posting History.</li>
             }

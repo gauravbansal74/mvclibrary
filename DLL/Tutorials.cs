@@ -32,7 +32,7 @@ namespace DLL
        public List<video> getVideoListNextTen(Int64 id)
        {
            db = new offcampus4uEntities();
-           List<video> objTutorialsList = db.videos.Where(x => x.categoryId.Equals(id) && x.videoId > id && x.isDeleted.Equals(false)).OrderBy(x=>x.videoId).Skip(10).Take(10).ToList<video>();
+           List<video> objTutorialsList = db.videos.Where(x => x.categoryId.Equals(id) && x.videoId > id && x.isDeleted.Equals(false)).OrderBy(x=>x.videoId).Take(10).ToList<video>();
            return objTutorialsList;
        }
 

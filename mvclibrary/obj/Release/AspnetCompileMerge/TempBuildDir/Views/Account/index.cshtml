@@ -150,7 +150,6 @@
                 });
                 request.execute(function (resp) {
                     console.log(resp);
-                    if (resp.verified) {
                         $.ajax({
                             type: "POST",
                             url: "@(Url.Action("checkLoginWithGmail", "Account"))",
@@ -166,8 +165,6 @@
                             console.log("fail", data);
                             showalert(data.isSuccess, data.message);
                         });
-                    }
-                   
                 });
             });
         }

@@ -80,14 +80,15 @@ namespace DLL
             return objJobDLLViewModel;
         }
 
-       
 
-        public List<job> searchJob(string skillsdesignationcompany, string location, string experience, string salary, int skiprecords, int limit)
+
+        public List<JobDLLViewModel> searchJob(string skillsdesignationcompany, string location, string experience, string salary, int skiprecords, int limit)
         {
             List<job> listJob = new List<job>();
             offcampus4uEntities db = new DLL.offcampus4uEntities();
             db = new offcampus4uEntities();
             db.Configuration.ProxyCreationEnabled = false;
+            List<JobDLLViewModel> objJobViewModelList = new List<JobDLLViewModel>();
             var queryableJob = db.jobs.Where(x => x.jobStatus.Equals(1));
             if (!string.IsNullOrWhiteSpace(skillsdesignationcompany))
             {
@@ -112,7 +113,30 @@ namespace DLL
             }
 
             listJob = queryableJob.OrderByDescending(x => x.jobId).Skip(skiprecords).Take(limit).ToList<job>();
-            return listJob;
+            if (listJob != null)
+            {
+                foreach (job item in listJob)
+                {
+                    JobDLLViewModel objJobViewModel = new JobDLLViewModel();
+                    objJobViewModel.jobData = item;
+                    var score = (from r in db.Ratings
+                                 where r.JobId.Equals(item.jobId)
+                                 select r.RatingValue);
+                    if (score.Any())
+                    {
+                        Int64 myscore = Convert.ToInt64(score.Average());
+                        objJobViewModel.ratingScore = myscore;
+                    }
+                    else
+                    {
+                        objJobViewModel.ratingScore = 0;
+                    }
+                    objJobViewModelList.Add(objJobViewModel);
+
+
+                }
+            }
+            return objJobViewModelList;
         }
 
        
@@ -262,7 +286,7 @@ namespace DLL
         {
             db = new offcampus4uEntities();
             db.Configuration.ProxyCreationEnabled = false;
-            List<job> objApplyHistory = db.jobs.Where(x => x.createdBy.Equals(id) && x.jobStatus.Equals(1) && x.jobDeteled.Equals(false)).OrderByDescending(x => x.jobId).Take(10).ToList<job>();
+            List<job> objApplyHistory = db.jobs.Where(x => x.createdBy.Equals(id) && x.jobDeteled.Equals(false)).OrderByDescending(x => x.jobId).Take(10).ToList<job>();
             return objApplyHistory;
         }
 

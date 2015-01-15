@@ -32,7 +32,7 @@ namespace mvclibrary.Controllers
         //[OutputCache(Duration = 7200, VaryByParam = "id", Location = OutputCacheLocation.Server)]
         public JsonResult getJobs(int id)
         {
-            int limit = 6;
+            int limit = 8;
             int skiprecords = id * limit;
             Jobs objJobs = new DLL.Jobs();
             List<JobDLLViewModel> listjob = objJobs.getJobs(skiprecords, limit);
@@ -270,7 +270,7 @@ namespace mvclibrary.Controllers
 
         public JsonResult GetSearchResult(string skiilsdesignationcompany, string location, string jobMinExp, string jobMinSalary, int id)
         {
-            int limit = 6;
+            int limit = 8;
             int skiprecords = id * limit;
             JobSearchViewModel jobSearch = new JobSearchViewModel();
             jobSearch.skiilsdesignationcompany = skiilsdesignationcompany;
@@ -278,7 +278,7 @@ namespace mvclibrary.Controllers
             jobSearch.jobMinExp = jobMinExp;
             jobSearch.jobMinSalary = jobMinSalary;
             Jobs objJobs = new DLL.Jobs();
-            List<job> listjob = objJobs.searchJob(jobSearch.skiilsdesignationcompany, jobSearch.location, jobSearch.jobMinExp, jobSearch.jobMinSalary,skiprecords, limit);
+            List<JobDLLViewModel> listjob = objJobs.searchJob(jobSearch.skiilsdesignationcompany, jobSearch.location, jobSearch.jobMinExp, jobSearch.jobMinSalary,skiprecords, limit);
             return Json(listjob,JsonRequestBehavior.AllowGet);
         }
 

@@ -1,8 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Offcampus4u : " + @Model.jobTitle;
+    ViewBag.Title = "Offcampus4u : " + @Model.jobData.jobTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/labs.css" type="text/css" media="screen" title="Rating CSS">
+<link href="~/Content/jquery.raty.css" type="text/css" media="screen" title="Rating CSS">
 
+<script src="~/Content/jquery.raty.js" type="text/javascript"></script>
+<script src="~/Content/labs.js" type="text/javascript"></script>
 <main class="bs-docs-masthead-other" style="width: 80%; margin: 0 auto;">
  <div>
      <form class="navbar-form " role="search" method="post" action="/Job/SearchJob">
@@ -72,33 +76,34 @@
             </div>
     <div class="well" style="line-height: 1.42857143;">
         <a href="@Url.Action("Detail", "Job")" style="line-height: 1.42857143;">
-            <h3>@Model.jobTitle</h3></a>
-            @Model.jobCompnayName <br />
-        <div class="color-light pull-left" style="margin-right:10%;line-height: 1.42857143;">
-            <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;
-                <span>@Model.jobMinExp</span><span> - </span><span>@Model.jobMaxExp</span><span> yrs.</span>
-                        
-        </div>
-        <div class="color-light" style="line-height: 1.42857143;">
+            <h3>@Model.jobData.jobTitle</h3></a>
+        <div class="color-light" style="margin-right:10%;line-height: 1.42857143;">
+            <span style="color:#000000;">@Model.jobData.jobCompnayName </span>&nbsp;&nbsp;&nbsp;
+        
+            <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;&nbsp;
+                <span>@Model.jobData.jobMinExp</span><span> - </span><span>@Model.jobData.jobMaxExp</span><span> yrs.</span>&nbsp;&nbsp;&nbsp;
+       
             <span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="line-height: 1.42857143;">
 
-            </span>&nbsp;&nbsp;@Model.jobLocation
-        </div>
-        <div class="salary">
+            </span>&nbsp;&nbsp;@Model.jobData.jobLocation &nbsp;&nbsp;&nbsp;
+       
            
-            @if(Model.jobDisclosed){
-                <span>&#8377;&nbsp;&nbsp;@Model.jobMinSalary - @Model.jobMaxSalary PA</span>
+            @if (Model.jobData.jobDisclosed)
+            {
+                <span>&#8377;&nbsp;&nbsp;@Model.jobData.jobMinSalary - @Model.jobData.jobMaxSalary PA</span>
             }else{
               <span> &#8377;&nbsp;&nbsp;Not Disclosed</span>
             }
-        </div><br />
-        @if (Model.jobApplyModeIsEmail)
+        </div>
+        <div class="default" data-score="@Model.ratingScore" job_id="@Model.jobData.jobId"></div>
+        <br />
+        @if (Model.jobData.jobApplyModeIsEmail)
         {
-        <button class="btn btn-primary" onclick="applyusingemail(@Model.jobId)">Apply</button>
+        <button class="btn btn-primary" onclick="applyusingemail(@Model.jobData.jobId)">Apply</button>
         }
         else
         {
-            <a target="_blank" class="btn btn-primary" href="@Model.jobApplyMode">Apply on Company Website</a>
+            <a target="_blank" class="btn btn-primary" href="@Model.jobData.jobApplyMode">Apply on Company Website</a>
         }
          <div class="pull-right">
             
@@ -113,7 +118,7 @@
     <div class="well" style="line-height: 1.42857143;">
        <div style="line-height: 2.42857143;"><b>Job Description</b></div>
         <div style="width:100%;">
-            @Html.Raw(Model.jobDescription)
+            @Html.Raw(Model.jobData.jobDescription)
         </div>
         <div style="clear:both;"></div>
      </div>
@@ -121,7 +126,7 @@
         <div style="line-height: 2.42857143;"><b>KeySkills</b></div>
         <div style="font-size:20px;">
             @{
-                string[] KeySkills = Model.jobKeyword.Split(',');
+                string[] KeySkills = Model.jobData.jobKeyword.Split(',');
                 foreach (string KeySkill in KeySkills)
                 {
                     <span class="label label-default">@KeySkill</span>
@@ -133,18 +138,18 @@
      </div>
     <div class="well" style="line-height: 1.42857143;">
         <div style="line-height: 2.42857143;"><b>Company Profile</b></div>
-        <div style="line-height: 1.82857143;">Name : <b>@Model.jobCompnayName</b></div>
-        <div style="line-height: 1.82857143;">@Model.jobCompanyInfo</div>
+        <div style="line-height: 1.82857143;">Name : <b>@Model.jobData.jobCompnayName</b></div>
+        <div style="line-height: 1.82857143;">@Model.jobData.jobCompanyInfo</div>
     </div>    
  <div class="well" style="line-height: 1.42857143;">
        
-         @if (Model.jobApplyModeIsEmail)
+         @if (Model.jobData.jobApplyModeIsEmail)
          {
-        <button class="btn btn-primary" onclick="applyusingemail(@Model.jobId)">Apply</button>
+        <button class="btn btn-primary" onclick="applyusingemail(@Model.jobData.jobId)">Apply</button>
          }
          else
          {
-            <a target="_blank" class="btn btn-primary" href="@Model.jobApplyMode">Apply on Company Website</a>
+            <a target="_blank" class="btn btn-primary" href="@Model.jobData.jobApplyMode">Apply on Company Website</a>
          }
     </div>  
        </div>
@@ -152,7 +157,31 @@
     
 </main>
 <script>
+    $.fn.raty.defaults.path = '/Content/images';
+    $('.default').raty({
+        score: function () {
+            return $(this).attr('data-score');
+        },
+        click: function (score, evt) {
+            saveRatingDb($(this).attr('job_id'), score)
 
+        }
+    });
+
+
+    function saveRatingDb(jobId, score) {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("saveRating", "Job"))",
+            data: { jobId: jobId, ratingValue: score }
+        })
+        .done(function (data) {
+            console.log(data);
+        })
+        .fail(function (data) {
+            conasole.log(data);
+        });
+    }
     function applyusingemail(jobid) {
         $.ajax({
             type: "POST",
