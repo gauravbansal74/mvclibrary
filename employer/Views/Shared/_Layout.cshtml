@@ -46,16 +46,22 @@
                 </button>
                 <a href="@Url.Action("Index", "Home")" style="font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;font-size: 33px;font-style: normal;font-variant: normal;font-weight: bold;color:#34495e;text-decoration:none;">Offcampus4u</a>
             </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Account", "Index", "Employer")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Jobs", "Index", "Job")
+
+                    </li>
+                   
+                </ul>
+            </nav>
         </div>
     </header>
     <div id="body">
-            <section>
-             @Html.Partial("_LoginPartial")
-            </section>
         <section class="content-wrapper main-content clear-fix">
-            
-
-
             @RenderBody()
         </section>
     </div>

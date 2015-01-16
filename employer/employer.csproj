@@ -409,6 +409,8 @@
     <Content Include="Views\Employer\Index.cshtml" />
     <Content Include="Views\Employer\_accountLeftMenu.cshtml" />
     <Content Include="Views\Employer\Company.cshtml" />
+    <Content Include="Views\Job\_jobLeftMenu.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

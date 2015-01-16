@@ -10,18 +10,18 @@ namespace employer.Controllers
 {
     public class EmployerController : Controller
     {
-        int userId = 1;
+        
         public ActionResult Index()
         {
             EmpAccount objEmpAccount = new EmpAccount();
-            account objAccount = objEmpAccount.getEmployerDetail(userId);
+            account objAccount = objEmpAccount.getEmployerDetail(Convert.ToInt64(User.Identity.Name));
             return View(objAccount);
         }
 
         public ActionResult Company()
         {
             EmpAccount objEmpAccount = new EmpAccount();
-            company objCompany = objEmpAccount.getEmployerCompany(userId);
+            company objCompany = objEmpAccount.getEmployerCompany(Convert.ToInt64(User.Identity.Name));
             return View(objCompany);
         }
 

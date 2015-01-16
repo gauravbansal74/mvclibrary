@@ -10,15 +10,19 @@ namespace employer.Controllers
 {
     public class JobController : Controller
     {
-        //
-        // GET: /Job/
-
-        public ActionResult postHistory()
+        public ActionResult Index()
         {
             return View();
         }
 
-        public JsonResult getJobHistory(int id){
+        public ActionResult postHistory()
+        {
+            Jobs objJob = new DLL.Jobs();
+            List<job> listApplyJob = objJob.getJobPostingHistory(Convert.ToInt64(User.Identity.Name));
+            return View(listApplyJob);
+        }
+
+        public JsonResult getJobHistory(){
             Jobs objJob = new DLL.Jobs();
             List<job> listApplyJob = objJob.getJobPostingHistory(Convert.ToInt64(User.Identity.Name));
             return Json(listApplyJob,JsonRequestBehavior.AllowGet);
