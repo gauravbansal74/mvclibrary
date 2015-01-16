@@ -184,3 +184,22 @@ FOREIGN KEY (createdBy) REFERENCES account(accountId)
 
 
 
+--------------------------------------------------------------
+--------------------------------------------------------------
+--Employer Side 
+
+CREATE TABLE company(
+companyId BIGINT PRIMARY KEY IDENTITY(1,1),
+companyName VARCHAR(100) NOT NULL, 
+companyAbout VARCHAR(200) NOT NULL,
+companyLogo VARCHAR(100) NOT NULL,
+companyWebsite VARCHAR(50) NOT NULL,
+createdBy	BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL
+)
+
+ALTER TABLE dbo.account ADD isEmployer BIT DEFAULT 0 NOT NULL;
+ALTER TABLE dbo.account ADD isEmployerAdmin BIT DEFAULT 0 NOT NULL;
+ALTER TABLE dbo.account ADD companyId BIGINT NULL;

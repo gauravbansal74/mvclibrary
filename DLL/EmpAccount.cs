@@ -10,66 +10,41 @@ namespace DLL
     {
         private offcampus4uEntities db;
 
-        public Error registerAccount(employer employer)
+        public account getEmployerDetail(Int64 userid)
         {
-            Error objError = new Error();
+            account objAccount = new account();
             try
             {
                 db = new offcampus4uEntities();
-                employer objaccount = db.employers.Where(x => x.employerEmail.Equals(employer.employerEmail)).FirstOrDefault();
-                if (objaccount == null)
-                {
-                    employer.employerKey = Convert.ToString(DateTime.Now.Ticks);
-                    db.employers.Add(employer);
-                    db.SaveChanges();
-                    db.Dispose();
-                    objError.isSuccess = true;
-                    objError.message = employer.employerKey;
-                    return objError;
-                }
-                else
-                {
-                    objError.isSuccess = false;
-                    objError.message = "Employer is already registred with this email address.";
-                    return objError;
-                }
+                objAccount = db.accounts.Where(x => x.accountId.Equals(userid) && x.isEmployer.Equals(true)).FirstOrDefault();
+                return objAccount;
             }
-            catch(Exception e)
+            catch (Exception ex)
             {
-                objError.isSuccess = false;
-                objError.message = "Oops, something went wrong. please try again after sometime.";
-                return objError;
             }
+            return objAccount;
         }
 
-        public Error checkAccount(string email, string password)
+        public company getEmployerCompany(Int64 userid)
         {
-            Error objError = new Error();
-            try
-            {
-                db = new offcampus4uEntities();
-                var userData = (from emp in db.employers
-                                where emp.employerEmail.Equals(email) && emp.employerPassword.Equals(password)
-                                select emp).SingleOrDefault();
-                if (userData != null)
-                {
-                    db.Dispose();
-                    objError.isSuccess = true;
-                    objError.message = userData.employerId.ToString();
-                    return objError;
-                }
-                else
-                {
-                    objError.isSuccess = false;
-                    objError.message = "Email or Password is wrong.";
-                    return objError;
-                }
-
-            }
-            catch
-            {
-                return objError;
-            }
+            db = new offcampus4uEntities();
+            company objCompany = (from com in db.companies
+                                  join acc in db.accounts on com.companyId equals acc.companyId
+                                  where acc.accountId.Equals(userid)
+                                  select com).FirstOrDefault();
+            return objCompany;
         }
     }
 }
+
+
+//var entryPoint = (from ep in dbContext.tbl_EntryPoint
+//                 join e in dbContext.tbl_Entry on ep.EID equals e.EID
+//                 join t in dbContext.tbl_Title on e.TID equals t.TID
+//                 where e.OwnerID == user.UID
+//                 select new {
+//                     UID = e.OwnerID,
+//                     TID = e.TID,
+//                     Title = t.Title,
+//                     EID = e.EID
+//                 }).Take(10);

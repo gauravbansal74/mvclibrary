@@ -54,7 +54,7 @@ namespace employer.Controllers
                 objError.message = "Enter the Phone Number with Extension.";
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
-            
+
             if (password.Length < 8 || cfrmpassword.Length < 8)
             {
                 objError.isSuccess = false;
@@ -83,69 +83,73 @@ namespace employer.Controllers
 
             if (password.Equals(cfrmpassword))
             {
-                EmpAccount objEmpAccount = new EmpAccount();
-                DLL.employer objEmployer = new DLL.employer();
-                objEmployer.employerFirstName = name;
-                objEmployer.employerPhoneNumber = phone;
-                objEmployer.accountStatus = 0;
-                objEmployer.createdOn = DateTime.Now;
-                objEmployer.companyId = 1;
-                objEmployer.employerDesignation = "Under Approval";
-                objEmployer.employerEmail = email;
-                objEmployer.employerPassword = password;
-                objEmployer.isDeleted = false;
-                objEmployer.modifiedBy = 1;
-                objEmployer.modifiedOn = DateTime.Now;
-                objError = objEmpAccount.registerAccount(objEmployer);
-                if (objError.isSuccess)
-                {
-                    String path = Server.MapPath("~/emailtemplate/emailverify.html");
-                    string text = System.IO.File.ReadAllText(path);
-                    text = text.Replace("#useremail", email);
-                    text = text.Replace("#userverificationLink", ConfigurationManager.AppSettings["localurl"] + "Account/verifyemail/" + objError.message);
-                    Task.Factory.StartNew(() =>
-                    {
-                        try
-                        {
+                //    EmpAccount objEmpAccount = new EmpAccount();
+                //    DLL.employer objEmployer = new DLL.employer();
+                //    objEmployer.employerFirstName = name;
+                //    objEmployer.employerPhoneNumber = phone;
+                //    objEmployer.accountStatus = 0;
+                //    objEmployer.createdOn = DateTime.Now;
+                //    objEmployer.companyId = 1;
+                //    objEmployer.employerDesignation = "Under Approval";
+                //    objEmployer.employerEmail = email;
+                //    objEmployer.employerPassword = password;
+                //    objEmployer.isDeleted = false;
+                //    objEmployer.modifiedBy = 1;
+                //    objEmployer.modifiedOn = DateTime.Now;
+                //    objError = objEmpAccount.registerAccount(objEmployer);
+                //    if (objError.isSuccess)
+                //    {
+                //        String path = Server.MapPath("~/emailtemplate/emailverify.html");
+                //        string text = System.IO.File.ReadAllText(path);
+                //        text = text.Replace("#useremail", email);
+                //        text = text.Replace("#userverificationLink", ConfigurationManager.AppSettings["localurl"] + "Account/verifyemail/" + objError.message);
+                //        Task.Factory.StartNew(() =>
+                //        {
+                //            try
+                //            {
 
-                            MailMessage mail = new MailMessage();
-                            mail.To.Add(new MailAddress(email));
-                            mail.From = new MailAddress(Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]));
-                            mail.Subject = "Verify your email for Offcampus4u";
-                            string Body = text;
-                            mail.Body = Body;
-                            mail.IsBodyHtml = true;
-                            SmtpClient smtp = new SmtpClient();
-                            smtp.Host = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminsmtp"]);
-                            smtp.Port = 587;
-                            smtp.UseDefaultCredentials = false;
-                            smtp.Credentials = new System.Net.NetworkCredential
-                            (Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminpassword"]));// Enter seders User name and password  
-                            smtp.EnableSsl = true;
-                            smtp.Send(mail);
-                        }
-                        catch
-                        {
+                //                MailMessage mail = new MailMessage();
+                //                mail.To.Add(new MailAddress(email));
+                //                mail.From = new MailAddress(Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]));
+                //                mail.Subject = "Verify your email for Offcampus4u";
+                //                string Body = text;
+                //                mail.Body = Body;
+                //                mail.IsBodyHtml = true;
+                //                SmtpClient smtp = new SmtpClient();
+                //                smtp.Host = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminsmtp"]);
+                //                smtp.Port = 587;
+                //                smtp.UseDefaultCredentials = false;
+                //                smtp.Credentials = new System.Net.NetworkCredential
+                //                (Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminpassword"]));// Enter seders User name and password  
+                //                smtp.EnableSsl = true;
+                //                smtp.Send(mail);
+                //            }
+                //            catch
+                //            {
 
 
-                        }
-                    });
-                    objError.isSuccess = true;
-                    objError.message = "We have created your account. please verify your email address.";
-                    return Json(objError, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(objError, JsonRequestBehavior.AllowGet);
-                }
+                //            }
+                //        });
+                //        objError.isSuccess = true;
+                //        objError.message = "We have created your account. please verify your email address.";
+                //        return Json(objError, JsonRequestBehavior.AllowGet);
+                //    }
+                //    else
+                //    {
+                //        return Json(objError, JsonRequestBehavior.AllowGet);
+                //    }
+                //}
+                //else
+                //{
+                //    objError.isSuccess = false;
+                //    objError.message = "Password doesn't match with confirm password";
+                //    return Json(objError, JsonRequestBehavior.AllowGet);
+//                }
+                   
             }
-            else
-            {
-                objError.isSuccess = false;
-                objError.message = "Password doesn't match with confirm password";
-                return Json(objError, JsonRequestBehavior.AllowGet);
-            }
-
+            objError.isSuccess = false;
+            objError.message = "Password doesn't match with confirm password";
+            return Json(objError, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]

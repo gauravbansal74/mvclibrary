@@ -232,7 +232,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\EmailNotifier.cs" />
+    <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\RegexUtilities.cs" />
@@ -401,8 +403,12 @@
     <Content Include="Views\Account\index.cshtml" />
     <Content Include="Views\Job\index.cshtml" />
     <Content Include="Views\Job\seeJob.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Company\saveCompany.cshtml" />
+    <Content Include="Views\Employer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AppImages\CompanyImage\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

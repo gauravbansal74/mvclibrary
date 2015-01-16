@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DLL;
+using DLL.ViewModel;
 
 namespace admin.Controllers
 {
@@ -22,7 +23,7 @@ namespace admin.Controllers
         public ActionResult seeJob(Int64 id)
         {
             Jobs objJobs = new DLL.Jobs();
-            job objjob = objJobs.getJob(id);
+            JobDLLViewModel objjob = objJobs.getJob(id);
             return View(objjob);
         }
 

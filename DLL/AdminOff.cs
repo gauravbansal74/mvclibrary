@@ -47,5 +47,25 @@ namespace DLL
             listJob = db.jobs.Where(x => x.jobDeteled.Equals(false) && x.jobStatus.Equals(0)).ToList<job>();
             return listJob;
         }
+
+        public Error saveCompany(company objCompany){
+            Error objError = new Error();
+            objError.isSuccess = false;
+            objError.message = "Oops.. somthing went wrong. please try again later.";
+            try
+            {
+                db = new offcampus4uEntities();
+                db.companies.Add(objCompany);
+                db.SaveChanges();
+                objError.isSuccess = true;
+                objError.message = "Success";
+            }
+            catch (Exception ex)
+            {
+                objError.isSuccess = false;
+                objError.message = "Oops.. somthing went wrong. please try again later.";
+            }
+            return objError;
+        }
     }
 }

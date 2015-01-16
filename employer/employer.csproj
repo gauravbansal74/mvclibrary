@@ -232,6 +232,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\RegexUtilities.cs" />
@@ -267,6 +268,7 @@
     <Content Include="Content\dist\js\npm.js" />
     <Content Include="Content\images\buttons.gif" />
     <Content Include="Content\images\jobs-less.png" />
+    <Content Include="Content\images\profile.png" />
     <Content Include="Content\images\ruppes.png" />
     <Content Include="Content\images\toolbar.gif" />
     <Content Include="Content\images\tutorials-less.png" />
@@ -404,6 +406,9 @@
     <Content Include="Views\Job\SaveJob.cshtml" />
     <Content Include="Views\Job\postHistory.cshtml" />
     <Content Include="Views\Job\seeApplication.cshtml" />
+    <Content Include="Views\Employer\Index.cshtml" />
+    <Content Include="Views\Employer\_accountLeftMenu.cshtml" />
+    <Content Include="Views\Employer\Company.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

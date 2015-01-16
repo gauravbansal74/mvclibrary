@@ -2,11 +2,9 @@
 <Schema Namespace="offcampus4uModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="offcampus4uEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="accounts" EntityType="offcampus4uModel.account" />
-    <EntitySet Name="admins" EntityType="offcampus4uModel.admin" />
     <EntitySet Name="applyJobs" EntityType="offcampus4uModel.applyJob" />
     <EntitySet Name="BankDetails" EntityType="offcampus4uModel.BankDetail" />
     <EntitySet Name="companies" EntityType="offcampus4uModel.company" />
-    <EntitySet Name="employers" EntityType="offcampus4uModel.employer" />
     <EntitySet Name="highestEducations" EntityType="offcampus4uModel.highestEducation" />
     <EntitySet Name="jobs" EntityType="offcampus4uModel.job" />
     <EntitySet Name="Ratings" EntityType="offcampus4uModel.Rating" />
@@ -23,11 +21,11 @@
       <End Role="account" EntitySet="accounts" />
       <End Role="BankDetail" EntitySet="BankDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__job__createdBy__3552E9B6" Association="offcampus4uModel.FK__job__createdBy__3552E9B6">
+    <AssociationSet Name="FK__job__createdBy__214BF109" Association="offcampus4uModel.FK__job__createdBy__214BF109">
       <End Role="account" EntitySet="accounts" />
       <End Role="job" EntitySet="jobs" />
     </AssociationSet>
-    <AssociationSet Name="FK__Rating__createdB__4E1E9780" Association="offcampus4uModel.FK__Rating__createdB__4E1E9780">
+    <AssociationSet Name="FK__Rating__createdB__308E3499" Association="offcampus4uModel.FK__Rating__createdB__308E3499">
       <End Role="account" EntitySet="accounts" />
       <End Role="Rating" EntitySet="Ratings" />
     </AssociationSet>
@@ -43,7 +41,7 @@
       <End Role="job" EntitySet="jobs" />
       <End Role="applyJob" EntitySet="applyJobs" />
     </AssociationSet>
-    <AssociationSet Name="FK__Rating__JobId__4D2A7347" Association="offcampus4uModel.FK__Rating__JobId__4D2A7347">
+    <AssociationSet Name="FK__Rating__JobId__2F9A1060" Association="offcampus4uModel.FK__Rating__JobId__2F9A1060">
       <End Role="job" EntitySet="jobs" />
       <End Role="Rating" EntitySet="Ratings" />
     </AssociationSet>
@@ -89,25 +87,15 @@
     <Property Type="Int32" Name="accountStatus" Nullable="false" />
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
     <Property Type="Boolean" Name="isAdmin" Nullable="false" />
+    <Property Type="Boolean" Name="isEmployer" Nullable="false" />
+    <Property Type="Boolean" Name="isEmployerAdmin" Nullable="false" />
+    <Property Type="Int64" Name="companyId" />
     <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__accoun__0B5CAFEA" FromRole="account" ToRole="applyJob" />
     <NavigationProperty Name="BankDetails" Relationship="offcampus4uModel.FK__BankDetai__accou__74794A92" FromRole="account" ToRole="BankDetail" />
-    <NavigationProperty Name="jobs" Relationship="offcampus4uModel.FK__job__createdBy__3552E9B6" FromRole="account" ToRole="job" />
-    <NavigationProperty Name="Ratings" Relationship="offcampus4uModel.FK__Rating__createdB__4E1E9780" FromRole="account" ToRole="Rating" />
+    <NavigationProperty Name="jobs" Relationship="offcampus4uModel.FK__job__createdBy__214BF109" FromRole="account" ToRole="job" />
+    <NavigationProperty Name="Ratings" Relationship="offcampus4uModel.FK__Rating__createdB__308E3499" FromRole="account" ToRole="Rating" />
     <NavigationProperty Name="wallets" Relationship="offcampus4uModel.FK__wallet__accountI__7A3223E8" FromRole="account" ToRole="wallet" />
     <NavigationProperty Name="withdrawals" Relationship="offcampus4uModel.FK__withdrawa__accou__1E6F845E" FromRole="account" ToRole="withdrawal" />
-  </EntityType>
-  <EntityType Name="admin">
-    <Key>
-      <PropertyRef Name="adminId" />
-    </Key>
-    <Property Type="Int64" Name="adminId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="adminFirstName" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="adminLastName" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="adminEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="adminPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
   </EntityType>
   <EntityType Name="applyJob">
     <Key>
@@ -147,30 +135,12 @@
     <Property Type="Int64" Name="companyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="companyName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="companyAbout" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="companyLogo" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="companyWebsite" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="Int64" Name="createdBy" Nullable="false" />
     <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
     <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
     <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-  </EntityType>
-  <EntityType Name="employer">
-    <Key>
-      <PropertyRef Name="employerId" />
-    </Key>
-    <Property Type="Int64" Name="employerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int64" Name="companyId" Nullable="false" />
-    <Property Type="String" Name="employerFirstName" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="employerLastName" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="employerEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="employerPhoneNumber" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="employerPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="employerDesignation" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="employerKey" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
-    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
-    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-    <Property Type="Int32" Name="accountStatus" Nullable="false" />
-    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </EntityType>
   <EntityType Name="highestEducation">
     <Key>
@@ -212,9 +182,9 @@
     <Property Type="Int32" Name="jobStatus" Nullable="false" />
     <Property Type="Boolean" Name="jobDeteled" Nullable="false" />
     <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__job__createdBy__3552E9B6" FromRole="job" ToRole="account" />
+    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__job__createdBy__214BF109" FromRole="job" ToRole="account" />
     <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__jobId__0C50D423" FromRole="job" ToRole="applyJob" />
-    <NavigationProperty Name="Ratings" Relationship="offcampus4uModel.FK__Rating__JobId__4D2A7347" FromRole="job" ToRole="Rating" />
+    <NavigationProperty Name="Ratings" Relationship="offcampus4uModel.FK__Rating__JobId__2F9A1060" FromRole="job" ToRole="Rating" />
   </EntityType>
   <EntityType Name="Rating">
     <Key>
@@ -227,8 +197,8 @@
     <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
     <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
     <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__Rating__createdB__4E1E9780" FromRole="Rating" ToRole="account" />
-    <NavigationProperty Name="job" Relationship="offcampus4uModel.FK__Rating__JobId__4D2A7347" FromRole="Rating" ToRole="job" />
+    <NavigationProperty Name="account" Relationship="offcampus4uModel.FK__Rating__createdB__308E3499" FromRole="Rating" ToRole="account" />
+    <NavigationProperty Name="job" Relationship="offcampus4uModel.FK__Rating__JobId__2F9A1060" FromRole="Rating" ToRole="job" />
   </EntityType>
   <EntityType Name="tutorialCategory">
     <Key>
@@ -332,7 +302,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__job__createdBy__3552E9B6">
+  <Association Name="FK__job__createdBy__214BF109">
     <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
     <End Type="offcampus4uModel.job" Role="job" Multiplicity="*" />
     <ReferentialConstraint>
@@ -344,7 +314,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Rating__createdB__4E1E9780">
+  <Association Name="FK__Rating__createdB__308E3499">
     <End Type="offcampus4uModel.account" Role="account" Multiplicity="1" />
     <End Type="offcampus4uModel.Rating" Role="Rating" Multiplicity="*" />
     <ReferentialConstraint>
@@ -392,7 +362,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Rating__JobId__4D2A7347">
+  <Association Name="FK__Rating__JobId__2F9A1060">
     <End Type="offcampus4uModel.job" Role="job" Multiplicity="1" />
     <End Type="offcampus4uModel.Rating" Role="Rating" Multiplicity="*" />
     <ReferentialConstraint>

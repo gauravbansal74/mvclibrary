@@ -4,6 +4,9 @@
     <EntitySetMapping Name="accounts">
       <EntityTypeMapping TypeName="offcampus4uModel.account">
         <MappingFragment StoreEntitySet="account">
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+          <ScalarProperty Name="isEmployerAdmin" ColumnName="isEmployerAdmin" />
+          <ScalarProperty Name="isEmployer" ColumnName="isEmployer" />
           <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
           <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
           <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
@@ -29,20 +32,6 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="accountId" ColumnName="accountId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="admins">
-      <EntityTypeMapping TypeName="offcampus4uModel.admin">
-        <MappingFragment StoreEntitySet="admin">
-          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-          <ScalarProperty Name="adminPassword" ColumnName="adminPassword" />
-          <ScalarProperty Name="adminEmail" ColumnName="adminEmail" />
-          <ScalarProperty Name="adminLastName" ColumnName="adminLastName" />
-          <ScalarProperty Name="adminFirstName" ColumnName="adminFirstName" />
-          <ScalarProperty Name="adminId" ColumnName="adminId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -84,29 +73,10 @@
           <ScalarProperty Name="createdOn" ColumnName="createdOn" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
           <ScalarProperty Name="companyWebsite" ColumnName="companyWebsite" />
+          <ScalarProperty Name="companyLogo" ColumnName="companyLogo" />
           <ScalarProperty Name="companyAbout" ColumnName="companyAbout" />
           <ScalarProperty Name="companyName" ColumnName="companyName" />
           <ScalarProperty Name="companyId" ColumnName="companyId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="employers">
-      <EntityTypeMapping TypeName="offcampus4uModel.employer">
-        <MappingFragment StoreEntitySet="employer">
-          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
-          <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
-          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
-          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
-          <ScalarProperty Name="employerKey" ColumnName="employerKey" />
-          <ScalarProperty Name="employerDesignation" ColumnName="employerDesignation" />
-          <ScalarProperty Name="employerPassword" ColumnName="employerPassword" />
-          <ScalarProperty Name="employerPhoneNumber" ColumnName="employerPhoneNumber" />
-          <ScalarProperty Name="employerEmail" ColumnName="employerEmail" />
-          <ScalarProperty Name="employerLastName" ColumnName="employerLastName" />
-          <ScalarProperty Name="employerFirstName" ColumnName="employerFirstName" />
-          <ScalarProperty Name="companyId" ColumnName="companyId" />
-          <ScalarProperty Name="employerId" ColumnName="employerId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -3,6 +3,5 @@ C:\Users\noname\Documents\GitHub\mvclibrary\DLL\bin\Debug\DLL.exe
 C:\Users\noname\Documents\GitHub\mvclibrary\DLL\bin\Debug\DLL.pdb
 C:\Users\noname\Documents\GitHub\mvclibrary\DLL\bin\Debug\EntityFramework.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\DLL\bin\Debug\EntityFramework.xml
-C:\Users\noname\Documents\GitHub\mvclibrary\DLL\obj\Debug\DLL.csprojResolveAssemblyReference.cache
 C:\Users\noname\Documents\GitHub\mvclibrary\DLL\obj\Debug\DLL.exe
 C:\Users\noname\Documents\GitHub\mvclibrary\DLL\obj\Debug\DLL.pdb

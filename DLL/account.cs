@@ -49,6 +49,9 @@ namespace DLL
         public int accountStatus { get; set; }
         public bool isDeleted { get; set; }
         public bool isAdmin { get; set; }
+        public bool isEmployer { get; set; }
+        public bool isEmployerAdmin { get; set; }
+        public Nullable<long> companyId { get; set; }
     
         public virtual ICollection<applyJob> applyJobs { get; set; }
         public virtual ICollection<BankDetail> BankDetails { get; set; }

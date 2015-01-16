@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<main class="bs-docs-masthead-other" id="content" role="main">
+    <div class="panel panel-default"  style="width:90%;margin:0 auto;text-align:left;">
+        
+        <div class="panel-body">
+             <h4 class="signup">
+           <strong id="signuptext">Add Company</strong> 
+           <br />
+           <small>Offcampus4u - Learn, Work & Earn</small>
+       </h4>
+       <div class="signupform">
+           <form id="companydataform" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Company Name</label>
+                <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1" >About the company</label>
+                <textarea class="form-control" id="aboutCompany" placeholder="About the company"></textarea>
+              </div>
+              <div class="form-group" id="confirmpasswordinput">
+                <label for="exampleInputPassword1" >Company Website</label>
+                <input type="text" class="form-control" id="companyWebsite" placeholder="Company Website">
+              </div>
+              <div class="form-group">
+                 <label for="exampleInputEmail1">Company Logo Icon 64x64</label>
+                 <input type="file" class="form-control" id="fileUpload" />
+              </div>
+              <button type="submit" id="submit_company"  class="btn btn-primary">Save</button>
+           </form>
+       </div>
+ </div>
+     
+</div>
+</main>
+<script>
+    $("#companydataform").submit(function () {
+        var data = new FormData();
+        data.append("companyName", $("#companyName").val());
+        data.append("aboutCompany", $("#aboutCompany").val());
+        data.append("companyWebsite", $("#companyWebsite").val());
+        var files = $("#fileUpload").get(0).files;
+        if (files.length > 0) {
+            data.append("UploadedImage", files[0]);
+
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Action("saveCompanyData", "Company"))",
+                contentType: false,
+                processData: false,
+                data: data
+            })
+                        .done(function (data) {
+                            console.log("done", data);
+                            showalert(data.isSuccess, data.message);
+                        })
+                        .fail(function (data) {
+                            console.log("fail", data);
+                            showalert(data.isSuccess, data.message);
+                        });
+        } else {
+            alert("select the file");
+        }
+    });
+</script>

@@ -17,6 +17,7 @@ namespace DLL
         public long companyId { get; set; }
         public string companyName { get; set; }
         public string companyAbout { get; set; }
+        public string companyLogo { get; set; }
         public string companyWebsite { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdOn { get; set; }

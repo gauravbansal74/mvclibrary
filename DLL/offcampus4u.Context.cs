@@ -26,11 +26,9 @@ namespace DLL
         }
     
         public DbSet<account> accounts { get; set; }
-        public DbSet<admin> admins { get; set; }
         public DbSet<applyJob> applyJobs { get; set; }
         public DbSet<BankDetail> BankDetails { get; set; }
         public DbSet<company> companies { get; set; }
-        public DbSet<employer> employers { get; set; }
         public DbSet<highestEducation> highestEducations { get; set; }
         public DbSet<job> jobs { get; set; }
         public DbSet<Rating> Ratings { get; set; }
