@@ -199,6 +199,34 @@ namespace DLL
             return objError;
         }
 
-        
+        public Error checkAccountForEmployer(string email, string password)
+        {
+            Error objError = new Error();
+            try
+            {
+                db = new offcampus4uEntities();
+                var userData = (from user in db.accounts
+                                where user.email.Equals(email) && user.password.Equals(password) && user.accountStatus.Equals(1) && user.isEmployerVerified.Equals(true)
+                                select user).SingleOrDefault();
+                if (userData != null)
+                {
+                   db.Dispose();
+                   objError.isSuccess = true;
+                   objError.message = userData.accountId.ToString();
+                   return objError;
+                }
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Email or Password is wrong.";
+                    return objError;
+                }
+
+            }
+            catch
+            {
+                return objError;
+            }
+        }
     }
 }

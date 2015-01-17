@@ -15,7 +15,7 @@
                 foreach(var job in Model){
                   <li class="list-group-item">
                    @job.jobTitle <br />
-                <button class="btn btn-danger" onclick="deleteJob(@job.jobId);">Delete</button>&nbsp;&nbsp;<button class="btn btn-info" onclick="unpublishJob(@job.jobId);">Unpublish</button>
+                <button class="btn btn-danger" onclick="deleteJob(@job.jobId);">Delete</button>&nbsp;&nbsp;<button class="btn btn-success" onclick="unpublishJob(@job.jobId);">Publish</button>
                   </li>
                 }
                 

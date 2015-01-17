@@ -95,6 +95,7 @@
           <Property Name="isEmployer" Type="bit" Nullable="false" />
           <Property Name="isEmployerAdmin" Type="bit" Nullable="false" />
           <Property Name="companyId" Type="bigint" />
+          <Property Name="isEmployerVerified" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="applyJob">
           <Key>
@@ -487,6 +488,7 @@
           <Property Type="Boolean" Name="isEmployer" Nullable="false" />
           <Property Type="Boolean" Name="isEmployerAdmin" Nullable="false" />
           <Property Type="Int64" Name="companyId" />
+          <Property Type="Boolean" Name="isEmployerVerified" Nullable="false" />
           <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__accoun__0B5CAFEA" FromRole="account" ToRole="applyJob" />
           <NavigationProperty Name="BankDetails" Relationship="offcampus4uModel.FK__BankDetai__accou__74794A92" FromRole="account" ToRole="BankDetail" />
           <NavigationProperty Name="jobs" Relationship="offcampus4uModel.FK__job__createdBy__214BF109" FromRole="account" ToRole="job" />
@@ -816,6 +818,7 @@
           <EntitySetMapping Name="accounts">
             <EntityTypeMapping TypeName="offcampus4uModel.account">
               <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="isEmployerVerified" ColumnName="isEmployerVerified" />
                 <ScalarProperty Name="companyId" ColumnName="companyId" />
                 <ScalarProperty Name="isEmployerAdmin" ColumnName="isEmployerAdmin" />
                 <ScalarProperty Name="isEmployer" ColumnName="isEmployer" />

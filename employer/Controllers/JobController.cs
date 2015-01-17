@@ -18,13 +18,20 @@ namespace employer.Controllers
         public ActionResult postHistory()
         {
             Jobs objJob = new DLL.Jobs();
-            List<job> listApplyJob = objJob.getJobPostingHistory(Convert.ToInt64(User.Identity.Name));
+            List<job> listApplyJob = objJob.getActiveJobPost(Convert.ToInt64(User.Identity.Name));
+            return View(listApplyJob);
+        }
+
+        public ActionResult postUnHistory()
+        {
+            Jobs objJob = new DLL.Jobs();
+            List<job> listApplyJob = objJob.getUnActiveJobPost(Convert.ToInt64(User.Identity.Name));
             return View(listApplyJob);
         }
 
         public JsonResult getJobHistory(){
             Jobs objJob = new DLL.Jobs();
-            List<job> listApplyJob = objJob.getJobPostingHistory(Convert.ToInt64(User.Identity.Name));
+            List<job> listApplyJob = objJob.getActiveJobPost(Convert.ToInt64(User.Identity.Name));
             return Json(listApplyJob,JsonRequestBehavior.AllowGet);
         }
 
@@ -47,7 +54,7 @@ namespace employer.Controllers
         {
             return View();
         }
-
+        
 
         public JsonResult SaveJob(JobViewModel jobdata)
         {
@@ -63,13 +70,6 @@ namespace employer.Controllers
             {
                 objError.isSuccess = false;
                 objError.message = "Enter the Location.";
-                return Json(objError, JsonRequestBehavior.AllowGet);
-            }
-
-            if (string.IsNullOrEmpty(jobdata.jobCompnayName))
-            {
-                objError.isSuccess = false;
-                objError.message = "Enter Name of the Company.";
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
 
@@ -119,12 +119,7 @@ namespace employer.Controllers
                 jobdata.jobOtherDetail = string.Empty;
             }
 
-            if (string.IsNullOrEmpty(jobdata.jobCompanyInfo))
-            {
-                objError.isSuccess = false;
-                objError.message = "Enter the Company Information.";
-                return Json(objError, JsonRequestBehavior.AllowGet);
-            }
+          
 
             if (string.IsNullOrEmpty(jobdata.jobApplyMode))
             {
@@ -147,9 +142,11 @@ namespace employer.Controllers
 
             if (jobdata.jobExpireDate != null)
             {
+                EmpAccount objEmpAccount = new EmpAccount();
+                company objCompany = objEmpAccount.getEmployerCompany(Convert.ToInt64(User.Identity.Name));
                 Jobs objJob = new Jobs();
                 job job = new job();
-                job.jobCompanyInfo = jobdata.jobCompanyInfo;
+                job.jobCompanyInfo = objCompany.companyAbout;
                 job.jobDescription = jobdata.jobDescription;
                 job.jobDisclosed = jobdata.jobDisclosed;
                 job.jobKeyword = jobdata.jobKeyword;
@@ -163,14 +160,14 @@ namespace employer.Controllers
                 job.jobApplyModeIsEmail = jobdata.jobApplyModeIsEmail;
                 job.jobExpireDate = jobdata.jobExpireDate;
                 job.jobLocation = jobdata.jobLocation;
-                job.jobCompnayName = jobdata.jobCompnayName;
+                job.jobCompnayName = objCompany.companyName;
                 job.jobTitle = jobdata.jobTitle;
                 job.createdBy = Convert.ToInt64(User.Identity.Name);
                 job.createdOn = DateTime.Now;
                 job.modifiedBy = Convert.ToInt64(User.Identity.Name);
                 job.modifiedOn = DateTime.Now;
                 job.jobDeteled = false;
-                job.jobStatus = 0;
+                job.jobStatus = 1;
                 objError = objJob.saveJob(job);
                 return Json(objError, JsonRequestBehavior.AllowGet);
             }
@@ -183,5 +180,19 @@ namespace employer.Controllers
 
 
         }
+
+        public JsonResult deleteJob(Int64 id)
+        {
+            Jobs objJobs = new Jobs();
+            Error objError = objJobs.deleteJob(id, Convert.ToInt64(User.Identity.Name));
+            return Json(objError, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult unpublishJob(Int64 id)
+        {
+            Jobs objJobs = new Jobs();
+            Error objError = objJobs.unpublishJob(id, Convert.ToInt64(User.Identity.Name));
+            return Json(objError, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="accounts">
       <EntityTypeMapping TypeName="offcampus4uModel.account">
         <MappingFragment StoreEntitySet="account">
+          <ScalarProperty Name="isEmployerVerified" ColumnName="isEmployerVerified" />
           <ScalarProperty Name="companyId" ColumnName="companyId" />
           <ScalarProperty Name="isEmployerAdmin" ColumnName="isEmployerAdmin" />
           <ScalarProperty Name="isEmployer" ColumnName="isEmployer" />

@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="60b08a12679b4b079a77cad99e455724" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="offcampus4uModel.account" Width="1.5" PointX="0.93987636498169813" PointY="22.684694449736128" />
-        <EntityTypeShape EntityType="offcampus4uModel.applyJob" Width="1.5" PointX="10.990146394348772" PointY="24.627184372687331" />
-        <EntityTypeShape EntityType="offcampus4uModel.BankDetail" Width="1.5" PointX="10.028048156773695" PointY="22.135658006246974" />
-        <EntityTypeShape EntityType="offcampus4uModel.company" Width="1.5" PointX="8.0920077618639965" PointY="3.3952176884725773" />
-        <EntityTypeShape EntityType="offcampus4uModel.highestEducation" Width="1.5" PointX="10.017005569309465" PointY="12.613897493394976" />
-        <EntityTypeShape EntityType="offcampus4uModel.job" Width="1.5" PointX="10.368831758559137" PointY="31.293465748100292" />
-        <EntityTypeShape EntityType="offcampus4uModel.Rating" Width="1.5" PointX="2.7820238204589223" PointY="21.833213056360005" />
-        <EntityTypeShape EntityType="offcampus4uModel.tutorialCategory" Width="1.5" PointX="11.702782608430265" PointY="23.978008907278074" />
-        <EntityTypeShape EntityType="offcampus4uModel.video" Width="1.5" PointX="3.1581588197304677" PointY="0.37998196500352677" />
-        <EntityTypeShape EntityType="offcampus4uModel.wallet" Width="1.5" PointX="11.17261567673302" PointY="7.910346481907343" />
-        <EntityTypeShape EntityType="offcampus4uModel.walletTransaction" Width="1.5" PointX="7.8066639172875618" PointY="13.630707419305438" />
-        <EntityTypeShape EntityType="offcampus4uModel.withdrawal" Width="1.5" PointX="0.52494459251172121" PointY="8.1101682968950684" />
+        <EntityTypeShape EntityType="offcampus4uModel.account" Width="1.5" PointX="8.66844814674391" PointY="0.19500918695470745" />
+        <EntityTypeShape EntityType="offcampus4uModel.applyJob" Width="1.5" PointX="11.39026205213287" PointY="30.201477735397162" />
+        <EntityTypeShape EntityType="offcampus4uModel.BankDetail" Width="1.5" PointX="10.201707986277391" PointY="18.285858013800279" />
+        <EntityTypeShape EntityType="offcampus4uModel.company" Width="1.5" PointX="10.975854500651291" PointY="16.896286301732196" />
+        <EntityTypeShape EntityType="offcampus4uModel.highestEducation" Width="1.5" PointX="1.0087091852951371" PointY="10.891891678279215" />
+        <EntityTypeShape EntityType="offcampus4uModel.job" Width="1.5" PointX="0.10042153117266556" PointY="24.756965574229586" />
+        <EntityTypeShape EntityType="offcampus4uModel.Rating" Width="1.5" PointX="3.2422759790170357" PointY="10.543100287459371" />
+        <EntityTypeShape EntityType="offcampus4uModel.tutorialCategory" Width="1.5" PointX="3.4529684034422825" PointY="13.784395015698109" />
+        <EntityTypeShape EntityType="offcampus4uModel.video" Width="1.5" PointX="4.6984210352871667" PointY="10.59790272014118" />
+        <EntityTypeShape EntityType="offcampus4uModel.wallet" Width="1.5" PointX="2.7960440119710026" PointY="12.742632111880292" />
+        <EntityTypeShape EntityType="offcampus4uModel.walletTransaction" Width="1.5" PointX="8.9334206641341662" PointY="25.713711109810376" />
+        <EntityTypeShape EntityType="offcampus4uModel.withdrawal" Width="1.5" PointX="3.5138865949185041" PointY="25.0094186333052" />
         <AssociationConnector Association="offcampus4uModel.FK__applyJob__accoun__0B5CAFEA" />
         <AssociationConnector Association="offcampus4uModel.FK__BankDetai__accou__74794A92" />
         <AssociationConnector Association="offcampus4uModel.FK__job__createdBy__214BF109" />

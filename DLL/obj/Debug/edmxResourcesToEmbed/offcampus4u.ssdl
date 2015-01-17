@@ -90,6 +90,7 @@
     <Property Name="isEmployer" Type="bit" Nullable="false" />
     <Property Name="isEmployerAdmin" Type="bit" Nullable="false" />
     <Property Name="companyId" Type="bigint" />
+    <Property Name="isEmployerVerified" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="applyJob">
     <Key>

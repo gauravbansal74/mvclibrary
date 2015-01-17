@@ -90,6 +90,7 @@
     <Property Type="Boolean" Name="isEmployer" Nullable="false" />
     <Property Type="Boolean" Name="isEmployerAdmin" Nullable="false" />
     <Property Type="Int64" Name="companyId" />
+    <Property Type="Boolean" Name="isEmployerVerified" Nullable="false" />
     <NavigationProperty Name="applyJobs" Relationship="offcampus4uModel.FK__applyJob__accoun__0B5CAFEA" FromRole="account" ToRole="applyJob" />
     <NavigationProperty Name="BankDetails" Relationship="offcampus4uModel.FK__BankDetai__accou__74794A92" FromRole="account" ToRole="BankDetail" />
     <NavigationProperty Name="jobs" Relationship="offcampus4uModel.FK__job__createdBy__214BF109" FromRole="account" ToRole="job" />

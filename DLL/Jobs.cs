@@ -290,6 +290,22 @@ namespace DLL
             return objApplyHistory;
         }
 
+        public List<job> getActiveJobPost(Int64 id)
+        {
+            db = new offcampus4uEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            List<job> objApplyHistory = db.jobs.Where(x => x.createdBy.Equals(id) && x.jobDeteled.Equals(false) && x.jobStatus.Equals(1)).OrderByDescending(x => x.jobId).Take(10).ToList<job>();
+            return objApplyHistory;
+        }
+
+        public List<job> getUnActiveJobPost(Int64 id)
+        {
+            db = new offcampus4uEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            List<job> objApplyHistory = db.jobs.Where(x => x.createdBy.Equals(id) && x.jobDeteled.Equals(false) && x.jobStatus.Equals(0)).OrderByDescending(x => x.jobId).Take(10).ToList<job>();
+            return objApplyHistory;
+        }
+
         public Error changeJobStatus(Int64 jobId, int status, Int64 accountId)
         {
             Error objError = new Error();
@@ -444,6 +460,91 @@ namespace DLL
                 {
                     transaction.Dispose();
                 }
+            }
+            return objError;
+        }
+
+
+        public Error deleteJob(Int64 jobId, Int64 accountId)
+        {
+            Error objError = new Error();
+            objError.isSuccess = false;
+            objError.message = "Oops. something went wrong. please try again later.";
+            try
+            {
+                db = new offcampus4uEntities();
+                job objJob = db.jobs.Where(x => x.createdBy.Equals(accountId) && x.jobId.Equals(jobId)).FirstOrDefault();
+                if (objJob != null)
+                {
+                    objJob.jobDeteled = true;
+                    db.SaveChanges();
+                    objError.isSuccess = true;
+                    objError.message = "Success";
+                }
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "You are not authorize user to delete this.";
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return objError;
+        }
+
+        public Error unpublishJob(Int64 jobId, Int64 accountId)
+        {
+            Error objError = new Error();
+            objError.isSuccess = false;
+            objError.message = "Oops. something went wrong. please try again later.";
+            try
+            {
+                db = new offcampus4uEntities();
+                job objJob = db.jobs.Where(x => x.createdBy.Equals(accountId) && x.jobId.Equals(jobId)).FirstOrDefault();
+                if (objJob != null)
+                {
+                    objJob.jobStatus = 0;
+                    db.SaveChanges();
+                    objError.isSuccess = true;
+                    objError.message = "Success";
+                }
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "You are not authorize user to change the status of this post.";
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return objError;
+        }
+
+        public Error publishJob(Int64 jobId, Int64 accountId)
+        {
+            Error objError = new Error();
+            objError.isSuccess = false;
+            objError.message = "Oops. something went wrong. please try again later.";
+            try
+            {
+                db = new offcampus4uEntities();
+                job objJob = db.jobs.Where(x => x.createdBy.Equals(accountId) && x.jobId.Equals(jobId)).FirstOrDefault();
+                if (objJob != null)
+                {
+                    objJob.jobStatus = 1;
+                    db.SaveChanges();
+                    objError.isSuccess = true;
+                    objError.message = "Success";
+                }
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "You are not authorize user to change the status of this post.";
+                }
+            }
+            catch (Exception ex)
+            {
             }
             return objError;
         }

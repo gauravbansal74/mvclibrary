@@ -83,73 +83,68 @@ namespace employer.Controllers
 
             if (password.Equals(cfrmpassword))
             {
-                //    EmpAccount objEmpAccount = new EmpAccount();
-                //    DLL.employer objEmployer = new DLL.employer();
-                //    objEmployer.employerFirstName = name;
-                //    objEmployer.employerPhoneNumber = phone;
-                //    objEmployer.accountStatus = 0;
-                //    objEmployer.createdOn = DateTime.Now;
-                //    objEmployer.companyId = 1;
-                //    objEmployer.employerDesignation = "Under Approval";
-                //    objEmployer.employerEmail = email;
-                //    objEmployer.employerPassword = password;
-                //    objEmployer.isDeleted = false;
-                //    objEmployer.modifiedBy = 1;
-                //    objEmployer.modifiedOn = DateTime.Now;
-                //    objError = objEmpAccount.registerAccount(objEmployer);
-                //    if (objError.isSuccess)
-                //    {
-                //        String path = Server.MapPath("~/emailtemplate/emailverify.html");
-                //        string text = System.IO.File.ReadAllText(path);
-                //        text = text.Replace("#useremail", email);
-                //        text = text.Replace("#userverificationLink", ConfigurationManager.AppSettings["localurl"] + "Account/verifyemail/" + objError.message);
-                //        Task.Factory.StartNew(() =>
-                //        {
-                //            try
-                //            {
+                Accounts objAccounts = new Accounts();
+                account objAccount = new account();
+                objAccount.accountStatus = 0;
+                objAccount.createdOn = DateTime.Now;
+                objAccount.email = email;
+                objAccount.phoneNumber = phone;
+                objAccount.firstName = name;
+                objAccount.password = password;
+                objAccount.isDeleted = false;
+                objAccount.modifiedBy = 1;
+                objAccount.isEmployer = true;
+                objAccount.modifiedOn = DateTime.Now;
+                objError = objAccounts.registerAccount(objAccount);
+                if (objError.isSuccess)
+                {
+                    String path = Server.MapPath("~/emailtemplate/emailverify.html");
+                    string text = System.IO.File.ReadAllText(path);
+                    text = text.Replace("#useremail", email);
+                    text = text.Replace("#userverificationLink", ConfigurationManager.AppSettings["localurl"] + "Account/verifyemail/" + objError.message);
+                    Task.Factory.StartNew(() =>
+                    {
+                        try
+                        {
 
-                //                MailMessage mail = new MailMessage();
-                //                mail.To.Add(new MailAddress(email));
-                //                mail.From = new MailAddress(Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]));
-                //                mail.Subject = "Verify your email for Offcampus4u";
-                //                string Body = text;
-                //                mail.Body = Body;
-                //                mail.IsBodyHtml = true;
-                //                SmtpClient smtp = new SmtpClient();
-                //                smtp.Host = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminsmtp"]);
-                //                smtp.Port = 587;
-                //                smtp.UseDefaultCredentials = false;
-                //                smtp.Credentials = new System.Net.NetworkCredential
-                //                (Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminpassword"]));// Enter seders User name and password  
-                //                smtp.EnableSsl = true;
-                //                smtp.Send(mail);
-                //            }
-                //            catch
-                //            {
+                            MailMessage mail = new MailMessage();
+                            mail.To.Add(new MailAddress(email));
+                            mail.From = new MailAddress(Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]));
+                            mail.Subject = "Verify your email for Offcampus4u";
+                            string Body = text;
+                            mail.Body = Body;
+                            mail.IsBodyHtml = true;
+                            SmtpClient smtp = new SmtpClient();
+                            smtp.Host = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminsmtp"]);
+                            smtp.Port = 587;
+                            smtp.UseDefaultCredentials = false;
+                            smtp.Credentials = new System.Net.NetworkCredential
+                            (Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminpassword"]));// Enter seders User name and password  
+                            smtp.EnableSsl = true;
+                            smtp.Send(mail);
+                        }
+                        catch
+                        {
 
 
-                //            }
-                //        });
-                //        objError.isSuccess = true;
-                //        objError.message = "We have created your account. please verify your email address.";
-                //        return Json(objError, JsonRequestBehavior.AllowGet);
-                //    }
-                //    else
-                //    {
-                //        return Json(objError, JsonRequestBehavior.AllowGet);
-                //    }
-                //}
-                //else
-                //{
-                //    objError.isSuccess = false;
-                //    objError.message = "Password doesn't match with confirm password";
-                //    return Json(objError, JsonRequestBehavior.AllowGet);
-//                }
-                   
+                        }
+                    });
+                    objError.isSuccess = true;
+                    objError.message = "We have created your account. please verify your email address.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+
             }
-            objError.isSuccess = false;
-            objError.message = "Password doesn't match with confirm password";
-            return Json(objError, JsonRequestBehavior.AllowGet);
+            else
+            {
+                objError.isSuccess = false;
+                objError.message = "Password doesn't match with confirm password";
+                return Json(objError, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [AllowAnonymous]
@@ -178,7 +173,7 @@ namespace employer.Controllers
             else
             {
                 Accounts objAccounts = new Accounts();
-                objError = objAccounts.checkAccount(email, password);
+                objError = objAccounts.checkAccountForEmployer(email, password);
                 if (objError.isSuccess)
                 {
                     HttpCookie wunCookie = new HttpCookie("WunelliCookie");
@@ -203,10 +198,46 @@ namespace employer.Controllers
                 else
                 {
                     objError.isSuccess = false;
-                    objError.message = "Email or password is wrong.";
+                    objError.message = "Your account is not activated by Offcampus4u team.";
                     return Json(objError, JsonRequestBehavior.AllowGet);
                 }
             }
+        }
+
+
+        public ActionResult logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [AllowAnonymous]
+        public ActionResult verifyemail(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                Accounts objAccounts = new Accounts();
+                Error objError = objAccounts.verifyEmail(id);
+                if (objError.isSuccess)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("verifyemailerror");
+                }
+            }
+            else
+            {
+                return RedirectToAction("verifyemailerror");
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult verifyemailerror()
+        {
+
+            return View();
         }
     }
 }

@@ -203,3 +203,4 @@ modifiedBy	BIGINT NOT NULL
 ALTER TABLE dbo.account ADD isEmployer BIT DEFAULT 0 NOT NULL;
 ALTER TABLE dbo.account ADD isEmployerAdmin BIT DEFAULT 0 NOT NULL;
 ALTER TABLE dbo.account ADD companyId BIGINT NULL;
+ALTER TABLE dbo.account ADD isEmployerVerified BIT DEFAULT 0 NOT NULL;
