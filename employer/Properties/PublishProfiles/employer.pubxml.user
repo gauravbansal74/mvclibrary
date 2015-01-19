@@ -43,10 +43,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>01/06/2015 23:03:30</publishTime>
+      <publishTime>01/19/2015 12:05:26</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>01/06/2015 23:03:30</publishTime>
+      <publishTime>01/19/2015 12:05:26</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
       <publishTime>12/14/2014 21:53:47</publishTime>
@@ -58,7 +58,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:46</publishTime>
     </File>
     <File Include="bin/DLL.exe">
-      <publishTime>01/06/2015 22:57:39</publishTime>
+      <publishTime>01/19/2015 12:03:24</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
       <publishTime>12/14/2014 21:53:41</publishTime>
@@ -79,7 +79,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:45</publishTime>
     </File>
     <File Include="bin/employer.dll">
-      <publishTime>01/06/2015 23:03:21</publishTime>
+      <publishTime>01/19/2015 12:05:20</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>12/14/2014 21:53:14</publishTime>
@@ -339,6 +339,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/images/jobs-less.png">
       <publishTime>12/30/2014 11:59:29</publishTime>
     </File>
+    <File Include="Content/images/profile.png">
+      <publishTime>01/16/2015 23:41:17</publishTime>
+    </File>
     <File Include="Content/images/ruppes.png">
       <publishTime>12/20/2014 21:49:19</publishTime>
     </File>
@@ -592,7 +595,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2015 02:45:36</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>01/06/2015 23:03:24</publishTime>
+      <publishTime>01/19/2015 12:05:22</publishTime>
     </File>
     <File Include="Scripts/jquery-1.11.1.min.js">
       <publishTime>12/15/2014 23:33:59</publishTime>
@@ -649,7 +652,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2015 02:45:20</publishTime>
     </File>
     <File Include="Views/Account/index.cshtml">
-      <publishTime>01/06/2015 20:45:19</publishTime>
+      <publishTime>01/17/2015 23:00:20</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
       <publishTime>01/06/2015 02:45:20</publishTime>
@@ -659,6 +662,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Account/Register.cshtml">
       <publishTime>01/06/2015 02:45:20</publishTime>
+    </File>
+    <File Include="Views/Account/verifyemail.cshtml">
+      <publishTime>01/17/2015 23:05:35</publishTime>
+    </File>
+    <File Include="Views/Account/verifyemailerror.cshtml">
+      <publishTime>01/17/2015 23:05:39</publishTime>
     </File>
     <File Include="Views/Account/_ChangePasswordPartial.cshtml">
       <publishTime>01/06/2015 02:45:20</publishTime>
@@ -672,6 +681,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Account/_SetPasswordPartial.cshtml">
       <publishTime>01/06/2015 02:45:20</publishTime>
     </File>
+    <File Include="Views/Employer/Company.cshtml">
+      <publishTime>01/17/2015 00:54:51</publishTime>
+    </File>
+    <File Include="Views/Employer/Index.cshtml">
+      <publishTime>01/17/2015 00:55:26</publishTime>
+    </File>
+    <File Include="Views/Employer/_accountLeftMenu.cshtml">
+      <publishTime>01/17/2015 00:31:04</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>01/06/2015 02:45:20</publishTime>
     </File>
@@ -679,28 +697,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2015 02:45:20</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>01/06/2015 22:00:09</publishTime>
+      <publishTime>01/16/2015 23:48:48</publishTime>
+    </File>
+    <File Include="Views/Job/Index.cshtml">
+      <publishTime>01/17/2015 01:02:04</publishTime>
     </File>
     <File Include="Views/Job/postHistory.cshtml">
-      <publishTime>01/06/2015 22:19:17</publishTime>
+      <publishTime>01/17/2015 20:40:24</publishTime>
+    </File>
+    <File Include="Views/Job/postUnHistory.cshtml">
+      <publishTime>01/17/2015 20:51:47</publishTime>
     </File>
     <File Include="Views/Job/SaveJob.cshtml">
-      <publishTime>01/06/2015 21:42:23</publishTime>
+      <publishTime>01/17/2015 01:06:53</publishTime>
     </File>
     <File Include="Views/Job/seeApplication.cshtml">
       <publishTime>01/06/2015 22:50:03</publishTime>
+    </File>
+    <File Include="Views/Job/_jobLeftMenu.cshtml">
+      <publishTime>01/17/2015 20:47:26</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/06/2015 02:45:20</publishTime>
     </File>
     <File Include="Views/Shared/_HomeLayout.cshtml">
-      <publishTime>01/06/2015 21:29:38</publishTime>
+      <publishTime>01/17/2015 23:02:39</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/06/2015 02:58:16</publishTime>
+      <publishTime>01/17/2015 22:57:03</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>01/06/2015 02:45:20</publishTime>
+      <publishTime>01/17/2015 00:17:11</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>01/06/2015 02:45:20</publishTime>
@@ -709,7 +736,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2015 02:45:20</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/06/2015 22:58:37</publishTime>
+      <publishTime>01/19/2015 10:45:18</publishTime>
     </File>
   </ItemGroup>
 </Project>

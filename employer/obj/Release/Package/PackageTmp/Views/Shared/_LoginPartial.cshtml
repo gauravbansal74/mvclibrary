@@ -1,14 +1,29 @@
-﻿@if (Request.IsAuthenticated) {
-    <text>
-        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-        }
-    </text>
-} else {
-    <ul>
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+﻿@if (!Request.IsAuthenticated) {
+    <div class="row" style="width:70%; margin: 0 auto;">
+                <div class="col-xs-2">
+                    <a href="@Url.Action("Index","Employer")" title="Profile">
+                        <img src="~/Content/images/profile.png" alt="Profile" />
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="#">
+                        <img src="~/Content/images/profile.png" alt="..." />
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="#">
+                        <img src="~/Content/images/profile.png" alt="..." />
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="#">
+                        <img src="~/Content/images/profile.png" alt="..." />
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="#">
+                        <img src="~/Content/images/profile.png" alt="..." />
+                    </a>
+                </div>
+            </div>
 }

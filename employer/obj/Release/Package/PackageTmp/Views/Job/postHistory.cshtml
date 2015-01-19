@@ -1,48 +1,68 @@
-﻿@model employer.ViewModels.JobViewModel
+﻿
 @{
-    ViewBag.Title = "Offcampus4u : Submit New Job Post";
+    ViewBag.Title = "Offcampus4u : Job Posting History";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<main class="bs-docs-masthead-other" style="width:80%;margin:0 auto;text-align:left;">
-    
- <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Job Post History</div>
+<main class="bs-docs-masthead-other" style="width: 80%; margin: 0 auto;">
+    <div class="panel panel-default"  style="width:20%;margin:0 auto;text-align:left;float:left;">
+        @Html.Partial("_jobLeftMenu")
+        </div>
+ <div class="panel panel-default"  style="width:78%;margin:0 auto;float:right;text-align:left;padding:10px;" >
+  <div class="panel-body">
+    <div class="signupform">
+        <ul class="list-group">
+            @if(Model.Count > 0){
+                foreach(var job in Model){
+                  <li class="list-group-item">
+                   @job.jobTitle <br />
+                <button class="btn btn-danger" onclick="deleteJob(@job.jobId);">Delete</button>&nbsp;&nbsp;<button class="btn btn-info" onclick="unpublishJob(@job.jobId);">Unpublish</button>
+                  </li>
+                }
+                
+            }else{
+                <li class="list-group-item">There is nothing in Job Posting History.</li>
+            }
+            
+        </ul>
+         <div style="clear:both;"></div>
 
-      <!-- Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="jobHistorybody">
-         
-        </tbody>
-      </table>
-    </div>
+       </div>
+  </div>
+</div>
+    <div style="clear:both;"></div>
 </main>
 <script>
-    blockBySpinner('#jobHistorybody');
-    var pageNumber = 0;
-    $.ajax({
-        type: "POST",
-        url: "@(Url.Action("getJobHistory", "Job"))",
-        data: { id: pageNumber }
-    })
-    .done(function (data) {
-        console.log(data);
-        var myhtml = "";
-        data.forEach(function (entry) {
-            myhtml = myhtml + '<tr><td>' + entry.jobTitle + '</td><td><a href="/Job/seeApplication/' + entry.jobId + '">Applications</a></td><td><a href="/Job/deletePost/' + entry.jobId + '">Delete</a></td></tr>';
+
+    function deleteJob(id) {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("deleteJob", "Job"))",
+            data: { id: id}
+        })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+            location.reload();
+        })
+        .fail(function (data) {
+            //console.log("fail", data);
+            showalert(data.isSuccess, data.message);
         });
-        $("#jobHistorybody").html(myhtml);
-        blockBySpinner('#jobHistorybody', true);
-        pageNumber = pageNumber + 1;
-    })
-    .fail(function (data) {
-        showalert(data.isSuccess, data.message);
-    });
+    }
+
+    function unpublishJob(id) {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("unpublishJob", "Job"))",
+            data: { id: id }
+        })
+        .done(function (data) {
+            showalert(data.isSuccess, data.message);
+            location.reload();
+        })
+        .fail(function (data) {
+            //console.log("fail", data);
+            showalert(data.isSuccess, data.message);
+        });
+    }
+
 </script>

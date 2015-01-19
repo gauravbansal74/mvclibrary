@@ -223,8 +223,10 @@ namespace DLL
                 }
 
             }
-            catch
+            catch(Exception ex)
             {
+                objError.isSuccess = false;
+                objError.message = ex.Message;
                 return objError;
             }
         }

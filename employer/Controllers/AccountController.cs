@@ -197,8 +197,7 @@ namespace employer.Controllers
                 }
                 else
                 {
-                    objError.isSuccess = false;
-                    objError.message = "Your account is not activated by Offcampus4u team.";
+                  
                     return Json(objError, JsonRequestBehavior.AllowGet);
                 }
             }

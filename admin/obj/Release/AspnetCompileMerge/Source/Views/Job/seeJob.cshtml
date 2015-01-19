@@ -5,33 +5,34 @@
 
 <div class="well" style="line-height: 1.42857143;">
         <a href="@Url.Action("Detail", "Job")" style="line-height: 1.42857143;">
-            <h3>@Model.jobTitle</h3></a>
-            @Model.jobCompnayName <br />
+            <h3>@Model.jobData.jobTitle</h3></a>
+            @Model.jobData.jobCompnayName <br />
         <div class="color-light" style="margin-right:10%;line-height: 1.42857143;">
             <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="line-height: 1.42857143;"></span>&nbsp;&nbsp;
-                <span>@Model.jobMinExp</span><span> - </span><span>@Model.jobMaxExp</span><span> yrs.</span>
+                <span>@Model.jobData.jobMinExp</span><span> - </span><span>@Model.jobData.jobMaxExp</span><span> yrs.</span>
                         
         </div>
         <div class="color-light" style="line-height: 1.42857143;">
             <span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="line-height: 1.42857143;">
 
-            </span>&nbsp;&nbsp;@Model.jobLocation
+            </span>&nbsp;&nbsp;@Model.jobData.jobLocation
         </div>
         <div class="salary">
            
-            @if(Model.jobDisclosed){
-                <span>&#8377;&nbsp;&nbsp;@Model.jobMinSalary - @Model.jobMaxSalary PA</span>
+            @if (Model.jobData.jobDisclosed)
+            {
+                <span>&#8377;&nbsp;&nbsp;@Model.jobData.jobMinSalary - @Model.jobData.jobMaxSalary PA</span>
             }else{
               <span> &#8377;&nbsp;&nbsp;Not Disclosed</span>
             }
         </div><br />
-        @if (Model.jobApplyModeIsEmail)
+        @if (Model.jobData.jobApplyModeIsEmail)
         {
-           <span> Email Resume at <b>@Model.jobApplyMode</b></span>
+           <span> Email Resume at <b>@Model.jobData.jobApplyMode</b></span>
         }
         else
         {
-            <a target="_blank" class="btn btn-primary" href="@Model.jobApplyMode">Apply on Company Website</a>
+            <a target="_blank" class="btn btn-primary" href="@Model.jobData.jobApplyMode">Apply on Company Website</a>
         }
          
     </div>  
@@ -39,7 +40,7 @@
     <div class="well" style="line-height: 1.42857143;">
        <div style="line-height: 2.42857143;"><b>Job Description</b></div>
         <div style="width:100%;">
-            @Html.Raw(Model.jobDescription)
+            @Html.Raw(Model.jobData.jobDescription)
         </div>
         <div style="clear:both;"></div>
      </div>
@@ -47,7 +48,7 @@
         <div style="line-height: 2.42857143;"><b>KeySkills</b></div>
         <div style="font-size:20px;">
             @{
-                string[] KeySkills = Model.jobKeyword.Split(',');
+                string[] KeySkills = Model.jobData.jobKeyword.Split(',');
                 foreach (string KeySkill in KeySkills)
                 {
                     <span class="label label-default">@KeySkill</span>
@@ -59,18 +60,18 @@
      </div>
     <div class="well" style="line-height: 1.42857143;">
         <div style="line-height: 2.42857143;"><b>Company Profile</b></div>
-        <div style="line-height: 1.82857143;">Name : <b>@Model.jobCompnayName</b></div>
-        <div style="line-height: 1.82857143;">@Model.jobCompanyInfo</div>
+        <div style="line-height: 1.82857143;">Name : <b>@Model.jobData.jobCompnayName</b></div>
+        <div style="line-height: 1.82857143;">@Model.jobData.jobCompanyInfo</div>
     </div>    
  <div class="well" style="line-height: 1.42857143;">
        
-        @if (Model.jobApplyModeIsEmail)
+        @if (Model.jobData.jobApplyModeIsEmail)
         {
-           <span> Email Resume at <b>@Model.jobApplyMode</b></span>
+           <span> Email Resume at <b>@Model.jobData.jobApplyMode</b></span>
         }
         else
         {
-            <a target="_blank" class="btn btn-primary" href="@Model.jobApplyMode">Apply on Company Website</a>
+            <a target="_blank" class="btn btn-primary" href="@Model.jobData.jobApplyMode">Apply on Company Website</a>
         }
     </div>  
      
@@ -85,7 +86,7 @@
     <button id="saveStatus">Save</button>
 </div>
 <script>
-    var jobId = @Model.jobId;
+    var jobId = @Model.jobData.jobId;
     $("#saveStatus").click(function () {
         $.ajax({
             type: "POST",

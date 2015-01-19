@@ -104,6 +104,6 @@ C:\Users\noname\Documents\GitHub\mvclibrary\admin\bin\ko\System.Spatial.resource
 C:\Users\noname\Documents\GitHub\mvclibrary\admin\bin\ru\System.Spatial.resources.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\admin\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\admin\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\noname\Documents\GitHub\mvclibrary\admin\obj\Debug\admin.csprojResolveAssemblyReference.cache
 C:\Users\noname\Documents\GitHub\mvclibrary\admin\obj\Debug\admin.dll
 C:\Users\noname\Documents\GitHub\mvclibrary\admin\obj\Debug\admin.pdb
-C:\Users\noname\Documents\GitHub\mvclibrary\admin\obj\Debug\admin.csprojResolveAssemblyReference.cache

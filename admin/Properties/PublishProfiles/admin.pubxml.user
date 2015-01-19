@@ -40,16 +40,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/28/2014 17:09:25</publishTime>
     </File>
     <File Include="bin/admin.dll">
-      <publishTime>01/11/2015 23:11:38</publishTime>
+      <publishTime>01/19/2015 10:53:38</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>12/14/2014 21:53:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>01/11/2015 23:12:59</publishTime>
+      <publishTime>01/19/2015 10:53:50</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>01/11/2015 23:12:59</publishTime>
+      <publishTime>01/19/2015 10:53:50</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
       <publishTime>12/14/2014 21:53:47</publishTime>
@@ -61,7 +61,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2014 21:53:46</publishTime>
     </File>
     <File Include="bin/DLL.exe">
-      <publishTime>01/11/2015 22:52:21</publishTime>
+      <publishTime>01/17/2015 22:51:55</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
       <publishTime>12/14/2014 21:53:41</publishTime>
@@ -592,7 +592,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2015 11:53:09</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>01/11/2015 23:12:55</publishTime>
+      <publishTime>01/19/2015 10:53:43</publishTime>
     </File>
     <File Include="Scripts/jquery-1.8.2.js">
       <publishTime>12/14/2014 21:53:21</publishTime>
@@ -666,6 +666,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Account/_SetPasswordPartial.cshtml">
       <publishTime>01/07/2015 11:52:36</publishTime>
     </File>
+    <File Include="Views/Company/Index.cshtml">
+      <publishTime>01/16/2015 12:38:47</publishTime>
+    </File>
+    <File Include="Views/Company/saveCompany.cshtml">
+      <publishTime>01/16/2015 16:58:33</publishTime>
+    </File>
+    <File Include="Views/Employer/Index.cshtml">
+      <publishTime>01/16/2015 19:25:27</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>01/07/2015 11:52:36</publishTime>
     </File>
@@ -673,13 +682,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2015 11:52:36</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>01/11/2015 01:21:15</publishTime>
+      <publishTime>01/16/2015 19:25:48</publishTime>
     </File>
     <File Include="Views/Job/index.cshtml">
       <publishTime>01/11/2015 01:52:58</publishTime>
     </File>
     <File Include="Views/Job/seeJob.cshtml">
-      <publishTime>01/11/2015 16:13:33</publishTime>
+      <publishTime>01/16/2015 12:14:04</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/06/2015 02:45:20</publishTime>
