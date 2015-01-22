@@ -29,7 +29,7 @@ namespace employer.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Employer");
             }
             else
             {

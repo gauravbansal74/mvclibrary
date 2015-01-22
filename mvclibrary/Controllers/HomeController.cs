@@ -19,10 +19,9 @@ namespace mvclibrary.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
-
             return View();
         }
 

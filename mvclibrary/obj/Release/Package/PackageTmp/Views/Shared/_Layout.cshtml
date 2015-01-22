@@ -30,11 +30,7 @@
     <script>
         CURRENT_PAGE_URL = document.URL;
     </script>
-    <style>
-        .panel-default {
-            min-height: 500px;
-        }
-    </style>
+   
 </head>
 
 <body class="bs-docs-home" id="maindiv" style="z-index: 1; text-align: center;">
@@ -52,6 +48,9 @@
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("About", "About", "Home")
+                    </li>
                     <li>
                         @Html.ActionLink("Tutorials", "Index", "Tutorials")
                     </li>
