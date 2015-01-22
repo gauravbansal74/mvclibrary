@@ -513,6 +513,7 @@
     <Content Include="Views\Account\error.cshtml" />
     <Content Include="Views\Account\pnf.cshtml" />
     <Content Include="Views\Job\getIndex.cshtml" />
+    <Content Include="Views\Job\_jobLeftSubLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppImages\TutorialCategory\" />
