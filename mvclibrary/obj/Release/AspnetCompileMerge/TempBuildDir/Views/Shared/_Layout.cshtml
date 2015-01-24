@@ -48,9 +48,7 @@
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        @Html.ActionLink("About", "About", "Home")
-                    </li>
+                   
                     <li>
                         @Html.ActionLink("Tutorials", "Index", "Tutorials")
                     </li>
@@ -121,9 +119,18 @@
             </ul>
         </div>
         <div class="bs-docs-masthead" style="padding: 10px;">
-            <div class="float-left">
-                <p>&copy; @DateTime.Now.Year - Offcampus4u</p>
-            </div>
+            <table style="width:70%;margin:0 auto;">
+            <tr>
+                <td> @Html.ActionLink("About Us", "About", "Home",null, new { style="color:#FFFFFF;" }) </td>
+                <td>  @Html.ActionLink("Privacy Policy", "Privacy", "Home",null, new { style="color:#FFFFFF;" })</td>
+                <td>  @Html.ActionLink("Term & Conditions", "TC", "Home",null, new { style="color:#FFFFFF;" })</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><p>&copy; @DateTime.Now.Year - Offcampus4u.com</p></td>
+                <td></td>
+            </tr>
+        </table>
         </div>
     </footer>
 

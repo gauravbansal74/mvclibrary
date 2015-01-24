@@ -25,6 +25,18 @@ namespace mvclibrary.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Privacy()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult TC()
+        {
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

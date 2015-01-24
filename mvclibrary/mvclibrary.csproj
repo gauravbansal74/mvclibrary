@@ -514,6 +514,8 @@
     <Content Include="Views\Account\pnf.cshtml" />
     <Content Include="Views\Job\getIndex.cshtml" />
     <Content Include="Views\Job\_jobLeftSubLayout.cshtml" />
+    <Content Include="Views\Home\TC.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppImages\TutorialCategory\" />
