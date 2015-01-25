@@ -276,6 +276,7 @@
     <Content Include="Content\images\buttons.gif" />
     <Content Include="Content\images\cancel-off.png" />
     <Content Include="Content\images\cancel-on.png" />
+    <Content Include="Content\images\ibm-india.jpg" />
     <Content Include="Content\images\jobs-less.png" />
     <Content Include="Content\images\ruppes.png" />
     <Content Include="Content\images\star-half.png" />
@@ -284,6 +285,7 @@
     <Content Include="Content\images\toolbar.gif" />
     <Content Include="Content\images\tutorials-less.png" />
     <Content Include="Content\images\wallet-less.png" />
+    <Content Include="Content\images\yahoo.jpg" />
     <Content Include="Content\img\aqua_dayDown.gif" />
     <Content Include="Content\img\aqua_dayNormal.gif" />
     <Content Include="Content\img\aqua_dayOver.gif" />
@@ -489,7 +491,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\Job\SaveJob.cshtml" />
     <Content Include="Views\Account\index.cshtml" />
@@ -516,6 +520,7 @@
     <Content Include="Views\Job\_jobLeftSubLayout.cshtml" />
     <Content Include="Views\Home\TC.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Account\SendVerificationEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppImages\TutorialCategory\" />

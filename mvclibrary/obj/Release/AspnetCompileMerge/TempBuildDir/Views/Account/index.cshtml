@@ -84,7 +84,7 @@
                         data: { email: $("#inputEmail").val(), password: $("#inputPassword").val() }
                     })
                     .done(function (data) {
-                        showalert(data.isSuccess, data.message);
+                        showalertstay(data.isSuccess, data.message);
                         if (data.isSuccess) {
                             location.reload();
                         }

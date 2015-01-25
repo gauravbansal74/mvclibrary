@@ -17,6 +17,19 @@ namespace DLL
             account objAccount = db.accounts.Where(x => x.accountId == userId).FirstOrDefault();
             return objAccount;
         }
+        public account getAccountByEmail(string email)
+        {
+            db = new offcampus4uEntities();
+            account objAccount = db.accounts.Where(x => x.email.Equals(email)).FirstOrDefault();
+            return objAccount;
+        }
+
+        public List<account> getUnVerifiedAccount()
+        {
+            db = new offcampus4uEntities();
+            List<account> objAccount = db.accounts.Where(x => x.accountStatus.Equals(0) && x.isDeleted.Equals(false)).ToList<account>();
+            return objAccount;
+        }
 
         public string getPasswordUsingEmail(string email)
         {
@@ -115,10 +128,20 @@ namespace DLL
                              select user).SingleOrDefault();
                 if (userData != null)
                 {
-                    db.Dispose();
-                    objError.isSuccess = true;
-                    objError.message = userData.accountId.ToString();
-                    return objError;
+                    if (userData.accountStatus.Equals(0))
+                    {
+                        db.Dispose();
+                        objError.isSuccess = false;
+                        objError.message = "Please verify your email address.<a href='/Account/SendVerificationEmail'> Click Here to send Verification email again>>.</a>";
+                        return objError;
+                    }
+                    else
+                    {
+                        db.Dispose();
+                        objError.isSuccess = true;
+                        objError.message = userData.accountId.ToString();
+                        return objError;
+                    }
                 }
                 else {
                     objError.isSuccess = false;

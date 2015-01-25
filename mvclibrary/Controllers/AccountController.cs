@@ -196,8 +196,6 @@ namespace mvclibrary.Controllers
                 }
                 else
                 {
-                    objError.isSuccess = false;
-                    objError.message = "Email or password is wrong.";
                     return Json(objError, JsonRequestBehavior.AllowGet);
                 }
             }
@@ -378,6 +376,76 @@ namespace mvclibrary.Controllers
                     string text = System.IO.File.ReadAllText(path);
                     text = text.Replace("#useremail", objError2.message);
                     objError = objEmailNotifier.sendEmail(objError2.message, text, "Offcampus4u : Payment Transfer Request.");
+                }
+            }
+            return Json(objError, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        public ActionResult SendVerificationEmail()
+        {
+            
+
+            return View();
+        }
+
+
+        [AllowAnonymous]
+        public JsonResult sendVerificationemailtouser(string email)
+        {
+
+            Error objError = new Error();
+            if (string.IsNullOrEmpty(email))
+            {
+                objError.isSuccess = false;
+                objError.message = "Enter the email address.";
+
+            }
+            else
+            {
+                Accounts objAccounts = new Accounts();
+                account objAccount = objAccounts.getAccountByEmail(email);
+                if (objAccount != null)
+                {
+                    String path = Server.MapPath("~/emailtemplate/emailverify.html");
+                    string text = System.IO.File.ReadAllText(path);
+                    text = text.Replace("#useremail", email);
+                    text = text.Replace("#userverificationLink", ConfigurationManager.AppSettings["localurl"] + "Account/verifyemail/" + objAccount.accountKey);
+                    Task.Factory.StartNew(() =>
+                    {
+                        try
+                        {
+
+                            MailMessage mail = new MailMessage();
+                            mail.To.Add(new MailAddress(email));
+                            mail.From = new MailAddress(Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]));
+                            mail.Subject = "Verify your email for Offcampus4u";
+                            string Body = text;
+                            mail.Body = Body;
+                            mail.IsBodyHtml = true;
+                            SmtpClient smtp = new SmtpClient();
+                            smtp.Host = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminsmtp"]);
+                            smtp.Port = 587;
+                            smtp.UseDefaultCredentials = false;
+                            smtp.Credentials = new System.Net.NetworkCredential
+                            (Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminemail"]), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["adminpassword"]));// Enter seders User name and password  
+                            smtp.EnableSsl = true;
+                            smtp.Send(mail);
+                        }
+                        catch
+                        {
+
+
+                        }
+                    });
+                    objError.isSuccess = true;
+                    objError.message = "We have sent email to your registred email. please verify your email address.";
+                    return Json(objError, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    objError.isSuccess = false;
+                    objError.message = "Oops.. something went wrong. pelase try again later.";
                 }
             }
             return Json(objError, JsonRequestBehavior.AllowGet);

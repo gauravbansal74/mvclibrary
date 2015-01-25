@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Offcampus4u : Register/Login Panel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+<main class="bs-docs-masthead-other" id="maindiv">
+    
+ <div class="panel panel-default"  style="width:60%;margin:0 auto;text-align:left;">
+  <div class="panel-body">
+     
+
+       <h4 class="signup">
+           <strong id="signuptext">Send Verification Email Again</strong> 
+           <br />
+           <small>Offcampus4u - Learn, Work & Earn</small>
+       </h4>
+    <div class="signupform pull-left">
+      <div class="form-group">
+          <br />
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email Address">
+      </div>
+
+       <div style="font-size:12px;"> By using Offcampus4u, you agree to Offcampus4u's @Html.ActionLink("Terms of Use", "TC", "Home") and @Html.ActionLink("Privacy Policy", "Privacy", "Home").</div> <br />
+        <br />
+      <button id="email_button"  class="btn btn-primary">Send</button> or <a href="@Url.Action("forgetpassword","Account")">Forgotten your password?</a>
+    </div>
+  </div>
+</div>
+</main>
+<script>
+
+    $("#email_button").on('click', function () {
+         $.ajax({
+           type: "POST",
+           url: "@(Url.Action("sendVerificationemailtouser", "Account"))",
+               data: { email: $("#inputEmail").val()}
+            })
+            .done(function (data) {
+                console.log("done", data);
+                showalert(data.isSuccess, data.message);
+            })
+            .fail(function (data) {
+                console.log("fail", data);
+                showalert(data.isSuccess, data.message);
+            });
+         });
+</script>
+   
