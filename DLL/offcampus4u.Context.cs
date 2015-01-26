@@ -37,5 +37,6 @@ namespace DLL
         public DbSet<wallet> wallets { get; set; }
         public DbSet<walletTransaction> walletTransactions { get; set; }
         public DbSet<withdrawal> withdrawals { get; set; }
+        public DbSet<employeeTest> employeeTests { get; set; }
     }
 }

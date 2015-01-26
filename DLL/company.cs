@@ -14,6 +14,11 @@ namespace DLL
     
     public partial class company
     {
+        public company()
+        {
+            this.employeeTests = new HashSet<employeeTest>();
+        }
+    
         public long companyId { get; set; }
         public string companyName { get; set; }
         public string companyAbout { get; set; }
@@ -23,5 +28,7 @@ namespace DLL
         public System.DateTime createdOn { get; set; }
         public System.DateTime modifiedOn { get; set; }
         public long modifiedBy { get; set; }
+    
+        public virtual ICollection<employeeTest> employeeTests { get; set; }
     }
 }

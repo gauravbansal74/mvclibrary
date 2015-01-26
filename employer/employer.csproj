@@ -236,6 +236,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\RegexUtilities.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -414,6 +415,9 @@
     <Content Include="Views\Job\postUnHistory.cshtml" />
     <Content Include="Views\Account\verifyemail.cshtml" />
     <Content Include="Views\Account\verifyemailerror.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\_testLeftMenu.cshtml" />
+    <Content Include="Views\Test\createNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

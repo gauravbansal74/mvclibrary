@@ -10,6 +10,7 @@
           <EntitySet Name="applyJob" EntityType="offcampus4uModel.Store.applyJob" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BankDetail" EntityType="offcampus4uModel.Store.BankDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="company" EntityType="offcampus4uModel.Store.company" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="employeeTest" EntityType="offcampus4uModel.Store.employeeTest" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="highestEducation" EntityType="offcampus4uModel.Store.highestEducation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="job" EntityType="offcampus4uModel.Store.job" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Rating" EntityType="offcampus4uModel.Store.Rating" store:Type="Tables" Schema="dbo" />
@@ -29,6 +30,10 @@
           <AssociationSet Name="FK__BankDetai__accou__74794A92" Association="offcampus4uModel.Store.FK__BankDetai__accou__74794A92">
             <End Role="account" EntitySet="account" />
             <End Role="BankDetail" EntitySet="BankDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__employeeT__compa__42ACE4D4" Association="offcampus4uModel.Store.FK__employeeT__compa__42ACE4D4">
+            <End Role="company" EntitySet="company" />
+            <End Role="employeeTest" EntitySet="employeeTest" />
           </AssociationSet>
           <AssociationSet Name="FK__job__createdBy__214BF109" Association="offcampus4uModel.Store.FK__job__createdBy__214BF109">
             <End Role="account" EntitySet="account" />
@@ -138,6 +143,24 @@
           <Property Name="createdOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedOn" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employeeTest">
+          <Key>
+            <PropertyRef Name="employeeTestId" />
+          </Key>
+          <Property Name="employeeTestId" Type="bigint" Nullable="false" />
+          <Property Name="testTitle" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="testDescription" Type="text" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="testDuration" Type="int" Nullable="false" />
+          <Property Name="companyId" Type="bigint" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdOn" Type="datetime" Nullable="false" />
+          <Property Name="modifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="highestEducation">
           <Key>
@@ -298,6 +321,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__employeeT__compa__42ACE4D4">
+          <End Role="company" Type="offcampus4uModel.Store.company" Multiplicity="1" />
+          <End Role="employeeTest" Type="offcampus4uModel.Store.employeeTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="employeeTest">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__job__createdBy__214BF109">
           <End Role="account" Type="offcampus4uModel.Store.account" Multiplicity="1" />
           <End Role="job" Type="offcampus4uModel.Store.job" Multiplicity="*" />
@@ -455,6 +490,11 @@
             <End Role="wallet" EntitySet="wallets" />
             <End Role="withdrawal" EntitySet="withdrawals" />
           </AssociationSet>
+          <EntitySet Name="employeeTests" EntityType="offcampus4uModel.employeeTest" />
+          <AssociationSet Name="FK__employeeT__compa__42ACE4D4" Association="offcampus4uModel.FK__employeeT__compa__42ACE4D4">
+            <End Role="company" EntitySet="companies" />
+            <End Role="employeeTest" EntitySet="employeeTests" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="account">
           <Key>
@@ -540,6 +580,7 @@
           <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
           <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+          <NavigationProperty Name="employeeTests" Relationship="offcampus4uModel.FK__employeeT__compa__42ACE4D4" FromRole="company" ToRole="employeeTest" />
         </EntityType>
         <EntityType Name="highestEducation">
           <Key>
@@ -809,6 +850,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="employeeTest">
+          <Key>
+            <PropertyRef Name="employeeTestId" />
+          </Key>
+          <Property Type="Int64" Name="employeeTestId" Nullable="false" />
+          <Property Type="String" Name="testTitle" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="testDescription" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="startDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="endDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="testDuration" Nullable="false" />
+          <Property Type="Int64" Name="companyId" Nullable="false" />
+          <Property Type="Int64" Name="createdBy" Nullable="false" />
+          <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+          <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <NavigationProperty Name="company" Relationship="offcampus4uModel.FK__employeeT__compa__42ACE4D4" FromRole="employeeTest" ToRole="company" />
+        </EntityType>
+        <Association Name="FK__employeeT__compa__42ACE4D4">
+          <End Type="offcampus4uModel.company" Role="company" Multiplicity="1" />
+          <End Type="offcampus4uModel.employeeTest" Role="employeeTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="employeeTest">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1023,6 +1095,25 @@
                 <ScalarProperty Name="walletId" ColumnName="walletId" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
                 <ScalarProperty Name="withdrawalId" ColumnName="withdrawalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeeTests">
+            <EntityTypeMapping TypeName="offcampus4uModel.employeeTest">
+              <MappingFragment StoreEntitySet="employeeTest">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="testDuration" ColumnName="testDuration" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="testDescription" ColumnName="testDescription" />
+                <ScalarProperty Name="testTitle" ColumnName="testTitle" />
+                <ScalarProperty Name="employeeTestId" ColumnName="employeeTestId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

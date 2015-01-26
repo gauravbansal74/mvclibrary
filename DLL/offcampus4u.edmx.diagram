@@ -28,6 +28,8 @@
         <AssociationConnector Association="offcampus4uModel.FK__video__categoryI__19AACF41" />
         <AssociationConnector Association="offcampus4uModel.FK__walletTra__walle__7FEAFD3E" />
         <AssociationConnector Association="offcampus4uModel.FK__withdrawa__walle__1F63A897" />
+        <EntityTypeShape EntityType="offcampus4uModel.employeeTest" Width="1.5" PointX="1.3689064818289627" PointY="9.7500386879546745" />
+        <AssociationConnector Association="offcampus4uModel.FK__employeeT__compa__42ACE4D4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

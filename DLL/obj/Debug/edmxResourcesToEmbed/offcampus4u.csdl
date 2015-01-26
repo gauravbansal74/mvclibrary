@@ -57,6 +57,11 @@
       <End Role="wallet" EntitySet="wallets" />
       <End Role="withdrawal" EntitySet="withdrawals" />
     </AssociationSet>
+    <EntitySet Name="employeeTests" EntityType="offcampus4uModel.employeeTest" />
+    <AssociationSet Name="FK__employeeT__compa__42ACE4D4" Association="offcampus4uModel.FK__employeeT__compa__42ACE4D4">
+      <End Role="company" EntitySet="companies" />
+      <End Role="employeeTest" EntitySet="employeeTests" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="account">
     <Key>
@@ -142,6 +147,7 @@
     <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
     <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
     <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <NavigationProperty Name="employeeTests" Relationship="offcampus4uModel.FK__employeeT__compa__42ACE4D4" FromRole="company" ToRole="employeeTest" />
   </EntityType>
   <EntityType Name="highestEducation">
     <Key>
@@ -408,6 +414,37 @@
       </Principal>
       <Dependent Role="withdrawal">
         <PropertyRef Name="walletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="employeeTest">
+    <Key>
+      <PropertyRef Name="employeeTestId" />
+    </Key>
+    <Property Type="Int64" Name="employeeTestId" Nullable="false" />
+    <Property Type="String" Name="testTitle" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="testDescription" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="startDate" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="endDate" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="testDuration" Nullable="false" />
+    <Property Type="Int64" Name="companyId" Nullable="false" />
+    <Property Type="Int64" Name="createdBy" Nullable="false" />
+    <Property Type="DateTime" Name="createdOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="modifiedOn" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+    <NavigationProperty Name="company" Relationship="offcampus4uModel.FK__employeeT__compa__42ACE4D4" FromRole="employeeTest" ToRole="company" />
+  </EntityType>
+  <Association Name="FK__employeeT__compa__42ACE4D4">
+    <End Type="offcampus4uModel.company" Role="company" Multiplicity="1" />
+    <End Type="offcampus4uModel.employeeTest" Role="employeeTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyId" />
+      </Principal>
+      <Dependent Role="employeeTest">
+        <PropertyRef Name="companyId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

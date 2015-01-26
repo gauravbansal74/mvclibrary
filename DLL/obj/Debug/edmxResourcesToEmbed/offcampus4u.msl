@@ -212,5 +212,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="employeeTests">
+      <EntityTypeMapping TypeName="offcampus4uModel.employeeTest">
+        <MappingFragment StoreEntitySet="employeeTest">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+          <ScalarProperty Name="testDuration" ColumnName="testDuration" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="testDescription" ColumnName="testDescription" />
+          <ScalarProperty Name="testTitle" ColumnName="testTitle" />
+          <ScalarProperty Name="employeeTestId" ColumnName="employeeTestId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

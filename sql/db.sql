@@ -204,3 +204,22 @@ ALTER TABLE dbo.account ADD isEmployer BIT DEFAULT 0 NOT NULL;
 ALTER TABLE dbo.account ADD isEmployerAdmin BIT DEFAULT 0 NOT NULL;
 ALTER TABLE dbo.account ADD companyId BIGINT NULL;
 ALTER TABLE dbo.account ADD isEmployerVerified BIT DEFAULT 0 NOT NULL;
+
+-- Online Test
+
+CREATE TABLE employeeTest(
+employeeTestId BIGINT PRIMARY KEY NOT NULL,
+testTitle varchar(200) NOT NULL,
+testDescription TEXT NOT NULL,
+startDate DATETIME NOT NULL,
+endDate DATETIME NOT NULL,
+testDuration INT NOT NULL,
+companyId BIGINT NOT NULL,
+createdBy	BIGINT NOT NULL,
+createdOn DATETIME NOT NULL,
+modifiedOn DATETIME NOT NULL,
+modifiedBy	BIGINT NOT NULL,
+isDeleted BIT NOT NULL,
+isActive BIT NOT NULL,
+FOREIGN KEY (companyId) REFERENCES company(companyId)
+)

@@ -94,6 +94,9 @@
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
     <Compile Include="EmpAccount.cs" />
+    <Compile Include="employeeTest.cs">
+      <DependentUpon>offcampus4u.tt</DependentUpon>
+    </Compile>
     <Compile Include="Error.cs" />
     <Compile Include="highestEducation.cs">
       <DependentUpon>offcampus4u.tt</DependentUpon>
@@ -125,6 +128,7 @@
     <Compile Include="Rating.cs">
       <DependentUpon>offcampus4u.tt</DependentUpon>
     </Compile>
+    <Compile Include="Test.cs" />
     <Compile Include="TransferAmount.cs" />
     <Compile Include="tutorialCategory.cs">
       <DependentUpon>offcampus4u.tt</DependentUpon>
